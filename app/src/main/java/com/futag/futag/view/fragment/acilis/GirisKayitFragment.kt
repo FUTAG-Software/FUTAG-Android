@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.futag.futag.R
 import com.futag.futag.databinding.FragmentGirisKayitBinding
 
 class GirisKayitFragment : Fragment() {
@@ -20,6 +22,19 @@ class GirisKayitFragment : Fragment() {
         val view = binding.root
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonGirisYap.setOnClickListener {
+            findNavController().navigate(R.id.action_girisKayitFragment_to_girisYapFragment)
+        }
+
+        binding.buttonKayitOl.setOnClickListener {
+            findNavController().navigate(R.id.action_girisKayitFragment_to_kayitOlFragment)
+        }
+
     }
 
     override fun onDestroyView() {

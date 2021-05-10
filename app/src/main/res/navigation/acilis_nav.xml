@@ -36,5 +36,22 @@
         android:id="@+id/girisKayitFragment"
         android:name="com.futag.futag.view.fragment.acilis.GirisKayitFragment"
         android:label="fragment_giris_kayit"
-        tools:layout="@layout/fragment_giris_kayit" />
+        tools:layout="@layout/fragment_giris_kayit" >
+        <action
+            android:id="@+id/action_girisKayitFragment_to_girisYapFragment"
+            app:destination="@id/girisYapFragment" />
+        <action
+            android:id="@+id/action_girisKayitFragment_to_kayitOlFragment"
+            app:destination="@id/kayitOlFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/girisYapFragment"
+        android:name="com.futag.futag.view.fragment.acilis.GirisYapFragment"
+        android:label="fragment_giris_yap"
+        tools:layout="@layout/fragment_giris_yap" />
+    <fragment
+        android:id="@+id/kayitOlFragment"
+        android:name="com.futag.futag.view.fragment.acilis.KayitOlFragment"
+        android:label="fragment_kayit_ol"
+        tools:layout="@layout/fragment_kayit_ol" />
 </navigation>
