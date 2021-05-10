@@ -48,10 +48,26 @@
         android:id="@+id/girisYapFragment"
         android:name="com.futag.futag.view.fragment.acilis.GirisYapFragment"
         android:label="fragment_giris_yap"
-        tools:layout="@layout/fragment_giris_yap" />
+        tools:layout="@layout/fragment_giris_yap" >
+        <action
+            android:id="@+id/action_girisYapFragment_to_kayitOlFragment"
+            app:destination="@id/kayitOlFragment" />
+        <action
+            android:id="@+id/action_girisYapFragment_to_sifremiUnuttumFragment"
+            app:destination="@id/sifremiUnuttumFragment" />
+    </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"
         android:name="com.futag.futag.view.fragment.acilis.KayitOlFragment"
         android:label="fragment_kayit_ol"
-        tools:layout="@layout/fragment_kayit_ol" />
+        tools:layout="@layout/fragment_kayit_ol" >
+        <action
+            android:id="@+id/action_kayitOlFragment_to_girisYapFragment"
+            app:destination="@id/girisYapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sifremiUnuttumFragment"
+        android:name="com.futag.futag.view.fragment.acilis.SifremiUnuttumFragment"
+        android:label="fragment_sifremi_unuttum"
+        tools:layout="@layout/fragment_sifremi_unuttum" />
 </navigation>

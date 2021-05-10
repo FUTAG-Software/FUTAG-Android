@@ -13,11 +13,17 @@
     <string name="giris_yap">Giriş Yap</string>
     <string name="kayit_ol">Kayıt Ol</string>
     <string name="kayit_olmak_icin_bilgi">Kaydolmak için bilgilerinizi ekleyin</string>
+    <string name="giris_yapmak_icin_bilgi">Giriş yapmak için bilgilerinizi giriniz</string>
     <string name="adiniz">Adınız</string>
     <string name="soyadiniz">Soyadınız</string>
     <string name="email">E-Mail</string>
     <string name="sifre">Şifre</string>
+    <string name="gonder">Gönder</string>
     <string name="sifre_tekrar">Şifre (Tekrar)</string>
     <string name="dogum_gununuz">Doğum Gününüz</string>
     <string name="zaten_hesabin_var_mi">Zaten hesabın var mı?</string>
+    <string name="hesabiniz_yok_mu">Hesabın yok mu?</string>
+    <string name="sifreni_mi_unuttun">Şifreni mi unuttun?</string>
+    <string name="sifremi_unuttum">Şifremi Unuttum</string>
+    <string name="sifre_yenileme_metni">Şifrenizi yenilemek için lütfen e-posta adresinizi giriniz.</string>
 </resources>

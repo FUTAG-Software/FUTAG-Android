@@ -5,33 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentKayitOlBinding
+import com.futag.futag.databinding.FragmentSifremiUnuttumBinding
 
-class KayitOlFragment : Fragment() {
+class SifremiUnuttumFragment : Fragment() {
 
-    private var _binding: FragmentKayitOlBinding? = null
+    private var _binding: FragmentSifremiUnuttumBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentKayitOlBinding.inflate(inflater,container,false)
-        val view = binding.root
-        return view
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_sifremi_unuttum, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonKayitOl.setOnClickListener {
+        binding.buttonGonder.setOnClickListener {
 
-        }
-
-        binding.textViewGirisYap.setOnClickListener {
-            findNavController().navigate(R.id.action_kayitOlFragment_to_girisYapFragment)
         }
 
     }
