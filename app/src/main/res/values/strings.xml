@@ -5,4 +5,6 @@
     <string name="futag_icon">futag_icon</string>
     <string name="futag_yazi">futag_yazi</string>
     <string name="by_futag_software">By Futag Software</string>
+    <string name="ileri">İleri</string>
+    <string name="bitir">Bitir</string>
 </resources>

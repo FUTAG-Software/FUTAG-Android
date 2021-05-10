@@ -1,5 +1,6 @@
 package com.futag.futag.view.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -25,7 +26,11 @@ class SplashFragment : Fragment() {
         val view = binding.root
 
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+            if(onBoardingBitimi()){
+                findNavController().navigate(R.id.action_splashFragment_to_girisKayitFragment)
+            } else{
+                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+            }
         },BEKLEME_SURESI)
 
         return view
@@ -34,6 +39,11 @@ class SplashFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onBoardingBitimi(): Boolean{
+        val sharedPreference = requireActivity().getSharedPreferences("onBoarding",Context.MODE_PRIVATE)
+        return sharedPreference.getBoolean("bitis",false)
     }
 
 }
