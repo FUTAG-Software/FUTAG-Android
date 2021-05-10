@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners
+        android:radius="25dp" />
+
+    <solid
+        android:color="@color/acik_gri2"/>
+
+    <padding
+        android:left="30dp"
+        android:right="15dp" />
+
+</shape>

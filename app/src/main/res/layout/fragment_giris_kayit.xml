@@ -6,13 +6,13 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.acilis.GirisKayitFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        tools:context=".view.fragment.acilis.GirisKayitFragment">
+        android:background="@color/white">
 
         <LinearLayout
             android:id="@+id/imageViewFutagDevre"

@@ -12,4 +12,12 @@
     <string name="devre_gorunumu">futag_devre</string>
     <string name="giris_yap">Giriş Yap</string>
     <string name="kayit_ol">Kayıt Ol</string>
+    <string name="kayit_olmak_icin_bilgi">Kaydolmak için bilgilerinizi ekleyin</string>
+    <string name="adiniz">Adınız</string>
+    <string name="soyadiniz">Soyadınız</string>
+    <string name="email">E-Mail</string>
+    <string name="sifre">Şifre</string>
+    <string name="sifre_tekrar">Şifre (Tekrar)</string>
+    <string name="dogum_gununuz">Doğum Gününüz</string>
+    <string name="zaten_hesabin_var_mi">Zaten hesabın var mı?</string>
 </resources>

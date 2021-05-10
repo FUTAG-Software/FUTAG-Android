@@ -22,6 +22,19 @@ class KayitOlFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonKayitOl.setOnClickListener {
+
+        }
+
+        binding.textViewGirisYap.setOnClickListener {
+
+        }
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
