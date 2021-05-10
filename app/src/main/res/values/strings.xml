@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FUTAG</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="futag_icon">futag_icon</string>
+    <string name="futag_yazi">futag_yazi</string>
+    <string name="by_futag_software">By Futag Software</string>
 </resources>
