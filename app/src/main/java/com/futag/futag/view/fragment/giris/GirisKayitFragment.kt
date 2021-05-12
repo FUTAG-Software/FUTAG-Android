@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.acilis
+package com.futag.futag.view.fragment.giris
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

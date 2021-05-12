@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.acilis.GirisYapFragment">
+    tools:context=".view.fragment.giris.GirisYapFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,7 +114,7 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/sari"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

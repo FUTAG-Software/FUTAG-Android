@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/girisKayitFragment"
-        android:name="com.futag.futag.view.fragment.acilis.GirisKayitFragment"
+        android:name="com.futag.futag.view.fragment.giris.GirisKayitFragment"
         android:label="fragment_giris_kayit"
         tools:layout="@layout/fragment_giris_kayit" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/girisYapFragment"
-        android:name="com.futag.futag.view.fragment.acilis.GirisYapFragment"
+        android:name="com.futag.futag.view.fragment.giris.GirisYapFragment"
         android:label="fragment_giris_yap"
         tools:layout="@layout/fragment_giris_yap" >
         <action
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"
-        android:name="com.futag.futag.view.fragment.acilis.KayitOlFragment"
+        android:name="com.futag.futag.view.fragment.giris.KayitOlFragment"
         android:label="fragment_kayit_ol"
         tools:layout="@layout/fragment_kayit_ol" >
         <action
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/sifremiUnuttumFragment"
-        android:name="com.futag.futag.view.fragment.acilis.SifremiUnuttumFragment"
+        android:name="com.futag.futag.view.fragment.giris.SifremiUnuttumFragment"
         android:label="fragment_sifremi_unuttum"
         tools:layout="@layout/fragment_sifremi_unuttum" />
 </navigation>

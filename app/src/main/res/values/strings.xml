@@ -26,4 +26,5 @@
     <string name="sifreni_mi_unuttun">Şifreni mi unuttun?</string>
     <string name="sifremi_unuttum">Şifremi Unuttum</string>
     <string name="sifre_yenileme_metni">Şifrenizi yenilemek için lütfen e-posta adresinizi giriniz.</string>
+    <string name="hata_mesaji">Hata, lütfen tekrar deneyiniz.</string>
 </resources>

@@ -1,162 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.acilis.KayitOlFragment">
+    tools:context=".view.fragment.giris.KayitOlFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textViewKayitOl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="@string/kayit_ol"
-            android:textColor="@color/text_color_koyu"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/textViewBilgi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/kayit_olmak_icin_bilgi"
-            android:textAlignment="center"
-            android:textColor="@color/hint_color"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/editTextAd"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/edit_text_background"
-            android:ems="10"
-            android:maxLines="16"
-            android:textSize="18sp"
-            android:inputType="textPersonName"
-            android:hint="@string/adiniz"
-            android:textColor="@color/black"
-            android:autofillHints="false" />
-
-        <EditText
-            android:id="@+id/editTextSoyad"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edit_text_background"
-            android:ems="10"
-            android:maxLines="16"
-            android:textSize="18sp"
-            android:inputType="textPersonName"
-            android:hint="@string/soyadiniz"
-            android:textColor="@color/black"
-            android:autofillHints="false" />
-
-        <EditText
-            android:id="@+id/editTextMail"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edit_text_background"
-            android:ems="10"
-            android:maxLines="16"
-            android:textSize="18sp"
-            android:inputType="textEmailAddress"
-            android:hint="@string/email"
-            android:textColor="@color/black"
-            android:autofillHints="false" />
-
-        <EditText
-            android:id="@+id/editTextSifre"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edit_text_background"
-            android:ems="10"
-            android:maxLines="16"
-            android:textSize="18sp"
-            android:inputType="textPassword"
-            android:hint="@string/sifre"
-            android:textColor="@color/black"
-            android:autofillHints="false" />
-
-        <EditText
-            android:id="@+id/editTextSifreTekrar"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edit_text_background"
-            android:ems="10"
-            android:maxLines="16"
-            android:textSize="18sp"
-            android:inputType="textPassword"
-            android:hint="@string/sifre_tekrar"
-            android:textColor="@color/black"
-            android:autofillHints="false" />
-
-        <EditText
-            android:id="@+id/editTextDogumGunu"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edit_text_background"
-            android:ems="10"
-            android:maxLines="16"
-            android:textSize="18sp"
-            android:inputType="date"
-            android:hint="@string/dogum_gununuz"
-            android:textColor="@color/black"
-            android:autofillHints="false" />
-
-        <Button
-            android:id="@+id/buttonKayitOl"
-            android:layout_width="330dp"
-            android:layout_height="52dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/kayit_button_arka_plani"
-            android:backgroundTint="@color/sari"
-            android:text="@string/kayit_ol"
-            android:textAllCaps="false"
-            android:textColor="@color/text_color_koyu"
-            android:textSize="18sp" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
+            android:id="@id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textViewHesap"
+                android:id="@+id/textViewKayitOl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/zaten_hesabin_var_mi"
+                android:layout_marginTop="25dp"
+                android:text="@string/kayit_ol"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/textViewBilgi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/kayit_olmak_icin_bilgi"
                 android:textAlignment="center"
                 android:textColor="@color/hint_color"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/textViewGirisYap"
+            <EditText
+                android:id="@+id/editTextAd"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="40dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/adiniz"
+                android:inputType="textPersonName"
+                android:maxLength="32"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextSoyad"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/soyadiniz"
+                android:inputType="textPersonName"
+                android:maxLength="32"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextMail"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextSifre"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/sifre"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextSifreTekrar"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/sifre_tekrar"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextDogumGunu"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/dogum_gununuz"
+                android:inputType="date"
+                android:maxLines="16"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/buttonKayitOl"
+                android:layout_width="330dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/kayit_button_arka_plani"
+                android:backgroundTint="@color/sari"
+                android:text="@string/kayit_ol"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutYazi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="@string/giris_yap"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/sari"
-                android:textSize="18sp" />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewHesap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zaten_hesabin_var_mi"
+                    android:textAlignment="center"
+                    android:textColor="@color/hint_color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textViewGirisYap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/giris_yap"
+                    android:textAlignment="center"
+                    android:textColor="@color/sari"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimasyon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="ziplayanarianimation.json"
+            app:lottie_loop="true"
+            app:lottie_speed="1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
