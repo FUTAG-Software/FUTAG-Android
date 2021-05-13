@@ -2,7 +2,6 @@ package com.futag.futag.view.fragment.giris
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +12,13 @@ import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentKayitOlBinding
 import com.futag.futag.view.activity.AkisActivity
-import com.futag.futag.viewmodel.KayitOlViewModel
+import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
 
 class KayitOlFragment : Fragment() {
 
     private var _binding: FragmentKayitOlBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: KayitOlViewModel
+    private lateinit var viewModel: KayitOlGirisYapViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +32,7 @@ class KayitOlFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(KayitOlViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
 
         binding.buttonKayitOl.setOnClickListener {
             if(veriGirisKontrolu()){
@@ -45,7 +44,7 @@ class KayitOlFragment : Fragment() {
                 val dogumgunu = binding.editTextDogumGunu.text.toString()
 
                 if(sifre == sifreTekrar){
-                    viewModel.kayitOnayDurumu(email, sifre, requireContext())
+                    viewModel.kayitOnayDurumu(email, sifre, isim, soyisim, dogumgunu, requireContext())
                     veriyiGozlemle()
                 } else {
                     Toast.makeText(requireContext(),"Şifreler Aynı Olmalıdır!",Toast.LENGTH_SHORT).show()
@@ -64,12 +63,10 @@ class KayitOlFragment : Fragment() {
     private fun animasyonuGoster(){
         binding.lottieAnimasyon.setAnimation("ziplayanarianimation.json")
         binding.lottieAnimasyon.playAnimation()
-        println("ziplayan ari calisiyor")
     }
 
     private fun animasyonuDurdur(){
         binding.lottieAnimasyon.cancelAnimation()
-        println("ziplayan ari durdu")
     }
 
     private fun veriyiGozlemle(){
@@ -79,12 +76,10 @@ class KayitOlFragment : Fragment() {
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimasyon.visibility = View.VISIBLE
                     animasyonuGoster()
-                    println("animasyon calisiyor")
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
                     binding.lottieAnimasyon.visibility = View.GONE
                     animasyonuDurdur()
-                    println("animasyon bitti")
                 }
             }
         })
