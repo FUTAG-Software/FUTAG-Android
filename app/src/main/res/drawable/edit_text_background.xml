@@ -9,7 +9,7 @@
         android:color="@color/acik_gri2"/>
 
     <padding
-        android:left="30dp"
+        android:left="20dp"
         android:right="15dp" />
 
 </shape>

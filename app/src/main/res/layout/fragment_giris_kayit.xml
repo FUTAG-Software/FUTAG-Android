@@ -11,90 +11,117 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/imageViewFutagDevre"
-            android:layout_width="match_parent"
-            android:layout_height="360dp"
-            android:background="@drawable/devre"
-            android:gravity="bottom"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageView
-            android:id="@+id/imageViewFutag"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="305dp"
-            android:contentDescription="@string/devre_gorunumu"
-            android:src="@drawable/futag_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewKulupText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/bir_kulupten_daha_fazlasi"
-            android:textColor="@color/text_color_koyu"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/textViewKulupMetin"
-            app:layout_constraintStart_toStartOf="@+id/textViewKulupMetin"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewFutag" />
-
-        <TextView
-            android:id="@+id/textViewKulupMetin"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="@string/giris_metin"
-            android:textAlignment="center"
-            android:textColor="@color/hint_color"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewKulupText" />
-
-        <Button
-            android:id="@+id/buttonGirisYap"
-            android:layout_width="320dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/kayit_button_arka_plani"
-            android:backgroundTint="@color/sari"
-            android:text="@string/giris_yap"
-            android:textAllCaps="false"
-            android:textColor="@color/text_color_koyu"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewKulupMetin" />
-
-        <Button
-            android:id="@+id/buttonKayitOl"
-            android:layout_width="320dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/kayit_button_arka_plani"
-            android:text="@string/kayit_ol"
-            android:textAllCaps="false"
-            android:textColor="@color/text_color_koyu"
-            android:textSize="18sp"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimasyon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonGirisYap" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="ziplayanarianimation.json"
+            app:lottie_loop="true"
+            app:lottie_speed="1" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/imageViewFutagDevre"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:background="@drawable/devre"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageViewFutag"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="305dp"
+                android:contentDescription="@string/devre_gorunumu"
+                android:src="@drawable/futag_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewKulupText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/bir_kulupten_daha_fazlasi"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/textViewKulupMetin"
+                app:layout_constraintStart_toStartOf="@+id/textViewKulupMetin"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewFutag" />
+
+            <TextView
+                android:id="@+id/textViewKulupMetin"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/giris_metin"
+                android:textAlignment="center"
+                android:textColor="@color/hint_color"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewKulupText" />
+
+            <Button
+                android:id="@+id/buttonGirisYap"
+                android:layout_width="320dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/kayit_button_arka_plani"
+                android:backgroundTint="@color/sari"
+                android:text="@string/giris_yap"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewKulupMetin" />
+
+            <Button
+                android:id="@+id/buttonKayitOl"
+                android:layout_width="320dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/kayit_button_arka_plani"
+                android:text="@string/kayit_ol"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonGirisYap" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
