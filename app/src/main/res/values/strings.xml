@@ -1,30 +1,57 @@
 <resources>
     <string name="app_name">FUTAG</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Genel Stringler -->
     <string name="futag_icon">futag_icon</string>
     <string name="futag_yazi">futag_yazi</string>
-    <string name="by_futag_software">By Futag Software</string>
     <string name="ileri">İleri</string>
     <string name="bitir">Bitir</string>
-    <string name="bir_kulupten_daha_fazlasi">#BIRKULUPTENDAHAFAZLASI</string>ç
-    <string name="giris_metin">"Başarı, zaman içerisinde çok çalışmaya ve tutkuya bağlıdır. Eğer gerçekten çok çalışırsanız, uzun bir süre boyunca gerçekten çok çalışırsanız, karşılığını alacaksınız."</string>
-    <string name="devre_gorunumu">futag_devre</string>
+    <string name="bir_kulupten_daha_fazlasi">#BIRKULUPTENDAHAFAZLASI</string>
+    <string name="bosluklari_doldurunuz">Lütfen boşlukları doldurunuz!</string>
     <string name="giris_yap">Giriş Yap</string>
     <string name="kayit_ol">Kayıt Ol</string>
+    <string name="gonder">Gönder</string>
+    <string name="hata_mesaji">Hata, lütfen tekrar deneyiniz.</string>
+
+    <!-- Main Activity -->
+    <string name="internet_baglantisi_olumsuz">İnternet Bağlantınızın Olduğundan Emin Olun!</string>
+
+    <!-- Akis Activity -->
+
+    <!-- FirstScreen Fragment -->
+    <string name="by_futag_software">By Futag Software</string>
+
+    <!-- SecondScreen Fragment -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- ThirdScreen Fragment -->
+
+    <!-- Splash Fragment -->
+
+    <!-- GirisKayit Fragment -->
+    <string name="giris_metin">"Başarı, zaman içerisinde çok çalışmaya ve tutkuya bağlıdır. Eğer gerçekten çok çalışırsanız, uzun bir süre boyunca gerçekten çok çalışırsanız, karşılığını alacaksınız."</string>
+    <string name="devre_gorunumu">Futag Devre</string>
+
+    <!-- KayitOl Fragment -->
     <string name="kayit_olmak_icin_bilgi">Kaydolmak için bilgilerinizi ekleyin</string>
-    <string name="giris_yapmak_icin_bilgi">Giriş yapmak için bilgilerinizi giriniz</string>
     <string name="adiniz">Adınız</string>
     <string name="soyadiniz">Soyadınız</string>
     <string name="email">E-Mail</string>
     <string name="sifre">Şifre</string>
-    <string name="gonder">Gönder</string>
     <string name="sifre_tekrar">Şifre (Tekrar)</string>
+    <string name="sifreler_ayni_olmalidir">Şifreler Aynı Olmalıdır!</string>
     <string name="dogum_gununuz">Doğum Gününüz</string>
     <string name="zaten_hesabin_var_mi">Zaten hesabın var mı?</string>
-    <string name="hesabiniz_yok_mu">Hesabın yok mu?</string>
+
+    <!-- GirisYap Fragment -->
+    <string name="giris_yapmak_icin_bilgi">Giriş yapmak için bilgilerinizi giriniz</string>
     <string name="sifreni_mi_unuttun">Şifreni mi unuttun?</string>
+    <string name="hesabin_yok_mu">Hesabın yok mu?</string>
+
+    <!-- SifremiUnuttum Fragment -->
+    <string name="lutfen_mail_adresinizi_giriniz">Lütfen Mail Adresinizi Girin!</string>
+    <string name="onay_maili_gonderildi">Onay Maili Gönderildi.</string>
     <string name="sifremi_unuttum">Şifremi Unuttum</string>
     <string name="sifre_yenileme_metni">Şifrenizi yenilemek için lütfen e-posta adresinizi giriniz.</string>
-    <string name="hata_mesaji">Hata, lütfen tekrar deneyiniz.</string>
+
 </resources>

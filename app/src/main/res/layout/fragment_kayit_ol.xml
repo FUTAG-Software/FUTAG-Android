@@ -119,20 +119,18 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <EditText
+            <Button
                 android:id="@+id/editTextDogumGunu"
                 android:layout_width="330dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="20dp"
-                android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
-                android:ems="10"
                 android:drawableStart="@drawable/takvim"
                 android:drawablePadding="10dp"
                 android:hint="@string/dogum_gununuz"
-                android:inputType="date"
-                android:maxLines="16"
-                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/acik_gri"
                 android:textSize="18sp" />
 
             <Button

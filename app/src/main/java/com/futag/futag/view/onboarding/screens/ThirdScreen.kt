@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentThirdScreenBinding
 
@@ -40,6 +39,7 @@ class ThirdScreen : Fragment() {
         _binding = null
     }
 
+    // onBoarding ekranlarinin tekrar gosterilmemesi icin fonksiyon
     private fun onBoardingBitimi(){
         val sharedPreference = requireActivity().getSharedPreferences("onBoarding",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()

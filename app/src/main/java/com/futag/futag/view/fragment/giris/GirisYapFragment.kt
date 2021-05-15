@@ -42,7 +42,7 @@ class GirisYapFragment : Fragment() {
                 viewModel.girisOnayDurumu(email,sifre,requireContext())
                 veriyiGozlemle()
             } else {
-                Toast.makeText(requireContext(),"Lütfen boşlukları doldurunuz!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -81,14 +81,11 @@ class GirisYapFragment : Fragment() {
         viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
             veriOnayi?.let { onay ->
                 if (onay){
-                    println("kayit basarili, girise gec")
                     activity?.let {
                         val intent = Intent(it, AkisActivity::class.java)
                         it.startActivity(intent)
                         it.finish()
                     }
-                } else {
-                    println("Onay yok sayfada kal")
                 }
             }
         })

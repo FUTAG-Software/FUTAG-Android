@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.futag.futag.databinding.ActivityMainBinding
-import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,8 +20,9 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        // Uygulama acilinca internet kontrolu yapilir, internet yoksa uygulama acilmaz
         if (internetVarMi(this)){
-            Toast.makeText(this,"İnternet Bağlantınızın Olduğundan Emin Olun!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this,R.string.internet_baglantisi_olumsuz, Toast.LENGTH_LONG).show()
             finish()
         }
 

@@ -1,11 +1,9 @@
 package com.futag.futag.viewmodel
 
 import android.content.Context
-import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.futag.futag.view.activity.AkisActivity
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -20,18 +18,26 @@ class KayitOlGirisYapViewModel: ViewModel() {
     val veriOnayi = MutableLiveData<Boolean>()
     var girisVarMi = MutableLiveData<Boolean>()
 
+    // Kaydin gerceklesme durumu, public
     fun kayitOnayDurumu(email: String, sifre: String,
                         isim: String, soyisim: String,
                         dogumGunu: String, context: Context){
         firebaseKayitOnayi(email, sifre, isim, soyisim, dogumGunu ,context)
     }
 
+    // Girisin gerceklesme durumu, public
     fun girisOnayDurumu(email: String, sifre: String, context: Context){
         firebaseGiris(email, sifre, context)
     }
 
+    // Eski girisin kontrol durumu, public
     fun otomatikGirisDurumu(){
         firebaseOtomatikGiris()
+    }
+
+    // Sifre yenileme maili, public
+    fun sifremiUnuttumDurumu(mail: String, context: Context){
+        firebaseSifreUnutma(mail, context)
     }
 
     private fun firebaseKayitOnayi(email: String, sifre: String,
@@ -50,6 +56,7 @@ class KayitOlGirisYapViewModel: ViewModel() {
                     "dogumGunu" to dogumGunu,
                     "kayitTarihi" to kayitTarihi
                 )
+                // Kullanici bilgilerinin firestore kaydi
                 db.collection("Users").add(kullanici).addOnCompleteListener { kayit ->
                     if (kayit.isSuccessful){
                         veriOnayi.value = true
@@ -58,13 +65,11 @@ class KayitOlGirisYapViewModel: ViewModel() {
                 }.addOnFailureListener { veritabaniHatasi ->
                     animasyon.value = false
                     Toast.makeText(context,veritabaniHatasi.localizedMessage,Toast.LENGTH_LONG).show()
-                    println("firebase veritabani kaydi hatasi")
                 }
             }
         }.addOnFailureListener { dogrulamaHatasi->
             animasyon.value = false
             Toast.makeText(context,dogrulamaHatasi.localizedMessage,Toast.LENGTH_LONG).show()
-            println("firebase mail kaydi hatasi")
         }
     }
 
@@ -89,6 +94,19 @@ class KayitOlGirisYapViewModel: ViewModel() {
         } else {
             girisVarMi.value = false
             animasyon.value = false
+        }
+    }
+
+    private fun firebaseSifreUnutma(mail: String, context: Context){
+        animasyon.value = true
+        auth.sendPasswordResetEmail(mail).addOnCompleteListener { islem ->
+            if (islem.isSuccessful){
+                veriOnayi.value = true
+                animasyon.value = false
+            }
+        }.addOnFailureListener { hata ->
+            animasyon.value = false
+            Toast.makeText(context,hata.localizedMessage,Toast.LENGTH_LONG).show()
         }
     }
 

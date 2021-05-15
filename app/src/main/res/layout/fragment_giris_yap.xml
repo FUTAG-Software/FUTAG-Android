@@ -114,7 +114,7 @@
                     android:id="@+id/textViewHesap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/hesabiniz_yok_mu"
+                    android:text="@string/hesabin_yok_mu"
                     android:textAlignment="center"
                     android:textColor="@color/hint_color"
                     android:textSize="16sp" />

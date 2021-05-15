@@ -25,6 +25,7 @@ class SplashFragment : Fragment() {
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        // Girisde kullaniciyi bekletme
         Handler(Looper.getMainLooper()).postDelayed({
             if(onBoardingBitimi()){
                 findNavController().navigate(R.id.action_splashFragment_to_girisKayitFragment)
@@ -41,6 +42,7 @@ class SplashFragment : Fragment() {
         _binding = null
     }
 
+    // Kullanicinin onBoarding ekranlarini gecmislik durumunun kontrolu
     private fun onBoardingBitimi(): Boolean{
         val sharedPreference = requireActivity().getSharedPreferences("onBoarding",Context.MODE_PRIVATE)
         return sharedPreference.getBoolean("bitis",false)
