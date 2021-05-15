@@ -28,6 +28,9 @@ class ThirdScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.lottieAnimasyon.setAnimation("onboarding3.json")
+        binding.lottieAnimasyon.playAnimation()
+
         binding.buttonBitir.setOnClickListener{
             findNavController().navigate(R.id.action_viewPagerFragment_to_girisKayitFragment)
             onBoardingBitimi()

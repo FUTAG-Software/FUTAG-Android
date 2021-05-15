@@ -10,10 +10,14 @@
     <color name="blue">#1362FF</color>
 
     <color name="sari">#FBBD14</color>
+    <color name="turuncu">#ff6900</color>
+    <color name="mavi">#3477BC</color>
     <color name="menu_grisi">#3D3D3F</color>
     <color name="acik_gri">#B6B7B7</color>
     <color name="acik_gri2">#E4E4E4</color>
 
     <color name="text_color_koyu">#3D3D3F</color>
     <color name="hint_color">#B6B7B7</color>
+    <color name="on_boarding_sari">#EDDE45</color>
+
 </resources>

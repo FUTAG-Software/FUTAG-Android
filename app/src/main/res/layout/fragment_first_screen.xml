@@ -1,33 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".view.onboarding.screens.FirstScreen">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimasyon"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="20dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="onboarding1.json"
+        app:lottie_loop="true"
+        app:lottie_speed="1" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewFutag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/by_futag_software"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="50dp"
+        android:text="@string/app_name"
+        android:textSize="28sp"
+        android:textColor="@color/menu_grisi" />
+
+    <TextView
+        android:id="@+id/textViewDunyasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/futag_dunyasina_hos_geldiniz"
+        android:textSize="28sp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/menu_grisi" />
 
     <Button
         android:id="@+id/buttonIleri"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/kayit_button_arka_plani"
+        android:backgroundTint="@color/mavi"
         android:text="@string/ileri"
         android:textAllCaps="false"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="18sp"
+        android:textColor="@color/white"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -27,6 +27,9 @@ class SecondScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.lottieAnimasyon.setAnimation("onboarding2.json")
+        binding.lottieAnimasyon.playAnimation()
+
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
         binding.buttonIleri.setOnClickListener{

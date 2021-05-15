@@ -54,7 +54,9 @@
             app:destination="@id/kayitOlFragment" />
         <action
             android:id="@+id/action_girisYapFragment_to_sifremiUnuttumFragment"
-            app:destination="@id/sifremiUnuttumFragment" />
+            app:destination="@id/sifremiUnuttumFragment"
+            app:popUpTo="@id/girisYapFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"

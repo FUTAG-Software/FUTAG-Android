@@ -1,6 +1,6 @@
 package com.futag.futag.model
 
-data class UserModel(
+data class KullaniciModel(
     val isim: String,
     val soyisim: String,
     val uid: String,

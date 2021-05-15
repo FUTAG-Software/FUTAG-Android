@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FUTAG</string>
+    <string name="app_name">FÜTAG</string>
 
     <!-- Genel Stringler -->
     <string name="futag_icon">futag_icon</string>
@@ -19,12 +19,13 @@
     <!-- Akis Activity -->
 
     <!-- FirstScreen Fragment -->
-    <string name="by_futag_software">By Futag Software</string>
+    <string name="futag_dunyasina_hos_geldiniz">Dünyasına Hoş Geldiniz</string>
 
     <!-- SecondScreen Fragment -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ister_blog_yazilari">İster Blog Yazılarını Oku İstersen Etkinliklere Tek Tıkla Kayıt Ol</string>
 
     <!-- ThirdScreen Fragment -->
+    <string name="haydi_sen">Haydi Sen De Bize Katıl</string>
 
     <!-- Splash Fragment -->
 
