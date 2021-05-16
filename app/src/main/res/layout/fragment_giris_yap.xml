@@ -92,7 +92,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/sifreni_mi_unuttun"
                 android:textAlignment="center"
-                android:textColor="@color/blue"
+                android:textColor="@color/menu_grisi"
                 android:textSize="18sp" />
 
             <ImageView

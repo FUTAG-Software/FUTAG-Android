@@ -38,13 +38,13 @@
         android:textAlignment="center"
         android:textColor="@color/menu_grisi" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonIleri"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:background="@drawable/kayit_button_arka_plani"
-        android:backgroundTint="@color/mavi"
+        app:backgroundTint="#1362FF"
         android:text="@string/ileri"
         android:textAllCaps="false"
         android:textSize="18sp"

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/blog"
+        android:title="@string/blog"
+        android:icon="@drawable/blog" />
+
+    <item
+        android:id="@+id/etkinlik"
+        android:title="@string/etkinlik"
+        android:icon="@drawable/takvim_bottom" />
+
+    <item
+        android:id="@+id/yer_tutucu"
+        android:title=""/>
+
+    <item
+        android:id="@+id/profil"
+        android:title="@string/profil"
+        android:icon="@drawable/kullanici" />
+
+    <item
+        android:id="@+id/daha"
+        android:title="@string/daha"
+        android:icon="@drawable/daha" />
+
+</menu>

@@ -111,6 +111,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/kayit_button_arka_plani"
+                app:backgroundTint="@color/white"
                 android:text="@string/kayit_ol"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"

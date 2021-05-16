@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:background="@drawable/kayit_button_arka_plani"
-        android:backgroundTint="@color/on_boarding_sari"
+        app:backgroundTint="@color/on_boarding_sari"
         android:text="@string/ileri"
         android:textAllCaps="false"
         android:textSize="18sp" />
