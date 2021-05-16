@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/akis_nav"
+    app:startDestination="@id/evFragment">
+
+    <fragment
+        android:id="@+id/evFragment"
+        android:name="com.futag.futag.view.fragment.akis.EvFragment"
+        android:label="fragment_ev"
+        tools:layout="@layout/fragment_ev" />
+    <fragment
+        android:id="@+id/blogFragment"
+        android:name="com.futag.futag.view.fragment.akis.BlogFragment"
+        android:label="fragment_blog"
+        tools:layout="@layout/fragment_blog" />
+    <fragment
+        android:id="@+id/etkinlikFragment"
+        android:name="com.futag.futag.view.fragment.akis.EtkinlikFragment"
+        android:label="fragment_etkinlik"
+        tools:layout="@layout/fragment_etkinlik" >
+    </fragment>
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.futag.futag.view.fragment.akis.ProfilFragment"
+        android:label="fragment_profil"
+        tools:layout="@layout/fragment_profil" >
+    </fragment>
+    <fragment
+        android:id="@+id/dahaFragment"
+        android:name="com.futag.futag.view.fragment.akis.DahaFragment"
+        android:label="fragment_daha"
+        tools:layout="@layout/fragment_daha" />
+</navigation>

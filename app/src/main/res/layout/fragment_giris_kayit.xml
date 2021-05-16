@@ -94,7 +94,7 @@
                 android:layout_height="54dp"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/kayit_button_arka_plani"
-                android:backgroundTint="@color/sari"
+                android:backgroundTint="@color/button_background_sari"
                 android:text="@string/giris_yap"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"

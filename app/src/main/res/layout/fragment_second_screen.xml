@@ -28,7 +28,7 @@
         android:textAlignment="center"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:textColor="@color/menu_grisi" />
+        android:textColor="@color/acilis_screen_text_text_color" />
 
     <Button
         android:id="@+id/buttonIleri"
@@ -37,6 +37,7 @@
         android:layout_marginTop="70dp"
         android:background="@drawable/kayit_button_arka_plani"
         app:backgroundTint="@color/on_boarding_sari"
+        android:textColor="@color/acilis_second_screen_button_text_color"
         android:text="@string/ileri"
         android:textAllCaps="false"
         android:textSize="18sp" />

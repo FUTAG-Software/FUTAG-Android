@@ -6,7 +6,7 @@
         android:radius="25dp" />
 
     <solid
-        android:color="@color/acik_gri2"/>
+        android:color="@color/edit_text_background_color"/>
 
     <padding
         android:left="20dp"

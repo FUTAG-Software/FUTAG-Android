@@ -5,12 +5,12 @@
     <string name="futag_icon">futag_icon</string>
     <string name="futag_yazi">futag_yazi</string>
     <string name="blog">Blog</string>
-    <string name="etkinlik">Etkinlik</string>
+    <string name="etkinlik">Etkinlikler</string>
     <string name="profil">Profil</string>
-    <string name="daha">Daha</string>
+    <string name="daha">Dahası</string>
     <string name="ileri">İleri</string>
     <string name="bitir">Bitir</string>
-    <string name="ev">Ev Resmi</string>
+    <string name="ev">Ana Sayfa</string>
     <string name="bir_kulupten_daha_fazlasi">#BIRKULUPTENDAHAFAZLASI</string>
     <string name="bosluklari_doldurunuz">Lütfen boşlukları doldurunuz!</string>
     <string name="giris_yap">Giriş Yap</string>

@@ -69,7 +69,7 @@
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:maxLines="16"
-                android:textColor="@color/black"
+                android:textColor="@color/edit_text_text_color_black"
                 android:textSize="18sp" />
 
             <Button
@@ -78,7 +78,7 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/kayit_button_arka_plani"
-                android:backgroundTint="@color/sari"
+                android:backgroundTint="@color/button_background_sari"
                 android:text="@string/gonder"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"

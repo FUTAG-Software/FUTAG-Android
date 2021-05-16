@@ -37,9 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:background="@drawable/kayit_button_arka_plani"
-        app:backgroundTint="@color/turuncu"
+        app:backgroundTint="@color/acilis_third_screen_background_color"
         android:text="@string/bitir"
-        android:textColor="@color/white"
+        android:textColor="@color/acilis_screen_button_text_color"
         android:textAllCaps="false"
         android:textSize="18sp" />
 

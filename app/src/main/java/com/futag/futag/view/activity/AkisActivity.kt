@@ -2,7 +2,15 @@ package com.futag.futag.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.futag.futag.R
 import com.futag.futag.databinding.ActivityAkisBinding
+import com.futag.futag.view.fragment.akis.*
 import kotlin.system.exitProcess
 
 class AkisActivity : AppCompatActivity() {
@@ -15,8 +23,14 @@ class AkisActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
-        binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.menu.getItem(2).isEnabled = false
+
+        val navController = findNavController(R.id.fragment)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.evFragment, R.id.blogFragment, R.id.etkinlikFragment,R.id.profilFragment,R.id.dahaFragment))
+
+        setupActionBarWithNavController(navController,appBarConfiguration)
+
+        binding.bottomNavigationView.setupWithNavController(navController)
     }
 
     // Geri tusuyla uygualamadan direkt cikma, aksi takdirde 2 kez sayfa yuklenmesi oluyor

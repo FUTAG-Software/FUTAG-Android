@@ -14,4 +14,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <!-- BottomNavigationView Text Style -->
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">13sp</item>
+    </style>
+
 </resources>
