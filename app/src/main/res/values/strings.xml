@@ -15,6 +15,7 @@
     <string name="bosluklari_doldurunuz">Lütfen boşlukları doldurunuz!</string>
     <string name="giris_yap">Giriş Yap</string>
     <string name="kayit_ol">Kayıt Ol</string>
+    <string name="cikis_yap">Çıkış Yap</string>
     <string name="gonder">Gönder</string>
     <string name="hata_mesaji">Hata, lütfen tekrar deneyiniz.</string>
 

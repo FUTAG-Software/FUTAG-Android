@@ -24,6 +24,7 @@
     <color name="button_background_white">@color/white</color>
     <color name="edit_text_background_color">@color/acik_gri2</color>
     <color name="edit_text_text_color_black">@color/black</color>
+    <color name="blog_text_color">@color/white</color>
 
     <!-- Acilis Sayfa Renkleri -->
     <color name="acilis_screen_button_color">@color/blue</color>
