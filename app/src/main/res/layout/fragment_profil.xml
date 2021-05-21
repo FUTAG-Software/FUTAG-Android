@@ -6,101 +6,148 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
         tools:context=".view.fragment.akis.ProfilFragment">
 
-        <TextView
-            android:id="@+id/textViewBaslik"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/profil"
-            android:layout_gravity="start"
-            android:textColor="@color/text_color_koyu"
-            android:textSize="32sp" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageViewProfilResmi"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/kisi_yuksek_cozunurluk"
-            app:civ_border_color="@color/sari"
-            app:civ_border_width="2dp" />
-
-        <TextView
-            android:id="@+id/textViewKullaniciAdi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="20sp"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/text_color_koyu"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/editTextKullaniciMail"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="30dp"
-            android:autofillHints="false"
-            android:background="@drawable/edit_text_background"
-            android:drawableStart="@drawable/mail"
-            android:drawablePadding="10dp"
-            android:hint="@string/email"
-            android:focusable="false"
-            android:inputType="none"
-            android:textColor="@color/edit_text_text_color_black"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/editTextDogumTarihi"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="30dp"
-            android:autofillHints="false"
-            android:background="@drawable/edit_text_background"
-            android:drawableStart="@drawable/takvim"
-            android:drawablePadding="10dp"
-            android:hint="@string/dogum_gununuz"
-            android:focusable="false"
-            android:inputType="none"
-            android:textColor="@color/edit_text_text_color_black"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/editTextSifre"
-            android:layout_width="330dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="30dp"
-            android:autofillHints="false"
-            android:background="@drawable/edit_text_background"
-            android:drawableStart="@drawable/sifre"
-            android:drawablePadding="10dp"
-            android:hint="@string/sifre"
-            android:focusable="false"
-            android:inputType="none"
-            android:textColor="@color/edit_text_text_color_black"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/buttonCikisYap"
-            android:layout_width="330dp"
-            android:layout_height="52dp"
-            android:layout_marginTop="60dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/kayit_button_arka_plani"
-            android:backgroundTint="@color/button_background_sari"
-            android:text="@string/cikis_yap"
-            android:textAllCaps="false"
-            android:textColor="@color/text_color_koyu"
-            android:textSize="18sp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textViewBaslik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/profil"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageViewProfilResmi"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/kisi_yuksek_cozunurluk"
+                app:civ_border_color="@color/sari"
+                app:civ_border_width="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewBaslik" />
+
+            <TextView
+                android:id="@+id/textViewKullaniciAdi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/app_name"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageViewProfilResmi" />
+
+            <EditText
+                android:id="@+id/editTextKullaniciMail"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="50dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:drawableStart="@drawable/mail"
+                android:drawablePadding="10dp"
+                android:focusable="false"
+                android:hint="@string/email"
+                android:inputType="none"
+                android:textColor="@color/edit_text_text_color_black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewKullaniciAdi" />
+
+            <EditText
+                android:id="@+id/editTextDogumTarihi"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="30dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:drawableStart="@drawable/takvim"
+                android:drawablePadding="10dp"
+                android:focusable="false"
+                android:hint="@string/dogum_gununuz"
+                android:inputType="none"
+                android:textColor="@color/edit_text_text_color_black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextKullaniciMail" />
+
+            <EditText
+                android:id="@+id/editTextSifre"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="30dp"
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_background"
+                android:drawableStart="@drawable/sifre"
+                android:drawablePadding="10dp"
+                android:focusable="false"
+                android:hint="@string/sifre"
+                android:inputType="none"
+                android:textColor="@color/edit_text_text_color_black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextDogumTarihi" />
+
+            <Button
+                android:id="@+id/buttonCikisYap"
+                android:layout_width="330dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/kayit_button_arka_plani"
+                android:backgroundTint="@color/button_background_sari"
+                android:text="@string/cikis_yap"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextSifre" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

@@ -1,18 +1,23 @@
 package com.futag.futag.viewmodel
 
 import android.content.Context
+import android.net.Uri
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.futag.futag.model.KullaniciModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import java.util.*
 
 class KayitOlGirisYapViewModel: ViewModel() {
 
     private val auth = Firebase.auth
     private val db = Firebase.firestore
+    private val storage = Firebase.storage
 
     val animasyon = MutableLiveData<Boolean>()
     val veriOnayi = MutableLiveData<Boolean>()
@@ -21,8 +26,8 @@ class KayitOlGirisYapViewModel: ViewModel() {
     // Kaydin gerceklesme durumu, public
     fun kayitOnayDurumu(email: String, sifre: String,
                         isim: String, soyisim: String,
-                        dogumGunu: String, context: Context){
-        firebaseKayitOnayi(email, sifre, isim, soyisim, dogumGunu ,context)
+                        dogumGunu: String, secilenGorsel: Uri?, context: Context){
+        firebaseKayitOnayi(email, sifre, isim, soyisim, dogumGunu, secilenGorsel, context)
     }
 
     // Girisin gerceklesme durumu, public
@@ -42,29 +47,60 @@ class KayitOlGirisYapViewModel: ViewModel() {
 
     private fun firebaseKayitOnayi(email: String, sifre: String,
                                    isim: String, soyisim: String,
-                                   dogumGunu: String, context: Context){
+                                   dogumGunu: String, secilenGorsel: Uri?, context: Context){
         animasyon.value = true
-        auth.createUserWithEmailAndPassword(email, sifre).addOnCompleteListener { islem ->
-            if (islem.isSuccessful){
-                println("firebase mail kaydi tamamlandi")
+        auth.createUserWithEmailAndPassword(email, sifre).addOnCompleteListener { firebaseMailKaydi ->
+            if (firebaseMailKaydi.isSuccessful){
+                println("Kayit Basladi")
                 val kayitTarihi = Timestamp.now()
                 val aktifKullaniciUid = auth.currentUser?.uid
-                val kullanici = hashMapOf(
-                    "uid" to aktifKullaniciUid,
-                    "isim" to isim,
-                    "soyisim" to soyisim,
-                    "dogumGunu" to dogumGunu,
-                    "kayitTarihi" to kayitTarihi
-                )
-                // Kullanici bilgilerinin firestore kaydi
-                db.collection("Users").add(kullanici).addOnCompleteListener { kayit ->
-                    if (kayit.isSuccessful){
-                        veriOnayi.value = true
+                if(secilenGorsel != null){
+                    var gorselReferansLinki: String? = null
+                    val reference = storage.reference
+                    val uuid = UUID.randomUUID()
+                    val gorselIsmi = "${uuid}.jpeg"
+                    val gorselReferansi = reference.child("Gorseller").child(gorselIsmi)
+                    println("Secilen gorsel null degil")
+                    gorselReferansi.putFile(secilenGorsel).addOnSuccessListener {
+                        println("Secilen gorsel storage'a eklendi")
+                        val yuklenenGorselReferansi = reference.child("Gorseller").child(gorselIsmi)
+                        yuklenenGorselReferansi.downloadUrl.addOnSuccessListener { uri ->
+                            gorselReferansLinki = uri.toString()
+                            println("Gorsel referansi alindi")
+                            if (gorselReferansLinki != null){
+                                val kullanici = KullaniciModel(isim,soyisim,email
+                                    ,aktifKullaniciUid!!,dogumGunu,gorselReferansLinki,kayitTarihi)
+                                db.collection("Users")
+                                    .document(aktifKullaniciUid).set(kullanici).addOnCompleteListener { kayit ->
+                                        if (kayit.isSuccessful){
+                                            println("Kullanici firestore kaydi tamamlandi")
+                                            veriOnayi.value = true
+                                            animasyon.value = false
+                                        }
+                                    }.addOnFailureListener { veritabaniHatasi ->
+                                        animasyon.value = false
+                                        Toast.makeText(context,veritabaniHatasi.localizedMessage,Toast.LENGTH_LONG).show()
+                                    }
+                            }
+                        }
+                    }.addOnFailureListener { exception ->
                         animasyon.value = false
+                        Toast.makeText(context,exception.localizedMessage,Toast.LENGTH_SHORT).show()
                     }
-                }.addOnFailureListener { veritabaniHatasi ->
-                    animasyon.value = false
-                    Toast.makeText(context,veritabaniHatasi.localizedMessage,Toast.LENGTH_LONG).show()
+                } else {
+                    val kullanici = KullaniciModel(isim,soyisim,email
+                        ,aktifKullaniciUid!!,dogumGunu,null,kayitTarihi)
+                    db.collection("Users")
+                        .document(aktifKullaniciUid).set(kullanici).addOnCompleteListener { kayit ->
+                            if (kayit.isSuccessful){
+                                println("Kullanici firestore kaydi tamamlandi")
+                                veriOnayi.value = true
+                                animasyon.value = false
+                            }
+                        }.addOnFailureListener { veritabaniHatasi ->
+                            animasyon.value = false
+                            Toast.makeText(context,veritabaniHatasi.localizedMessage,Toast.LENGTH_LONG).show()
+                        }
                 }
             }
         }.addOnFailureListener { dogrulamaHatasi->

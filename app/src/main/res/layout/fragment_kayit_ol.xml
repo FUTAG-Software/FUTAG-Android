@@ -27,7 +27,7 @@
                 android:id="@+id/textViewKayitOl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/kayit_ol"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="30sp" />
@@ -40,13 +40,22 @@
                 android:text="@string/kayit_olmak_icin_bilgi"
                 android:textAlignment="center"
                 android:textColor="@color/hint_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageViewProfilResmi"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/kisi_yuksek_cozunurluk"
+                app:civ_border_color="@color/sari"
+                app:civ_border_width="2dp" />
 
             <EditText
                 android:id="@+id/editTextAd"
                 android:layout_width="330dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="40dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="20dp"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
@@ -61,8 +70,8 @@
             <EditText
                 android:id="@+id/editTextSoyad"
                 android:layout_width="330dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
@@ -77,8 +86,8 @@
             <EditText
                 android:id="@+id/editTextMail"
                 android:layout_width="330dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
@@ -92,8 +101,8 @@
             <EditText
                 android:id="@+id/editTextSifre"
                 android:layout_width="330dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
@@ -107,8 +116,8 @@
             <EditText
                 android:id="@+id/editTextSifreTekrar"
                 android:layout_width="330dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
@@ -122,8 +131,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/editTextDogumGunu"
                 android:layout_width="330dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/edit_text_background"
                 app:backgroundTint="@color/acik_gri2"
                 app:icon="@drawable/takvim"
@@ -143,7 +152,7 @@
                 android:id="@+id/buttonKayitOl"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
                 android:text="@string/kayit_ol"
