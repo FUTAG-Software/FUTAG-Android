@@ -51,7 +51,6 @@ class KayitOlGirisYapViewModel: ViewModel() {
         animasyon.value = true
         auth.createUserWithEmailAndPassword(email, sifre).addOnCompleteListener { firebaseMailKaydi ->
             if (firebaseMailKaydi.isSuccessful){
-                println("Kayit Basladi")
                 val kayitTarihi = Timestamp.now()
                 val aktifKullaniciUid = auth.currentUser?.uid
                 if(secilenGorsel != null){
@@ -60,20 +59,16 @@ class KayitOlGirisYapViewModel: ViewModel() {
                     val uuid = UUID.randomUUID()
                     val gorselIsmi = "${uuid}.jpeg"
                     val gorselReferansi = reference.child("Gorseller").child(gorselIsmi)
-                    println("Secilen gorsel null degil")
                     gorselReferansi.putFile(secilenGorsel).addOnSuccessListener {
-                        println("Secilen gorsel storage'a eklendi")
                         val yuklenenGorselReferansi = reference.child("Gorseller").child(gorselIsmi)
                         yuklenenGorselReferansi.downloadUrl.addOnSuccessListener { uri ->
                             gorselReferansLinki = uri.toString()
-                            println("Gorsel referansi alindi")
                             if (gorselReferansLinki != null){
                                 val kullanici = KullaniciModel(isim,soyisim,email
                                     ,aktifKullaniciUid!!,dogumGunu,gorselReferansLinki,kayitTarihi)
                                 db.collection("Users")
                                     .document(aktifKullaniciUid).set(kullanici).addOnCompleteListener { kayit ->
                                         if (kayit.isSuccessful){
-                                            println("Kullanici firestore kaydi tamamlandi")
                                             veriOnayi.value = true
                                             animasyon.value = false
                                         }
@@ -93,7 +88,6 @@ class KayitOlGirisYapViewModel: ViewModel() {
                     db.collection("Users")
                         .document(aktifKullaniciUid).set(kullanici).addOnCompleteListener { kayit ->
                             if (kayit.isSuccessful){
-                                println("Kullanici firestore kaydi tamamlandi")
                                 veriOnayi.value = true
                                 animasyon.value = false
                             }

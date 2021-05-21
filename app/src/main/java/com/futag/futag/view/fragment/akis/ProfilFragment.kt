@@ -10,14 +10,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfilBinding
+import com.futag.futag.model.KullaniciModel
 import com.futag.futag.view.activity.AkisActivity
 import com.futag.futag.viewmodel.ProfilViewModel
+import com.squareup.picasso.Picasso
 
 class ProfilFragment : Fragment() {
 
     private var _binding: FragmentProfilBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProfilViewModel
+    private var kullaniciProfilBilgileri: KullaniciModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +36,7 @@ class ProfilFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(ProfilViewModel::class.java)
 
-        viewModel.profilBilgileriniGetir()
+        viewModel.profilBilgileriniGetir(requireContext())
         profilBilgileriniCek()
 
         binding.buttonCikisYap.setOnClickListener {
@@ -43,7 +46,37 @@ class ProfilFragment : Fragment() {
     }
 
     private fun profilBilgileriniCek(){
-
+        viewModel.animasyon.observe(viewLifecycleOwner,{ animasyon ->
+            animasyon?.let { deger ->
+                if (deger){
+                    binding.constraintLayout.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.constraintLayout.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        })
+        viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
+            veriOnayi?.let { veri ->
+                if (veri){
+                    kullaniciProfilBilgileri = viewModel.kullaniciBilgileri
+                    binding.editTextKullaniciMail.setText(kullaniciProfilBilgileri!!.email)
+                    binding.editTextDogumTarihi.setText(kullaniciProfilBilgileri!!.dogumGunu)
+                    val isim = kullaniciProfilBilgileri!!.isim
+                    val soyisim = kullaniciProfilBilgileri!!.soyisim
+                    val isimSoyisim = isim + soyisim
+                    binding.textViewIsimSoyisim.text = isimSoyisim
+                    Picasso.get().load(kullaniciProfilBilgileri!!.profilResmi)
+                        .placeholder(R.drawable.kisi_yuksek_cozunurluk).into(binding.imageViewProfilResmi)
+                    binding.constraintLayout.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                } else {
+                    binding.constraintLayout.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+            }
+        })
     }
 
     private fun veriyiGozlemleCikisYap(){

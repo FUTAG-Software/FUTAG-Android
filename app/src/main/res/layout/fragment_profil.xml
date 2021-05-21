@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@id/textViewBaslik" />
 
             <TextView
-                android:id="@+id/textViewKullaniciAdi"
+                android:id="@+id/textViewIsimSoyisim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -78,7 +78,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewKullaniciAdi" />
+                app:layout_constraintTop_toBottomOf="@id/textViewIsimSoyisim" />
 
             <EditText
                 android:id="@+id/editTextDogumTarihi"
@@ -99,25 +99,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editTextKullaniciMail" />
 
-            <EditText
-                android:id="@+id/editTextSifre"
-                android:layout_width="330dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="30dp"
-                android:autofillHints="false"
-                android:background="@drawable/edit_text_background"
-                android:drawableStart="@drawable/sifre"
-                android:drawablePadding="10dp"
-                android:focusable="false"
-                android:hint="@string/sifre"
-                android:inputType="none"
-                android:textColor="@color/edit_text_text_color_black"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextDogumTarihi" />
-
             <Button
                 android:id="@+id/buttonCikisYap"
                 android:layout_width="330dp"
@@ -132,7 +113,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextSifre" />
+                app:layout_constraintTop_toBottomOf="@id/editTextDogumTarihi" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
