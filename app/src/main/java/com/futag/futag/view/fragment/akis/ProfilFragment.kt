@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfilBinding
@@ -65,10 +67,16 @@ class ProfilFragment : Fragment() {
                     binding.editTextDogumTarihi.setText(kullaniciProfilBilgileri!!.dogumGunu)
                     val isim = kullaniciProfilBilgileri!!.isim
                     val soyisim = kullaniciProfilBilgileri!!.soyisim
-                    val isimSoyisim = isim + soyisim
+                    val isimSoyisim = "$isim $soyisim"
                     binding.textViewIsimSoyisim.text = isimSoyisim
-                    Picasso.get().load(kullaniciProfilBilgileri!!.profilResmi)
-                        .placeholder(R.drawable.kisi_yuksek_cozunurluk).into(binding.imageViewProfilResmi)
+                    if(kullaniciProfilBilgileri!!.profilResmi != null){
+                        Picasso.get().load(kullaniciProfilBilgileri!!.profilResmi)
+                            .placeholder(R.drawable.kisi_yuksek_cozunurluk).into(binding.imageViewProfilResmi)
+                    } else{
+                        binding.imageViewProfilResmi.setImageDrawable(
+                           ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)
+                        )
+                    }
                     binding.constraintLayout.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                 } else {

@@ -9,5 +9,6 @@ data class KullaniciModel(
     val uid: String,
     val dogumGunu: String,
     val profilResmi: String?,
+    val profilResmiAdi: String?,
     val kayitTarihi: Timestamp
 )

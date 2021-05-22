@@ -16,7 +16,6 @@ class ProfilViewModel: ViewModel() {
 
     private val auth = Firebase.auth
     private val db = Firebase.firestore
-    private val storage = Firebase.storage
 
     val animasyon = MutableLiveData<Boolean>()
     val veriOnayi = MutableLiveData<Boolean>()
@@ -38,11 +37,16 @@ class ProfilViewModel: ViewModel() {
         documentReferansi.get()
             .addOnSuccessListener { veri ->
                 if (veri != null){
-                    val kullanici =
-                        KullaniciModel(veri["isim"] as String,
-                            veri["soyisim"] as String, veri["email"] as String,
-                            kullaniciUid, veri["dogumGunu"] as String,
-                            veri["profilResmi"] as String, veri["kayitTarihi"] as Timestamp)
+                    val kullanici = KullaniciModel(
+                        veri["isim"] as String,
+                        veri["soyisim"] as String,
+                        veri["email"] as String,
+                        veri["uid"] as String,
+                        veri["dogumGunu"] as String,
+                        veri["profilResmi"] as String?,
+                        veri["profilResmiAdi"] as String?,
+                        veri["kayitTarihi"] as Timestamp
+                    )
                     kullaniciBilgileri = kullanici
                     animasyon.value = false
                     veriOnayi.value = true

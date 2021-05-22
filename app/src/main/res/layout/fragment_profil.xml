@@ -36,8 +36,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageViewProfilResmi"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/kisi_yuksek_cozunurluk"
                 app:civ_border_color="@color/sari"
@@ -100,10 +100,26 @@
                 app:layout_constraintTop_toBottomOf="@id/editTextKullaniciMail" />
 
             <Button
+                android:id="@+id/buttonProfiliDuzenle"
+                android:layout_width="330dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/kayit_button_arka_plani"
+                android:backgroundTint="@color/button_background_sari"
+                android:text="@string/profili_duzenle"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextDogumTarihi" />
+
+            <Button
                 android:id="@+id/buttonCikisYap"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
                 android:text="@string/cikis_yap"
@@ -113,7 +129,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextDogumTarihi" />
+                app:layout_constraintTop_toBottomOf="@id/buttonProfiliDuzenle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

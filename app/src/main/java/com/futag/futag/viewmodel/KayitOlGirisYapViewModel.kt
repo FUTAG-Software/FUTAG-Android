@@ -55,17 +55,18 @@ class KayitOlGirisYapViewModel: ViewModel() {
                 val aktifKullaniciUid = auth.currentUser?.uid
                 if(secilenGorsel != null){
                     var gorselReferansLinki: String? = null
+                    var profilResmiAdi: String? = null
                     val reference = storage.reference
                     val uuid = UUID.randomUUID()
-                    val gorselIsmi = "${uuid}.jpeg"
-                    val gorselReferansi = reference.child("Gorseller").child(gorselIsmi)
+                    profilResmiAdi = "${uuid}.jpeg"
+                    val gorselReferansi = reference.child("Gorseller").child(profilResmiAdi)
                     gorselReferansi.putFile(secilenGorsel).addOnSuccessListener {
-                        val yuklenenGorselReferansi = reference.child("Gorseller").child(gorselIsmi)
+                        val yuklenenGorselReferansi = reference.child("Gorseller").child(profilResmiAdi)
                         yuklenenGorselReferansi.downloadUrl.addOnSuccessListener { uri ->
                             gorselReferansLinki = uri.toString()
                             if (gorselReferansLinki != null){
-                                val kullanici = KullaniciModel(isim,soyisim,email
-                                    ,aktifKullaniciUid!!,dogumGunu,gorselReferansLinki,kayitTarihi)
+                                val kullanici = KullaniciModel(isim,soyisim,email,
+                                    aktifKullaniciUid!!,dogumGunu,gorselReferansLinki,profilResmiAdi,kayitTarihi)
                                 db.collection("Users")
                                     .document(aktifKullaniciUid).set(kullanici).addOnCompleteListener { kayit ->
                                         if (kayit.isSuccessful){
@@ -84,7 +85,7 @@ class KayitOlGirisYapViewModel: ViewModel() {
                     }
                 } else {
                     val kullanici = KullaniciModel(isim,soyisim,email
-                        ,aktifKullaniciUid!!,dogumGunu,null,kayitTarihi)
+                        ,aktifKullaniciUid!!,dogumGunu,null,null,kayitTarihi)
                     db.collection("Users")
                         .document(aktifKullaniciUid).set(kullanici).addOnCompleteListener { kayit ->
                             if (kayit.isSuccessful){
