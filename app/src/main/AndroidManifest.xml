@@ -13,11 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FUTAG">
-        <activity android:name=".view.activity.AkisActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".view.activity.AkisActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

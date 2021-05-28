@@ -1,9 +1,8 @@
-package com.futag.futag.view.fragment.giris
+package com.futag.futag.view.fragment.akis.profil
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -16,23 +15,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentKayitOlBinding
+import com.futag.futag.databinding.FragmentProfiliDuzenleBinding
+import com.futag.futag.model.KullaniciModel
 import com.futag.futag.view.activity.AkisActivity
-import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
+import com.futag.futag.viewmodel.ProfilViewModel
+import com.squareup.picasso.Picasso
 import java.util.*
 
-class KayitOlFragment : Fragment() {
+class ProfiliDuzenleF : Fragment() {
 
-    private var _binding: FragmentKayitOlBinding? = null
+    private var _binding: FragmentProfiliDuzenleBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: KayitOlGirisYapViewModel
+    private lateinit var viewModel: ProfilViewModel
+    private var kullaniciProfilBilgileri: KullaniciModel? = null
     private var secilenGorsel: Uri? = null
     private var secilenBitMap: Bitmap? = null
 
@@ -40,7 +41,7 @@ class KayitOlFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentKayitOlBinding.inflate(inflater,container,false)
+        _binding = FragmentProfiliDuzenleBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
@@ -48,14 +49,16 @@ class KayitOlFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(ProfilViewModel::class.java)
+
+        viewModel.profilBilgileriniGetir(requireContext())
+        profilBilgileriniCek()
 
         val takvim = Calendar.getInstance()
         val yil = takvim.get(Calendar.YEAR)
         val ay = takvim.get(Calendar.MONTH)
         val gun = takvim.get(Calendar.DAY_OF_MONTH)
 
-        // Kullanici dogum gununun alinmasi; Gun,Ay,Yil
         binding.editTextDogumGunu.setOnClickListener {
             val dpd = DatePickerDialog(requireContext(), { _, mYil, mAy, mGun ->
                 val tarih = "$mGun-${mAy+1}-$mYil"
@@ -76,83 +79,65 @@ class KayitOlFragment : Fragment() {
             }
         }
 
-        binding.buttonKayitOl.setOnClickListener {
-            if (binding.imageViewProfilResmi.drawable != null){
-                klavyeyiKapat()
-                if(veriGirisKontrolu()){
-                    val isim = binding.editTextAd.text.toString()
-                    val soyisim = binding.editTextSoyad.text.toString()
-                    val email = binding.editTextMail.text.toString()
-                    val sifre = binding.editTextSifre.text.toString()
-                    val sifreTekrar = binding.editTextSifreTekrar.text.toString()
-                    val dogumgunu = binding.editTextDogumGunu.text.toString()
-                    if(sifre == sifreTekrar){
-                        viewModel.kayitOnayDurumu(email, sifre, isim, soyisim, dogumgunu, secilenGorsel, requireContext())
-                        veriyiGozlemle()
-                    } else {
-                        Toast.makeText(requireContext(),R.string.sifreler_ayni_olmalidir,Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    Toast.makeText(requireContext(), R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
+        binding.buttonDegisiklikleriKaydet.setOnClickListener {
+            if (veriGirisiVarMi()){
+                val yeniIsim = binding.editTextAd.text.toString()
+                val yeniSoyisim = binding.editTextSoyad.text.toString()
+                val yeniDogumGunu = binding.editTextDogumGunu.text.toString()
+                if(secilenGorsel != null){
+                    viewModel.profilGuncelle(requireContext(),kullaniciProfilBilgileri!!
+                        ,yeniIsim,yeniSoyisim,yeniDogumGunu,secilenGorsel)
+                } else{
+                    viewModel.profilGuncelle(requireContext(),kullaniciProfilBilgileri!!
+                        ,yeniIsim,yeniSoyisim,yeniDogumGunu,null)
                 }
             } else {
-                Toast.makeText(requireContext(), R.string.resim_seciniz,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.textViewGirisYap.setOnClickListener {
-            findNavController().navigate(R.id.action_kayitOlFragment_to_girisYapFragment)
-        }
-
     }
 
-    private fun klavyeyiKapat(){
-        val view = requireActivity().currentFocus
-        if (view != null){
-            val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-        }
-    }
-
-    private fun animasyonuGoster(){
-        binding.lottieAnimasyon.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimasyon.playAnimation()
-    }
-
-    private fun animasyonuDurdur(){
-        binding.lottieAnimasyon.cancelAnimation()
-    }
-
-    private fun veriyiGozlemle(){
-        viewModel.animasyon.observe(viewLifecycleOwner, { animasyon ->
-            animasyon?.let {
-                if (it){
-                    binding.linearLayout.visibility = View.INVISIBLE
-                    binding.lottieAnimasyon.visibility = View.VISIBLE
-                    animasyonuGoster()
+    private fun profilBilgileriniCek(){
+        viewModel.animasyon.observe(viewLifecycleOwner,{ animasyon ->
+            animasyon?.let { deger ->
+                if (deger){
+                    binding.constraintLayout.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                 } else {
-                    binding.linearLayout.visibility = View.VISIBLE
-                    binding.lottieAnimasyon.visibility = View.GONE
-                    animasyonuDurdur()
+                    binding.constraintLayout.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
                 }
             }
         })
         viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
-            veriOnayi?.let { onay ->
-                if (onay){
-                    activity?.let {
-                        Toast.makeText(requireContext()
-                            ,"Hoş Geldin ${binding.editTextAd.text}",Toast.LENGTH_SHORT).show()
-                        val intent = Intent(it, AkisActivity::class.java)
-                        it.startActivity(intent)
-                        it.finish()
+            veriOnayi?.let { veri ->
+                if (veri){
+                    kullaniciProfilBilgileri = viewModel.kullaniciBilgileri
+                    binding.editTextAd.setText(kullaniciProfilBilgileri!!.isim)
+                    binding.editTextDogumGunu.text = kullaniciProfilBilgileri!!.dogumGunu
+                    binding.editTextSoyad.setText(kullaniciProfilBilgileri!!.soyisim)
+                    if(kullaniciProfilBilgileri!!.profilResmi != null){
+                        Picasso.get().load(kullaniciProfilBilgileri!!.profilResmi)
+                            .placeholder(R.drawable.kisi_yuksek_cozunurluk).into(binding.imageViewProfilResmi)
+                    } else{
+                        binding.imageViewProfilResmi.setImageDrawable(
+                            ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)
+                        )
                     }
+                    binding.constraintLayout.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                } else {
+                    binding.constraintLayout.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
         })
     }
 
-    // izin sonucu yapilacaklar
+    private fun veriGirisiVarMi(): Boolean = binding.editTextAd.text.isNotEmpty()
+            && binding.editTextSoyad.text.isNotEmpty() && binding.editTextDogumGunu.text.isNotEmpty()
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -168,9 +153,7 @@ class KayitOlFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    // veri geldiyse
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        // cevap donmus mu kontrolu
         if(requestCode == 2 && resultCode == RESULT_OK && data != null){
             secilenGorsel = data.data
             if (secilenGorsel != null){
@@ -187,12 +170,6 @@ class KayitOlFragment : Fragment() {
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
-
-    // Butun alanlarin dolu olma durumunun kontrolu
-    private fun veriGirisKontrolu(): Boolean = binding.editTextAd.text.isNotEmpty()
-            && binding.editTextSoyad.text.isNotEmpty() && binding.editTextMail.text.isNotEmpty() &&
-            binding.editTextSifre.text.isNotEmpty() && binding.editTextSifreTekrar.text.isNotEmpty()
-            && binding.editTextDogumGunu.text.isNotEmpty()
 
     override fun onDestroyView() {
         super.onDestroyView()

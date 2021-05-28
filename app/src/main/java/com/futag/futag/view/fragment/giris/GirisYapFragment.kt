@@ -1,11 +1,13 @@
 package com.futag.futag.view.fragment.giris
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -35,6 +37,7 @@ class GirisYapFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
 
         binding.buttonGirisYap.setOnClickListener {
+            klavyeyiKapat()
             if (veriGirisKontrolu()){
                 val email = binding.editTextMail.text.toString()
                 val sifre = binding.editTextSifre.text.toString()
@@ -52,6 +55,14 @@ class GirisYapFragment : Fragment() {
 
         binding.textViewSifremiUnuttum.setOnClickListener {
             findNavController().navigate(R.id.action_girisYapFragment_to_sifremiUnuttumFragment)
+        }
+    }
+
+    private fun klavyeyiKapat(){
+        val view = requireActivity().currentFocus
+        if (view != null){
+            val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
 

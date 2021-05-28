@@ -1,19 +1,20 @@
-package com.futag.futag.view.fragment.akis
+package com.futag.futag.view.fragment.akis.profil
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import androidx.navigation.fragment.findNavController
 import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfilBinding
 import com.futag.futag.model.KullaniciModel
-import com.futag.futag.view.activity.AkisActivity
 import com.futag.futag.viewmodel.ProfilViewModel
 import com.squareup.picasso.Picasso
 
@@ -40,6 +41,10 @@ class ProfilFragment : Fragment() {
 
         viewModel.profilBilgileriniGetir(requireContext())
         profilBilgileriniCek()
+
+        binding.buttonProfiliDuzenle.setOnClickListener {
+            findNavController().navigate(R.id.action_profilFragment_to_profiliDuzenleF)
+        }
 
         binding.buttonCikisYap.setOnClickListener {
             viewModel.cikisYap()

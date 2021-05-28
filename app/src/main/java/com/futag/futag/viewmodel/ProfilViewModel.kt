@@ -1,6 +1,7 @@
 package com.futag.futag.viewmodel
 
 import android.content.Context
+import android.net.Uri
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,16 +12,19 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.util.*
 
 class ProfilViewModel: ViewModel() {
 
     private val auth = Firebase.auth
     private val db = Firebase.firestore
+    private val storage = Firebase.storage
 
     val animasyon = MutableLiveData<Boolean>()
     val veriOnayi = MutableLiveData<Boolean>()
     var girisVarMi = MutableLiveData<Boolean>()
     lateinit var kullaniciBilgileri: KullaniciModel
+    val kullaniciUid = auth.currentUser?.uid
 
     fun cikisYap(){
         kullaniciCikisKontrol()
@@ -30,9 +34,74 @@ class ProfilViewModel: ViewModel() {
         kullaniciBilgileriniCek(context)
     }
 
+    fun profilGuncelle(context: Context, kullaniciBilgileri: KullaniciModel, isim: String,
+                       soyisim: String, dogumGunu: String, secilenGorsel: Uri?){
+        profilGuncelleFirebase(context, kullaniciBilgileri, isim, soyisim, dogumGunu, secilenGorsel)
+    }
+
+    private fun profilGuncelleFirebase(context: Context,kullaniciBilgileri: KullaniciModel,
+                                       yeniIsim: String, yeniSoyisim: String,
+                                       yeniDogumGunu: String, yeniSecilenGorsel: Uri?){
+        animasyon.value = true
+        val reference = storage.reference
+        val documentId = kullaniciUid
+        if(yeniSecilenGorsel != null){
+            var gorselReferansLinki: String? = null
+            if (kullaniciBilgileri.profilResmiAdi == null){
+                val uuid = UUID.randomUUID()
+                val profilResmiAdi = "${uuid}.jpeg"
+                kullaniciBilgileri.profilResmiAdi = profilResmiAdi
+            }
+            val gorselReferansi = reference.child("Gorseller").child(kullaniciBilgileri.profilResmiAdi!!)
+            gorselReferansi.putFile(yeniSecilenGorsel).addOnSuccessListener {
+                val yuklenenGorselReferansi = reference.child("Gorseller").child(kullaniciBilgileri.profilResmiAdi!!)
+                yuklenenGorselReferansi.downloadUrl.addOnSuccessListener { uri ->
+                    gorselReferansLinki = uri.toString()
+                    if (gorselReferansLinki != null){
+                        val yeniKullanici = KullaniciModel(
+                            yeniIsim,yeniSoyisim,kullaniciBilgileri.email,
+                            kullaniciUid!!,yeniDogumGunu,gorselReferansLinki,
+                            kullaniciBilgileri.profilResmiAdi,kullaniciBilgileri.kayitTarihi
+                        )
+                        db.collection("Users")
+                            .document(documentId!!).set(yeniKullanici).addOnCompleteListener { kayit ->
+                                if (kayit.isSuccessful){
+                                    veriOnayi.value = true
+                                    animasyon.value = false
+                                    Toast.makeText(context,R.string.degisiklikler_kaydedildi,Toast.LENGTH_LONG).show()
+                                }
+                            }.addOnFailureListener { veritabaniHatasi ->
+                                animasyon.value = false
+                                Toast.makeText(context,veritabaniHatasi.localizedMessage,Toast.LENGTH_LONG).show()
+                            }
+                    }
+                }
+            }.addOnFailureListener { exception ->
+                animasyon.value = false
+                Toast.makeText(context,exception.localizedMessage,Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            val yeniKullanici = KullaniciModel(
+                yeniIsim,yeniSoyisim,kullaniciBilgileri.email,
+                kullaniciUid!!,yeniDogumGunu,kullaniciBilgileri.profilResmi,
+                kullaniciBilgileri.profilResmiAdi,kullaniciBilgileri.kayitTarihi
+            )
+            db.collection("Users")
+                .document(documentId!!).set(yeniKullanici).addOnCompleteListener { kayit ->
+                    if (kayit.isSuccessful){
+                        veriOnayi.value = true
+                        animasyon.value = false
+                        Toast.makeText(context,R.string.degisiklikler_kaydedildi,Toast.LENGTH_LONG).show()
+                    }
+                }.addOnFailureListener { veritabaniHatasi ->
+                    animasyon.value = false
+                    Toast.makeText(context,veritabaniHatasi.localizedMessage,Toast.LENGTH_LONG).show()
+                }
+        }
+    }
+
     private fun kullaniciBilgileriniCek(context: Context){
         animasyon.value = true
-        val kullaniciUid = auth.currentUser?.uid
         val documentReferansi = db.collection("Users").document(kullaniciUid!!)
         documentReferansi.get()
             .addOnSuccessListener { veri ->

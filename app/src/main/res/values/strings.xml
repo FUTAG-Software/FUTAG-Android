@@ -2,6 +2,7 @@
     <string name="app_name">FÜTAG</string>
 
     <!-- Genel Stringler -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="futag_icon">futag_icon</string>
     <string name="futag_yazi">futag_yazi</string>
     <string name="blog">Blog</string>
@@ -18,8 +19,10 @@
     <string name="kayit_ol">Kayıt Ol</string>
     <string name="cikis_yap">Çıkış Yap</string>
     <string name="profili_duzenle">Profili Düzenle</string>
+    <string name="degisiklikleri_kaydet">Değişiklikleri Kaydet</string>
     <string name="gonder">Gönder</string>
     <string name="hata_mesaji">Hata, lütfen tekrar deneyiniz.</string>
+    <string name="duzenle_isareti">duzenleme isareti</string>
 
     <!-- Main Activity -->
     <string name="internet_baglantisi_olumsuz">İnternet Bağlantınızın Olduğundan Emin Olun!</string>
@@ -62,5 +65,6 @@
     <string name="onay_maili_gonderildi">Onay Maili Gönderildi.</string>
     <string name="sifremi_unuttum">Şifremi Unuttum</string>
     <string name="sifre_yenileme_metni">Şifrenizi yenilemek için lütfen e-posta adresinizi giriniz.</string>
+    <string name="degisiklikler_kaydedildi">Değişiklikler Kaydedildi</string>
 
 </resources>

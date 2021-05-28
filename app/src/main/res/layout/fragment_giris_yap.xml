@@ -7,6 +7,8 @@
     tools:context=".view.fragment.giris.GirisYapFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -106,7 +108,7 @@
                 android:id="@+id/linearLayoutYazi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 

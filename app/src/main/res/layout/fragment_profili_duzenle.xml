@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    tools:context=".view.fragment.akis.profil.ProfiliDuzenleF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".view.fragment.akis.profil.ProfilFragment">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -27,7 +28,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:text="@string/profil"
+                android:text="@string/profili_duzenle"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="32sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +38,7 @@
                 android:id="@+id/imageViewProfilResmi"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="50dp"
                 android:src="@drawable/kisi_yuksek_cozunurluk"
                 app:civ_border_color="@color/sari"
                 app:civ_border_width="2dp"
@@ -46,86 +47,79 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewBaslik" />
 
-            <TextView
-                android:id="@+id/textViewIsimSoyisim"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:textAlignment="center"
-                android:text="@string/app_name"
-                android:textColor="@color/text_color_koyu"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageViewProfilResmi" />
-
             <EditText
-                android:id="@+id/editTextKullaniciMail"
+                android:id="@+id/editTextAd"
                 android:layout_width="330dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="50dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="40dp"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
-                android:drawableStart="@drawable/mail"
+                android:drawableStart="@drawable/kisi"
                 android:drawablePadding="10dp"
-                android:focusable="false"
-                android:hint="@string/email"
-                android:inputType="none"
+                android:ems="10"
+                android:hint="@string/adiniz"
+                android:inputType="textPersonName"
+                android:maxLength="32"
                 android:textColor="@color/edit_text_text_color_black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewIsimSoyisim" />
+                app:layout_constraintTop_toBottomOf="@+id/imageViewProfilResmi" />
 
             <EditText
-                android:id="@+id/editTextDogumTarihi"
+                android:id="@+id/editTextSoyad"
                 android:layout_width="330dp"
-                android:layout_height="58dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="30dp"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
-                android:drawableStart="@drawable/takvim"
+                android:drawableStart="@drawable/kisi"
                 android:drawablePadding="10dp"
-                android:focusable="false"
+                android:ems="10"
+                android:hint="@string/soyadiniz"
+                android:inputType="textPersonName"
+                android:maxLength="32"
+                android:textColor="@color/edit_text_text_color_black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAd" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/editTextDogumGunu"
+                android:layout_width="330dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="serif"
                 android:hint="@string/dogum_gununuz"
-                android:inputType="none"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:singleLine="true"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
                 android:textColor="@color/edit_text_text_color_black"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                app:backgroundTint="@color/acik_gri2"
+                app:icon="@drawable/takvim"
+                app:iconPadding="10dp"
+                app:iconTint="@color/menu_grisi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextKullaniciMail" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextSoyad" />
 
             <Button
-                android:id="@+id/buttonProfiliDuzenle"
+                android:id="@+id/buttonDegisiklikleriKaydet"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="60dp"
-                android:background="@drawable/kayit_button_arka_plani"
-                android:backgroundTint="@color/button_background_sari"
-                android:text="@string/profili_duzenle"
-                android:textAllCaps="false"
-                android:textColor="@color/text_color_koyu"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.506"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextDogumTarihi" />
-
-            <Button
-                android:id="@+id/buttonCikisYap"
-                android:layout_width="330dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
-                android:text="@string/cikis_yap"
+                android:text="@string/degisiklikleri_kaydet"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="18sp"
@@ -133,7 +127,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonProfiliDuzenle" />
+                app:layout_constraintTop_toBottomOf="@id/editTextDogumGunu" />
+
+            <ImageView
+                android:id="@+id/imageViewDuzenle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/duzenle_isareti"
+                android:src="@drawable/duzenle_2_kalem_resmi"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewProfilResmi"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewProfilResmi" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

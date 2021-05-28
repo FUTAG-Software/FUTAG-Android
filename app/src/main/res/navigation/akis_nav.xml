@@ -23,13 +23,21 @@
     </fragment>
     <fragment
         android:id="@+id/profilFragment"
-        android:name="com.futag.futag.view.fragment.akis.ProfilFragment"
+        android:name="com.futag.futag.view.fragment.akis.profil.ProfilFragment"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profil" >
+        <action
+            android:id="@+id/action_profilFragment_to_profiliDuzenleF"
+            app:destination="@id/profiliDuzenleF" />
     </fragment>
     <fragment
         android:id="@+id/dahaFragment"
         android:name="com.futag.futag.view.fragment.akis.DahaFragment"
         android:label="fragment_daha"
         tools:layout="@layout/fragment_daha" />
+    <fragment
+        android:id="@+id/profiliDuzenleF"
+        android:name="com.futag.futag.view.fragment.akis.profil.ProfiliDuzenleF"
+        android:label="fragment_profili_duzenle"
+        tools:layout="@layout/fragment_profili_duzenle" />
 </navigation>
