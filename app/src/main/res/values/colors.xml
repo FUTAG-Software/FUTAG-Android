@@ -15,6 +15,7 @@
     <color name="menu_grisi">#3D3D3F</color>
     <color name="acik_gri">#B6B7B7</color>
     <color name="acik_gri2">#E4E4E4</color>
+    <color name="acik_gri3">#F2F2F2</color>
 
     <!-- Genel Kullanilan Renkler -->
     <color name="text_color_koyu">@color/menu_grisi</color>
@@ -39,5 +40,9 @@
     <!-- BottomNAvigationView Renkleri -->
     <color name="bottom_nav_bar_background">@color/white</color>
     <color name="item_text_color">@color/sari</color>
+
+    <!-- DahasiRecyclerRow Renkleri -->
+    <color name="dahasi_item_background_color">@color/acik_gri3</color>
+    <color name="dahasi_image_background_color">@color/white</color>
 
 </resources>

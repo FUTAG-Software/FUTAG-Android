@@ -11,7 +11,7 @@ class BlogRecyclerAdapter(private val blogListesi: ArrayList<BlogModel>): Recycl
     class BlogViewHolder(val itemBinding: BlogRecyclerRowBinding): RecyclerView.ViewHolder(itemBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlogViewHolder {
-        val binding = BlogRecyclerRowBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = BlogRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return BlogViewHolder(binding)
     }
 

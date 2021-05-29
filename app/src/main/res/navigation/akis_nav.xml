@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/dahaFragment"
-        android:name="com.futag.futag.view.fragment.akis.DahaFragment"
+        android:name="com.futag.futag.view.fragment.akis.dahasi.DahaFragment"
         android:label="fragment_daha"
         tools:layout="@layout/fragment_daha" />
     <fragment

@@ -28,7 +28,7 @@
                 android:id="@+id/textViewGirisYap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/giris_yap"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="30sp" />
@@ -37,7 +37,7 @@
                 android:id="@+id/textViewBilgi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/giris_yapmak_icin_bilgi"
                 android:textAlignment="center"
                 android:textColor="@color/hint_color"

@@ -66,5 +66,14 @@
     <string name="sifremi_unuttum">Şifremi Unuttum</string>
     <string name="sifre_yenileme_metni">Şifrenizi yenilemek için lütfen e-posta adresinizi giriniz.</string>
     <string name="degisiklikler_kaydedildi">Değişiklikler Kaydedildi</string>
+    
+    <!-- Daha Fragment -->
+    <string name="daha_fazlasi">Daha Fazlası</string>
+    <string name="birimlerimiz">Birimlerimiz</string>
+    <string name="bizi_oyla">Bizi Oyla</string>
+    <string name="bildirimler">Bildirimler</string>
+    <string name="geri_bildirim">Geri Bildirim</string>
+    <string name="hakkimizda">Hakkımızda</string>
+    <string name="dahasi_yuvarlak_resim">Dahası Yuvarlak Resim</string>
 
 </resources>
