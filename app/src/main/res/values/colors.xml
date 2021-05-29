@@ -19,6 +19,7 @@
 
     <!-- Genel Kullanilan Renkler -->
     <color name="text_color_koyu">@color/menu_grisi</color>
+    <color name="text_color_acik">@color/acik_gri</color>
     <color name="text_color_sari">@color/sari</color>
     <color name="hint_color">#B6B7B7</color>
     <color name="button_background_sari">@color/sari</color>

@@ -24,6 +24,7 @@
     <string name="hata_mesaji">Hata, lütfen tekrar deneyiniz.</string>
     <string name="duzenle_isareti">duzenleme isareti</string>
     <string name="cok_yakinda">Çok Yakında!</string>
+    <string name="resim">Resim</string>
 
     <!-- Main Activity -->
     <string name="internet_baglantisi_olumsuz">İnternet Bağlantınızın Olduğundan Emin Olun!</string>
@@ -76,5 +77,12 @@
     <string name="geri_bildirim">Geri Bildirim</string>
     <string name="hakkimizda">Hakkımızda</string>
     <string name="dahasi_yuvarlak_resim">Dahası Yuvarlak Resim</string>
+
+    <!-- Hakkimizda Fragment -->
+    <string name="hakkimizda_metin">Elazığ Fırat Üniversitesi Teknoloji Ar-Ge Girişimcilik Öğrenci
+        Topluluğu(FÜTAG), 2009 yılında Fırat Üniversitesinde öğrencilere mühendislik ve
+        yönetim ilkelerini öğretmek ve uygulamak amacıyla kurulmuştur. Çeşitli projeler ve
+        etkinliklerle öğrencileri iş hayatına hazırlamak ve kendi potansiyellerinin farkına
+        varmalarını sağlamak için elinden geleni yapmaya devam etmektedir.</string>
 
 </resources>
