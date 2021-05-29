@@ -60,7 +60,7 @@ class DahaFragment : Fragment() {
         itemList.add(geriBildirim)
         itemList.add(hakkimizda)
 
-        adapter = DahasiRecyclerAdapter(requireContext(), itemList)
+        adapter = DahasiRecyclerAdapter(this ,requireContext(), itemList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 

@@ -3,11 +3,15 @@ package com.futag.futag.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.futag.futag.R
 import com.futag.futag.databinding.DahasiRecyclerRowBinding
 import com.futag.futag.model.DahasiItemModel
 
-class DahasiRecyclerAdapter(val context: Context, val itemList: ArrayList<DahasiItemModel>)
+class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, val itemList: ArrayList<DahasiItemModel>)
     : RecyclerView.Adapter<DahasiRecyclerAdapter.DahasiViewHolder>() {
 
     class DahasiViewHolder(val itemBinding: DahasiRecyclerRowBinding)
@@ -22,12 +26,33 @@ class DahasiRecyclerAdapter(val context: Context, val itemList: ArrayList<Dahasi
         holder.itemBinding.imageViewYuvarlakResim.setImageDrawable(itemList[position].resim)
         holder.itemBinding.textViewBasliklar.text = itemList[position].baslik
         holder.itemBinding.cardView.setOnClickListener {
-            println("Tiklandi")
+            sayfaDegis(itemList[position].baslik)
         }
     }
 
     override fun getItemCount(): Int {
         return itemList.size
+    }
+
+    private fun sayfaDegis(baslik: String){
+        when(baslik){
+            context.getString(R.string.birimlerimiz) -> {
+                parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_birimlerimizF)
+            }
+            context.getString(R.string.bizi_oyla) -> {
+                Toast.makeText(context,R.string.cok_yakinda,Toast.LENGTH_SHORT).show()
+            }
+            context.getString(R.string.bildirimler) -> {
+                parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_bildirimlerF)
+            }
+            context.getString(R.string.geri_bildirim) -> {
+                Toast.makeText(context,R.string.cok_yakinda,Toast.LENGTH_SHORT).show()
+            }
+            context.getString(R.string.hakkimizda) -> {
+                parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_hakkimizdaF)
+            }
+            else -> Toast.makeText(context,R.string.hata_mesaji,Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

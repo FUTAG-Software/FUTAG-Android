@@ -36,8 +36,8 @@ class AkisActivity : AppCompatActivity() {
     // Geri tusuyla uygualamadan direkt cikma, aksi takdirde 2 kez sayfa yuklenmesi oluyor
     override fun onBackPressed() {
         super.onBackPressed()
-        finish()
-        exitProcess(0)
+        //finish()
+        //exitProcess(0)
     }
 
 }

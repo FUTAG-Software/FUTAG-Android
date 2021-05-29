@@ -23,6 +23,7 @@
     <string name="gonder">Gönder</string>
     <string name="hata_mesaji">Hata, lütfen tekrar deneyiniz.</string>
     <string name="duzenle_isareti">duzenleme isareti</string>
+    <string name="cok_yakinda">Çok Yakında!</string>
 
     <!-- Main Activity -->
     <string name="internet_baglantisi_olumsuz">İnternet Bağlantınızın Olduğundan Emin Olun!</string>
@@ -66,7 +67,7 @@
     <string name="sifremi_unuttum">Şifremi Unuttum</string>
     <string name="sifre_yenileme_metni">Şifrenizi yenilemek için lütfen e-posta adresinizi giriniz.</string>
     <string name="degisiklikler_kaydedildi">Değişiklikler Kaydedildi</string>
-    
+
     <!-- Daha Fragment -->
     <string name="daha_fazlasi">Daha Fazlası</string>
     <string name="birimlerimiz">Birimlerimiz</string>

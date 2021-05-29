@@ -34,10 +34,35 @@
         android:id="@+id/dahaFragment"
         android:name="com.futag.futag.view.fragment.akis.dahasi.DahaFragment"
         android:label="fragment_daha"
-        tools:layout="@layout/fragment_daha" />
+        tools:layout="@layout/fragment_daha" >
+        <action
+            android:id="@+id/action_dahaFragment_to_birimlerimizF"
+            app:destination="@id/birimlerimizF" />
+        <action
+            android:id="@+id/action_dahaFragment_to_bildirimlerF"
+            app:destination="@id/bildirimlerF" />
+        <action
+            android:id="@+id/action_dahaFragment_to_hakkimizdaF"
+            app:destination="@id/hakkimizdaF" />
+    </fragment>
     <fragment
         android:id="@+id/profiliDuzenleF"
         android:name="com.futag.futag.view.fragment.akis.profil.ProfiliDuzenleF"
         android:label="fragment_profili_duzenle"
         tools:layout="@layout/fragment_profili_duzenle" />
+    <fragment
+        android:id="@+id/birimlerimizF"
+        android:name="com.futag.futag.view.fragment.akis.dahasi.BirimlerimizF"
+        android:label="fragment_birimlerimiz"
+        tools:layout="@layout/fragment_birimlerimiz" />
+    <fragment
+        android:id="@+id/bildirimlerF"
+        android:name="com.futag.futag.view.fragment.akis.dahasi.BildirimlerF"
+        android:label="fragment_bildirimler"
+        tools:layout="@layout/fragment_bildirimler" />
+    <fragment
+        android:id="@+id/hakkimizdaF"
+        android:name="com.futag.futag.view.fragment.akis.dahasi.HakkimizdaF"
+        android:label="fragment_hakkimizda"
+        tools:layout="@layout/fragment_hakkimizda" />
 </navigation>
