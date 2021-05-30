@@ -52,7 +52,7 @@
         tools:layout="@layout/fragment_profili_duzenle" />
     <fragment
         android:id="@+id/birimlerimizF"
-        android:name="com.futag.futag.view.fragment.akis.dahasi.BirimlerimizF"
+        android:name="com.futag.futag.view.fragment.akis.dahasi.birimlerimiz.BirimlerimizF"
         android:label="fragment_birimlerimiz"
         tools:layout="@layout/fragment_birimlerimiz" />
     <fragment

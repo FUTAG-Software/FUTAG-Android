@@ -3,8 +3,16 @@
 
     <!-- Genel Stringler -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="futag_icon">futag_icon</string>
-    <string name="futag_yazi">futag_yazi</string>
+    <string name="futag_icon">futag icon</string>
+    <string name="futag_yazi">futag yazi</string>
+
+    <string name="girisimcilik_birimi">Girişimcilik ve İnovasyon</string>
+    <string name="sosyal_sorumluluk_birimi">Sosyal Sorumluluk ve Faaliyet</string>
+    <string name="proje_arge_birimi">Proje ve AR-GE</string>
+    <string name="yazilim_birimi">Yazılım</string>
+    <string name="medya_birimi">Medya ve Tasarım</string>
+    <string name="dis_iliskiler_birimi">Dış İlişkiler</string>
+
     <string name="blog">Blog</string>
     <string name="etkinlik">Etkinlikler</string>
     <string name="profil">Profil</string>

@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.dahasi
+package com.futag.futag.view.fragment.akis.dahasi.birimlerimiz
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
