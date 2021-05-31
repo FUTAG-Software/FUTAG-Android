@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:backgroundTint="@color/splash_fragment_background"
     android:background="@drawable/arka_plan_soyut"
     tools:context=".view.fragment.SplashFragment">
 
@@ -17,7 +18,7 @@
 
     <ImageView
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:src="@drawable/futag_yazi"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/futag_yazi" />

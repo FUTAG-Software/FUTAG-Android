@@ -134,7 +134,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/edit_text_background"
-                app:backgroundTint="@color/acik_gri2"
+                app:backgroundTint="@color/edit_text_background_color"
                 app:icon="@drawable/takvim"
                 app:iconTint="@color/menu_grisi"
                 app:iconPadding="10dp"

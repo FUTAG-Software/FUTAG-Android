@@ -9,6 +9,4 @@
         android:color="@color/sari"
         android:width="2dp"/>
 
-    <solid android:color="@color/white"/>
-
 </shape>

@@ -41,7 +41,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="20dp"
             android:textAlignment="textStart"
-            android:textColor="@color/text_color_koyu"
+            android:textColor="@color/dahasi_text_color"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageViewOkIsareti"
