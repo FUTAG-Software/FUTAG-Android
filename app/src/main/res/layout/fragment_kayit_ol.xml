@@ -27,7 +27,7 @@
                 android:id="@+id/textViewKayitOl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/kayit_ol"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="30sp" />
@@ -152,7 +152,7 @@
                 android:id="@+id/buttonKayitOl"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
                 android:text="@string/kayit_ol"
@@ -164,8 +164,8 @@
                 android:id="@+id/linearLayoutYazi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <TextView

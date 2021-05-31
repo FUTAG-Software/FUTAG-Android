@@ -93,4 +93,38 @@
         etkinliklerle öğrencileri iş hayatına hazırlamak ve kendi potansiyellerinin farkına
         varmalarını sağlamak için elinden geleni yapmaya devam etmektedir.</string>
 
+    <!-- Birimlerimiz Fragment -->
+    <string name="girisimcilik_inovasyon_birim_yazisi">\t\tBirim olarak amacımız düzenleyeceğimiz
+        etkinlik ve eğitimlerle üyelerimizin iletişim yeteneklerini geliştirerek takım çalışması
+        yöntemi ile yeni ürün ve fikir oluşturmalarına destek olmaktır.\n\n\t\tFikirlerin uygulama
+        ve pratik ile gerçek değerlerine ulaştıkları bilincindeyiz.Girişimcilik ve İnovasyon birimi
+        olarak, ekip arkadaşlarımızın girişimcilik ekosistemine dahil olmalarını sağlamak amacıyla
+        fikirlerini destekleyerek üretme aşamalarına getirmelerini hedeflemekteyiz.</string>
+    <string name="medya_tasarim_birim_yazisi">\t\tBirimimizin amacı; topluluğumuzun ihtiyaç duyduğu
+        reklam çalışmalarını yürütmek ve tanıtımımıza katkı sağlamaktır. Topluluğumuz tanıtımının
+        yanı sıra sosyal medya yöneticiliği ve fotoğrafçılık alanında çalışmalar yürütmekteyiz.\n\n
+        \t\tBirim olarak, ileriki dönemlerde topluluğumuzun sosyal medyadaki tanıtımlarını
+        arttırarak hedef kitlemizi büyütmeyi amaçlamaktayız.</string>
+    <string name="yazilim_birim_yazisi">\t\tBirim olarak amacımız topluluğumuzun yazılım konusunda
+        ihtiyacı olan ürünlerin tasarım ve mimarisini yapmaktır. Ortaya çıkarılan ürünlerin dışında 
+        ekip arkadaşlarımıza dışarıdan sağlanan uzman desteği ile çeşitli eğitimler düzenlenmektedir.
+        \n\n\t\tDijital dönüşüm sürecine uyum sağlamanın önemini bilerek, çalışmaya devam ediyor ve
+        her yeni dönemde inovatif ürünler ortaya koymayı hedefliyoruz.</string>
+    <string name="sosyal_sorumluluk_birim_yazisi">\t\tBirim olarak amacımız etrafımızda bulunan çocuk,
+        genç ve yaşlı her bir bireyin daha mutlu ve huzurlu bir hayat geçirmesi için çalışıyoruz.
+        Aynı doğayı paylaştığımız bütün canlılara daha güvenilir bir yaşam alanı sağlamak hepimizin
+        insanlık görevidir.\n\n\t\tBizler hep beraber çevremizi ve geleceğimizi daha güzel, mutlu ve
+        huzurlu yapmayı hedeflemekteyiz.</string>
+    <string name="proje_arge_birim_yazisi">\t\tBirim olarak amacımız üretmeye ve geliştirmeye hevesli
+        ekip arkadaşlarımızla birlikte projeler tasarlayıp bu projeleri istenilen alanda
+        desteklemektir.\n\n\t\tİster teknik ister sosyal projeler olsun gelişmekte olan teknolojiye
+        ve sosyal dünyaya uyum sağlamak, bu projeleri geliştirirken aynı zamanda bireysel
+        yeteneklerimizi de geliştirmek öncelikli hedeflerimizdir.</string>
+    <string name="dis_iliskiler_birim_yazisi">\t\tBirimimizin amacı; ulusal ve uluslararası
+        kuruluşlar için üniversite temsilciliğini üstlenmek ve düzenlediğimiz etkinlikler için
+        yetkili kişiler ile iletişime geçmektir. Topluluğumuz adına dışarıyla bağlantı sağlamamızın
+        yanı sıra, sponsorluk ve reklam konularında da çalışmalar yürütmekteyiz.\n\n\t\tBirim olarak,
+        ileriki dönemlerde topluluğumuzu ülkemizin önde gelen toplulukları ile aynı kategoride
+        görmek ve üniversitemizi en güzel şekilde temsil etmeyi sağlamayı hedeflemekteyiz.</string>
+
 </resources>

@@ -26,10 +26,10 @@
         android:layout_height="32dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/resim"
         android:src="@drawable/ok_saga_dogru"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBaslik"
-        android:contentDescription="@string/resim" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGenelResim" />
 
     <TextView
         android:id="@+id/textViewMetin"
@@ -44,5 +44,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewMaddeIsareti"
         app:layout_constraintTop_toTopOf="@+id/imageViewMaddeIsareti" />
+
+    <ImageView
+        android:id="@+id/imageViewGenelResim"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/futag_genel"
+        android:contentDescription="@string/resim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBaslik" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
