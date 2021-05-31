@@ -54,7 +54,11 @@
         android:id="@+id/birimlerimizF"
         android:name="com.futag.futag.view.fragment.akis.dahasi.birimlerimiz.BirimlerimizF"
         android:label="fragment_birimlerimiz"
-        tools:layout="@layout/fragment_birimlerimiz" />
+        tools:layout="@layout/fragment_birimlerimiz" >
+        <action
+            android:id="@+id/action_birimlerimizF_to_birimDetayF"
+            app:destination="@id/birimDetayF" />
+    </fragment>
     <fragment
         android:id="@+id/bildirimlerF"
         android:name="com.futag.futag.view.fragment.akis.dahasi.BildirimlerF"
@@ -65,4 +69,14 @@
         android:name="com.futag.futag.view.fragment.akis.dahasi.HakkimizdaF"
         android:label="fragment_hakkimizda"
         tools:layout="@layout/fragment_hakkimizda" />
+    <fragment
+        android:id="@+id/birimDetayF"
+        android:name="com.futag.futag.view.fragment.akis.dahasi.birimlerimiz.BirimDetayF"
+        android:label="fragment_birim_detay"
+        tools:layout="@layout/fragment_birim_detay" >
+        <argument
+            android:name="birimId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

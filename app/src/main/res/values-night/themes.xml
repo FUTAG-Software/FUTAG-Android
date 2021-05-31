@@ -6,7 +6,7 @@
         <item name="colorPrimaryVariant">@color/acik_gri</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/acik_gri</item>
+        <item name="colorSecondary">@color/acik_gri3</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
