@@ -7,15 +7,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.akis.EvFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ev"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/ImageSlider"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:iss_auto_cycle="true"
+        app:iss_delay="0"
+        app:iss_placeholder="@android:color/darker_gray"
+        app:iss_error_image="@android:color/darker_gray"
+        app:iss_corner_radius="5"
+        app:iss_selected_dot="@drawable/default_selected_dot"
+        app:iss_unselected_dot="@drawable/default_unselected_dot"
+        app:iss_period="3000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImageSlider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

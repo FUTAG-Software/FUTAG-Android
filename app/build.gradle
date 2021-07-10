@@ -80,4 +80,7 @@ dependencies {
 
     // Circle - Image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Image Slider
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 }
