@@ -5,12 +5,15 @@
       <map>
         <entry key="app/src/main/res/drawable/arka_plan_radius.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/birim_detay_card_view.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/drawable/blog_detay_radius.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kayit_button_arka_plani.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kisi.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kisi_yuksek_cozunurluk.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/layout/bildirimler_recycler_row.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/blog_recycler_row.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/dahasi_recycler_row.xml" value="0.22534722222222223" />
+        <entry key="app/src/main/res/layout/fragment_blog.xml" value="0.22534722222222223" />
+        <entry key="app/src/main/res/layout/fragment_blog_detay.xml" value="0.21597222222222223" />
         <entry key="app/src/main/res/layout/fragment_ev.xml" value="0.20423497267759563" />
         <entry key="app/src/main/res/layout/gonderi_recycler_row.xml" value="0.22534722222222223" />
       </map>

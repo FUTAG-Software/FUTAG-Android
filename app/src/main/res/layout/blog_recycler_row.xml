@@ -1,4 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -13,7 +14,6 @@
         android:maxHeight="300dp"
         android:minHeight="250dp"
         android:contentDescription="@string/blog"
-        android:src="@drawable/deneme_blog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="18dp"
         android:layout_marginBottom="8dp"
         android:gravity="start"
         android:orientation="vertical"
@@ -32,9 +32,12 @@
         <TextView
             android:id="@+id/blogKonu"
             android:layout_width="match_parent"
+            android:layout_marginEnd="8dp"
             android:layout_height="wrap_content"
             android:text="@string/etkinlik"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -43,7 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/blog"
-            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis
+package com.futag.futag.view.fragment.akis.ev
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

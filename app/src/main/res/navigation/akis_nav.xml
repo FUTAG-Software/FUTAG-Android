@@ -7,14 +7,18 @@
 
     <fragment
         android:id="@+id/evFragment"
-        android:name="com.futag.futag.view.fragment.akis.EvFragment"
+        android:name="com.futag.futag.view.fragment.akis.ev.EvFragment"
         android:label="fragment_ev"
         tools:layout="@layout/fragment_ev" />
     <fragment
         android:id="@+id/blogFragment"
-        android:name="com.futag.futag.view.fragment.akis.BlogFragment"
+        android:name="com.futag.futag.view.fragment.akis.blog.BlogFragment"
         android:label="fragment_blog"
-        tools:layout="@layout/fragment_blog" />
+        tools:layout="@layout/fragment_blog" >
+        <action
+            android:id="@+id/action_blogFragment_to_blogDetayFragment"
+            app:destination="@id/blogDetayFragment" />
+    </fragment>
     <fragment
         android:id="@+id/etkinlikFragment"
         android:name="com.futag.futag.view.fragment.akis.EtkinlikFragment"
@@ -78,5 +82,14 @@
             android:name="birimId"
             app:argType="integer"
             android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/blogDetayFragment"
+        android:name="com.futag.futag.view.fragment.akis.blog.BlogDetayFragment"
+        android:label="fragment_blog_detay"
+        tools:layout="@layout/fragment_blog_detay" >
+        <argument
+            android:name="canliBlog"
+            app:argType="com.futag.futag.model.BlogModel" />
     </fragment>
 </navigation>

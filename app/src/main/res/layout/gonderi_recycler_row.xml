@@ -2,10 +2,10 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/sayfa_background_color"
+    app:cardBackgroundColor="@color/ana_sayfa_gonderi_background_color"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
-    android:layout_margin="8dp"
+    android:layout_margin="6dp"
     android:layout_width="match_parent"
     android:layout_height="320dp">
 

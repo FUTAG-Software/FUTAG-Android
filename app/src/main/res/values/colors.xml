@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="black_acik">#2B2B2B</color>
+    <color name="black_acik_2x">#4E4E4E</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#1362FF</color>
 
@@ -20,6 +21,7 @@
 
     <!-- Genel Kullanilan Renkler -->
     <color name="sayfa_background_color">@color/white</color>
+    <color name="ana_sayfa_gonderi_background_color">@color/white</color>
     <color name="text_color_koyu">@color/menu_grisi</color>
     <color name="text_color_acik">@color/acik_gri</color>
     <color name="text_color_sari">@color/sari</color>

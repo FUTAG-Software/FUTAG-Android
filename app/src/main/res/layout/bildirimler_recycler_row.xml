@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -14,7 +15,8 @@
         android:contentDescription="@string/resim"
         android:src="@drawable/ok_saga_dogru"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textViewBildirimMetni"
@@ -42,7 +44,8 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textViewBildirimMetni"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBildirimMetni" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBildirimMetni"
+        tools:ignore="TextContrastCheck" />
 
     <View
         android:id="@+id/view"
