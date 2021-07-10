@@ -1,6 +1,8 @@
 package com.futag.futag.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -46,13 +48,23 @@ class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, 
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_bildirimlerF)
             }
             context.getString(R.string.geri_bildirim) -> {
-                Toast.makeText(context,R.string.cok_yakinda,Toast.LENGTH_SHORT).show()
+                geriBildirimMail()
             }
             context.getString(R.string.hakkimizda) -> {
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_hakkimizdaF)
             }
             else -> Toast.makeText(context,R.string.hata_mesaji,Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun geriBildirimMail(){
+        val email = "futag@firat.edu.tr"
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:$email")
+//      putExtra(Intent.EXTRA_EMAIL,email)
+        }
+//      Toast.makeText(context,R.string.cok_yakinda,Toast.LENGTH_SHORT).show()
+        context.startActivity(intent)
     }
 
 }

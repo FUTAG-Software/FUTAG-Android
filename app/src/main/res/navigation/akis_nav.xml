@@ -9,7 +9,11 @@
         android:id="@+id/evFragment"
         android:name="com.futag.futag.view.fragment.akis.ev.EvFragment"
         android:label="fragment_ev"
-        tools:layout="@layout/fragment_ev" />
+        tools:layout="@layout/fragment_ev" >
+        <action
+            android:id="@+id/action_evFragment_to_webSitesiFragment"
+            app:destination="@id/webSitesiFragment" />
+    </fragment>
     <fragment
         android:id="@+id/blogFragment"
         android:name="com.futag.futag.view.fragment.akis.blog.BlogFragment"
@@ -92,4 +96,9 @@
             android:name="canliBlog"
             app:argType="com.futag.futag.model.BlogModel" />
     </fragment>
+    <fragment
+        android:id="@+id/webSitesiFragment"
+        android:name="com.futag.futag.view.fragment.akis.ev.WebSitesiFragment"
+        android:label="fragment_web_sitesi"
+        tools:layout="@layout/fragment_web_sitesi" />
 </navigation>

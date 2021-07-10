@@ -8,11 +8,10 @@
     <ImageView
         android:id="@+id/blogImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="280dp"
         android:layout_marginBottom="4dp"
+        android:scaleType="fitXY"
         android:adjustViewBounds="true"
-        android:maxHeight="300dp"
-        android:minHeight="250dp"
         android:contentDescription="@string/blog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
