@@ -53,6 +53,9 @@ class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, 
             context.getString(R.string.hakkimizda) -> {
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_hakkimizdaF)
             }
+            context.getString(R.string.ayarlar) -> {
+                parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_ayarlarFragment)
+            }
             else -> Toast.makeText(context,R.string.hata_mesaji,Toast.LENGTH_SHORT).show()
         }
     }

@@ -2,16 +2,12 @@ package com.futag.futag.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.ActivityAkisBinding
-import com.futag.futag.view.fragment.akis.*
-import kotlin.system.exitProcess
 
 class AkisActivity : AppCompatActivity() {
 
@@ -31,13 +27,6 @@ class AkisActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController,appBarConfiguration)
 
         binding.bottomNavigationView.setupWithNavController(navController)
-    }
-
-    // Geri tusuyla uygualamadan direkt cikma, aksi takdirde 2 kez sayfa yuklenmesi oluyor
-    override fun onBackPressed() {
-        super.onBackPressed()
-        //finish()
-        //exitProcess(0)
     }
 
 }

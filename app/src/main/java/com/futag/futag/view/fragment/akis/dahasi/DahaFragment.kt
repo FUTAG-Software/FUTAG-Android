@@ -53,12 +53,17 @@ class DahaFragment : Fragment() {
             ContextCompat.getDrawable(requireContext(),R.drawable.info)!!,
             getString(R.string.hakkimizda)
         )
+        val ayarlar = DahasiItemModel(
+            ContextCompat.getDrawable(requireContext(),R.drawable.ayarlar)!!,
+            getString(R.string.ayarlar)
+        )
 
         itemList.add(birimlerimiz)
         itemList.add(biziOyla)
         itemList.add(bildirimler)
         itemList.add(geriBildirim)
         itemList.add(hakkimizda)
+        itemList.add(ayarlar)
 
         adapter = DahasiRecyclerAdapter(this ,requireContext(), itemList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
