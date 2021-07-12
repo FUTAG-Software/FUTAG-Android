@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_evFragment_to_webSitesiFragment"
             app:destination="@id/webSitesiFragment" />
+        <action
+            android:id="@+id/action_evFragment_to_gonderiDetayFragment"
+            app:destination="@id/gonderiDetayFragment" />
     </fragment>
     <fragment
         android:id="@+id/blogFragment"
@@ -109,4 +112,12 @@
         android:name="com.futag.futag.view.fragment.akis.dahasi.AyarlarFragment"
         android:label="fragment_ayarlar"
         tools:layout="@layout/fragment_ayarlar" />
+    <fragment
+        android:id="@+id/gonderiDetayFragment"
+        android:name="com.futag.futag.view.fragment.akis.ev.GonderiDetayFragment"
+        android:label="GonderiDetayFragment" >
+        <argument
+            android:name="canliGonderi"
+            app:argType="com.futag.futag.model.GonderiModel" />
+    </fragment>
 </navigation>

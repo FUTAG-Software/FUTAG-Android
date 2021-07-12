@@ -37,7 +37,7 @@ class EvFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = GonderilerRecyclerAdapter()
+        adapter = GonderilerRecyclerAdapter(requireParentFragment())
         sliderListesi = ArrayList()
         sliderDoldur()
 
@@ -57,9 +57,9 @@ class EvFragment : Fragment() {
             }
         })
 
-        val x = GonderiModel(ContextCompat.getDrawable(requireContext(),R.drawable.denemeresim1)!!,"Kocatepe Camii","Turkiyenin en buyuk camilerinden olan Kocatepe Camii buyuk bir mirasa sahiptir")
-        val y = GonderiModel(ContextCompat.getDrawable(requireContext(),R.drawable.denemeresim2)!!,"Yapay Zekanin Gelecegi","Son yillarda sik sik duydugumuz yapay zeka sozleri cagi asti")
-        val z = GonderiModel(ContextCompat.getDrawable(requireContext(),R.drawable.denemeresim3)!!,"Parisin Incisi Eyfel Kulesi","Fransanin en fazla ziyaterci akinina ugrayan eseri olan Eyfel Kulesi ona bakanlari buyuler")
+        val x = GonderiModel(1,"Kocatepe Camii","Turkiyenin en buyuk camilerinden olan Kocatepe Camii buyuk bir mirasa sahiptir","Adem Atici")
+        val y = GonderiModel(2,"Yapay Zekanin Gelecegi","Son yillarda sik sik duydugumuz yapay zeka sozleri cagi asti","Abdulselam Sarigul")
+        val z = GonderiModel(3,"Parisin Incisi Eyfel Kulesi","Fransanin en fazla ziyaterci akinina ugrayan eseri olan Eyfel Kulesi ona bakanlari buyuler","Deneme Uzun Isimli Biri")
 
         val gonderiler = ArrayList<GonderiModel>()
         gonderiler.add(x)

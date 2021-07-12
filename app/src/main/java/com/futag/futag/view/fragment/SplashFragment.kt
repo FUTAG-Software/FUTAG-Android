@@ -16,7 +16,7 @@ class SplashFragment : Fragment() {
 
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
-    private val BEKLEME_SURESI = 1700L
+    private val BEKLEME_SURESI = 1600L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

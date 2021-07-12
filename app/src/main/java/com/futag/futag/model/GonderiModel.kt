@@ -1,9 +1,12 @@
 package com.futag.futag.model
 
-import android.graphics.drawable.Drawable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class GonderiModel(
-    val resim: Drawable,
+    val resim: Int,
     val baslik: String,
-    val detay: String
-)
+    val detay: String,
+    val yazar: String
+): Parcelable

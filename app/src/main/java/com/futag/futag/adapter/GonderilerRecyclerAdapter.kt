@@ -1,13 +1,21 @@
 package com.futag.futag.adapter
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.futag.futag.R
 import com.futag.futag.databinding.GonderiRecyclerRowBinding
 import com.futag.futag.model.GonderiModel
+import com.futag.futag.view.fragment.akis.blog.BlogFragmentDirections
+import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
+import com.futag.futag.view.fragment.akis.ev.GonderiDetayFragment
 
-class GonderilerRecyclerAdapter: RecyclerView.Adapter<GonderilerRecyclerAdapter.GonderilerViewHolder>() {
+class GonderilerRecyclerAdapter(private val parentFragment: Fragment)
+    : RecyclerView.Adapter<GonderilerRecyclerAdapter.GonderilerViewHolder>() {
 
     private var gonderListesi = emptyList<GonderiModel>()
 
@@ -21,9 +29,26 @@ class GonderilerRecyclerAdapter: RecyclerView.Adapter<GonderilerRecyclerAdapter.
 
     override fun onBindViewHolder(holder: GonderilerViewHolder, position: Int) {
         val canliVeri = gonderListesi[position]
-        holder.itemBinding.imageViewGonderi.setImageDrawable(canliVeri.resim)
+        when(canliVeri.resim){
+            1 -> {
+                holder.itemBinding.imageViewGonderi.setImageDrawable(
+                    ContextCompat.getDrawable(parentFragment.requireContext(), R.drawable.denemeresim1))
+            }
+            2 -> {
+                holder.itemBinding.imageViewGonderi.setImageDrawable(
+                    ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.denemeresim2))
+            }
+            3 -> {
+                holder.itemBinding.imageViewGonderi.setImageDrawable(
+                    ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.denemeresim3))
+            }
+        }
         holder.itemBinding.textViewBaslik.text = canliVeri.baslik
         holder.itemBinding.textViewAciklama.text = canliVeri.detay
+        holder.itemBinding.cardView.setOnClickListener {
+            val action = EvFragmentDirections.actionEvFragmentToGonderiDetayFragment(canliVeri)
+            parentFragment.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

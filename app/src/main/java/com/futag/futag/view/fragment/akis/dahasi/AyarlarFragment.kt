@@ -1,9 +1,6 @@
 package com.futag.futag.view.fragment.akis.dahasi
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.TaskStackBuilder
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -116,7 +113,7 @@ class AyarlarFragment : Fragment() {
     private fun createNotificationChannel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val name = "Bildirim Uyarisi"
-            val descriptionText = "Notification Description"
+            val descriptionText = "Futag Bildirimi"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID,name,importance).apply {
                 description = descriptionText
@@ -136,10 +133,13 @@ class AyarlarFragment : Fragment() {
 
         val builder = NotificationCompat.Builder(requireContext(),CHANNEL_ID)
             .setSmallIcon(R.drawable.futag_icon)
-            .setContentTitle("Yarisma Basliyor")
-            .setContentText("Yapilacak olan buyuk FUTAG yarismasi birazdan baslayacak.")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
+            .setContentTitle("Yarisma Basliyor")
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .bigText("Yapilacak olan buyuk FUTAG yarismasi birazdan baslayacak.")
+            )
 
         with(NotificationManagerCompat.from(requireContext())){
             notify(notificationId, builder.build())
