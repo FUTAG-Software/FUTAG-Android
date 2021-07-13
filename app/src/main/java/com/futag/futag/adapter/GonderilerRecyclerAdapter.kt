@@ -1,6 +1,5 @@
 package com.futag.futag.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.GonderiRecyclerRowBinding
 import com.futag.futag.model.GonderiModel
-import com.futag.futag.view.fragment.akis.blog.BlogFragmentDirections
 import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
-import com.futag.futag.view.fragment.akis.ev.GonderiDetayFragment
 
 class GonderilerRecyclerAdapter(private val parentFragment: Fragment)
     : RecyclerView.Adapter<GonderilerRecyclerAdapter.GonderilerViewHolder>() {

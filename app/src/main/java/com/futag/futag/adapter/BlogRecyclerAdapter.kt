@@ -26,10 +26,15 @@ class BlogRecyclerAdapter(val parentFragment: Fragment, private val blogListesi:
         val canliVeri = blogListesi[position]
 
         if(canliVeri.featuredImage != null){
-            Picasso.get().load(canliVeri.featuredImage.large).placeholder(R.drawable.placeholder).into(holder.itemBinding.blogImage)
+            Picasso
+                .get()
+                .load(canliVeri.featuredImage.large)
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
+                .into(holder.itemBinding.blogImage)
         } else {
             holder.itemBinding.blogImage.setImageDrawable(
-                ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.deneme_blog)
+                ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.error)
             )
         }
 

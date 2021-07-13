@@ -53,4 +53,6 @@
     <color name="dahasi_image_background_color">@color/white</color>
     <color name="dahasi_text_color">@color/black_acik</color>
 
+    <color name="blog_text_background_color">#80000000</color>
+
 </resources>

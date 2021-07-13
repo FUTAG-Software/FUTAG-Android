@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.353125" />
         <entry key="app/src/main/res/drawable/arka_plan_radius.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/ayarlar.xml" value="0.2236842105263158" />
         <entry key="app/src/main/res/drawable/birim_detay_card_view.xml" value="0.2361111111111111" />

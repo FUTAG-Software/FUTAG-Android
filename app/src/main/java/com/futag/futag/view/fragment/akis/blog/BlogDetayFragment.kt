@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentBlogBinding
 import com.futag.futag.databinding.FragmentBlogDetayBinding
 import com.squareup.picasso.Picasso
 
@@ -34,11 +33,12 @@ class BlogDetayFragment : Fragment() {
 
         val canliVeri = args.canliBlog
         binding.textViewYazar.text = canliVeri.author
-        binding.textViewBaslik.text = canliVeri.title
-        binding.textViewDetay.text = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            Html.fromHtml(canliVeri.content,Html.FROM_HTML_MODE_COMPACT)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            var x = canliVeri.content.replace(Regex("<img.+>"), "")
+            x = x.replace(Regex("\\n"),"<br>")
+            binding.textViewDetay.text = Html.fromHtml(x,Html.FROM_HTML_MODE_COMPACT)
         } else {
-            Html.fromHtml(canliVeri.content)
+            binding.textViewDetay.text = Html.fromHtml(canliVeri.content)
         }
 
         if(canliVeri.featuredImage != null){
