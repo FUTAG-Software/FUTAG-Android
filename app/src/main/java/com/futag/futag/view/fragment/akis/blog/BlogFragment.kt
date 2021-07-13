@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.R
 import com.futag.futag.adapter.BlogRecyclerAdapter
 import com.futag.futag.databinding.FragmentBlogBinding
-import com.futag.futag.model.BlogModel
+import com.futag.futag.model.blog.BlogModel
 
 class BlogFragment : Fragment() {
 

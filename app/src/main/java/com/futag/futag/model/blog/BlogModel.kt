@@ -1,4 +1,4 @@
-package com.futag.futag.model
+package com.futag.futag.model.blog
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

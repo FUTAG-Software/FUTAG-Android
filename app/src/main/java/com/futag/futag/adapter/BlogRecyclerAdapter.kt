@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.BlogRecyclerRowBinding
 import com.futag.futag.databinding.FragmentBlogBinding
-import com.futag.futag.model.BlogModel
+import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.view.fragment.akis.blog.BlogFragmentDirections
 
 class BlogRecyclerAdapter(val parentFragment: Fragment, private val blogListesi: ArrayList<BlogModel>): RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder>() {
