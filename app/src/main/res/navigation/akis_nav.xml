@@ -100,7 +100,7 @@
         tools:layout="@layout/fragment_blog_detay" >
         <argument
             android:name="canliBlog"
-            app:argType="com.futag.futag.model.BlogModel" />
+            app:argType="com.futag.futag.model.blog.BlogModelItem" />
     </fragment>
     <fragment
         android:id="@+id/webSitesiFragment"

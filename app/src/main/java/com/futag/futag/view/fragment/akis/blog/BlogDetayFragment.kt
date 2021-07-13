@@ -1,6 +1,8 @@
 package com.futag.futag.view.fragment.akis.blog
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentBlogBinding
 import com.futag.futag.databinding.FragmentBlogDetayBinding
+import com.squareup.picasso.Picasso
 
 class BlogDetayFragment : Fragment() {
 
@@ -30,23 +33,20 @@ class BlogDetayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val canliVeri = args.canliBlog
-        binding.textViewYazar.text = canliVeri.yazar
-        binding.textViewBaslik.text = canliVeri.baslik
-        binding.textViewDetay.text = canliVeri.konu
+        binding.textViewYazar.text = canliVeri.author
+        binding.textViewBaslik.text = canliVeri.title
+        binding.textViewDetay.text = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            Html.fromHtml(canliVeri.content,Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            Html.fromHtml(canliVeri.content)
+        }
 
-        when(canliVeri.resim){
-            1 -> {
-                binding.imageViewResim.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.deneme_blog))
-            }
-            2 -> {
-                binding.imageViewResim.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.denemeresim1))
-            }
-            3 -> {
-                binding.imageViewResim.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.denemeresim2))
-            }
-            4 -> {
-                binding.imageViewResim.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.denemeresim3))
-            }
+        if(canliVeri.featuredImage != null){
+            Picasso.get().load(canliVeri.featuredImage.large).placeholder(R.drawable.placeholder).into(binding.imageViewResim)
+        } else {
+            binding.imageViewResim.setImageDrawable(
+                ContextCompat.getDrawable(requireContext(),R.drawable.deneme_blog)
+            )
         }
     }
 

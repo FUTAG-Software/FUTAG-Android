@@ -8,11 +8,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.BlogRecyclerRowBinding
-import com.futag.futag.databinding.FragmentBlogBinding
 import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.view.fragment.akis.blog.BlogFragmentDirections
+import com.squareup.picasso.Picasso
 
-class BlogRecyclerAdapter(val parentFragment: Fragment, private val blogListesi: ArrayList<BlogModel>): RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder>() {
+class BlogRecyclerAdapter(val parentFragment: Fragment, private val blogListesi: BlogModel)
+    : RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder>() {
 
     class BlogViewHolder(val itemBinding: BlogRecyclerRowBinding): RecyclerView.ViewHolder(itemBinding.root)
 
@@ -22,25 +23,20 @@ class BlogRecyclerAdapter(val parentFragment: Fragment, private val blogListesi:
     }
 
     override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
-        when(blogListesi[position].resim){
-            1 -> {
-                holder.itemBinding.blogImage.setImageDrawable(ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.deneme_blog))
-            }
-            2 -> {
-                holder.itemBinding.blogImage.setImageDrawable(ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.denemeresim1))
-            }
-            3 -> {
-                holder.itemBinding.blogImage.setImageDrawable(ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.denemeresim2))
-            }
-            4 -> {
-                holder.itemBinding.blogImage.setImageDrawable(ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.denemeresim3))
-            }
+        val canliVeri = blogListesi[position]
+
+        if(canliVeri.featuredImage != null){
+            Picasso.get().load(canliVeri.featuredImage.large).placeholder(R.drawable.placeholder).into(holder.itemBinding.blogImage)
+        } else {
+            holder.itemBinding.blogImage.setImageDrawable(
+                ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.deneme_blog)
+            )
         }
 
-        holder.itemBinding.blogKonu.text = blogListesi[position].konu
-        holder.itemBinding.blogYazar.text = blogListesi[position].yazar
+        holder.itemBinding.blogBaslik.text = canliVeri.title
+        holder.itemBinding.blogYazar.text = canliVeri.author
         holder.itemBinding.layout.setOnClickListener {
-            val action = BlogFragmentDirections.actionBlogFragmentToBlogDetayFragment(blogListesi[position])
+            val action = BlogFragmentDirections.actionBlogFragmentToBlogDetayFragment(canliVeri)
             parentFragment.findNavController().navigate(action)
         }
     }

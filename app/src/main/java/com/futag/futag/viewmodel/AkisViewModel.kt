@@ -1,6 +1,7 @@
 package com.futag.futag.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.service.BlogAPIService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -8,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class AkisViewModel {
+class AkisViewModel: ViewModel() {
 
     private val service = BlogAPIService()
     private val compositeDisposable = CompositeDisposable()
