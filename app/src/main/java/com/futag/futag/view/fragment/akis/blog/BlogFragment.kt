@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.futag.futag.R
 import com.futag.futag.adapter.BlogRecyclerAdapter
 import com.futag.futag.databinding.FragmentBlogBinding
 import com.futag.futag.model.blog.BlogModel
@@ -20,7 +17,7 @@ class BlogFragment : Fragment() {
 
     private var _binding: FragmentBlogBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: BlogRecyclerAdapter
+    private val blogAdapter =  BlogRecyclerAdapter(this, BlogModel())
     private lateinit var viewModel: AkisViewModel
 
     override fun onCreateView(
@@ -29,10 +26,6 @@ class BlogFragment : Fragment() {
     ): View {
         _binding = FragmentBlogBinding.inflate(inflater, container, false)
         val view = binding.root
-
-        viewModel = ViewModelProvider(requireActivity()).get(AkisViewModel::class.java)
-        viewModel.blogVerileriniAl()
-
         return view
     }
 
@@ -40,45 +33,51 @@ class BlogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val layoutManager = LinearLayoutManager(requireContext())
+        viewModel = ViewModelProvider(requireActivity()).get(AkisViewModel::class.java)
+        viewModel.blogVerileriniAl()
 
-        binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = blogAdapter
+
+        binding.swipeRefreshLayoutBlog.setOnRefreshListener {
+            binding.textViewHataMesaji.visibility = View.GONE
+            binding.progressBar.visibility = View.VISIBLE
+            binding.recyclerView.visibility = View.GONE
+            viewModel.blogVerileriniAl()
+            binding.swipeRefreshLayoutBlog.isRefreshing = false
+        }
 
         observeLiveData()
     }
 
     private fun observeLiveData(){
-        viewModel.veriler.observe(viewLifecycleOwner, { veri ->
-            veri?.let {
-                //binding.textViewErrorMessage.visibility = View.INVISIBLE
-                //binding.progressBar.visibility = View.INVISIBLE
+        viewModel.blogVerileri.observe(viewLifecycleOwner, { bloglar ->
+            bloglar?.let {
+                binding.textViewHataMesaji.visibility = View.INVISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-
-                adapter = BlogRecyclerAdapter(this, it)
-                binding.recyclerView.adapter = adapter
-                Toast.makeText(requireContext(),"Basarili",Toast.LENGTH_SHORT).show()
+                blogAdapter.blogYazilariniGuncelle(it)
             }
         })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+        viewModel.blogError.observe(viewLifecycleOwner, { error ->
             error?.let {
                 if (it){
-                    //binding.textViewErrorMessage.visibility = View.VISIBLE
-                    //binding.progressBar.visibility = View.GONE
-                    //binding.recyclerView.visibility = View.GONE
-                    Toast.makeText(requireContext(),"Hata",Toast.LENGTH_SHORT).show()
+                    binding.textViewHataMesaji.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.recyclerView.visibility = View.GONE
                 } else {
-                    //binding.textViewErrorMessage.visibility = View.GONE
+                    binding.textViewHataMesaji.visibility = View.GONE
                 }
             }
         })
-        viewModel.progressBar.observe(viewLifecycleOwner, { message ->
+        viewModel.blogYukleniyor.observe(viewLifecycleOwner, { message ->
             message?.let {
                 if (it){
-                    //binding.textViewErrorMessage.visibility = View.GONE
-                    //binding.progressBar.visibility = View.VISIBLE
-                    //binding.recyclerView.visibility = View.GONE
+                    binding.textViewHataMesaji.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
                 } else {
-                    //binding.progressBar.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
                 }
             }
         })

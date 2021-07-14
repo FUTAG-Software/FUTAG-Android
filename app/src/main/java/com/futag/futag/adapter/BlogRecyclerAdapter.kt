@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.BlogRecyclerRowBinding
 import com.futag.futag.model.blog.BlogModel
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.util.resimleriUrlIleGetir
 import com.futag.futag.view.fragment.akis.blog.BlogFragmentDirections
 import com.squareup.picasso.Picasso
 
@@ -26,12 +28,8 @@ class BlogRecyclerAdapter(val parentFragment: Fragment, private val blogListesi:
         val canliVeri = blogListesi[position]
 
         if(canliVeri.featuredImage != null){
-            Picasso
-                .get()
-                .load(canliVeri.featuredImage.large)
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.error)
-                .into(holder.itemBinding.blogImage)
+            holder.itemBinding.blogImage.resimleriUrlIleGetir(canliVeri.featuredImage.large,
+                placeholderProgressBar(parentFragment.requireContext()))
         } else {
             holder.itemBinding.blogImage.setImageDrawable(
                 ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.error)
@@ -48,6 +46,12 @@ class BlogRecyclerAdapter(val parentFragment: Fragment, private val blogListesi:
 
     override fun getItemCount(): Int {
         return blogListesi.size
+    }
+
+    fun blogYazilariniGuncelle(yeniBlogListesi: BlogModel){
+        blogListesi.clear()
+        blogListesi.addAll(yeniBlogListesi)
+        notifyDataSetChanged()
     }
 
 }

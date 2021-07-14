@@ -14,28 +14,28 @@ class AkisViewModel: ViewModel() {
     private val service = BlogAPIService()
     private val compositeDisposable = CompositeDisposable()
 
-    val veriler = MutableLiveData<BlogModel>()
-    val errorMessage = MutableLiveData<Boolean>()
-    val progressBar = MutableLiveData<Boolean>()
+    val blogVerileri = MutableLiveData<BlogModel>()
+    val blogError = MutableLiveData<Boolean>()
+    val blogYukleniyor = MutableLiveData<Boolean>()
 
     fun blogVerileriniAl(){
         blogVerileriniGetir()
     }
 
     private fun blogVerileriniGetir(){
-        progressBar.value = true
+        blogYukleniyor.value = true
         compositeDisposable.add(service.blogVerileriniGetir()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object: DisposableSingleObserver<BlogModel>(){
                 override fun onSuccess(t: BlogModel) {
-                    veriler.value = t
-                    progressBar.value = false
-                    errorMessage.value = false
+                    blogVerileri.value = t
+                    blogYukleniyor.value = false
+                    blogError.value = false
                 }
                 override fun onError(e: Throwable) {
-                    progressBar.value = false
-                    errorMessage.value = true
+                    blogYukleniyor.value = false
+                    blogError.value = true
                 }
             }))
     }

@@ -15,6 +15,8 @@ import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfilBinding
 import com.futag.futag.model.KullaniciModel
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.util.resimleriUrlIleGetir
 import com.futag.futag.viewmodel.ProfilViewModel
 import com.squareup.picasso.Picasso
 
@@ -75,8 +77,8 @@ class ProfilFragment : Fragment() {
                     val isimSoyisim = "$isim $soyisim"
                     binding.textViewIsimSoyisim.text = isimSoyisim
                     if(kullaniciProfilBilgileri!!.profilResmi != null){
-                        Picasso.get().load(kullaniciProfilBilgileri!!.profilResmi)
-                            .placeholder(R.drawable.kisi_yuksek_cozunurluk).into(binding.imageViewProfilResmi)
+                        binding.imageViewProfilResmi.resimleriUrlIleGetir(kullaniciProfilBilgileri!!.profilResmi,
+                            placeholderProgressBar(requireContext()))
                     } else{
                         binding.imageViewProfilResmi.setImageDrawable(
                            ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)

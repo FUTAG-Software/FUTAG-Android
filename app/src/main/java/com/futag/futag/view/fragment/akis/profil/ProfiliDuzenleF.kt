@@ -23,6 +23,8 @@ import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfiliDuzenleBinding
 import com.futag.futag.model.KullaniciModel
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.util.resimleriUrlIleGetir
 import com.futag.futag.view.activity.AkisActivity
 import com.futag.futag.viewmodel.ProfilViewModel
 import com.squareup.picasso.Picasso
@@ -118,8 +120,9 @@ class ProfiliDuzenleF : Fragment() {
                     binding.editTextDogumGunu.text = kullaniciProfilBilgileri!!.dogumGunu
                     binding.editTextSoyad.setText(kullaniciProfilBilgileri!!.soyisim)
                     if(kullaniciProfilBilgileri!!.profilResmi != null){
-                        Picasso.get().load(kullaniciProfilBilgileri!!.profilResmi)
-                            .placeholder(R.drawable.kisi_yuksek_cozunurluk).into(binding.imageViewProfilResmi)
+                        binding.imageViewProfilResmi.resimleriUrlIleGetir(kullaniciProfilBilgileri!!.profilResmi,
+                            placeholderProgressBar(requireContext())
+                        )
                     } else{
                         binding.imageViewProfilResmi.setImageDrawable(
                             ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)
