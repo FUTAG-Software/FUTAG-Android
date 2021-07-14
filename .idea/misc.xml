@@ -17,11 +17,14 @@
         <entry key="app/src/main/res/layout/bildirimler_recycler_row.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/blog_recycler_row.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/dahasi_recycler_row.xml" value="0.22534722222222223" />
+        <entry key="app/src/main/res/layout/etkinlikler_recycler_row.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_ayarlar.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_bildirimler.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_blog.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/fragment_blog_detay.xml" value="0.21597222222222223" />
         <entry key="app/src/main/res/layout/fragment_daha.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_etkinlik.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_etkinlik_detay.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_ev.xml" value="0.20423497267759563" />
         <entry key="app/src/main/res/layout/fragment_giris_yap.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_gonderi_detay.xml" value="0.21348684210526317" />

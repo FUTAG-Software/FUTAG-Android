@@ -14,7 +14,7 @@ import com.futag.futag.util.resimleriUrlIleGetir
 import com.futag.futag.view.fragment.akis.blog.BlogFragmentDirections
 import com.squareup.picasso.Picasso
 
-class BlogRecyclerAdapter(val parentFragment: Fragment, private val blogListesi: BlogModel)
+class BlogRecyclerAdapter(private val parentFragment: Fragment, private val blogListesi: BlogModel)
     : RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder>() {
 
     class BlogViewHolder(val itemBinding: BlogRecyclerRowBinding): RecyclerView.ViewHolder(itemBinding.root)

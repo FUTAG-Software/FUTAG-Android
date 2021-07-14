@@ -1,0 +1,46 @@
+package com.futag.futag.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.futag.futag.databinding.EtkinliklerRecyclerRowBinding
+import com.futag.futag.model.etkinlik.EtkinliklerModel
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.util.resimleriUrlIleGetir
+
+class EtkinliklerRecyclerAdapter(
+    private val parentFragment: Fragment,
+    private val etkinlikListesi: EtkinliklerModel
+    ): RecyclerView.Adapter<EtkinliklerRecyclerAdapter.EtkinliklerViewHolder>() {
+
+    inner class EtkinliklerViewHolder(val itemBinding: EtkinliklerRecyclerRowBinding):
+            RecyclerView.ViewHolder(itemBinding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EtkinliklerViewHolder {
+        val binding = EtkinliklerRecyclerRowBinding.inflate(
+            LayoutInflater.from(parentFragment.requireContext()),parent,false
+        )
+        return EtkinliklerViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: EtkinliklerViewHolder, position: Int) {
+        val canliVeri = etkinlikListesi[position]
+        holder.itemBinding.imageView.resimleriUrlIleGetir(
+            canliVeri.image,
+            placeholderProgressBar(parentFragment.requireContext())
+        )
+        holder.itemBinding.textViewBaslik.text = canliVeri.title
+    }
+
+    override fun getItemCount(): Int {
+        return etkinlikListesi.size
+    }
+
+    fun etkinlikleriGuncelle(yeniEtkinlikListesi: EtkinliklerModel){
+        etkinlikListesi.clear()
+        etkinlikListesi.addAll(yeniEtkinlikListesi)
+        notifyDataSetChanged()
+    }
+
+}

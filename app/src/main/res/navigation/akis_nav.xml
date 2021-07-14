@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/etkinlikFragment"
-        android:name="com.futag.futag.view.fragment.akis.EtkinlikFragment"
+        android:name="com.futag.futag.view.fragment.akis.etkinlik.EtkinlikFragment"
         android:label="fragment_etkinlik"
         tools:layout="@layout/fragment_etkinlik" >
     </fragment>
