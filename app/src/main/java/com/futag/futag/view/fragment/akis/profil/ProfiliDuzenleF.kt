@@ -120,9 +120,8 @@ class ProfiliDuzenleF : Fragment() {
                     binding.editTextDogumGunu.text = kullaniciProfilBilgileri!!.dogumGunu
                     binding.editTextSoyad.setText(kullaniciProfilBilgileri!!.soyisim)
                     if(kullaniciProfilBilgileri!!.profilResmi != null){
-                        binding.imageViewProfilResmi.resimleriUrlIleGetir(kullaniciProfilBilgileri!!.profilResmi,
-                            placeholderProgressBar(requireContext())
-                        )
+                        Picasso.get().load(kullaniciProfilBilgileri!!.profilResmi)
+                            .placeholder(R.drawable.kisi_yuksek_cozunurluk).into(binding.imageViewProfilResmi)
                     } else{
                         binding.imageViewProfilResmi.setImageDrawable(
                             ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)

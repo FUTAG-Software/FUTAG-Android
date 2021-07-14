@@ -31,6 +31,9 @@
         android:name="com.futag.futag.view.fragment.akis.etkinlik.EtkinlikFragment"
         android:label="fragment_etkinlik"
         tools:layout="@layout/fragment_etkinlik" >
+        <action
+            android:id="@+id/action_etkinlikFragment_to_etkinlikDetayFragment"
+            app:destination="@id/etkinlikDetayFragment" />
     </fragment>
     <fragment
         android:id="@+id/profilFragment"
@@ -119,5 +122,14 @@
         <argument
             android:name="canliGonderi"
             app:argType="com.futag.futag.model.GonderiModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/etkinlikDetayFragment"
+        android:name="com.futag.futag.view.fragment.akis.etkinlik.EtkinlikDetayFragment"
+        android:label="fragment_etkinlik_detay"
+        tools:layout="@layout/fragment_etkinlik_detay" >
+        <argument
+            android:name="canliEtkinlik"
+            app:argType="com.futag.futag.model.etkinlik.EtkinliklerModelItem" />
     </fragment>
 </navigation>

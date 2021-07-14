@@ -3,11 +3,13 @@ package com.futag.futag.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.databinding.EtkinliklerRecyclerRowBinding
 import com.futag.futag.model.etkinlik.EtkinliklerModel
 import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.resimleriUrlIleGetir
+import com.futag.futag.view.fragment.akis.etkinlik.EtkinlikFragmentDirections
 
 class EtkinliklerRecyclerAdapter(
     private val parentFragment: Fragment,
@@ -26,6 +28,12 @@ class EtkinliklerRecyclerAdapter(
 
     override fun onBindViewHolder(holder: EtkinliklerViewHolder, position: Int) {
         val canliVeri = etkinlikListesi[position]
+
+        holder.itemBinding.cardViewEtkinlik.setOnClickListener {
+            val action = EtkinlikFragmentDirections.actionEtkinlikFragmentToEtkinlikDetayFragment(canliVeri)
+            parentFragment.findNavController().navigate(action)
+        }
+
         holder.itemBinding.imageView.resimleriUrlIleGetir(
             canliVeri.image,
             placeholderProgressBar(parentFragment.requireContext())

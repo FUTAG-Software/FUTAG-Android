@@ -77,8 +77,8 @@ class ProfilFragment : Fragment() {
                     val isimSoyisim = "$isim $soyisim"
                     binding.textViewIsimSoyisim.text = isimSoyisim
                     if(kullaniciProfilBilgileri!!.profilResmi != null){
-                        binding.imageViewProfilResmi.resimleriUrlIleGetir(kullaniciProfilBilgileri!!.profilResmi,
-                            placeholderProgressBar(requireContext()))
+                        Picasso.get().load(kullaniciProfilBilgileri!!.profilResmi)
+                            .placeholder(R.drawable.kisi_yuksek_cozunurluk).into(binding.imageViewProfilResmi)
                     } else{
                         binding.imageViewProfilResmi.setImageDrawable(
                            ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)

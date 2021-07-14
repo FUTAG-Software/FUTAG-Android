@@ -1,8 +1,11 @@
 package com.futag.futag.model.etkinlik
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class EtkinliklerModelItem(
     @SerializedName("id")
     val id: Int,
@@ -12,4 +15,4 @@ data class EtkinliklerModelItem(
     val link: String,
     @SerializedName("title")
     val title: String
-)
+): Parcelable
