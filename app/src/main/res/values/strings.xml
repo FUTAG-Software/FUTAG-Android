@@ -33,6 +33,9 @@
     <string name="duzenle_isareti">duzenleme isareti</string>
     <string name="cok_yakinda">Çok Yakında!</string>
     <string name="resim">Resim</string>
+    <string name="linke_ulasilamadi">Linke Ulaşılamadı.</string>
+    <string name="kayit_icin_tiklayiniz">Kayıt için tıklayınız.</string>
+    <string name="daha_sonra_tekrar_deneyiniz">Daha Sonra Tekrar Deneyiniz.</string>
 
     <!-- Main Activity -->
     <string name="internet_baglantisi_olumsuz">İnternet Bağlantınızın Olduğundan Emin Olun!</string>
@@ -129,5 +132,7 @@
         görmek ve üniversitemizi en güzel şekilde temsil etmeyi sağlamayı hedeflemekteyiz.</string>
     <string name="ayarlar">Ayarlar</string>
     <string name="koyu_mod">Koyu Mod</string>
+    <string name="galeri_izni">Galeriye gitmek için izin lazım!</string>
+    <string name="izin_ver">İzni ver.</string>
 
 </resources>

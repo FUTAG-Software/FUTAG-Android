@@ -3,6 +3,7 @@ package com.futag.futag.view.fragment.giris
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,6 +12,7 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +20,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +30,12 @@ import com.futag.futag.R
 import com.futag.futag.databinding.FragmentKayitOlBinding
 import com.futag.futag.view.activity.AkisActivity
 import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
+import com.google.android.material.snackbar.Snackbar
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.IOException
+import java.io.OutputStream
+import java.lang.Exception
 import java.util.*
 
 class KayitOlFragment : Fragment() {
@@ -33,8 +43,14 @@ class KayitOlFragment : Fragment() {
     private var _binding: FragmentKayitOlBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: KayitOlGirisYapViewModel
-    private var secilenGorsel: Uri? = null
-    private var secilenBitMap: Bitmap? = null
+    private var selectedBitmap: Bitmap? = null
+    private var selectedUri: Uri? = null
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<out String>>
+    private val neededRuntimePermissions = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +58,7 @@ class KayitOlFragment : Fragment() {
     ): View {
         _binding = FragmentKayitOlBinding.inflate(inflater,container,false)
         val view = binding.root
+        registerLauncher()
         return view
     }
 
@@ -65,35 +82,36 @@ class KayitOlFragment : Fragment() {
         }
 
         binding.imageViewProfilResmi.setOnClickListener {
-            if(ContextCompat.checkSelfPermission(requireContext(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            if((ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                        + ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                != PackageManager.PERMISSION_GRANTED) {
                 // izin verilmemis, izin gerekli
-                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
+                if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                    || ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                    Snackbar.make(
+                        it,
+                        R.string.galeri_izni,
+                        Snackbar.LENGTH_LONG).setAction(R.string.izin_ver,View.OnClickListener {
+                        permissionLauncher.launch(neededRuntimePermissions)
+                    }).show()
+                } else {
+                    permissionLauncher.launch(neededRuntimePermissions)
+                }
             } else {
                 // izin verilmis, galeriye gidis
                 val galeriIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                startActivityForResult(galeriIntent,2)
+                activityResultLauncher.launch(galeriIntent)
             }
         }
 
         binding.buttonKayitOl.setOnClickListener {
             if (binding.imageViewProfilResmi.drawable != null){
                 klavyeyiKapat()
-                if(veriGirisKontrolu()){
-                    val isim = binding.editTextAd.text.toString()
-                    val soyisim = binding.editTextSoyad.text.toString()
-                    val email = binding.editTextMail.text.toString()
-                    val sifre = binding.editTextSifre.text.toString()
-                    val sifreTekrar = binding.editTextSifreTekrar.text.toString()
-                    val dogumgunu = binding.editTextDogumGunu.text.toString()
-                    if(sifre == sifreTekrar){
-                        viewModel.kayitOnayDurumu(email, sifre, isim, soyisim, dogumgunu, secilenGorsel, requireContext())
-                        veriyiGozlemle()
-                    } else {
-                        Toast.makeText(requireContext(),R.string.sifreler_ayni_olmalidir,Toast.LENGTH_SHORT).show()
-                    }
+                if (selectedBitmap != null) {
+                    val smallBitmap = makeSmallerBitmap(selectedBitmap!!,400)
+                    firebaseVeriKaydi(getImageUri(requireContext(),smallBitmap))
                 } else {
-                    Toast.makeText(requireContext(), R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
+                    firebaseVeriKaydi(null)
                 }
             } else {
                 Toast.makeText(requireContext(), R.string.resim_seciniz,Toast.LENGTH_SHORT).show()
@@ -106,21 +124,23 @@ class KayitOlFragment : Fragment() {
 
     }
 
-    private fun klavyeyiKapat(){
-        val view = requireActivity().currentFocus
-        if (view != null){
-            val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+    private fun firebaseVeriKaydi(secilenGorsel: Uri?){
+        if(veriGirisKontrolu()){
+            val isim = binding.editTextAd.text.toString()
+            val soyisim = binding.editTextSoyad.text.toString()
+            val email = binding.editTextMail.text.toString()
+            val sifre = binding.editTextSifre.text.toString()
+            val sifreTekrar = binding.editTextSifreTekrar.text.toString()
+            val dogumgunu = binding.editTextDogumGunu.text.toString()
+            if(sifre == sifreTekrar){
+                viewModel.kayitOnayDurumu(email, sifre, isim, soyisim, dogumgunu, secilenGorsel, requireContext())
+                veriyiGozlemle()
+            } else {
+                Toast.makeText(requireContext(),R.string.sifreler_ayni_olmalidir,Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(requireContext(), R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun animasyonuGoster(){
-        binding.lottieAnimasyon.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimasyon.playAnimation()
-    }
-
-    private fun animasyonuDurdur(){
-        binding.lottieAnimasyon.cancelAnimation()
     }
 
     private fun veriyiGozlemle(){
@@ -152,40 +172,68 @@ class KayitOlFragment : Fragment() {
         })
     }
 
-    // izin sonucu yapilacaklar
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if(requestCode == 1){
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                // izin verildi
-                val galeriIntent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                startActivityForResult(galeriIntent,2)
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    // veri geldiyse
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        // cevap donmus mu kontrolu
-        if(requestCode == 2 && resultCode == RESULT_OK && data != null){
-            secilenGorsel = data.data
-            if (secilenGorsel != null){
-                // sdk kontrolu
-                if(Build.VERSION.SDK_INT >= 28){
-                    val source = ImageDecoder.createSource(requireActivity().contentResolver,secilenGorsel!!)
-                    secilenBitMap = ImageDecoder.decodeBitmap(source)
-                    binding.imageViewProfilResmi.setImageBitmap(secilenBitMap)
-                } else {
-                    secilenBitMap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,secilenGorsel)
-                    binding.imageViewProfilResmi.setImageBitmap(secilenBitMap)
+    private fun registerLauncher(){
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+            if (result.resultCode == RESULT_OK){
+                val intentFromResult = result.data
+                if (intentFromResult != null){
+                    val imageData = intentFromResult.data
+                    selectedUri = imageData
+                    if (imageData != null){
+                        try {
+                            if (Build.VERSION.SDK_INT >= 28){
+                                val source = ImageDecoder.createSource(requireActivity().contentResolver,imageData)
+                                selectedBitmap = ImageDecoder.decodeBitmap(source)
+                                binding.imageViewProfilResmi.setImageBitmap(selectedBitmap)
+                            } else {
+                                selectedBitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,imageData)
+                                binding.imageViewProfilResmi.setImageBitmap(selectedBitmap)
+                            }
+                        } catch (e: Exception){
+                            e.printStackTrace()
+                        }
+                    }
                 }
             }
         }
-        super.onActivityResult(requestCode, resultCode, data)
+
+        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            permissions.entries.forEach {
+                if (it.value && it.key == Manifest.permission.READ_EXTERNAL_STORAGE) {
+                    val galeriIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    activityResultLauncher.launch(galeriIntent)
+                }
+            }
+        }
+    }
+
+    private fun makeSmallerBitmap(image: Bitmap, maximumSize: Int): Bitmap{
+        var width = image.width
+        var height = image.height
+
+        val bitmapRatio: Double = width.toDouble() / height.toDouble()
+
+        if (bitmapRatio > 1){
+            // Landscape - yatay
+            width = maximumSize
+            val scaleHeight = width / bitmapRatio
+            height = scaleHeight.toInt()
+        } else {
+            // Portrait - dikey
+            height = maximumSize
+            val scaleWidth = height * bitmapRatio
+            width = scaleWidth.toInt()
+        }
+
+        return Bitmap.createScaledBitmap(image,width,height,true)
+    }
+
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path =
+            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "futagProfileImage", null)
+        return Uri.parse(path)
     }
 
     // Butun alanlarin dolu olma durumunun kontrolu
@@ -193,6 +241,23 @@ class KayitOlFragment : Fragment() {
             && binding.editTextSoyad.text.isNotEmpty() && binding.editTextMail.text.isNotEmpty() &&
             binding.editTextSifre.text.isNotEmpty() && binding.editTextSifreTekrar.text.isNotEmpty()
             && binding.editTextDogumGunu.text.isNotEmpty()
+
+    private fun animasyonuGoster(){
+        binding.lottieAnimasyon.setAnimation("ziplayanarianimation.json")
+        binding.lottieAnimasyon.playAnimation()
+    }
+
+    private fun animasyonuDurdur(){
+        binding.lottieAnimasyon.cancelAnimation()
+    }
+
+    private fun klavyeyiKapat(){
+        val view = requireActivity().currentFocus
+        if (view != null){
+            val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

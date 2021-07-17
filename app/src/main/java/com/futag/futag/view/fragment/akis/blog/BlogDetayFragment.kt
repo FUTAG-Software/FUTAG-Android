@@ -33,12 +33,14 @@ class BlogDetayFragment : Fragment() {
 
         val canliVeri = args.canliBlog
         binding.textViewYazar.text = canliVeri.author
+
+        var resimsizHTML = canliVeri.content.replace(Regex("<img.+>"), "")
+        resimsizHTML = resimsizHTML.replace(Regex("\\n"),"<br>")
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            var x = canliVeri.content.replace(Regex("<img.+>"), "")
-            x = x.replace(Regex("\\n"),"<br>")
-            binding.textViewDetay.text = Html.fromHtml(x,Html.FROM_HTML_MODE_COMPACT)
+            binding.textViewDetay.text = Html.fromHtml(resimsizHTML,Html.FROM_HTML_MODE_COMPACT)
         } else {
-            binding.textViewDetay.text = Html.fromHtml(canliVeri.content)
+            binding.textViewDetay.text = Html.fromHtml(resimsizHTML)
         }
 
         if(canliVeri.featuredImage != null){

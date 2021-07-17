@@ -38,7 +38,6 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/kisi_yuksek_cozunurluk"
                 app:civ_border_color="@color/sari"
                 app:civ_border_width="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
