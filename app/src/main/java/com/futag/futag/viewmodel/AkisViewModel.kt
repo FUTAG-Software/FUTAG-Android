@@ -2,8 +2,10 @@ package com.futag.futag.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.futag.futag.model.anasayfa.AnaSayfaModel
 import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.model.etkinlik.EtkinliklerModel
+import com.futag.futag.service.AnaSayfaAPIService
 import com.futag.futag.service.BlogAPIService
 import com.futag.futag.service.EtkinlikAPIService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,6 +17,7 @@ class AkisViewModel: ViewModel() {
 
     private val serviceBlog = BlogAPIService()
     private val serviceEtkinlik = EtkinlikAPIService()
+    private val serviceAnaSayfa = AnaSayfaAPIService()
     private val compositeDisposable = CompositeDisposable()
 
     val blogVerileri = MutableLiveData<BlogModel>()
@@ -25,8 +28,16 @@ class AkisViewModel: ViewModel() {
     val etkinlikError = MutableLiveData<Boolean>()
     val etkinlikYukleniyor = MutableLiveData<Boolean>()
 
+    val anaSayfaVerileri = MutableLiveData<AnaSayfaModel>()
+    val anaSayfaError = MutableLiveData<Boolean>()
+    val anaSayfaYukleniyor = MutableLiveData<Boolean>()
+
     fun blogVerileriniAl(){
         blogVerileriniGetir()
+    }
+
+    fun anaSayfaVerileriniAl(){
+        anaSayfaVerileriniGetir()
     }
 
     fun etkinlikVerileriniAl(){
@@ -67,6 +78,25 @@ class AkisViewModel: ViewModel() {
                     etkinlikError.value = true
                 }
             }))
+    }
+
+    private fun anaSayfaVerileriniGetir(){
+        anaSayfaYukleniyor.value = true
+        compositeDisposable.add(serviceAnaSayfa.anaSayfaVerileriniGetir()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object: DisposableSingleObserver<AnaSayfaModel>(){
+                override fun onSuccess(t: AnaSayfaModel) {
+                    anaSayfaVerileri.value = t
+                    anaSayfaYukleniyor.value = false
+                    anaSayfaError.value = false
+                }
+                override fun onError(e: Throwable) {
+                    anaSayfaYukleniyor.value = false
+                    anaSayfaError.value = true
+                }
+            })
+        )
     }
 
 }

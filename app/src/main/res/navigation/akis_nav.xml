@@ -120,8 +120,8 @@
         android:name="com.futag.futag.view.fragment.akis.ev.GonderiDetayFragment"
         android:label="GonderiDetayFragment" >
         <argument
-            android:name="canliGonderi"
-            app:argType="com.futag.futag.model.GonderiModel" />
+            android:name="anaSayfaItem"
+            app:argType="com.futag.futag.model.anasayfa.AnaSayfaModelItem" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikDetayFragment"

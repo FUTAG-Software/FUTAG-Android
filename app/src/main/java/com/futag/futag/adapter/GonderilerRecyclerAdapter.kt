@@ -1,5 +1,7 @@
 package com.futag.futag.adapter
 
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -8,13 +10,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.GonderiRecyclerRowBinding
-import com.futag.futag.model.GonderiModel
+import com.futag.futag.model.anasayfa.AnaSayfaModel
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.util.resimleriUrlIleGetir
 import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
 
-class GonderilerRecyclerAdapter(private val parentFragment: Fragment)
+class GonderilerRecyclerAdapter(private val parentFragment: Fragment, private val gonderiListesi: AnaSayfaModel)
     : RecyclerView.Adapter<GonderilerRecyclerAdapter.GonderilerViewHolder>() {
-
-    private var gonderListesi = emptyList<GonderiModel>()
 
     inner class GonderilerViewHolder(val itemBinding: GonderiRecyclerRowBinding)
         : RecyclerView.ViewHolder(itemBinding.root)
@@ -25,23 +27,18 @@ class GonderilerRecyclerAdapter(private val parentFragment: Fragment)
     }
 
     override fun onBindViewHolder(holder: GonderilerViewHolder, position: Int) {
-        val canliVeri = gonderListesi[position]
-        when(canliVeri.resim){
-            1 -> {
-                holder.itemBinding.imageViewGonderi.setImageDrawable(
-                    ContextCompat.getDrawable(parentFragment.requireContext(), R.drawable.denemeresim1))
-            }
-            2 -> {
-                holder.itemBinding.imageViewGonderi.setImageDrawable(
-                    ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.denemeresim2))
-            }
-            3 -> {
-                holder.itemBinding.imageViewGonderi.setImageDrawable(
-                    ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.denemeresim3))
-            }
+        val canliVeri = gonderiListesi[position]
+
+        if(canliVeri.featuredImage != null){
+            holder.itemBinding.imageViewGonderi.resimleriUrlIleGetir(canliVeri.featuredImage.large,
+                placeholderProgressBar(parentFragment.requireContext()))
+        } else {
+            holder.itemBinding.imageViewGonderi.setImageDrawable(
+                ContextCompat.getDrawable(parentFragment.requireContext(), R.drawable.error)
+            )
         }
-        holder.itemBinding.textViewBaslik.text = canliVeri.baslik
-        holder.itemBinding.textViewAciklama.text = canliVeri.detay
+
+        holder.itemBinding.textViewBaslik.text = canliVeri.title
         holder.itemBinding.cardView.setOnClickListener {
             val action = EvFragmentDirections.actionEvFragmentToGonderiDetayFragment(canliVeri)
             parentFragment.findNavController().navigate(action)
@@ -49,11 +46,12 @@ class GonderilerRecyclerAdapter(private val parentFragment: Fragment)
     }
 
     override fun getItemCount(): Int {
-        return gonderListesi.size
+        return gonderiListesi.size
     }
 
-    fun gonderiGuncelle(gonderiListe: List<GonderiModel>){
-        gonderListesi = gonderiListe
+    fun gonderiGuncelle(yeniGonderiListe: AnaSayfaModel){
+        gonderiListesi.clear()
+        gonderiListesi.addAll(yeniGonderiListe)
         notifyDataSetChanged()
     }
 

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -13,15 +14,16 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.futag.futag.R
 import com.futag.futag.adapter.GonderilerRecyclerAdapter
 import com.futag.futag.databinding.FragmentEvBinding
-import com.futag.futag.model.GonderiModel
+import com.futag.futag.model.anasayfa.AnaSayfaModel
+import com.futag.futag.viewmodel.AkisViewModel
 
 class EvFragment : Fragment() {
 
     private var _binding: FragmentEvBinding? = null
     private val binding get() = _binding!!
     private lateinit var sliderListesi: ArrayList<SlideModel>
-    private var gonderiListesi = emptyList<GonderiModel>()
-    private lateinit var adapter: GonderilerRecyclerAdapter
+    private lateinit var viewModel: AkisViewModel
+    private val gonderiAdapter = GonderilerRecyclerAdapter(this, AnaSayfaModel())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +37,10 @@ class EvFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = GonderilerRecyclerAdapter(requireParentFragment())
+        val layoutManager = LinearLayoutManager(requireContext())
+        viewModel = ViewModelProvider(requireActivity()).get(AkisViewModel::class.java)
+        viewModel.anaSayfaVerileriniAl()
+
         sliderListesi = ArrayList()
         sliderDoldur()
 
@@ -55,20 +60,10 @@ class EvFragment : Fragment() {
             }
         })
 
-        val x = GonderiModel(1,"Kocatepe Camii","Turkiyenin en buyuk camilerinden olan Kocatepe Camii buyuk bir mirasa sahiptir","Adem Atici")
-        val y = GonderiModel(2,"Yapay Zekanin Gelecegi","Son yillarda sik sik duydugumuz yapay zeka sozleri cagi asti","Abdulselam Sarigul")
-        val z = GonderiModel(3,"Parisin Incisi Eyfel Kulesi","Fransanin en fazla ziyaterci akinina ugrayan eseri olan Eyfel Kulesi ona bakanlari buyuler","Deneme Uzun Isimli Biri")
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = gonderiAdapter
 
-        val gonderiler = ArrayList<GonderiModel>()
-        gonderiler.add(x)
-        gonderiler.add(y)
-        gonderiler.add(z)
-
-        gonderiListesi = gonderiler
-        adapter.gonderiGuncelle(gonderiListesi)
-
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
+        observeLiveData()
     }
 
     private fun sliderDoldur(){
@@ -77,6 +72,39 @@ class EvFragment : Fragment() {
         sliderListesi.add(SlideModel("https://scontent.fist2-4.fna.fbcdn.net/v/t1.6435-9/149011924_3252086314892718_5970936174401427651_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=973b4a&_nc_ohc=CssAj9YuDkUAX8d95k2&_nc_ht=scontent.fist2-4.fna&oh=46ce83c9d2a570809283a59de64e819e&oe=60EE3479"))
 
         binding.imageSlider.setImageList(sliderListesi,ScaleTypes.FIT)
+    }
+
+    private fun observeLiveData(){
+        viewModel.anaSayfaVerileri.observe(viewLifecycleOwner, { bloglar ->
+            bloglar?.let {
+                binding.textViewHataMesaji.visibility = View.INVISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.recyclerView.visibility = View.VISIBLE
+                gonderiAdapter.gonderiGuncelle(it)
+            }
+        })
+        viewModel.anaSayfaError.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                if (it){
+                    binding.textViewHataMesaji.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.recyclerView.visibility = View.GONE
+                } else {
+                    binding.textViewHataMesaji.visibility = View.GONE
+                }
+            }
+        })
+        viewModel.anaSayfaYukleniyor.observe(viewLifecycleOwner, { yukleniyor ->
+            yukleniyor?.let {
+                if (it){
+                    binding.textViewHataMesaji.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        })
     }
 
     override fun onDestroyView() {

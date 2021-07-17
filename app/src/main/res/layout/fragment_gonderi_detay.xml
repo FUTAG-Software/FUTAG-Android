@@ -9,62 +9,53 @@
 
     <ImageView
         android:id="@+id/imageViewResim"
-        android:layout_width="wrap_content"
-        android:layout_height="260dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="250dp"
+        android:maxHeight="450dp"
         android:scaleType="fitXY"
+        android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/resim" />
+        android:contentDescription="@string/resim"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="245dp"
-        android:background="@drawable/blog_detay_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/imageViewResim">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textViewYazar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 android:gravity="end"
-                android:textColor="@color/text_color_koyu" />
-
-            <TextView
-                android:id="@+id/textViewBaslik"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="8dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_color_sari" />
+                android:textColor="@color/text_color_sari"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewDetay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="8dp"
-                android:textSize="16sp"
-                android:textColor="@color/text_color_koyu" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
