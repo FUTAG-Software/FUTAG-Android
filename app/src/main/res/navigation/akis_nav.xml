@@ -131,5 +131,17 @@
         <argument
             android:name="canliEtkinlik"
             app:argType="com.futag.futag.model.etkinlik.EtkinliklerModelItem" />
+        <action
+            android:id="@+id/action_etkinlikDetayFragment_to_formFragment"
+            app:destination="@id/formFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formFragment"
+        android:name="com.futag.futag.view.fragment.akis.etkinlik.FormFragment"
+        android:label="fragment_form"
+        tools:layout="@layout/fragment_form" >
+        <argument
+            android:name="etkinlikLink"
+            app:argType="string" />
     </fragment>
 </navigation>

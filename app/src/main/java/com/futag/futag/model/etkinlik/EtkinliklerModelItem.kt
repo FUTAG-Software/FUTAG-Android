@@ -14,5 +14,7 @@ data class EtkinliklerModelItem(
     @SerializedName("link")
     val link: String,
     @SerializedName("title")
-    val title: String
+    val title: String,
+    @SerializedName("content")
+    val content: String
 ): Parcelable
