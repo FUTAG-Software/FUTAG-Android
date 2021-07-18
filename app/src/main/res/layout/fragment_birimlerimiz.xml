@@ -87,6 +87,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/dis_iliskiler_birimi"
                         android:textStyle="bold"
+                        android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
                         android:textSize="20sp"/>
 
@@ -135,6 +136,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/girisimcilik_birimi"
                         android:textStyle="bold"
+                        android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
                         android:textSize="20sp"/>
 
@@ -183,6 +185,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/medya_birimi"
                         android:textStyle="bold"
+                        android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
                         android:textSize="20sp"/>
 
@@ -231,6 +234,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/proje_arge_birimi"
                         android:textStyle="bold"
+                        android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
                         android:textSize="20sp"/>
 
@@ -279,6 +283,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/sosyal_sorumluluk_birimi"
                         android:textStyle="bold"
+                        android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
                         android:textSize="20sp"/>
 
@@ -327,6 +332,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/yazilim_birimi"
                         android:textStyle="bold"
+                        android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
                         android:textSize="20sp"/>
 

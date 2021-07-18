@@ -33,32 +33,32 @@ class BirimDetayF : Fragment() {
 
         when(id){
             0 -> {
-                binding.imageView.setImageResource(R.drawable.dis_iliskiler_birim_foto)
+                binding.imageView.setImageResource(R.drawable.dis_iliskiler_birim_foto2)
                 binding.textViewBirimAdi.text = getString(R.string.dis_iliskiler_birimi)
                 binding.textViewBirimAciklamasi.text = getString(R.string.dis_iliskiler_birim_yazisi)
             }
             1 -> {
-                binding.imageView.setImageResource(R.drawable.girisimcilik_birim_foto)
+                binding.imageView.setImageResource(R.drawable.girisimcilik_birim_foto2)
                 binding.textViewBirimAdi.text = getString(R.string.girisimcilik_birimi)
                 binding.textViewBirimAciklamasi.text = getString(R.string.girisimcilik_inovasyon_birim_yazisi)
             }
             2 -> {
-                binding.imageView.setImageResource(R.drawable.medya_birim_foto)
+                binding.imageView.setImageResource(R.drawable.medya_birim_foto2)
                 binding.textViewBirimAdi.text = getString(R.string.medya_birimi)
                 binding.textViewBirimAciklamasi.text = getString(R.string.medya_tasarim_birim_yazisi)
             }
             3 -> {
-                binding.imageView.setImageResource(R.drawable.proje_arge_birim_foto)
+                binding.imageView.setImageResource(R.drawable.proje_arge_birim_foto2)
                 binding.textViewBirimAdi.text = getString(R.string.proje_arge_birimi)
                 binding.textViewBirimAciklamasi.text = getString(R.string.proje_arge_birim_yazisi)
             }
             4 -> {
-                binding.imageView.setImageResource(R.drawable.sosyal_sorumluluk_birim_foto)
+                binding.imageView.setImageResource(R.drawable.sosyal_sorumluluk_birim_foto2)
                 binding.textViewBirimAdi.text = getString(R.string.sosyal_sorumluluk_birimi)
                 binding.textViewBirimAciklamasi.text = getString(R.string.sosyal_sorumluluk_birim_yazisi)
             }
             5 -> {
-                binding.imageView.setImageResource(R.drawable.yazilim_birim_foto)
+                binding.imageView.setImageResource(R.drawable.yazilim_birim_foto2)
                 binding.textViewBirimAdi.text = getString(R.string.yazilim_birimi)
                 binding.textViewBirimAciklamasi.text = getString(R.string.yazilim_birim_yazisi)
             }
