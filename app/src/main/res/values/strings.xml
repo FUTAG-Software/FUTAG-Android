@@ -130,9 +130,17 @@
         yanı sıra, sponsorluk ve reklam konularında da çalışmalar yürütmekteyiz.\n\n\t\tBirim olarak,
         ileriki dönemlerde topluluğumuzu ülkemizin önde gelen toplulukları ile aynı kategoride
         görmek ve üniversitemizi en güzel şekilde temsil etmeyi sağlamayı hedeflemekteyiz.</string>
+    <string name="kvkk_metni">FÜTAG\n\n KİŞİSEL VERİLERİN KORUNMASI KANUNU KAPSAMINDA AÇIK RIZA BEYANI\n\n
+        FÜTAG tarafından, 6698 Sayılı Kişisel Verilerin Korunması Kanunu’nun (“KVK Kanunu”) ilgili hükümlerine uygun olarak bilginize sunulan Kişisel Verilerin Korunması Kanunu Kapsamında ;\n\n
+        Kişisel verilerinin veri sorumlusu sıfatıyla FÜTAG veya gerekli güvenlik tedbirlerini aldırmak suretiyle yetkilendirdiği veri işleyenler tarafından; FÜTAG’ın kullanıcılarına sunmuş olduğu ürün ve hizmetlerini en iyi koşullar altında sağlayabilmesi, ürün veya hizmetlerin güvenilir ve kesintisiz bir şekilde temin edilmesi, kullanıcı memnuniyetinin en üst seviyeye çıkarılması,  farklı ürün ve hizmetlerin tanıtım, pazarlama, reklam ve kampanya faaliyetlerinin yapılması, kullanıcıların etkinliklerden , blog yazılarından ve gelişmelerden haberdar edilmesi amaçlarıyla doğrudan veya dolaylı olarak ilgili olan kişisel verilerin; başta mevzuatta öngörülen veya işlendikleri amaç için gerekli olan süre kadar muhafaza edilme ilkesi olmak üzere 6698 Sayılı Kişisel Verilerin Korunması Kanunu’nun (“KVK Kanunu”) 4. maddesinde ifade edilen genel ilkelere uygun şekilde işlenebileceğini; elde edilebileceğini, kaydedilebileceğini, işlenme amacıyla uygun süre zarfında fiziksel veya elektronik ortamda güvenli bir şekilde depolanabileceğini, muhafaza edilebileceğini, değiştirilebileceğini, yeniden düzenlenebileceğini, mevzuata uygun biçimde açıklanabileceğini ve aktarılabileceğini, devralınabileceğini, sınıflandırılabileceğini, işlenebileceğini ya da verilerin kullanılmasının engellenebileceğini; yukarıda belirtilen hususlarla ilgili olarak FÜTAG tarafından bilgilendirildiğimi ve KVK Kanunu çerçevesinde açık rızam bulunduğunu kabul ve beyan ederim.\n\n
+        Ayrıca, FÜTAG ile paylaşmış olduğum kişisel verilerin doğru ve güncel olduğunu; işbu bilgilerde değişiklik olması halinde değişiklikleri FÜTAG’a bildireceğimi kabul ve beyan ederim.\n\n
+        KVK Kanunu’nda tanımlanan özel nitelikli kişisel verilerim de dahil olmak üzere ilgili kişisel verilerimin işlenmesine, ilgili süreç kapsamında işlenme amacı ile sınırlı olmak üzere kullanılmasına ve paylaşılmasına, gereken süre zarfında saklanmasına açık rızam olduğunu ve bu hususta tarafıma gerekli aydınlatmanın yapıldığını; işbu metni, FÜTAG Kişisel Verilerin Korunması ve İşlenmesi Yönetmeliğini ve Aydınlatma Metnini okuduğumu ve anladığımı kabul ederim.\n\n
+    </string>
     <string name="ayarlar">Ayarlar</string>
     <string name="koyu_mod">Koyu Mod</string>
     <string name="galeri_izni">Galeriye gitmek için izin lazım!</string>
     <string name="izin_ver">İzni ver.</string>
+    <string name="kvkk_metnini">KVKK Metnini</string>
+    <string name="kabul_etmis_olursunuz">kabul etmiş olursunuz.</string>
 
 </resources>

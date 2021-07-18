@@ -27,9 +27,11 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
+import com.futag.futag.databinding.BottomSheetDialogKvkkBinding
 import com.futag.futag.databinding.FragmentKayitOlBinding
 import com.futag.futag.view.activity.AkisActivity
 import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -71,6 +73,13 @@ class KayitOlFragment : Fragment() {
         val yil = takvim.get(Calendar.YEAR)
         val ay = takvim.get(Calendar.MONTH)
         val gun = takvim.get(Calendar.DAY_OF_MONTH)
+
+        binding.textViewKvkkMetni.setOnClickListener {
+            val bottomSheetDialog = BottomSheetDialog(requireContext(),R.style.ThemeOverlay_MaterialComponents_BottomSheetDialog)
+            val bottomSheetBinding = BottomSheetDialogKvkkBinding.inflate(LayoutInflater.from(requireContext()))
+            bottomSheetDialog.setContentView(bottomSheetBinding.root)
+            bottomSheetDialog.show()
+        }
 
         // Kullanici dogum gununun alinmasi; Gun,Ay,Yil
         binding.editTextDogumGunu.setOnClickListener {
