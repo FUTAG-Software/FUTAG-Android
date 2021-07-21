@@ -39,6 +39,10 @@ class ProfilViewModel: ViewModel() {
         profilGuncelleFirebase(context, kullaniciBilgileri, isim, soyisim, dogumGunu, secilenGorsel)
     }
 
+    fun hesabiSil(context: Context){
+        kullaniciyiHerseyiyleSil(context)
+    }
+
     private fun profilGuncelleFirebase(context: Context,kullaniciBilgileri: KullaniciModel,
                                        yeniIsim: String, yeniSoyisim: String,
                                        yeniDogumGunu: String, yeniSecilenGorsel: Uri?){
@@ -134,6 +138,59 @@ class ProfilViewModel: ViewModel() {
         } else {
             girisVarMi.value = false
             animasyon.value = false
+        }
+    }
+
+    private fun kullaniciyiHerseyiyleSil(context: Context){
+        val storageRef = storage.reference
+        if (kullaniciUid != null) {
+            val documentReferansi = db.collection("Users").document(kullaniciUid)
+            documentReferansi.get().addOnSuccessListener { veri ->
+                    if (veri != null){
+                        val kullanici = KullaniciModel(
+                            veri["isim"] as String,
+                            veri["soyisim"] as String,
+                            veri["email"] as String,
+                            veri["uid"] as String,
+                            veri["dogumGunu"] as String,
+                            veri["profilResmi"] as String?,
+                            veri["profilResmiAdi"] as String?,
+                            veri["kayitTarihi"] as Timestamp
+                        )
+                        if(kullanici.profilResmiAdi != null){
+                            storageRef.child("Gorseller").child(kullanici.profilResmiAdi!!)
+                                .delete().addOnSuccessListener {
+                                    db.collection("Users").document(kullaniciUid).delete().addOnSuccessListener {
+                                        auth.currentUser!!.delete().addOnSuccessListener {
+                                            auth.signOut()
+                                            Toast.makeText(context,R.string.hesap_silme_basarili,Toast.LENGTH_LONG).show()
+                                        }.addOnFailureListener {
+                                            Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
+                                        }
+                                    }.addOnFailureListener {
+                                        Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
+                                    }
+                                }.addOnFailureListener {
+                                    Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
+                                }
+                        } else {
+                            db.collection("Users").document(kullaniciUid).delete().addOnSuccessListener {
+                                auth.currentUser!!.delete().addOnSuccessListener {
+                                    auth.signOut()
+                                    Toast.makeText(context,R.string.hesap_silme_basarili,Toast.LENGTH_LONG).show()
+                                }.addOnFailureListener {
+                                    Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
+                                }
+                            }.addOnFailureListener {
+                                Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                }.addOnFailureListener { hata ->
+                Toast.makeText(context,hata.localizedMessage,Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Toast.makeText(context,R.string.daha_sonra_tekrar_deneyiniz,Toast.LENGTH_LONG).show()
         }
     }
 

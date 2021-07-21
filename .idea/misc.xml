@@ -15,7 +15,9 @@
         <entry key="app/src/main/res/drawable/kisi_yuksek_cozunurluk.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/koyu_mod.xml" value="0.2236842105263158" />
         <entry key="app/src/main/res/drawable/mail.xml" value="0.2236842105263158" />
+        <entry key="app/src/main/res/drawable/takvim.xml" value="0.2982456140350877" />
         <entry key="app/src/main/res/drawable/yildiz.xml" value="0.2236842105263158" />
+        <entry key="app/src/main/res/drawable/zil.xml" value="0.2982456140350877" />
         <entry key="app/src/main/res/layout-hdpi/etkinlikler_recycler_row.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout-xxhdpi/etkinlikler_recycler_row.xml" value="0.27735042735042736" />
         <entry key="app/src/main/res/layout-xxxhdpi/etkinlikler_recycler_row.xml" value="0.22395833333333334" />
@@ -23,6 +25,7 @@
         <entry key="app/src/main/res/layout/blog_recycler_row.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/bottom_sheet_dialog_kvkk.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/dahasi_recycler_row.xml" value="0.22534722222222223" />
+        <entry key="app/src/main/res/layout/dialog_hesabi_sil.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout/etkinlikler_recycler_row.xml" value="0.27735042735042736" />
         <entry key="app/src/main/res/layout/fragment_ayarlar.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_bildirimler.xml" value="0.21348684210526317" />
@@ -40,7 +43,7 @@
         <entry key="app/src/main/res/layout/fragment_hakkimizda.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_kayit_ol.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_profil.xml" value="0.21348684210526317" />
-        <entry key="app/src/main/res/layout/fragment_profili_duzenle.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_profili_duzenle.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_web_sitesi.xml" value="0.20460526315789473" />
         <entry key="app/src/main/res/layout/gonderi_recycler_row.xml" value="0.22534722222222223" />

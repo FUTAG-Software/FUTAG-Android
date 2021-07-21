@@ -142,5 +142,10 @@
     <string name="izin_ver">İzni ver.</string>
     <string name="kvkk_metnini">KVKK Metnini</string>
     <string name="kabul_etmis_olursunuz">kabul etmiş olursunuz.</string>
+    <string name="hesabimi_sil">Hesabımı Sil</string>
+    <string name="hesabi_silme_onayi">Hesabınızı silmek istediğinizden emin misiniz?</string>
+    <string name="hayir">Hayır</string>
+    <string name="evet">Evet</string>
+    <string name="hesap_silme_basarili">Hesap Silme Başarılı</string>
 
 </resources>

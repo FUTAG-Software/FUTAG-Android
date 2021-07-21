@@ -68,8 +68,10 @@ class EvFragment : Fragment() {
 
     private fun sliderDoldur(){
         sliderListesi.add(SlideModel("https://pbs.twimg.com/media/E2f1rgLWYAg-fOW?format=jpg&name=large"))
-        sliderListesi.add(SlideModel("https://static.daktilo.com/sites/77/uploads/2019/07/11/large/kocaelinin-turistik-yerler-1511338290-3585-1562846155.png"))
-        sliderListesi.add(SlideModel("https://scontent.fist2-4.fna.fbcdn.net/v/t1.6435-9/149011924_3252086314892718_5970936174401427651_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=973b4a&_nc_ohc=CssAj9YuDkUAX8d95k2&_nc_ht=scontent.fist2-4.fna&oh=46ce83c9d2a570809283a59de64e819e&oe=60EE3479"))
+        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/E2auXcIWEAoLSUE?format=jpg&name=small"))
+        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/E2TteyQXIAIviTJ?format=jpg&name=small"))
+        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/EwtB9iyW8AoVMNI?format=jpg&name=large"))
+        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/EwYslknW8Aox3_C?format=jpg&name=large"))
 
         binding.imageSlider.setImageList(sliderListesi,ScaleTypes.FIT)
     }

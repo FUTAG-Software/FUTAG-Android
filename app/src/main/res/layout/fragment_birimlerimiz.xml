@@ -64,10 +64,11 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:contentDescription="@string/resim"
-                    android:src="@drawable/dis_iliskiler"
+                    android:src="@drawable/dis_iliskiler2"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -113,10 +114,11 @@
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:contentDescription="@string/resim"
-                    android:src="@drawable/girisimcilik"
+                    android:src="@drawable/girisimcilik2"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -162,10 +164,11 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:contentDescription="@string/resim"
-                    android:src="@drawable/medya"
+                    android:src="@drawable/medya2"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -211,10 +214,11 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:contentDescription="@string/resim"
-                    android:src="@drawable/proje_ar_ge"
+                    android:src="@drawable/proje_ar_ge2"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -260,10 +264,11 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:contentDescription="@string/resim"
-                    android:src="@drawable/sosyal_sorumluluk"
+                    android:src="@drawable/sosyal_sorumluluk2"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -309,10 +314,11 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:contentDescription="@string/resim"
-                    android:src="@drawable/yazilim"
+                    android:src="@drawable/yazilim2"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

@@ -19,16 +19,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfiliDuzenleBinding
 import com.futag.futag.model.KullaniciModel
-import com.futag.futag.util.placeholderProgressBar
-import com.futag.futag.util.resimleriUrlIleGetir
-import com.futag.futag.view.activity.AkisActivity
 import com.futag.futag.viewmodel.ProfilViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
@@ -121,6 +119,22 @@ class ProfiliDuzenleF : Fragment() {
             } else {
                 Toast.makeText(requireContext(),R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.buttonHesabimiSil.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(R.string.hesabimi_sil)
+            builder.setMessage(R.string.hesabi_silme_onayi)
+            builder.setCancelable(true)
+            builder.setNegativeButton(R.string.hayir) { _, _ ->
+            }
+            builder.setPositiveButton(R.string.evet) { _, _ ->
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+                viewModel.hesabiSil(requireContext())
+            }
+            builder.show()
         }
 
     }

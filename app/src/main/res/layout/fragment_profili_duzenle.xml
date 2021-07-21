@@ -11,15 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/textViewBaslik"
@@ -30,21 +27,15 @@
                 android:layout_marginTop="12dp"
                 android:text="@string/profili_duzenle"
                 android:textColor="@color/text_color_koyu"
-                android:textSize="32sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="32sp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageViewProfilResmi"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 app:civ_border_color="@color/sari"
-                app:civ_border_width="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewBaslik" />
+                app:civ_border_width="2dp" />
 
             <EditText
                 android:id="@+id/editTextAd"
@@ -60,17 +51,13 @@
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/edit_text_text_color_black"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewProfilResmi" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextSoyad"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_background"
                 android:drawableStart="@drawable/kisi"
@@ -80,17 +67,13 @@
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/edit_text_text_color_black"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextAd" />
+                android:textSize="18sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/editTextDogumGunu"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/edit_text_background"
                 android:fontFamily="serif"
                 android:hint="@string/dogum_gununuz"
@@ -104,40 +87,34 @@
                 app:backgroundTint="@color/edit_text_background_color"
                 app:icon="@drawable/takvim"
                 app:iconPadding="10dp"
-                app:iconTint="@color/menu_grisi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSoyad" />
+                app:iconTint="@color/menu_grisi" />
 
             <Button
                 android:id="@+id/buttonDegisiklikleriKaydet"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginBottom="20dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
                 android:text="@string/degisiklikleri_kaydet"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextDogumGunu" />
+                android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/imageViewDuzenle"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/duzenle_isareti"
-                android:src="@drawable/duzenle_2_kalem_resmi"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewProfilResmi"
-                app:layout_constraintEnd_toEndOf="@+id/imageViewProfilResmi" />
+            <Button
+                android:id="@+id/buttonHesabimiSil"
+                android:layout_width="330dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/kayit_button_arka_plani"
+                android:backgroundTint="@color/button_background_sari"
+                android:text="@string/hesabimi_sil"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color_koyu"
+                android:textSize="18sp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"
