@@ -55,7 +55,8 @@
                     android:layout_width="34dp"
                     android:layout_height="34dp"
                     android:contentDescription="@string/dahasi_yuvarlak_resim"
-                    android:src="@drawable/koyu_mod" />
+                    android:src="@drawable/koyu_mod"
+                    tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>
 
@@ -81,7 +82,8 @@
                 android:layout_marginEnd="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,7 +136,8 @@
                     android:layout_width="34dp"
                     android:layout_height="34dp"
                     android:contentDescription="@string/dahasi_yuvarlak_resim"
-                    android:src="@drawable/bildirimler" />
+                    android:src="@drawable/bildirimler"
+                    tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>
 
@@ -165,14 +168,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/buttonNot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewBildirimler" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

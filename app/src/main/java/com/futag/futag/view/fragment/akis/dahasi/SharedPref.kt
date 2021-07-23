@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 class SharedPref(context: Context) {
 
-    internal var mySharedPref: SharedPreferences = context.getSharedPreferences("darkmode",Context.MODE_PRIVATE)
+    internal var mySharedPref: SharedPreferences = context.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
 
     fun setNightModeState(state: Boolean?){
         val editor = mySharedPref.edit()
@@ -25,6 +25,16 @@ class SharedPref(context: Context) {
 
     fun loadNotificationState(): Boolean{
         return mySharedPref.getBoolean("bildirim",true)
+    }
+
+    fun setOnBoardingState(state: Boolean?){
+        val editor = mySharedPref.edit()
+        editor.putBoolean("bitis",state!!)
+        editor.apply()
+    }
+
+    fun loadOnBoardingState(): Boolean{
+        return mySharedPref.getBoolean("bitis",false)
     }
 
 }

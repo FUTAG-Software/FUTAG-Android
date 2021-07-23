@@ -17,7 +17,6 @@ import androidx.core.app.NotificationManagerCompat
 import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentAyarlarBinding
-import com.futag.futag.view.activity.AkisActivity
 
 class AyarlarFragment : Fragment() {
 
@@ -36,12 +35,6 @@ class AyarlarFragment : Fragment() {
         val view = binding.root
 
         sharedPref = SharedPref(requireContext())
-
-        if(sharedPref.loadNightModeState()){
-            requireActivity().setTheme(R.style.Theme_FUTAGDark)
-        } else {
-            requireActivity().setTheme(R.style.Theme_FUTAG)
-        }
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
@@ -82,14 +75,6 @@ class AyarlarFragment : Fragment() {
             }
         }
 
-        binding.buttonNot.setOnClickListener {
-            if(sharedPref.loadNotificationState()){
-                sendNotification()
-            } else {
-                Toast.makeText(requireContext(),"Izin Ver",Toast.LENGTH_SHORT).show()
-            }
-        }
-
     }
 
     private fun restartApp() {
@@ -97,18 +82,6 @@ class AyarlarFragment : Fragment() {
         startActivity(intent)
         requireActivity().finish()
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    /*val mode = resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
-        when (mode) {
-            Configuration.UI_MODE_NIGHT_YES -> {}
-            Configuration.UI_MODE_NIGHT_NO -> {}
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> {}
-        }*/
 
     private fun createNotificationChannel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -144,6 +117,11 @@ class AyarlarFragment : Fragment() {
         with(NotificationManagerCompat.from(requireContext())){
             notify(notificationId, builder.build())
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
