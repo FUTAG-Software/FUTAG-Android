@@ -9,7 +9,10 @@
         <entry key="app/src/main/res/drawable/bildirimler.xml" value="0.2943722943722944" />
         <entry key="app/src/main/res/drawable/birim_detay_card_view.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/blog_detay_radius.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/drawable/dahasi_fragment_oval_gorunum.xml" value="0.3541666666666667" />
+        <entry key="app/src/main/res/drawable/dil_secimi.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/drawable/duzenle_2_kalem_resmi.xml" value="0.2943722943722944" />
+        <entry key="app/src/main/res/drawable/edit_text_background.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/drawable/kayit_button_arka_plani.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kisi.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kisi_yuksek_cozunurluk.xml" value="0.2361111111111111" />
@@ -27,19 +30,19 @@
         <entry key="app/src/main/res/layout/dahasi_recycler_row.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/dialog_hesabi_sil.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout/etkinlikler_recycler_row.xml" value="0.27735042735042736" />
-        <entry key="app/src/main/res/layout/fragment_ayarlar.xml" value="0.21348684210526317" />
-        <entry key="app/src/main/res/layout/fragment_bildirimler.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_ayarlar.xml" value="0.3380208333333333" />
+        <entry key="app/src/main/res/layout/fragment_bildirimler.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout/fragment_birim_detay.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_birimlerimiz.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_blog.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/fragment_blog_detay.xml" value="0.21597222222222223" />
         <entry key="app/src/main/res/layout/fragment_daha.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_etkinlik.xml" value="0.21348684210526317" />
-        <entry key="app/src/main/res/layout/fragment_etkinlik_detay.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_etkinlik_detay.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout/fragment_ev.xml" value="0.20423497267759563" />
         <entry key="app/src/main/res/layout/fragment_form.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_giris_yap.xml" value="0.21348684210526317" />
-        <entry key="app/src/main/res/layout/fragment_gonderi_detay.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_gonderi_detay.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout/fragment_hakkimizda.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_kayit_ol.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_profil.xml" value="0.21348684210526317" />

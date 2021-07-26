@@ -1,7 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FÜTAG</string>
 
-    <!-- Genel Stringler -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="futag_icon">futag icon</string>
     <string name="futag_yazi">futag yazi</string>
@@ -14,12 +14,12 @@
     <string name="dis_iliskiler_birimi">Dış İlişkiler Birimi</string>
 
     <string name="blog">Blog</string>
-    <string name="etkinlik">Etkinlikler</string>
-    <string name="profil">Profil</string>
-    <string name="daha">Dahası</string>
-    <string name="ileri">İleri</string>
-    <string name="bitir">Bitir</string>
-    <string name="ev">Ana Sayfa</string>
+    <string name="etkinlik">Events</string>
+    <string name="profil">Profile</string>
+    <string name="daha">More</string>
+    <string name="ileri">Next</string>
+    <string name="bitir">Finish</string>
+    <string name="ev">Home Page</string>
     <string name="bir_kulupten_daha_fazlasi">#BIRKULUPTENDAHAFAZLASI</string>
     <string name="bosluklari_doldurunuz">Lütfen boşlukları doldurunuz!</string>
     <string name="resim_seciniz">Lütfen bir resim seçiniz!</string>
@@ -110,7 +110,7 @@
         \t\tBirim olarak, ileriki dönemlerde topluluğumuzun sosyal medyadaki tanıtımlarını
         arttırarak hedef kitlemizi büyütmeyi amaçlamaktayız.</string>
     <string name="yazilim_birim_yazisi">\t\tBirim olarak amacımız topluluğumuzun yazılım konusunda
-        ihtiyacı olan ürünlerin tasarım ve mimarisini yapmaktır. Ortaya çıkarılan ürünlerin dışında 
+        ihtiyacı olan ürünlerin tasarım ve mimarisini yapmaktır. Ortaya çıkarılan ürünlerin dışında
         ekip arkadaşlarımıza dışarıdan sağlanan uzman desteği ile çeşitli eğitimler düzenlenmektedir.
         \n\n\t\tDijital dönüşüm sürecine uyum sağlamanın önemini bilerek, çalışmaya devam ediyor ve
         her yeni dönemde inovatif ürünler ortaya koymayı hedefliyoruz.</string>

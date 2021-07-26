@@ -129,10 +129,20 @@ class ProfiliDuzenleF : Fragment() {
             builder.setNegativeButton(R.string.hayir) { _, _ ->
             }
             builder.setPositiveButton(R.string.evet) { _, _ ->
-                val intent = Intent(requireActivity(), MainActivity::class.java)
-                startActivity(intent)
-                requireActivity().finish()
                 viewModel.hesabiSil(requireContext())
+                viewModel.hesapSilAnimasyon.observe(viewLifecycleOwner,{ animasyon ->
+                    animasyon?.let {
+                        if (it){
+                            binding.constraintLayout.visibility = View.INVISIBLE
+                            binding.progressBar.visibility = View.VISIBLE
+                        } else {
+                            binding.progressBar.visibility = View.GONE
+                            val intent = Intent(requireActivity(), MainActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        }
+                    }
+                })
             }
             builder.show()
         }

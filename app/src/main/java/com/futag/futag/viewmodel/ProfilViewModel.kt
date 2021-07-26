@@ -23,6 +23,7 @@ class ProfilViewModel: ViewModel() {
     val animasyon = MutableLiveData<Boolean>()
     val veriOnayi = MutableLiveData<Boolean>()
     var girisVarMi = MutableLiveData<Boolean>()
+    val hesapSilAnimasyon = MutableLiveData<Boolean>()
     lateinit var kullaniciBilgileri: KullaniciModel
     val kullaniciUid = auth.currentUser?.uid
 
@@ -142,6 +143,7 @@ class ProfilViewModel: ViewModel() {
     }
 
     private fun kullaniciyiHerseyiyleSil(context: Context){
+        hesapSilAnimasyon.value = true
         val storageRef = storage.reference
         if (kullaniciUid != null) {
             val documentReferansi = db.collection("Users").document(kullaniciUid)
@@ -162,7 +164,7 @@ class ProfilViewModel: ViewModel() {
                                 .delete().addOnSuccessListener {
                                     db.collection("Users").document(kullaniciUid).delete().addOnSuccessListener {
                                         auth.currentUser!!.delete().addOnSuccessListener {
-                                            auth.signOut()
+                                            hesapSilAnimasyon.value = false
                                             Toast.makeText(context,R.string.hesap_silme_basarili,Toast.LENGTH_LONG).show()
                                         }.addOnFailureListener {
                                             Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
@@ -176,7 +178,7 @@ class ProfilViewModel: ViewModel() {
                         } else {
                             db.collection("Users").document(kullaniciUid).delete().addOnSuccessListener {
                                 auth.currentUser!!.delete().addOnSuccessListener {
-                                    auth.signOut()
+                                    hesapSilAnimasyon.value = false
                                     Toast.makeText(context,R.string.hesap_silme_basarili,Toast.LENGTH_LONG).show()
                                 }.addOnFailureListener {
                                     Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()

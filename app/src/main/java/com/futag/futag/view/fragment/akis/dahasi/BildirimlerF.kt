@@ -32,19 +32,13 @@ class BildirimlerF : Fragment() {
 
         bildirimListesi = ArrayList()
 
-        val x = BildirimlerModel("Adem Geldi ve yazi yazdi","23-02-2021")
-        val y = BildirimlerModel("Bas kalem muduru gorevden ayrildi xd","22-02-2021")
-        val z = BildirimlerModel("Basi agiranlarr","21-02-2021")
-        val a = BildirimlerModel("Etkinlik yapildi","20-02-2021")
-        val b = BildirimlerModel("Izinler degistirildi","12-02-2021")
-        val c = BildirimlerModel("Sok haberler geldi ve rektor istifa etti","10-02-2021")
-
-        bildirimListesi.add(x)
-        bildirimListesi.add(y)
-        bildirimListesi.add(z)
-        bildirimListesi.add(a)
-        bildirimListesi.add(b)
-        bildirimListesi.add(c)
+        if (bildirimListesi.isNullOrEmpty()){
+            binding.recyclerView.visibility = View.INVISIBLE
+            binding.textViewBildirimYok.visibility = View.VISIBLE
+        } else {
+            binding.recyclerView.visibility = View.VISIBLE
+            binding.textViewBildirimYok.visibility = View.GONE
+        }
 
         adapter = BildirimlerRecyclerAdapter(bildirimListesi)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

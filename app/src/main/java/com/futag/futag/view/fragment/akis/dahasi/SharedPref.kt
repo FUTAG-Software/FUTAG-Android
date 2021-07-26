@@ -37,4 +37,14 @@ class SharedPref(context: Context) {
         return mySharedPref.getBoolean("bitis",false)
     }
 
+    fun setLanguageState(state: Boolean?){
+        val editor = mySharedPref.edit()
+        editor.putBoolean("dil",state!!)
+        editor.apply()
+    }
+
+    fun loadOnLanguageState(): Boolean {
+        return mySharedPref.getBoolean("dil", false)
+    }
+
 }
