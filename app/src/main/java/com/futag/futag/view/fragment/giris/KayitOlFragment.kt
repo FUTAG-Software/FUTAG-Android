@@ -170,8 +170,11 @@ class KayitOlFragment : Fragment() {
             veriOnayi?.let { onay ->
                 if (onay){
                     activity?.let {
-                        Toast.makeText(requireContext()
-                            ,"Hoş Geldin ${binding.editTextAd.text}",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "${R.string.hos_geldin} ${binding.editTextAd.text}"
+                            ,Toast.LENGTH_SHORT
+                        ).show()
                         val intent = Intent(it, AkisActivity::class.java)
                         it.startActivity(intent)
                         it.finish()

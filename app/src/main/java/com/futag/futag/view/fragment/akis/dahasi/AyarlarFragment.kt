@@ -29,8 +29,8 @@ class AyarlarFragment : Fragment() {
     private val binding get() = _binding!!
     internal lateinit var sharedPref: SharedPref
 
-    private val CHANNEL_ID = "notification"
-    private val notificationId = 101
+//    private val CHANNEL_ID = "notification"
+//    private val notificationId = 101
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +38,11 @@ class AyarlarFragment : Fragment() {
     ): View {
         _binding = FragmentAyarlarBinding.inflate(inflater, container, false)
         val view = binding.root
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         sharedPref = SharedPref(requireContext())
 
@@ -50,19 +55,27 @@ class AyarlarFragment : Fragment() {
             }
         }
 
+        val locate = Locale.getDefault().language
+        if(locate.equals("en")){
+            sharedPref.setLanguageState(true)
+        } else {
+            sharedPref.setLanguageState(false)
+        }
+
         binding.switchButtonDilSecimi.isChecked = sharedPref.loadOnLanguageState()
 
         binding.switchButtonBildirimler.isChecked = sharedPref.loadNotificationState()
 
-        return view
-    }
+        // createNotificationChannel()
+        binding.switchButtonBildirimler.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                sharedPref.setNotificationModeState(true)
+            } else {
+                sharedPref.setNotificationModeState(false)
+            }
+        }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        createNotificationChannel()
-
-        binding.switchButtonKoyuMod.setOnCheckedChangeListener { _, isChecked ->
+        /*binding.switchButtonKoyuMod.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 sharedPref.setNightModeState(true)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -71,14 +84,6 @@ class AyarlarFragment : Fragment() {
                 sharedPref.setNightModeState(false)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 restartApp()
-            }
-        }
-
-        binding.switchButtonBildirimler.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                sharedPref.setNotificationModeState(true)
-            } else {
-                sharedPref.setNotificationModeState(false)
             }
         }
 
@@ -92,11 +97,10 @@ class AyarlarFragment : Fragment() {
                 setLocale("tr")
                 restartApp()
             }
-        }
+        }*/
     }
 
-
-    private fun restartApp() {
+    /*private fun restartApp() {
         val intent = Intent(requireActivity(),MainActivity::class.java)
         startActivity(intent)
         requireActivity().finish()
@@ -145,7 +149,7 @@ class AyarlarFragment : Fragment() {
         val conf = res.configuration
         conf.setLocale(locale)
         res.updateConfiguration(conf, dm)
-    }
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

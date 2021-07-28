@@ -67,6 +67,7 @@
     <string name="sifreler_ayni_olmalidir">Şifreler Aynı Olmalıdır!</string>
     <string name="dogum_gununuz">Doğum Gününüz</string>
     <string name="zaten_hesabin_var_mi">Zaten hesabın var mı?</string>
+    <string name="hos_geldin">Hoş Geldin</string>
 
     <!-- GirisYap Fragment -->
     <string name="giris_yapmak_icin_bilgi">Giriş yapmak için bilgilerinizi giriniz</string>
@@ -114,7 +115,7 @@
         ekip arkadaşlarımıza dışarıdan sağlanan uzman desteği ile çeşitli eğitimler düzenlenmektedir.
         \n\n\t\tDijital dönüşüm sürecine uyum sağlamanın önemini bilerek, çalışmaya devam ediyor ve
         her yeni dönemde inovatif ürünler ortaya koymayı hedefliyoruz.</string>
-    <string name="sosyal_sorumluluk_birim_yazisi">\t\tBirim olarak amacımız etrafımızda bulunan çocuk,
+    <string name="sosyal_sorumluluk_birim_yazisi">\t\tBirim olarak: Etrafımızda bulunan çocuk,
         genç ve yaşlı her bir bireyin daha mutlu ve huzurlu bir hayat geçirmesi için çalışıyoruz.
         Aynı doğayı paylaştığımız bütün canlılara daha güvenilir bir yaşam alanı sağlamak hepimizin
         insanlık görevidir.\n\n\t\tBizler hep beraber çevremizi ve geleceğimizi daha güzel, mutlu ve

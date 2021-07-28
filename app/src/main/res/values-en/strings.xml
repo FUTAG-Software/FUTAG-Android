@@ -1,152 +1,169 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FÜTAG</string>
+    <string name="app_name">FUTAG</string>
 
+    <!-- Genel Stringler -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="futag_icon">futag icon</string>
     <string name="futag_yazi">futag yazi</string>
 
-    <string name="girisimcilik_birimi">Girişimcilik ve İnovasyon Birimi</string>
-    <string name="sosyal_sorumluluk_birimi">Sosyal Sorumluluk ve Faaliyet Birimi</string>
-    <string name="proje_arge_birimi">Proje ve AR-GE Birimi</string>
-    <string name="yazilim_birimi">Yazılım Birimi</string>
-    <string name="medya_birimi">Medya ve Tasarım Birimi</string>
-    <string name="dis_iliskiler_birimi">Dış İlişkiler Birimi</string>
+    <string name="girisimcilik_birimi">Entrepreneurship and Innovation Unit</string>
+    <string name="sosyal_sorumluluk_birimi">Social Responsibility and Activity Unit</string>
+    <string name="proje_arge_birimi">Project and R&amp;D Unit</string>
+    <string name="yazilim_birimi">Software Unit</string>
+    <string name="medya_birimi">Media and Design Unit</string>
+    <string name="dis_iliskiler_birimi">Foreign Relations Unit</string>
 
     <string name="blog">Blog</string>
-    <string name="etkinlik">Events</string>
-    <string name="profil">Profile</string>
-    <string name="daha">More</string>
+    <string name="etkinlik">Activities</string>
+    <string name="profil">Profıle</string>
+    <string name="daha">Moreover</string>
     <string name="ileri">Next</string>
-    <string name="bitir">Finish</string>
-    <string name="ev">Home Page</string>
+    <string name="bitir">End</string>
+    <string name="ev">Home page</string>
     <string name="bir_kulupten_daha_fazlasi">#BIRKULUPTENDAHAFAZLASI</string>
-    <string name="bosluklari_doldurunuz">Lütfen boşlukları doldurunuz!</string>
-    <string name="resim_seciniz">Lütfen bir resim seçiniz!</string>
-    <string name="giris_yap">Giriş Yap</string>
-    <string name="kayit_ol">Kayıt Ol</string>
-    <string name="cikis_yap">Çıkış Yap</string>
-    <string name="profili_duzenle">Profili Düzenle</string>
-    <string name="degisiklikleri_kaydet">Değişiklikleri Kaydet</string>
-    <string name="gonder">Gönder</string>
-    <string name="hata_mesaji">Hata, lütfen tekrar deneyiniz.</string>
-    <string name="duzenle_isareti">duzenleme isareti</string>
-    <string name="cok_yakinda">Çok Yakında!</string>
-    <string name="resim">Resim</string>
-    <string name="linke_ulasilamadi">Linke Ulaşılamadı.</string>
-    <string name="kayit_icin_tiklayiniz">Kayıt için tıklayınız.</string>
-    <string name="daha_sonra_tekrar_deneyiniz">Daha Sonra Tekrar Deneyiniz.</string>
+    <string name="bosluklari_doldurunuz">Please fill in the blanks!</string>
+    <string name="resim_seciniz">Please select a picture!</string>
+    <string name="giris_yap">Log In</string>
+    <string name="kayit_ol">Register</string>
+    <string name="cikis_yap">Sign Out</string>
+    <string name="profili_duzenle">Edit Profile</string>
+    <string name="degisiklikleri_kaydet">Save Changes</string>
+    <string name="gonder">Send</string>
+    <string name="hata_mesaji">Error, please try again.</string>
+    <string name="duzenle_isareti">edit mark</string>
+    <string name="cok_yakinda">Very soon!</string>
+    <string name="resim">Picture</string>
+    <string name="linke_ulasilamadi">Link Not Reached.</string>
+    <string name="kayit_icin_tiklayiniz">Click for registration.</string>
+    <string name="daha_sonra_tekrar_deneyiniz">Try again later.</string>
 
     <!-- Main Activity -->
-    <string name="internet_baglantisi_olumsuz">İnternet Bağlantınızın Olduğundan Emin Olun!</string>
+    <string name="internet_baglantisi_olumsuz">Make Sure You Have Internet Connection!</string>
 
     <!-- Akis Activity -->
 
     <!-- FirstScreen Fragment -->
-    <string name="futag_dunyasina_hos_geldiniz">Dünyasına Hoş Geldiniz</string>
+    <string name="futag_dunyasina_hos_geldiniz">Welcome to Futag World</string>
 
     <!-- SecondScreen Fragment -->
-    <string name="ister_blog_yazilari">İster Blog Yazılarını Oku İstersen Etkinliklere Tek Tıkla Kayıt Ol</string>
+    <string name="ister_blog_yazilari">If You Want To Read Blog Posts Or Register For Events With One Click</string>
 
     <!-- ThirdScreen Fragment -->
-    <string name="haydi_sen">Haydi Sen De Bize Katıl</string>
+    <string name="haydi_sen">Come Join Us</string>
 
     <!-- Splash Fragment -->
 
     <!-- GirisKayit Fragment -->
-    <string name="giris_metin">"Başarı, zaman içerisinde çok çalışmaya ve tutkuya bağlıdır. Eğer gerçekten çok çalışırsanız, uzun bir süre boyunca gerçekten çok çalışırsanız, karşılığını alacaksınız."</string>
-    <string name="devre_gorunumu">Futag Devre</string>
+    <string name="giris_metin">"Success depends on hard work and passion over time. If you work really hard, if you work really hard over a long period of time, you will get paid.."</string>
+    <string name="devre_gorunumu">Futag Circuit</string>
 
     <!-- KayitOl Fragment -->
-    <string name="kayit_olmak_icin_bilgi">Kaydolmak için bilgilerinizi ekleyin</string>
-    <string name="adiniz">Adınız</string>
-    <string name="soyadiniz">Soyadınız</string>
+    <string name="kayit_olmak_icin_bilgi">Add your details to sign up</string>
+    <string name="adiniz">Name</string>
+    <string name="soyadiniz">Surname</string>
     <string name="email">E-Mail</string>
-    <string name="sifre">Şifre</string>
-    <string name="sifre_tekrar">Şifre (Tekrar)</string>
-    <string name="sifreler_ayni_olmalidir">Şifreler Aynı Olmalıdır!</string>
-    <string name="dogum_gununuz">Doğum Gününüz</string>
-    <string name="zaten_hesabin_var_mi">Zaten hesabın var mı?</string>
+    <string name="sifre">Password</string>
+    <string name="sifre_tekrar">Password (Again)</string>
+    <string name="sifreler_ayni_olmalidir">Passwords do not match!</string>
+    <string name="dogum_gununuz">Your birthday</string>
+    <string name="zaten_hesabin_var_mi">Already have an account?</string>
+    <string name="hos_geldin">Welcome</string>
 
     <!-- GirisYap Fragment -->
-    <string name="giris_yapmak_icin_bilgi">Giriş yapmak için bilgilerinizi giriniz</string>
-    <string name="sifreni_mi_unuttun">Şifreni mi unuttun?</string>
-    <string name="hesabin_yok_mu">Hesabın yok mu?</string>
+    <string name="giris_yapmak_icin_bilgi">Enter your information to login</string>
+    <string name="sifreni_mi_unuttun">Did you forget your password?</string>
+    <string name="hesabin_yok_mu">Don\'t have an account?</string>
 
     <!-- SifremiUnuttum Fragment -->
-    <string name="lutfen_mail_adresinizi_giriniz">Lütfen Mail Adresinizi Girin!</string>
-    <string name="onay_maili_gonderildi">Onay Maili Gönderildi.</string>
-    <string name="sifremi_unuttum">Şifremi Unuttum</string>
-    <string name="sifre_yenileme_metni">Şifrenizi yenilemek için lütfen e-posta adresinizi giriniz.</string>
-    <string name="degisiklikler_kaydedildi">Değişiklikler Kaydedildi</string>
+    <string name="lutfen_mail_adresinizi_giriniz">Please Enter Your Email Address!</string>
+    <string name="onay_maili_gonderildi">Confirmation Email Sent.</string>
+    <string name="sifremi_unuttum">I forgot my password</string>
+    <string name="sifre_yenileme_metni">Please enter your e-mail address to reset your password.</string>
+    <string name="degisiklikler_kaydedildi">Changes Saved</string>
 
     <!-- Daha Fragment -->
-    <string name="daha_fazlasi">Daha Fazlası</string>
-    <string name="birimlerimiz">Birimlerimiz</string>
-    <string name="bizi_oyla">Bizi Oyla</string>
-    <string name="bildirimler">Bildirimler</string>
-    <string name="geri_bildirim">Geri Bildirim</string>
-    <string name="hakkimizda">Hakkımızda</string>
-    <string name="dahasi_yuvarlak_resim">Dahası Yuvarlak Resim</string>
+    <string name="daha_fazlasi">More</string>
+    <string name="birimlerimiz">Our Units</string>
+    <string name="bizi_oyla">Rate Us</string>
+    <string name="bildirimler">Notifications</string>
+    <string name="geri_bildirim">Feedback</string>
+    <string name="hakkimizda">About us</string>
+    <string name="dahasi_yuvarlak_resim">More Round Picture</string>
     <string name="copyright">Copyright © 2021 by Adem Atici</string>
 
     <!-- Hakkimizda Fragment -->
-    <string name="hakkimizda_metin">Elazığ Fırat Üniversitesi Teknoloji Ar-Ge Girişimcilik Öğrenci
-        Topluluğu(FÜTAG), 2009 yılında Fırat Üniversitesinde öğrencilere mühendislik ve
-        yönetim ilkelerini öğretmek ve uygulamak amacıyla kurulmuştur. Çeşitli projeler ve
-        etkinliklerle öğrencileri iş hayatına hazırlamak ve kendi potansiyellerinin farkına
-        varmalarını sağlamak için elinden geleni yapmaya devam etmektedir.</string>
+    <string name="hakkimizda_metin">Elazig Fırat University Technology R&amp;D Entrepreneurship Student
+        Society (FÜTAG) was established in 2009 at Fırat University to students in engineering and
+        was established to teach and apply management principles. Various projects and
+        prepare students for business life and realize their potential
+        He continues to do his best to ensure that they arrive.</string>
 
     <!-- Birimlerimiz Fragment -->
-    <string name="girisimcilik_inovasyon_birim_yazisi">\t\tBirim olarak amacımız düzenleyeceğimiz
-        etkinlik ve eğitimlerle üyelerimizin iletişim yeteneklerini geliştirerek takım çalışması
-        yöntemi ile yeni ürün ve fikir oluşturmalarına destek olmaktır.\n\n\t\tFikirlerin uygulama
-        ve pratik ile gerçek değerlerine ulaştıkları bilincindeyiz.Girişimcilik ve İnovasyon birimi
-        olarak, ekip arkadaşlarımızın girişimcilik ekosistemine dahil olmalarını sağlamak amacıyla
-        fikirlerini destekleyerek üretme aşamalarına getirmelerini hedeflemekteyiz.</string>
-    <string name="medya_tasarim_birim_yazisi">\t\tBirimimizin amacı; topluluğumuzun ihtiyaç duyduğu
-        reklam çalışmalarını yürütmek ve tanıtımımıza katkı sağlamaktır. Topluluğumuz tanıtımının
-        yanı sıra sosyal medya yöneticiliği ve fotoğrafçılık alanında çalışmalar yürütmekteyiz.\n\n
-        \t\tBirim olarak, ileriki dönemlerde topluluğumuzun sosyal medyadaki tanıtımlarını
-        arttırarak hedef kitlemizi büyütmeyi amaçlamaktayız.</string>
-    <string name="yazilim_birim_yazisi">\t\tBirim olarak amacımız topluluğumuzun yazılım konusunda
-        ihtiyacı olan ürünlerin tasarım ve mimarisini yapmaktır. Ortaya çıkarılan ürünlerin dışında
-        ekip arkadaşlarımıza dışarıdan sağlanan uzman desteği ile çeşitli eğitimler düzenlenmektedir.
-        \n\n\t\tDijital dönüşüm sürecine uyum sağlamanın önemini bilerek, çalışmaya devam ediyor ve
-        her yeni dönemde inovatif ürünler ortaya koymayı hedefliyoruz.</string>
-    <string name="sosyal_sorumluluk_birim_yazisi">\t\tBirim olarak amacımız etrafımızda bulunan çocuk,
-        genç ve yaşlı her bir bireyin daha mutlu ve huzurlu bir hayat geçirmesi için çalışıyoruz.
-        Aynı doğayı paylaştığımız bütün canlılara daha güvenilir bir yaşam alanı sağlamak hepimizin
-        insanlık görevidir.\n\n\t\tBizler hep beraber çevremizi ve geleceğimizi daha güzel, mutlu ve
-        huzurlu yapmayı hedeflemekteyiz.</string>
-    <string name="proje_arge_birim_yazisi">\t\tBirim olarak amacımız üretmeye ve geliştirmeye hevesli
-        ekip arkadaşlarımızla birlikte projeler tasarlayıp bu projeleri istenilen alanda
-        desteklemektir.\n\n\t\tİster teknik ister sosyal projeler olsun gelişmekte olan teknolojiye
-        ve sosyal dünyaya uyum sağlamak, bu projeleri geliştirirken aynı zamanda bireysel
-        yeteneklerimizi de geliştirmek öncelikli hedeflerimizdir.</string>
-    <string name="dis_iliskiler_birim_yazisi">\t\tBirimimizin amacı; ulusal ve uluslararası
-        kuruluşlar için üniversite temsilciliğini üstlenmek ve düzenlediğimiz etkinlikler için
-        yetkili kişiler ile iletişime geçmektir. Topluluğumuz adına dışarıyla bağlantı sağlamamızın
-        yanı sıra, sponsorluk ve reklam konularında da çalışmalar yürütmekteyiz.\n\n\t\tBirim olarak,
-        ileriki dönemlerde topluluğumuzu ülkemizin önde gelen toplulukları ile aynı kategoride
-        görmek ve üniversitemizi en güzel şekilde temsil etmeyi sağlamayı hedeflemekteyiz.</string>
-    <string name="kvkk_metni">FÜTAG\n\n KİŞİSEL VERİLERİN KORUNMASI KANUNU KAPSAMINDA AÇIK RIZA BEYANI\n\n
-        FÜTAG tarafından, 6698 Sayılı Kişisel Verilerin Korunması Kanunu’nun (“KVK Kanunu”) ilgili hükümlerine uygun olarak bilginize sunulan Kişisel Verilerin Korunması Kanunu Kapsamında ;\n\n
-        Kişisel verilerinin veri sorumlusu sıfatıyla FÜTAG veya gerekli güvenlik tedbirlerini aldırmak suretiyle yetkilendirdiği veri işleyenler tarafından; FÜTAG’ın kullanıcılarına sunmuş olduğu ürün ve hizmetlerini en iyi koşullar altında sağlayabilmesi, ürün veya hizmetlerin güvenilir ve kesintisiz bir şekilde temin edilmesi, kullanıcı memnuniyetinin en üst seviyeye çıkarılması,  farklı ürün ve hizmetlerin tanıtım, pazarlama, reklam ve kampanya faaliyetlerinin yapılması, kullanıcıların etkinliklerden , blog yazılarından ve gelişmelerden haberdar edilmesi amaçlarıyla doğrudan veya dolaylı olarak ilgili olan kişisel verilerin; başta mevzuatta öngörülen veya işlendikleri amaç için gerekli olan süre kadar muhafaza edilme ilkesi olmak üzere 6698 Sayılı Kişisel Verilerin Korunması Kanunu’nun (“KVK Kanunu”) 4. maddesinde ifade edilen genel ilkelere uygun şekilde işlenebileceğini; elde edilebileceğini, kaydedilebileceğini, işlenme amacıyla uygun süre zarfında fiziksel veya elektronik ortamda güvenli bir şekilde depolanabileceğini, muhafaza edilebileceğini, değiştirilebileceğini, yeniden düzenlenebileceğini, mevzuata uygun biçimde açıklanabileceğini ve aktarılabileceğini, devralınabileceğini, sınıflandırılabileceğini, işlenebileceğini ya da verilerin kullanılmasının engellenebileceğini; yukarıda belirtilen hususlarla ilgili olarak FÜTAG tarafından bilgilendirildiğimi ve KVK Kanunu çerçevesinde açık rızam bulunduğunu kabul ve beyan ederim.\n\n
-        Ayrıca, FÜTAG ile paylaşmış olduğum kişisel verilerin doğru ve güncel olduğunu; işbu bilgilerde değişiklik olması halinde değişiklikleri FÜTAG’a bildireceğimi kabul ve beyan ederim.\n\n
-        KVK Kanunu’nda tanımlanan özel nitelikli kişisel verilerim de dahil olmak üzere ilgili kişisel verilerimin işlenmesine, ilgili süreç kapsamında işlenme amacı ile sınırlı olmak üzere kullanılmasına ve paylaşılmasına, gereken süre zarfında saklanmasına açık rızam olduğunu ve bu hususta tarafıma gerekli aydınlatmanın yapıldığını; işbu metni, FÜTAG Kişisel Verilerin Korunması ve İşlenmesi Yönetmeliğini ve Aydınlatma Metnini okuduğumu ve anladığımı kabul ederim.\n\n
+    <string name="girisimcilik_inovasyon_birim_yazisi">\t\tOur aim as a unit is to organize
+        Teamwork by improving the communication skills of our members through activities and trainings.
+        To support the creation of new products and ideas with the method.\n\n\t\tImplementation of ideas
+        We are aware that they reach their true values with practice and practice. Entrepreneurship and Innovation unit
+        In order to ensure that our teammates are included in the entrepreneurship ecosystem,
+        We aim to support their ideas and bring them to the production stage.</string>
+    <string name="medya_tasarim_birim_yazisi">\t\tThe purpose of our unit; our community needs
+        to carry out advertising activities and to contribute to our promotion. Introducing our community
+        In addition to this, we are working on social media management and photography.\n\n
+        \t\tAs a unit, we will promote our community on social media in the future.
+        We aim to increase our target audience by increasing</string>
+    <string name="yazilim_birim_yazisi">\t\tOur aim as a unit is to help our community on software.
+        is to design and architecture the products that are needed. Apart from the products
+        Various trainings are organized for our teammates with the support of external experts.
+        \n\n\t\tContinuing to work, knowing the importance of adapting to the digital transformation process and
+        We aim to present innovative products in every new period..</string>
+    <string name="sosyal_sorumluluk_birim_yazisi">\t\tAs a unit; we are working to ensure that every
+        individual around us, children, young and old, has a happier and more peaceful life.It is the
+        duty of all of us to provide a safer living space for all living things with which we share
+        the same nature.\n\n\t\tTogether, we aim to make our environment and our future more beautiful,
+        happy and peaceful.</string>
+    <string name="proje_arge_birim_yazisi">\t\tOur aim as a unit is eager to produce and develop
+        We design projects with our teammates and design these projects in the desired area.
+        is to support.\n\n\t\tBe it technical or social projects,
+        and adapting to the social world, while developing these projects,
+        Developing our talents is our primary goal.</string>
+    <string name="dis_iliskiler_birim_yazisi">\t\tThe purpose of our unit; National and international
+        to undertake the university representation for organizations and for the events we organize
+        to contact authorized persons. To provide external connections on behalf of our community
+        In addition to this, we also work on sponsorship and advertising.\n\n\t\tAs a unit,
+        In the future, we will organize our group in the same category with the leading communities of our country.
+        We aim to see and represent our university in the best possible way.</string>
+    <string name="kvkk_metni">FÜTAG\n\n EXPRESS CONSENT DECLARATION UNDER THE LAW ON THE PROTECTION OF PERSONAL DATA\n\n
+        Within the scope of the Law on the Protection of Personal Data submitted to your information by
+        FÜTAG in accordance with the relevant provisions of the Law on the Protection of Personal Data No. 6698 ("KVK Law"). ;
+        \n\nBy FÜTAG as the data controller of personal data or by data processors authorized by taking the necessary security measures;
+        FÜTAG\'s ability to provide its products and services to its users under the best conditions,
+        to provide products or services in a reliable and uninterrupted manner, to maximize user satisfaction,
+        to carry out promotion, marketing, advertising and campaign activities of different products and services,
+        Personal data that is directly or indirectly related to the purpose of informing about blog posts and developments;
+        It can be processed in accordance with the general principles expressed in Article 4 of the Law on the Protection of
+        Personal Data No. 6698 ("KVK Law"), especially the principle of keeping them for the period required by the legislation
+        or for the purpose for which they are processed; can be obtained, recorded, stored securely in physical or
+        electronic environment for an appropriate period of time for processing, preserved, changed, rearranged, disclosed
+        and transferred in accordance with the legislation, taken over, classified, processed or prevented from using the
+        data; I accept and declare that I have been informed by FÜTAG regarding the above-mentioned issues and that I have
+        given my express consent within the framework of the KVK Law.\n\nAlso, I declare that the personal data I have shared
+        with FÜTAG is correct and up-to-date I accept and declare that if there is a change in this information, I will notify
+        FÜTAG about the changes.\n\nI expressly consent to the processing of my personal data, including my personal data of
+        special nature defined in the KVK Law, to use and share it limited to the purpose of processing within the scope of
+        the relevant process, and to keep it for the required period of time, and that I have been informed about this
+        matter; I accept that I have read and understood this text, the FUTAG Regulation on the Protection and Processing
+        of Personal Data and the Clarification Text.\n\n
     </string>
-    <string name="ayarlar">Ayarlar</string>
-    <string name="koyu_mod">Koyu Mod</string>
-    <string name="galeri_izni">Galeriye gitmek için izin lazım!</string>
-    <string name="izin_ver">İzni ver.</string>
-    <string name="kvkk_metnini">KVKK Metnini</string>
-    <string name="kabul_etmis_olursunuz">kabul etmiş olursunuz.</string>
-    <string name="hesabimi_sil">Hesabımı Sil</string>
-    <string name="hesabi_silme_onayi">Hesabınızı silmek istediğinizden emin misiniz?</string>
-    <string name="hayir">Hayır</string>
-    <string name="evet">Evet</string>
-    <string name="hesap_silme_basarili">Hesap Silme Başarılı</string>
-    <string name="bildirim_yok">Bildirim Yok.</string>
+    <string name="ayarlar">Settings</string>
+    <string name="koyu_mod">Dark Mode</string>
+    <string name="galeri_izni">You need permission to go to the gallery!</string>
+    <string name="izin_ver">Give permission.</string>
+    <string name="kvkk_metnini">PDPB Text</string>
+    <string name="kabul_etmis_olursunuz">you agree.</string>
+    <string name="hesabimi_sil">Delete My Account</string>
+    <string name="hesabi_silme_onayi">Are you sure you want to delete your account?</string>
+    <string name="hayir">No</string>
+    <string name="evet">Yes</string>
+    <string name="hesap_silme_basarili">Account Deletion Successful</string>
+    <string name="bildirim_yok">No Notification.</string>
 
 </resources>
