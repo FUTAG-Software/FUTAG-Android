@@ -100,9 +100,9 @@ class KayitOlFragment : Fragment() {
                     Snackbar.make(
                         it,
                         R.string.galeri_izni,
-                        Snackbar.LENGTH_LONG).setAction(R.string.izin_ver,View.OnClickListener {
+                        Snackbar.LENGTH_LONG).setAction(R.string.izin_ver) {
                         permissionLauncher.launch(neededRuntimePermissions)
-                    }).show()
+                    }.show()
                 } else {
                     permissionLauncher.launch(neededRuntimePermissions)
                 }
@@ -244,7 +244,7 @@ class KayitOlFragment : Fragment() {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "futagProfileImage", null)
+                MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "futagProfileImage", null)
         return Uri.parse(path)
     }
 

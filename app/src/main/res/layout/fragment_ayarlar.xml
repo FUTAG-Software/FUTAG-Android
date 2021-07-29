@@ -216,8 +216,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewYuvarlakResimDilSecimi"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:contentDescription="@string/dahasi_yuvarlak_resim"
                     android:src="@drawable/turk_bayragi"
                     tools:ignore="ImageContrastCheck" />
@@ -250,8 +250,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewYuvarlakResimDilSecimi2"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:contentDescription="@string/dahasi_yuvarlak_resim"
                     android:src="@drawable/amerika_bayragi"
                     tools:ignore="ImageContrastCheck" />
