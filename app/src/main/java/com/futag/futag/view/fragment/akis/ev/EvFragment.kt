@@ -1,27 +1,25 @@
 package com.futag.futag.view.fragment.akis.ev
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.interfaces.ItemClickListener
-import com.denzcoskun.imageslider.models.SlideModel
-import com.futag.futag.R
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.futag.futag.adapter.GonderilerRecyclerAdapter
+import com.futag.futag.adapter.ReklamlarRecyclerAdapter
 import com.futag.futag.databinding.FragmentEvBinding
 import com.futag.futag.model.anasayfa.AnaSayfaModel
+import com.futag.futag.util.LinePagerIndicatorDecoration
 import com.futag.futag.viewmodel.AkisViewModel
 
 class EvFragment : Fragment() {
 
     private var _binding: FragmentEvBinding? = null
     private val binding get() = _binding!!
-    private lateinit var sliderListesi: ArrayList<SlideModel>
+    private lateinit var reklamlarAdapter: ReklamlarRecyclerAdapter
     private lateinit var viewModel: AkisViewModel
     private val gonderiAdapter = GonderilerRecyclerAdapter(this, AnaSayfaModel())
 
@@ -38,45 +36,25 @@ class EvFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val layoutManager = LinearLayoutManager(requireContext())
+        val layoutManagerReklam = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         viewModel = ViewModelProvider(requireActivity()).get(AkisViewModel::class.java)
         viewModel.anaSayfaVerileriniAl()
-
-        sliderListesi = ArrayList()
-        sliderDoldur()
-
-        binding.imageSlider.setItemClickListener(object : ItemClickListener {
-            override fun onItemSelected(position: Int) {
-                when(position){
-                    0 -> {
-                        findNavController().navigate(R.id.action_evFragment_to_webSitesiFragment)
-                    }
-                    1 -> {
-
-                    }
-                    2 -> {
-
-                    }
-                }
-            }
-        })
+        viewModel.reklamVerileriniAl()
 
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = gonderiAdapter
+        binding.recyclerViewReklam.layoutManager = layoutManagerReklam
 
-        observeLiveData()
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.recyclerViewReklam)
+
+        observeGonderiLiveData()
+        observeReklamLiveData()
+
+        binding.recyclerViewReklam.addItemDecoration(LinePagerIndicatorDecoration())
     }
 
-    private fun sliderDoldur(){
-        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/E2f1rgLWYAg-fOW?format=jpg&name=large"))
-        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/E2auXcIWEAoLSUE?format=jpg&name=small"))
-        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/E2TteyQXIAIviTJ?format=jpg&name=small"))
-        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/EwtB9iyW8AoVMNI?format=jpg&name=large"))
-        sliderListesi.add(SlideModel("https://pbs.twimg.com/media/EwYslknW8Aox3_C?format=jpg&name=large"))
-
-        binding.imageSlider.setImageList(sliderListesi,ScaleTypes.FIT)
-    }
-
-    private fun observeLiveData(){
+    private fun observeGonderiLiveData(){
         viewModel.anaSayfaVerileri.observe(viewLifecycleOwner, { bloglar ->
             bloglar?.let {
                 binding.textViewHataMesaji.visibility = View.INVISIBLE
@@ -104,6 +82,35 @@ class EvFragment : Fragment() {
                     binding.recyclerView.visibility = View.GONE
                 } else {
                     binding.progressBar.visibility = View.GONE
+                }
+            }
+        })
+    }
+
+    private fun observeReklamLiveData(){
+        viewModel.anaSayfaReklamVerileri.observe(viewLifecycleOwner, { reklamlar ->
+            reklamlar?.let { reklamModel ->
+                binding.progressBarSlider.visibility = View.INVISIBLE
+                binding.recyclerViewReklam.visibility = View.VISIBLE
+                reklamlarAdapter = ReklamlarRecyclerAdapter(reklamModel,this)
+                binding.recyclerViewReklam.adapter = reklamlarAdapter
+            }
+        })
+        viewModel.anaSayfaReklamError.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                if (it){
+                    binding.progressBarSlider.visibility = View.GONE
+                    binding.recyclerViewReklam.visibility = View.GONE
+                }
+            }
+        })
+        viewModel.anaSayfaReklamYukleniyor.observe(viewLifecycleOwner, { yukleniyor ->
+            yukleniyor?.let {
+                if (it){
+                    binding.progressBarSlider.visibility = View.VISIBLE
+                    binding.recyclerViewReklam.visibility = View.GONE
+                } else {
+                    binding.progressBarSlider.visibility = View.GONE
                 }
             }
         })

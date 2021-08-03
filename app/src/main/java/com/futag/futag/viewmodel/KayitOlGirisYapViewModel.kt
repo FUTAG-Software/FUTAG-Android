@@ -54,8 +54,8 @@ class KayitOlGirisYapViewModel: ViewModel() {
                 val kayitTarihi = Timestamp.now()
                 val aktifKullaniciUid = auth.currentUser?.uid
                 if(secilenGorsel != null){
-                    var gorselReferansLinki: String? = null
-                    var profilResmiAdi: String? = null
+                    var gorselReferansLinki: String?
+                    var profilResmiAdi: String?
                     val reference = storage.reference
                     val uuid = UUID.randomUUID()
                     profilResmiAdi = "${uuid}.jpeg"

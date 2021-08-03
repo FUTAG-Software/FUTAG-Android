@@ -11,10 +11,10 @@ data class EtkinliklerModelItem(
     val id: Int,
     @SerializedName("image")
     val image: String,
-    @SerializedName("link")
-    val link: String,
+    @SerializedName("form_link")
+    val formLink: String,
     @SerializedName("title")
     val title: String,
-    @SerializedName("content")
-    val content: String
+    @SerializedName("details")
+    val details: String
 ): Parcelable

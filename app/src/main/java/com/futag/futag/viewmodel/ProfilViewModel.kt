@@ -51,7 +51,7 @@ class ProfilViewModel: ViewModel() {
         val reference = storage.reference
         val documentId = kullaniciUid
         if(yeniSecilenGorsel != null){
-            var gorselReferansLinki: String? = null
+            var gorselReferansLinki: String?
             if (kullaniciBilgileri.profilResmiAdi == null){
                 val uuid = UUID.randomUUID()
                 val profilResmiAdi = "${uuid}.jpeg"

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentWebSitesiBinding
 
@@ -15,6 +16,7 @@ class WebSitesiFragment : Fragment() {
 
     private var _binding: FragmentWebSitesiBinding? = null
     private val binding get() = _binding!!
+    private val args by navArgs<WebSitesiFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +36,7 @@ class WebSitesiFragment : Fragment() {
     private fun webViewSetup(){
         binding.webView.webViewClient = WebViewClient()
         binding.webView.apply {
-            val url = "https://online.fliphtml5.com/lkymz/dflj/#p=2"
+            val url = args.siteLinki
             loadUrl(url)
             settings.javaScriptEnabled = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

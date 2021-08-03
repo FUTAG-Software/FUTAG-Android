@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.353125" />
+        <entry key="../../../../layout/custom_preview.xml" value="0.3138888888888889" />
         <entry key="app/src/main/res/drawable/arka_plan_radius.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/ayarlar.xml" value="0.2236842105263158" />
         <entry key="app/src/main/res/drawable/bildirimler.xml" value="0.2943722943722944" />
@@ -13,11 +13,13 @@
         <entry key="app/src/main/res/drawable/dil_secimi.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/drawable/duzenle_2_kalem_resmi.xml" value="0.2943722943722944" />
         <entry key="app/src/main/res/drawable/edit_text_background.xml" value="0.3541666666666667" />
+        <entry key="app/src/main/res/drawable/error.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/drawable/kayit_button_arka_plani.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kisi.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kisi_yuksek_cozunurluk.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/koyu_mod.xml" value="0.2236842105263158" />
         <entry key="app/src/main/res/drawable/mail.xml" value="0.2236842105263158" />
+        <entry key="app/src/main/res/drawable/placeholder.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/drawable/takvim.xml" value="0.2982456140350877" />
         <entry key="app/src/main/res/drawable/yildiz.xml" value="0.2236842105263158" />
         <entry key="app/src/main/res/drawable/zil.xml" value="0.2982456140350877" />
@@ -38,8 +40,8 @@
         <entry key="app/src/main/res/layout/fragment_blog_detay.xml" value="0.21597222222222223" />
         <entry key="app/src/main/res/layout/fragment_daha.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_etkinlik.xml" value="0.21348684210526317" />
-        <entry key="app/src/main/res/layout/fragment_etkinlik_detay.xml" value="0.3380208333333333" />
-        <entry key="app/src/main/res/layout/fragment_ev.xml" value="0.20423497267759563" />
+        <entry key="app/src/main/res/layout/fragment_etkinlik_detay.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_ev.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/layout/fragment_form.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_giris_yap.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_gonderi_detay.xml" value="0.3380208333333333" />
@@ -50,10 +52,12 @@
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_web_sitesi.xml" value="0.20460526315789473" />
         <entry key="app/src/main/res/layout/gonderi_recycler_row.xml" value="0.22534722222222223" />
+        <entry key="app/src/main/res/layout/reklamlar_recycler_row.xml" value="0.24" />
+        <entry key="app/src/main/res/layout/slider_item_layout.xml" value="0.3380208333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
