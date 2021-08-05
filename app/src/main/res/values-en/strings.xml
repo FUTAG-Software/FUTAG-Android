@@ -157,13 +157,14 @@
     <string name="koyu_mod">Dark Mode</string>
     <string name="galeri_izni">You need permission to go to the gallery!</string>
     <string name="izin_ver">Give permission.</string>
-    <string name="kvkk_metnini">PDPB Text</string>
-    <string name="kabul_etmis_olursunuz">you agree.</string>
+    <string name="kvkk_metnini">Explicit Consent Text</string>
+    <string name="kabul_etmis_olursunuz">you accept.</string>
     <string name="hesabimi_sil">Delete My Account</string>
     <string name="hesabi_silme_onayi">Are you sure you want to delete your account?</string>
     <string name="hayir">No</string>
     <string name="evet">Yes</string>
     <string name="hesap_silme_basarili">Account Deletion Successful</string>
     <string name="bildirim_yok">No Notification.</string>
+    <string name="kayitlar_kapali">Registration is closed.</string>
 
 </resources>

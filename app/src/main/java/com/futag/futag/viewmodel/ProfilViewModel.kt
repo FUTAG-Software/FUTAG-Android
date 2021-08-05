@@ -163,9 +163,13 @@ class ProfilViewModel: ViewModel() {
                             storageRef.child("Gorseller").child(kullanici.profilResmiAdi!!)
                                 .delete().addOnSuccessListener {
                                     db.collection("Users").document(kullaniciUid).delete().addOnSuccessListener {
-                                        auth.currentUser!!.delete().addOnSuccessListener {
-                                            hesapSilAnimasyon.value = false
-                                            Toast.makeText(context,R.string.hesap_silme_basarili,Toast.LENGTH_LONG).show()
+                                        val user = Firebase.auth.currentUser!!
+                                        Firebase.auth.signOut()
+                                        user.delete().addOnCompleteListener { task ->
+                                            if (task.isSuccessful) {
+                                                hesapSilAnimasyon.value = false
+                                                Toast.makeText(context,R.string.hesap_silme_basarili,Toast.LENGTH_LONG).show()
+                                            }
                                         }.addOnFailureListener {
                                             Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
                                         }

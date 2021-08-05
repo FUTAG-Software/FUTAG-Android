@@ -141,7 +141,7 @@
     <string name="koyu_mod">Koyu Mod</string>
     <string name="galeri_izni">Galeriye gitmek için izin lazım!</string>
     <string name="izin_ver">İzni ver.</string>
-    <string name="kvkk_metnini">KVKK Metnini</string>
+    <string name="kvkk_metnini">Açık Rıza Metnini</string>
     <string name="kabul_etmis_olursunuz">kabul etmiş olursunuz.</string>
     <string name="hesabimi_sil">Hesabımı Sil</string>
     <string name="hesabi_silme_onayi">Hesabınızı silmek istediğinizden emin misiniz?</string>
@@ -149,5 +149,6 @@
     <string name="evet">Evet</string>
     <string name="hesap_silme_basarili">Hesap Silme Başarılı</string>
     <string name="bildirim_yok">Bildirim Yok.</string>
+    <string name="kayitlar_kapali">Kayıtlar Kapalı.</string>
 
 </resources>
