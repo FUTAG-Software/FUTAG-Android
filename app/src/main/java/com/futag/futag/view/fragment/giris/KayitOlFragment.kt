@@ -3,7 +3,6 @@ package com.futag.futag.view.fragment.giris
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,7 +11,6 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,9 +32,6 @@ import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.IOException
-import java.io.OutputStream
 import java.lang.Exception
 import java.util.*
 
@@ -172,7 +167,7 @@ class KayitOlFragment : Fragment() {
                     activity?.let {
                         Toast.makeText(
                             requireContext(),
-                            "${R.string.hos_geldin} ${binding.editTextAd.text}"
+                            "${resources.getString(R.string.hos_geldin)} ${binding.editTextAd.text}"
                             ,Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(it, AkisActivity::class.java)
@@ -242,7 +237,7 @@ class KayitOlFragment : Fragment() {
 
     private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
         val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        inImage.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val path =
                 MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "futagProfileImage", null)
         return Uri.parse(path)
