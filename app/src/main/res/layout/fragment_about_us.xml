@@ -12,31 +12,31 @@
         tools:context=".view.fragment.akis.dahasi.HakkimizdaF">
 
         <TextView
-            android:id="@+id/textViewBaslik"
+            android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:text="@string/hakkimizda"
+            android:text="@string/about_us"
             android:textColor="@color/text_color_koyu"
             android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageViewMaddeIsareti"
+            android:id="@+id/imageViewItemMark"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="20dp"
-            android:contentDescription="@string/resim"
+            android:contentDescription="@string/image"
             android:src="@drawable/ok_saga_dogru"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewGenelResim" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewClubImage" />
 
         <TextView
-            android:id="@+id/textViewMetin"
+            android:id="@+id/textViewText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -44,22 +44,22 @@
             android:layout_marginEnd="20dp"
             android:textAlignment="textStart"
             android:textSize="18sp"
-            android:text="@string/hakkimizda_metin"
+            android:text="@string/about_us_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewMaddeIsareti"
-            app:layout_constraintTop_toTopOf="@+id/imageViewMaddeIsareti" />
+            app:layout_constraintStart_toEndOf="@+id/imageViewItemMark"
+            app:layout_constraintTop_toTopOf="@+id/imageViewItemMark" />
 
         <ImageView
-            android:id="@+id/imageViewGenelResim"
+            android:id="@+id/imageViewClubImage"
             android:layout_width="wrap_content"
             android:layout_height="300dp"
             android:layout_marginTop="20dp"
             android:scaleType="fitXY"
             android:src="@drawable/futag_genel"
-            android:contentDescription="@string/resim"
+            android:contentDescription="@string/image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewBaslik" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

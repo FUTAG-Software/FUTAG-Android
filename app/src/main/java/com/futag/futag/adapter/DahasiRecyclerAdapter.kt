@@ -10,23 +10,23 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
-import com.futag.futag.databinding.DahasiRecyclerRowBinding
+import com.futag.futag.databinding.MoreoverRecyclerRowBinding
 import com.futag.futag.model.DahasiItemModel
 
 class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, val itemList: ArrayList<DahasiItemModel>)
     : RecyclerView.Adapter<DahasiRecyclerAdapter.DahasiViewHolder>() {
 
-    class DahasiViewHolder(val itemBinding: DahasiRecyclerRowBinding)
+    class DahasiViewHolder(val itemBinding: MoreoverRecyclerRowBinding)
         : RecyclerView.ViewHolder(itemBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DahasiViewHolder {
-        val binding = DahasiRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = MoreoverRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return DahasiViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DahasiViewHolder, position: Int) {
-        holder.itemBinding.imageViewYuvarlakResim.setImageDrawable(itemList[position].resim)
-        holder.itemBinding.textViewBasliklar.text = itemList[position].baslik
+        holder.itemBinding.imageViewCircleImage.setImageDrawable(itemList[position].resim)
+        holder.itemBinding.textViewTitle.text = itemList[position].baslik
         holder.itemBinding.cardView.setOnClickListener {
             sayfaDegis(itemList[position].baslik)
         }
@@ -38,25 +38,25 @@ class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, 
 
     private fun sayfaDegis(baslik: String){
         when(baslik){
-            context.getString(R.string.birimlerimiz) -> {
+            context.getString(R.string.our_units) -> {
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_birimlerimizF)
             }
-            context.getString(R.string.bizi_oyla) -> {
-                Toast.makeText(context,R.string.cok_yakinda,Toast.LENGTH_SHORT).show()
+            context.getString(R.string.rate_us) -> {
+                Toast.makeText(context,R.string.very_soon,Toast.LENGTH_SHORT).show()
             }
-            context.getString(R.string.bildirimler) -> {
+            context.getString(R.string.notification) -> {
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_bildirimlerF)
             }
-            context.getString(R.string.geri_bildirim) -> {
+            context.getString(R.string.feedback) -> {
                 geriBildirimMail()
             }
-            context.getString(R.string.hakkimizda) -> {
+            context.getString(R.string.about_us) -> {
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_hakkimizdaF)
             }
-            context.getString(R.string.ayarlar) -> {
+            context.getString(R.string.settings) -> {
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_ayarlarFragment)
             }
-            else -> Toast.makeText(context,R.string.hata_mesaji,Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(context,R.string.error_message,Toast.LENGTH_SHORT).show()
         }
     }
 

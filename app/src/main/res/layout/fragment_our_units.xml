@@ -12,13 +12,13 @@
         tools:context=".view.fragment.akis.dahasi.birimlerimiz.BirimlerimizF">
 
         <TextView
-            android:id="@+id/textViewBaslik"
+            android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:text="@string/birimlerimiz"
+            android:text="@string/our_units"
             android:textColor="@color/text_color_koyu"
             android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:background="@drawable/birimlerimiz_sarilik_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewBaslik" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="@+id/view">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/birimDisIliskiler"
+                android:id="@+id/foreignRelationsUnit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -66,7 +66,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:contentDescription="@string/resim"
+                    android:contentDescription="@string/image"
                     android:src="@drawable/dis_iliskiler2"
                     android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/dis_iliskiler_birimi"
+                        android:text="@string/foreign_relations_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
@@ -97,7 +97,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/birimGirisimcilik"
+                android:id="@+id/entrepreneurshipUnit"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -116,7 +116,7 @@
                     android:id="@+id/imageView1"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:contentDescription="@string/resim"
+                    android:contentDescription="@string/image"
                     android:src="@drawable/girisimcilik2"
                     android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -136,7 +136,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/girisimcilik_birimi"
+                        android:text="@string/entrepreneurship_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
@@ -147,7 +147,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/birimMedya"
+                android:id="@+id/mediaUnit"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -166,7 +166,7 @@
                     android:id="@+id/imageView2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:contentDescription="@string/resim"
+                    android:contentDescription="@string/image"
                     android:src="@drawable/medya2"
                     android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -186,7 +186,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/medya_birimi"
+                        android:text="@string/media_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
@@ -197,7 +197,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/birimProjeArGe"
+                android:id="@+id/projectRDUnit"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -216,7 +216,7 @@
                     android:id="@+id/imageView3"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:contentDescription="@string/resim"
+                    android:contentDescription="@string/image"
                     android:src="@drawable/proje_ar_ge2"
                     android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -236,7 +236,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/proje_arge_birimi"
+                        android:text="@string/project_rd_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
@@ -247,7 +247,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/birimSosyalSorumluluk"
+                android:id="@+id/socialResponsibilityUnit"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -266,7 +266,7 @@
                     android:id="@+id/imageView4"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:contentDescription="@string/resim"
+                    android:contentDescription="@string/image"
                     android:src="@drawable/sosyal_sorumluluk2"
                     android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -286,7 +286,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/sosyal_sorumluluk_birimi"
+                        android:text="@string/social_responsibility_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"
@@ -297,7 +297,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/birimYazilim"
+                android:id="@+id/softwareUnit"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -316,7 +316,7 @@
                     android:id="@+id/imageView5"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:contentDescription="@string/resim"
+                    android:contentDescription="@string/image"
                     android:src="@drawable/yazilim2"
                     android:layout_marginStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -336,7 +336,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/yazilim_birimi"
+                        android:text="@string/software_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/dahasi_text_color"

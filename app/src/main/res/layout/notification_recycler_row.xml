@@ -7,19 +7,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/imageViewMaddeIsareti"
+        android:id="@+id/imageViewItemMark"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:contentDescription="@string/resim"
+        android:contentDescription="@string/image"
         android:src="@drawable/ok_saga_dogru"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/textViewBildirimMetni"
+        android:id="@+id/textViewNotificationText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -27,24 +27,22 @@
         android:layout_marginEnd="20dp"
         android:textAlignment="textStart"
         android:textSize="18sp"
-        android:text="@string/hakkimizda"
         android:textColor="@color/text_color_koyu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageViewMaddeIsareti"
-        app:layout_constraintTop_toTopOf="@+id/imageViewMaddeIsareti" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewItemMark"
+        app:layout_constraintTop_toTopOf="@+id/imageViewItemMark" />
 
     <TextView
-        android:id="@+id/textViewBildirimZamani"
+        android:id="@+id/textViewNotificationTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/hakkimizda"
         android:textAlignment="textStart"
         android:textColor="@color/text_color_acik"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textViewBildirimMetni"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBildirimMetni"
+        app:layout_constraintStart_toStartOf="@+id/textViewNotificationText"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotificationText"
         tools:ignore="TextContrastCheck" />
 
     <View
@@ -55,6 +53,6 @@
         android:background="@color/acik_gri"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBildirimZamani" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotificationTime" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.MainActivity
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentProfilBinding
+import com.futag.futag.databinding.FragmentProfileBinding
 import com.futag.futag.model.KullaniciModel
 import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.resimleriUrlIleGetir
@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso
 
 class ProfilFragment : Fragment() {
 
-    private var _binding: FragmentProfilBinding? = null
+    private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProfilViewModel
     private var kullaniciProfilBilgileri: KullaniciModel? = null
@@ -31,7 +31,7 @@ class ProfilFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfilBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -44,11 +44,11 @@ class ProfilFragment : Fragment() {
         viewModel.profilBilgileriniGetir(requireContext())
         profilBilgileriniCek()
 
-        binding.buttonProfiliDuzenle.setOnClickListener {
+        binding.buttonEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_profilFragment_to_profiliDuzenleF)
         }
 
-        binding.buttonCikisYap.setOnClickListener {
+        binding.buttonSignOut.setOnClickListener {
             viewModel.cikisYap()
             veriyiGozlemleCikisYap()
         }
@@ -70,19 +70,19 @@ class ProfilFragment : Fragment() {
             veriOnayi?.let { veri ->
                 if (veri){
                     kullaniciProfilBilgileri = viewModel.kullaniciBilgileri
-                    binding.editTextKullaniciMail.setText(kullaniciProfilBilgileri!!.email)
-                    binding.editTextDogumTarihi.setText(kullaniciProfilBilgileri!!.dogumGunu)
+                    binding.editTextUserMail.setText(kullaniciProfilBilgileri!!.email)
+                    binding.editTextBirthday.setText(kullaniciProfilBilgileri!!.dogumGunu)
                     val isim = kullaniciProfilBilgileri!!.isim
                     val soyisim = kullaniciProfilBilgileri!!.soyisim
                     val isimSoyisim = "$isim $soyisim"
-                    binding.textViewIsimSoyisim.text = isimSoyisim
+                    binding.textViewNameAndSurname.text = isimSoyisim
                     if(kullaniciProfilBilgileri!!.profilResmi != null){
                         Picasso.get()
                             .load(kullaniciProfilBilgileri!!.profilResmi)
                             .placeholder(R.drawable.kisi_yuksek_cozunurluk)
-                            .into(binding.imageViewProfilResmi)
+                            .into(binding.imageViewProfileImage)
                     } else{
-                        binding.imageViewProfilResmi.setImageDrawable(
+                        binding.imageViewProfileImage.setImageDrawable(
                            ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)
                         )
                     }

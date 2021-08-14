@@ -24,26 +24,26 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textViewKayitOl"
+                android:id="@+id/textViewRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/kayit_ol"
+                android:text="@string/register"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/textViewBilgi"
+                android:id="@+id/textViewInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@string/kayit_olmak_icin_bilgi"
+                android:text="@string/add_details_for_sign_up"
                 android:textAlignment="center"
                 android:textColor="@color/hint_color"
                 android:textSize="16sp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageViewProfilResmi"
+                android:id="@+id/imageViewCircleImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="15dp"
@@ -52,7 +52,7 @@
                 app:civ_border_width="2dp" />
 
             <EditText
-                android:id="@+id/editTextAd"
+                android:id="@+id/editTextName"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
@@ -61,14 +61,14 @@
                 android:ems="10"
                 android:drawableStart="@drawable/kisi"
                 android:drawablePadding="10dp"
-                android:hint="@string/adiniz"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/edit_text_text_color_black"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextSoyad"
+                android:id="@+id/editTextSurname"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="15dp"
@@ -77,7 +77,7 @@
                 android:ems="10"
                 android:drawableStart="@drawable/kisi"
                 android:drawablePadding="10dp"
-                android:hint="@string/soyadiniz"
+                android:hint="@string/surname"
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/edit_text_text_color_black"
@@ -99,7 +99,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextSifre"
+                android:id="@+id/editTextPassword"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="15dp"
@@ -108,13 +108,13 @@
                 android:ems="10"
                 android:drawableStart="@drawable/sifre"
                 android:drawablePadding="10dp"
-                android:hint="@string/sifre"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textColor="@color/edit_text_text_color_black"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextSifreTekrar"
+                android:id="@+id/editTextAgainPassword"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="15dp"
@@ -123,13 +123,13 @@
                 android:ems="10"
                 android:drawableStart="@drawable/sifre"
                 android:drawablePadding="10dp"
-                android:hint="@string/sifre_tekrar"
+                android:hint="@string/again_password"
                 android:inputType="textPassword"
                 android:textColor="@color/edit_text_text_color_black"
                 android:textSize="18sp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/editTextDogumGunu"
+                android:id="@+id/editTextBirthday"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="15dp"
@@ -143,7 +143,7 @@
                 android:textAlignment="textStart"
                 android:singleLine="true"
                 android:fontFamily="serif"
-                android:hint="@string/dogum_gununuz"
+                android:hint="@string/your_birthday"
                 android:textAllCaps="false"
                 android:textColor="@color/edit_text_text_color_black"
                 android:textSize="16sp" />
@@ -156,20 +156,20 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textViewKvkkMetni"
+                    android:id="@+id/textViewKvkkText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/kvkk_metnini"
+                    android:text="@string/kvkk_text_accept"
                     android:textAlignment="center"
                     android:textColor="@color/text_color_sari"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textViewKabulEtmisOlursunuz"
+                    android:id="@+id/textViewKvkkTextAccept"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="@string/kabul_etmis_olursunuz"
+                    android:text="@string/you_accept"
                     android:textAlignment="center"
                     android:textColor="@color/text_color_koyu"
                     android:textSize="16sp"/>
@@ -177,19 +177,19 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/buttonKayitOl"
+                android:id="@+id/buttonRegister"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
-                android:text="@string/kayit_ol"
+                android:text="@string/register"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="18sp" />
 
             <LinearLayout
-                android:id="@+id/linearLayoutYazi"
+                android:id="@+id/linearLayoutText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -197,20 +197,20 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textViewHesap"
+                    android:id="@+id/textViewAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/zaten_hesabin_var_mi"
+                    android:text="@string/already_have_account"
                     android:textAlignment="center"
                     android:textColor="@color/hint_color"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textViewGirisYap"
+                    android:id="@+id/textViewLogIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:text="@string/giris_yap"
+                    android:text="@string/log_in"
                     android:textAlignment="center"
                     android:textColor="@color/text_color_sari"
                     android:textSize="18sp"
@@ -221,7 +221,7 @@
         </LinearLayout>
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimasyon"
+            android:id="@+id/lottieAnimation"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:lottie_autoPlay="true"

@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentGirisKayitBinding
-import com.futag.futag.view.activity.AkisActivity
+import com.futag.futag.databinding.FragmentLoginRegisterBinding
+import com.futag.futag.view.activity.FlowActivity
 import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
 
 class GirisKayitFragment : Fragment() {
 
-    private var _binding : FragmentGirisKayitBinding? = null
+    private var _binding : FragmentLoginRegisterBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: KayitOlGirisYapViewModel
 
@@ -23,7 +23,7 @@ class GirisKayitFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGirisKayitBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginRegisterBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
@@ -35,23 +35,23 @@ class GirisKayitFragment : Fragment() {
         viewModel.otomatikGirisDurumu()
         veriyiGozlemle()
 
-        binding.buttonGirisYap.setOnClickListener {
+        binding.buttonLogIn.setOnClickListener {
             findNavController().navigate(R.id.action_girisKayitFragment_to_girisYapFragment)
         }
 
-        binding.buttonKayitOl.setOnClickListener {
+        binding.buttonRegister.setOnClickListener {
             findNavController().navigate(R.id.action_girisKayitFragment_to_kayitOlFragment)
         }
 
     }
 
     private fun animasyonuGoster(){
-        binding.lottieAnimasyon.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimasyon.playAnimation()
+        binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
+        binding.lottieAnimation.playAnimation()
     }
 
     private fun animasyonuDurdur(){
-        binding.lottieAnimasyon.cancelAnimation()
+        binding.lottieAnimation.cancelAnimation()
     }
 
     private fun veriyiGozlemle(){
@@ -63,23 +63,23 @@ class GirisKayitFragment : Fragment() {
                             if (it){
                                 animasyonuGoster()
                                 binding.constraintLayout.visibility = View.INVISIBLE
-                                binding.lottieAnimasyon.visibility = View.VISIBLE
+                                binding.lottieAnimation.visibility = View.VISIBLE
                                 activity?.let { activity ->
-                                    val intent = Intent(activity, AkisActivity::class.java)
+                                    val intent = Intent(activity, FlowActivity::class.java)
                                     activity.startActivity(intent)
                                     activity.finish()
                                 }
                             } else {
                                 animasyonuDurdur()
                                 binding.constraintLayout.visibility = View.VISIBLE
-                                binding.lottieAnimasyon.visibility = View.GONE
+                                binding.lottieAnimation.visibility = View.GONE
                             }
                         }
                     })
                 } else {
                     animasyonuDurdur()
                     binding.constraintLayout.visibility = View.VISIBLE
-                    binding.lottieAnimasyon.visibility = View.GONE
+                    binding.lottieAnimation.visibility = View.GONE
                 }
             }
         })

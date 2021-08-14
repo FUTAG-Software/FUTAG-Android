@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentSifremiUnuttumBinding
+import com.futag.futag.databinding.FragmentForgotPasswordBinding
 import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
 
 class SifremiUnuttumFragment : Fragment() {
 
-    private var _binding: FragmentSifremiUnuttumBinding? = null
+    private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: KayitOlGirisYapViewModel
 
@@ -21,7 +21,7 @@ class SifremiUnuttumFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSifremiUnuttumBinding.inflate(inflater, container, false)
+        _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -31,25 +31,25 @@ class SifremiUnuttumFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
 
-        binding.buttonGonder.setOnClickListener {
+        binding.buttonSend.setOnClickListener {
             if (binding.editTextMail.text.isNotEmpty()){
                 val mail = binding.editTextMail.text.toString()
                 viewModel.sifremiUnuttumDurumu(mail, requireContext())
                 veriyiGozlemle()
             } else {
-                Toast.makeText(requireContext(), R.string.lutfen_mail_adresinizi_giriniz,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.please_enter_your_email_adress,Toast.LENGTH_SHORT).show()
             }
         }
 
     }
 
     private fun animasyonuGoster(){
-        binding.lottieAnimasyon.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimasyon.playAnimation()
+        binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
+        binding.lottieAnimation.playAnimation()
     }
 
     private fun animasyonuDurdur(){
-        binding.lottieAnimasyon.cancelAnimation()
+        binding.lottieAnimation.cancelAnimation()
     }
 
     private fun veriyiGozlemle(){
@@ -57,11 +57,11 @@ class SifremiUnuttumFragment : Fragment() {
             animasyon?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
-                    binding.lottieAnimasyon.visibility = View.VISIBLE
+                    binding.lottieAnimation.visibility = View.VISIBLE
                     animasyonuGoster()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
-                    binding.lottieAnimasyon.visibility = View.GONE
+                    binding.lottieAnimation.visibility = View.GONE
                     animasyonuDurdur()
                 }
             }
@@ -69,7 +69,7 @@ class SifremiUnuttumFragment : Fragment() {
         viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
             veriOnayi?.let { onay ->
                 if (onay){
-                    Toast.makeText(requireContext(),R.string.onay_maili_gonderildi,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),R.string.confirmation_email_sent,Toast.LENGTH_SHORT).show()
                 }
             }
         })

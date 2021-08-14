@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentBirimlerimizBinding
+import com.futag.futag.databinding.FragmentOurUnitsBinding
 
 class BirimlerimizF : Fragment() {
 
-    private var _binding: FragmentBirimlerimizBinding? = null
+    private var _binding: FragmentOurUnitsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBirimlerimizBinding.inflate(inflater,container,false)
+        _binding = FragmentOurUnitsBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
@@ -27,32 +27,32 @@ class BirimlerimizF : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.birimDisIliskiler.setOnClickListener {
+        binding.foreignRelationsUnit.setOnClickListener {
             val action = BirimlerimizFDirections.actionBirimlerimizFToBirimDetayF(0)
             Navigation.findNavController(it).navigate(action)
         }
 
-        binding.birimGirisimcilik.setOnClickListener {
+        binding.entrepreneurshipUnit.setOnClickListener {
             val action = BirimlerimizFDirections.actionBirimlerimizFToBirimDetayF(1)
             Navigation.findNavController(it).navigate(action)
         }
 
-        binding.birimMedya.setOnClickListener {
+        binding.mediaUnit.setOnClickListener {
             val action = BirimlerimizFDirections.actionBirimlerimizFToBirimDetayF(2)
             Navigation.findNavController(it).navigate(action)
         }
 
-        binding.birimProjeArGe.setOnClickListener {
+        binding.projectRDUnit.setOnClickListener {
             val action = BirimlerimizFDirections.actionBirimlerimizFToBirimDetayF(3)
             Navigation.findNavController(it).navigate(action)
         }
 
-        binding.birimSosyalSorumluluk.setOnClickListener {
+        binding.socialResponsibilityUnit.setOnClickListener {
             val action = BirimlerimizFDirections.actionBirimlerimizFToBirimDetayF(4)
             Navigation.findNavController(it).navigate(action)
         }
 
-        binding.birimYazilim.setOnClickListener {
+        binding.softwareUnit.setOnClickListener {
             val action = BirimlerimizFDirections.actionBirimlerimizFToBirimDetayF(5)
             Navigation.findNavController(it).navigate(action)
         }

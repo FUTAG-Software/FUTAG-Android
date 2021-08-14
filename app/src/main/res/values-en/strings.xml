@@ -1,137 +1,137 @@
 <resources>
     <string name="app_name">FUTAG</string>
 
-    <!-- Genel Stringler -->
+    <!-- General Stringler -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="futag_icon">futag icon</string>
-    <string name="futag_yazi">futag yazi</string>
+    <string name="futag_text">futag yazi</string>
 
-    <string name="girisimcilik_birimi">Entrepreneurship and Innovation Unit</string>
-    <string name="sosyal_sorumluluk_birimi">Social Responsibility and Activity Unit</string>
-    <string name="proje_arge_birimi">Project and R&amp;D Unit</string>
-    <string name="yazilim_birimi">Software Unit</string>
-    <string name="medya_birimi">Media and Design Unit</string>
-    <string name="dis_iliskiler_birimi">Foreign Relations Unit</string>
+    <string name="entrepreneurship_unit">Entrepreneurship and Innovation Unit</string>
+    <string name="social_responsibility_unit">Social Responsibility and Activity Unit</string>
+    <string name="project_rd_unit">Project and R&amp;D Unit</string>
+    <string name="software_unit">Software Unit</string>
+    <string name="media_unit">Media and Design Unit</string>
+    <string name="foreign_relations_unit">Foreign Relations Unit</string>
 
     <string name="blog">Blog</string>
-    <string name="etkinlik">Activities</string>
-    <string name="profil">Profıle</string>
-    <string name="daha">Moreover</string>
-    <string name="ileri">Next</string>
-    <string name="bitir">End</string>
-    <string name="ev">Home page</string>
+    <string name="events">Events</string>
+    <string name="profile">Profıle</string>
+    <string name="moreover">Moreover</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="main_screen">Home page</string>
     <string name="bir_kulupten_daha_fazlasi">#BIRKULUPTENDAHAFAZLASI</string>
-    <string name="bosluklari_doldurunuz">Please fill in the blanks!</string>
-    <string name="resim_seciniz">Please select a picture!</string>
-    <string name="giris_yap">Log In</string>
-    <string name="kayit_ol">Register</string>
-    <string name="cikis_yap">Sign Out</string>
-    <string name="profili_duzenle">Edit Profile</string>
-    <string name="degisiklikleri_kaydet">Save Changes</string>
-    <string name="gonder">Send</string>
-    <string name="hata_mesaji">Error, please try again.</string>
-    <string name="duzenle_isareti">edit mark</string>
-    <string name="cok_yakinda">Very soon!</string>
-    <string name="resim">Picture</string>
-    <string name="linke_ulasilamadi">Link Not Reached.</string>
-    <string name="kayit_icin_tiklayiniz">Click for registration.</string>
-    <string name="daha_sonra_tekrar_deneyiniz">Try again later.</string>
+    <string name="fill_in_the_blanks">Please fill in the blanks!</string>
+    <string name="select_picture">Please select a picture!</string>
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="send">Send</string>
+    <string name="error_message">Error, please try again.</string>
+    <string name="edit_mark">edit mark</string>
+    <string name="very_soon">Very soon!</string>
+    <string name="image">Picture</string>
+    <string name="link_not_reached">Link Not Reached.</string>
+    <string name="click_for_registration">Click for registration.</string>
+    <string name="try_again_later">Try again later.</string>
 
     <!-- Main Activity -->
-    <string name="internet_baglantisi_olumsuz">Make Sure You Have Internet Connection!</string>
+    <string name="no_internet_connection">Make Sure You Have Internet Connection!</string>
 
-    <!-- Akis Activity -->
+    <!-- Flow Activity -->
 
     <!-- FirstScreen Fragment -->
-    <string name="futag_dunyasina_hos_geldiniz">Welcome to Futag World</string>
+    <string name="welcome_to_futag_world">Welcome to Futag World</string>
 
     <!-- SecondScreen Fragment -->
-    <string name="ister_blog_yazilari">If You Want To Read Blog Posts Or Register For Events With One Click</string>
+    <string name="if_you_want_read_blog_posts">If You Want To Read Blog Posts Or Register For Events With One Click</string>
 
     <!-- ThirdScreen Fragment -->
-    <string name="haydi_sen">Come Join Us</string>
+    <string name="come_join_us">Come Join Us</string>
 
     <!-- Splash Fragment -->
 
-    <!-- GirisKayit Fragment -->
-    <string name="giris_metin">"Success depends on hard work and passion over time. If you work really hard, if you work really hard over a long period of time, you will get paid.."</string>
-    <string name="devre_gorunumu">Futag Circuit</string>
+    <!-- LoginRegister Fragment -->
+    <string name="intro_text">"Success depends on hard work and passion over time. If you work really hard, if you work really hard over a long period of time, you will get paid.."</string>
+    <string name="circuit_view">Futag Circuit</string>
 
-    <!-- KayitOl Fragment -->
-    <string name="kayit_olmak_icin_bilgi">Add your details to sign up</string>
-    <string name="adiniz">Name</string>
-    <string name="soyadiniz">Surname</string>
+    <!-- Register Fragment -->
+    <string name="add_details_for_sign_up">Add your details to sign up</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
     <string name="email">E-Mail</string>
-    <string name="sifre">Password</string>
-    <string name="sifre_tekrar">Password (Again)</string>
-    <string name="sifreler_ayni_olmalidir">Passwords do not match!</string>
-    <string name="dogum_gununuz">Your birthday</string>
-    <string name="zaten_hesabin_var_mi">Already have an account?</string>
-    <string name="hos_geldin">Welcome</string>
+    <string name="password">Password</string>
+    <string name="again_password">Password (Again)</string>
+    <string name="password_must_match">Passwords must match!</string>
+    <string name="your_birthday">Your Birthday</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="welcome">Welcome</string>
 
-    <!-- GirisYap Fragment -->
-    <string name="giris_yapmak_icin_bilgi">Enter your information to login</string>
-    <string name="sifreni_mi_unuttun">Did you forget your password?</string>
-    <string name="hesabin_yok_mu">Don\'t have an account?</string>
+    <!-- Login Fragment -->
+    <string name="login_information">Enter your information to login</string>
+    <string name="forgot_password">Did you forget your password?</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
 
-    <!-- SifremiUnuttum Fragment -->
-    <string name="lutfen_mail_adresinizi_giriniz">Please Enter Your Email Address!</string>
-    <string name="onay_maili_gonderildi">Confirmation Email Sent.</string>
-    <string name="sifremi_unuttum">I forgot my password</string>
-    <string name="sifre_yenileme_metni">Please enter your e-mail address to reset your password.</string>
-    <string name="degisiklikler_kaydedildi">Changes Saved</string>
+    <!-- ForgotPassword Fragment -->
+    <string name="please_enter_your_email_adress">Please Enter Your Email Address!</string>
+    <string name="confirmation_email_sent">Confirmation Email Sent.</string>
+    <string name="i_forgot_my_password">I forgot my password</string>
+    <string name="password_reset_text">Please enter your e-mail address to reset your password.</string>
+    <string name="changes_saved">Changes Saved</string>
 
-    <!-- Daha Fragment -->
-    <string name="daha_fazlasi">More</string>
-    <string name="birimlerimiz">Our Units</string>
-    <string name="bizi_oyla">Rate Us</string>
-    <string name="bildirimler">Notifications</string>
-    <string name="geri_bildirim">Feedback</string>
-    <string name="hakkimizda">About us</string>
-    <string name="dahasi_yuvarlak_resim">More Round Picture</string>
+    <!-- More Fragment -->
+    <string name="more">More</string>
+    <string name="our_units">Our Units</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="notification">Notifications</string>
+    <string name="feedback">Feedback</string>
+    <string name="about_us">About us</string>
+    <string name="moreover_circle_image">More Round Picture</string>
     <string name="copyright">Copyright © 2021 by Adem Atici</string>
 
-    <!-- Hakkimizda Fragment -->
-    <string name="hakkimizda_metin">Elazig Fırat University Technology R&amp;D Entrepreneurship Student
+    <!-- About Us Fragment -->
+    <string name="about_us_text">Elazig Fırat University Technology R&amp;D Entrepreneurship Student
         Society (FÜTAG) was established in 2009 at Fırat University to students in engineering and
         was established to teach and apply management principles. Various projects and
         prepare students for business life and realize their potential
         He continues to do his best to ensure that they arrive.</string>
 
-    <!-- Birimlerimiz Fragment -->
-    <string name="girisimcilik_inovasyon_birim_yazisi">\t\tOur aim as a unit is to organize
+    <!-- Our Unit Fragment -->
+    <string name="entrepreneurship_unit_text">\t\tOur aim as a unit is to organize
         Teamwork by improving the communication skills of our members through activities and trainings.
         To support the creation of new products and ideas with the method.\n\n\t\tImplementation of ideas
         We are aware that they reach their true values with practice and practice. Entrepreneurship and Innovation unit
         In order to ensure that our teammates are included in the entrepreneurship ecosystem,
         We aim to support their ideas and bring them to the production stage.</string>
-    <string name="medya_tasarim_birim_yazisi">\t\tThe purpose of our unit; our community needs
+    <string name="media_unit_text">\t\tThe purpose of our unit; our community needs
         to carry out advertising activities and to contribute to our promotion. Introducing our community
         In addition to this, we are working on social media management and photography.\n\n
         \t\tAs a unit, we will promote our community on social media in the future.
         We aim to increase our target audience by increasing</string>
-    <string name="yazilim_birim_yazisi">\t\tAs Software Unit, our aim is to help community to grow
+    <string name="software_unit_text">\t\tAs Software Unit, our aim is to help community to grow
         by doing design and architecture of software products that needed.\n\n\t\tKnowing the
         importance of adapting to the digital transformation process, we continue to work and aim to produce
         innovative products for the community.\n\n\t\tWe also conduct trainings about the popular technologies
         and computer science.</string>
-    <string name="sosyal_sorumluluk_birim_yazisi">\t\tAs a unit; we are working to ensure that every
+    <string name="social_responsibility_unit_text">\t\tAs a unit; we are working to ensure that every
         individual around us, children, young and old, has a happier and more peaceful life.It is the
         duty of all of us to provide a safer living space for all living things with which we share
         the same nature.\n\n\t\tTogether, we aim to make our environment and our future more beautiful,
         happy and peaceful.</string>
-    <string name="proje_arge_birim_yazisi">\t\tOur aim as a unit is eager to produce and develop
+    <string name="project_rd_unit_text">\t\tOur aim as a unit is eager to produce and develop
         We design projects with our teammates and design these projects in the desired area.
         is to support.\n\n\t\tBe it technical or social projects,
         and adapting to the social world, while developing these projects,
         Developing our talents is our primary goal.</string>
-    <string name="dis_iliskiler_birim_yazisi">\t\tThe purpose of our unit; National and international
+    <string name="foreign_relations_unit_text">\t\tThe purpose of our unit; National and international
         to undertake the university representation for organizations and for the events we organize
         to contact authorized persons. To provide external connections on behalf of our community
         In addition to this, we also work on sponsorship and advertising.\n\n\t\tAs a unit,
         In the future, we will organize our group in the same category with the leading communities of our country.
         We aim to see and represent our university in the best possible way.</string>
-    <string name="kvkk_metni">FÜTAG\n\n EXPRESS CONSENT DECLARATION UNDER THE LAW ON THE PROTECTION OF PERSONAL DATA\n\n
+    <string name="kvkk_text">FÜTAG\n\n EXPRESS CONSENT DECLARATION UNDER THE LAW ON THE PROTECTION OF PERSONAL DATA\n\n
         Within the scope of the Law on the Protection of Personal Data submitted to your information by
         FÜTAG in accordance with the relevant provisions of the Law on the Protection of Personal Data No. 6698 ("KVK Law"). ;
         \n\nBy FÜTAG as the data controller of personal data or by data processors authorized by taking the necessary security measures;
@@ -153,18 +153,18 @@
         matter; I accept that I have read and understood this text, the FUTAG Regulation on the Protection and Processing
         of Personal Data and the Clarification Text.\n\n
     </string>
-    <string name="ayarlar">Settings</string>
-    <string name="koyu_mod">Dark Mode</string>
-    <string name="galeri_izni">You need permission to go to the gallery!</string>
-    <string name="izin_ver">Give permission.</string>
-    <string name="kvkk_metnini">Explicit Consent Text</string>
-    <string name="kabul_etmis_olursunuz">you accept.</string>
-    <string name="hesabimi_sil">Delete My Account</string>
-    <string name="hesabi_silme_onayi">Are you sure you want to delete your account?</string>
-    <string name="hayir">No</string>
-    <string name="evet">Yes</string>
-    <string name="hesap_silme_basarili">Account Deletion Successful</string>
-    <string name="bildirim_yok">No Notification.</string>
-    <string name="kayitlar_kapali">Registration is closed.</string>
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="gallery_permission">You need permission to go to the gallery!</string>
+    <string name="give_permission">Give permission.</string>
+    <string name="kvkk_text_accept">Explicit Consent Text</string>
+    <string name="you_accept">you accept.</string>
+    <string name="delete_my_account">Delete My Account</string>
+    <string name="delete_account_confirm">Are you sure you want to delete your account?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="deletion_success">Account Deletion Successful</string>
+    <string name="no_notification">No Notification.</string>
+    <string name="registration_is_closed">Registration is closed.</string>
 
 </resources>

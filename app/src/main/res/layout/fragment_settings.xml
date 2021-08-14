@@ -8,20 +8,20 @@
     tools:context=".view.fragment.akis.dahasi.AyarlarFragment">
 
     <TextView
-        android:id="@+id/textViewBaslik"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:text="@string/ayarlar"
+        android:text="@string/settings"
         android:textColor="@color/text_color_koyu"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewKoyuMod"
+        android:id="@+id/cardViewDarkMode"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_marginStart="10dp"
@@ -32,14 +32,14 @@
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBaslik">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/linearLayoutKoyuMod"
+                android:id="@+id/linearLayoutDarkTheme"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="20dp"
@@ -51,32 +51,32 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageViewYuvarlakResimKoyuMod"
+                    android:id="@+id/imageViewDarkThemeCircleImage"
                     android:layout_width="34dp"
                     android:layout_height="34dp"
-                    android:contentDescription="@string/dahasi_yuvarlak_resim"
+                    android:contentDescription="@string/moreover_circle_image"
                     android:src="@drawable/koyu_mod"
                     tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textViewBasliklarKoyuMod"
+                android:id="@+id/textViewDarkModeTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/koyu_mod"
+                android:text="@string/dark_mode"
                 android:textAlignment="textStart"
                 android:textColor="@color/dahasi_text_color"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/switchButtonKoyuMod"
-                app:layout_constraintStart_toEndOf="@+id/linearLayoutKoyuMod"
+                app:layout_constraintEnd_toStartOf="@+id/switchButtonDarkTheme"
+                app:layout_constraintStart_toEndOf="@+id/linearLayoutDarkTheme"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switchButtonKoyuMod"
+                android:id="@+id/switchButtonDarkTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -101,10 +101,10 @@
         android:background="@color/hint_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewKoyuMod" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewDarkMode" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewBildirimler"
+        android:id="@+id/cardViewNotification"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_marginStart="10dp"
@@ -122,7 +122,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/linearLayoutBildirimler"
+                android:id="@+id/linearLayoutNotification"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="20dp"
@@ -134,32 +134,32 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageViewYuvarlakResimBildirimler"
+                    android:id="@+id/imageViewNotificationCircleImage"
                     android:layout_width="34dp"
                     android:layout_height="34dp"
-                    android:contentDescription="@string/dahasi_yuvarlak_resim"
+                    android:contentDescription="@string/moreover_circle_image"
                     android:src="@drawable/bildirimler"
                     tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textViewBasliklarBildirimler"
+                android:id="@+id/textViewNotificationTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/bildirimler"
+                android:text="@string/notification"
                 android:textAlignment="textStart"
                 android:textColor="@color/dahasi_text_color"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/switchButtonBildirimler"
-                app:layout_constraintStart_toEndOf="@+id/linearLayoutBildirimler"
+                app:layout_constraintEnd_toStartOf="@+id/switchButtonNotification"
+                app:layout_constraintStart_toEndOf="@+id/linearLayoutNotification"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switchButtonBildirimler"
+                android:id="@+id/switchButtonNotification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -182,10 +182,10 @@
         android:background="@color/hint_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewBildirimler" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewNotification" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewDilSecimi"
+        android:id="@+id/cardViewChooseLanguage"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_marginStart="10dp"
@@ -203,7 +203,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/linearLayoutDilSecimi"
+                android:id="@+id/linearLayoutChooseLanguage"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="20dp"
@@ -215,17 +215,17 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageViewYuvarlakResimDilSecimi"
+                    android:id="@+id/imageViewChooseLanguageCircleImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:contentDescription="@string/dahasi_yuvarlak_resim"
+                    android:contentDescription="@string/moreover_circle_image"
                     android:src="@drawable/turk_bayragi"
                     tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switchButtonDilSecimi"
+                android:id="@+id/switchButtonChooseLanguage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -237,7 +237,7 @@
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <LinearLayout
-                android:id="@+id/linearLayoutDilSecimi2"
+                android:id="@+id/linearLayoutChooseLanguage2"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginEnd="20dp"
@@ -249,10 +249,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageViewYuvarlakResimDilSecimi2"
+                    android:id="@+id/imageViewChooseLanguageCircleImage2"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:contentDescription="@string/dahasi_yuvarlak_resim"
+                    android:contentDescription="@string/moreover_circle_image"
                     android:src="@drawable/amerika_bayragi"
                     tools:ignore="ImageContrastCheck" />
 

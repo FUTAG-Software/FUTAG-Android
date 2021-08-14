@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.futag.futag.databinding.ReklamlarRecyclerRowBinding
+import com.futag.futag.databinding.AdsRecyclerRowBinding
 import com.futag.futag.model.reklam.ReklamlarModel
 import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.resimleriUrlIleGetir
@@ -14,11 +14,11 @@ import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
 class ReklamlarRecyclerAdapter(private val reklamListesi: ReklamlarModel,private val parentFragment: Fragment)
     : RecyclerView.Adapter<ReklamlarRecyclerAdapter.ReklamlarViewHolder>() {
 
-    inner class ReklamlarViewHolder(val binding: ReklamlarRecyclerRowBinding)
+    inner class ReklamlarViewHolder(val binding: AdsRecyclerRowBinding)
         : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReklamlarViewHolder {
-        val binding = ReklamlarRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = AdsRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ReklamlarViewHolder(binding)
     }
 

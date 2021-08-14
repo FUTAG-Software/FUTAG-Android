@@ -7,25 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentSplashBinding
 import com.futag.futag.view.fragment.akis.dahasi.SharedPref
-import android.app.UiModeManager
-import android.content.Intent
-
-import android.os.Build.VERSION
-import androidx.navigation.Navigation
-import com.futag.futag.MainActivity
-import com.futag.futag.view.activity.AkisActivity
 
 
 class SplashFragment : Fragment() {
 
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
-    private val BEKLEME_SURESI = 1600L
+    private val SPLASH_TIME = 1600L
     private lateinit var mySharedPref: SharedPref
 
     override fun onCreateView(
@@ -44,7 +36,7 @@ class SplashFragment : Fragment() {
             } else{
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             }
-        },BEKLEME_SURESI)
+        },SPLASH_TIME)
 
         return view
     }

@@ -73,7 +73,7 @@ class ProfilViewModel: ViewModel() {
                                 if (kayit.isSuccessful){
                                     veriOnayi.value = true
                                     animasyon.value = false
-                                    Toast.makeText(context,R.string.degisiklikler_kaydedildi,Toast.LENGTH_LONG).show()
+                                    Toast.makeText(context,R.string.changes_saved,Toast.LENGTH_LONG).show()
                                 }
                             }.addOnFailureListener { veritabaniHatasi ->
                                 animasyon.value = false
@@ -96,7 +96,7 @@ class ProfilViewModel: ViewModel() {
                     if (kayit.isSuccessful){
                         veriOnayi.value = true
                         animasyon.value = false
-                        Toast.makeText(context,R.string.degisiklikler_kaydedildi,Toast.LENGTH_LONG).show()
+                        Toast.makeText(context,R.string.changes_saved,Toast.LENGTH_LONG).show()
                     }
                 }.addOnFailureListener { veritabaniHatasi ->
                     animasyon.value = false
@@ -168,7 +168,7 @@ class ProfilViewModel: ViewModel() {
                                         user.delete().addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
                                                 hesapSilAnimasyon.value = false
-                                                Toast.makeText(context,R.string.hesap_silme_basarili,Toast.LENGTH_LONG).show()
+                                                Toast.makeText(context,R.string.deletion_success,Toast.LENGTH_LONG).show()
                                             }
                                         }.addOnFailureListener {
                                             Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
@@ -183,7 +183,7 @@ class ProfilViewModel: ViewModel() {
                             db.collection("Users").document(kullaniciUid).delete().addOnSuccessListener {
                                 auth.currentUser!!.delete().addOnSuccessListener {
                                     hesapSilAnimasyon.value = false
-                                    Toast.makeText(context,R.string.hesap_silme_basarili,Toast.LENGTH_LONG).show()
+                                    Toast.makeText(context,R.string.deletion_success,Toast.LENGTH_LONG).show()
                                 }.addOnFailureListener {
                                     Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
                                 }
@@ -196,7 +196,7 @@ class ProfilViewModel: ViewModel() {
                 Toast.makeText(context,hata.localizedMessage,Toast.LENGTH_LONG).show()
             }
         } else {
-            Toast.makeText(context,R.string.daha_sonra_tekrar_deneyiniz,Toast.LENGTH_LONG).show()
+            Toast.makeText(context,R.string.try_again_later,Toast.LENGTH_LONG).show()
         }
     }
 

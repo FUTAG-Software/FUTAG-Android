@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         // Uygulama acilinca internet kontrolu yapilir, internet yoksa uygulama acilmaz
-        if (internetVarMi(this)){
-            Toast.makeText(this,R.string.internet_baglantisi_olumsuz, Toast.LENGTH_LONG).show()
+        if (isNetworkAvailable(this)){
+            Toast.makeText(this,R.string.no_internet_connection, Toast.LENGTH_LONG).show()
             finish()
         }
 
     }
 
-    private fun internetVarMi(context: Context?): Boolean {
+    private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return true
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

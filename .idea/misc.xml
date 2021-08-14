@@ -25,35 +25,61 @@
         <entry key="app/src/main/res/drawable/zil.xml" value="0.2982456140350877" />
         <entry key="app/src/main/res/layout-hdpi/etkinlikler_recycler_row.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout-xxhdpi/etkinlikler_recycler_row.xml" value="0.27735042735042736" />
+        <entry key="app/src/main/res/layout-xxhdpi/events_recycler_row.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout-xxxhdpi/etkinlikler_recycler_row.xml" value="0.22395833333333334" />
+        <entry key="app/src/main/res/layout/activity_akis.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/activity_flow.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/ads_recycler_row.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/bildirimler_recycler_row.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/blog_recycler_row.xml" value="0.22534722222222223" />
-        <entry key="app/src/main/res/layout/bottom_sheet_dialog_kvkk.xml" value="0.28464912280701754" />
+        <entry key="app/src/main/res/layout/bottom_sheet_dialog_kvkk.xml" value="0.21107491856677524" />
         <entry key="app/src/main/res/layout/dahasi_recycler_row.xml" value="0.22534722222222223" />
         <entry key="app/src/main/res/layout/dialog_hesabi_sil.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout/etkinlikler_recycler_row.xml" value="0.27735042735042736" />
-        <entry key="app/src/main/res/layout/fragment_ayarlar.xml" value="0.3380208333333333" />
+        <entry key="app/src/main/res/layout/events_recycler_row.xml" value="1.0793103448275863" />
+        <entry key="app/src/main/res/layout/fragment_ayarlar.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_bildirimler.xml" value="0.3380208333333333" />
-        <entry key="app/src/main/res/layout/fragment_birim_detay.xml" value="0.28464912280701754" />
+        <entry key="app/src/main/res/layout/fragment_birim_detay.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_birimlerimiz.xml" value="0.28464912280701754" />
         <entry key="app/src/main/res/layout/fragment_blog.xml" value="0.22534722222222223" />
+        <entry key="app/src/main/res/layout/fragment_blog_detail.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_blog_detay.xml" value="0.21597222222222223" />
         <entry key="app/src/main/res/layout/fragment_daha.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.21107491856677524" />
         <entry key="app/src/main/res/layout/fragment_etkinlik.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_etkinlik_detay.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ev.xml" value="0.18333333333333332" />
+        <entry key="app/src/main/res/layout/fragment_event_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.21107491856677524" />
         <entry key="app/src/main/res/layout/fragment_form.xml" value="0.28464912280701754" />
+        <entry key="app/src/main/res/layout/fragment_giris_kayit.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_giris_yap.xml" value="0.21348684210526317" />
-        <entry key="app/src/main/res/layout/fragment_gonderi_detay.xml" value="0.3380208333333333" />
-        <entry key="app/src/main/res/layout/fragment_hakkimizda.xml" value="0.28464912280701754" />
-        <entry key="app/src/main/res/layout/fragment_kayit_ol.xml" value="0.3375" />
+        <entry key="app/src/main/res/layout/fragment_gonderi_detay.xml" value="0.21810699588477367" />
+        <entry key="app/src/main/res/layout/fragment_hakkimizda.xml" value="0.21107491856677524" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/fragment_kayit_ol.xml" value="0.21107491856677524" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.21107491856677524" />
+        <entry key="app/src/main/res/layout/fragment_our_units.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/fragment_post_detail.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_profil.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_profili_duzenle.xml" value="0.3380208333333333" />
+        <entry key="app/src/main/res/layout/fragment_second_screen.xml" value="0.1180921052631579" />
+        <entry key="app/src/main/res/layout/fragment_sifremi_unuttum.xml" value="0.1180921052631579" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/fragment_unit_detail.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_web_sitesi.xml" value="0.20460526315789473" />
         <entry key="app/src/main/res/layout/gonderi_recycler_row.xml" value="0.22534722222222223" />
+        <entry key="app/src/main/res/layout/moreover_recycler_row.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/notification_recycler_row.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/post_recycler_row.xml" value="0.1180921052631579" />
         <entry key="app/src/main/res/layout/reklamlar_recycler_row.xml" value="0.24" />
         <entry key="app/src/main/res/layout/slider_item_layout.xml" value="0.3380208333333333" />
+        <entry key="app/src/main/res/menu/akis_bottom_menu.xml" value="0.21107491856677524" />
       </map>
     </option>
   </component>

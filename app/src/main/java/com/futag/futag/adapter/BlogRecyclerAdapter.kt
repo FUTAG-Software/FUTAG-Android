@@ -36,8 +36,8 @@ class BlogRecyclerAdapter(private val parentFragment: Fragment, private val blog
             )
         }
 
-        holder.itemBinding.blogBaslik.text = canliVeri.title
-        holder.itemBinding.blogYazar.text = canliVeri.author
+        holder.itemBinding.blogTitle.text = canliVeri.title
+        holder.itemBinding.blogAuthor.text = canliVeri.author
         holder.itemBinding.layout.setOnClickListener {
             val action = BlogFragmentDirections.actionBlogFragmentToBlogDetayFragment(canliVeri)
             parentFragment.findNavController().navigate(action)

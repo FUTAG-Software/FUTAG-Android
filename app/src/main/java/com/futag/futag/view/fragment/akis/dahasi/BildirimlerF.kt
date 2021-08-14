@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.R
 import com.futag.futag.adapter.BildirimlerRecyclerAdapter
-import com.futag.futag.databinding.FragmentBildirimlerBinding
+import com.futag.futag.databinding.FragmentNotificationBinding
 import com.futag.futag.model.BildirimlerModel
 
 class BildirimlerF : Fragment() {
 
-    private var _binding: FragmentBildirimlerBinding? = null
+    private var _binding: FragmentNotificationBinding? = null
     private val binding get() = _binding!!
     private lateinit var bildirimListesi: ArrayList<BildirimlerModel>
     private lateinit var adapter: BildirimlerRecyclerAdapter
@@ -22,7 +22,7 @@ class BildirimlerF : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBildirimlerBinding.inflate(inflater,container,false)
+        _binding = FragmentNotificationBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
@@ -34,10 +34,10 @@ class BildirimlerF : Fragment() {
 
         if (bildirimListesi.isNullOrEmpty()){
             binding.recyclerView.visibility = View.INVISIBLE
-            binding.textViewBildirimYok.visibility = View.VISIBLE
+            binding.textViewNoNotification.visibility = View.VISIBLE
         } else {
             binding.recyclerView.visibility = View.VISIBLE
-            binding.textViewBildirimYok.visibility = View.GONE
+            binding.textViewNoNotification.visibility = View.GONE
         }
 
         adapter = BildirimlerRecyclerAdapter(bildirimListesi)

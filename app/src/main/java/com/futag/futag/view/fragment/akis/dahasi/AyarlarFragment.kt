@@ -1,31 +1,17 @@
 package com.futag.futag.view.fragment.akis.dahasi
 
-import android.app.*
-import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
-import android.content.res.Resources
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import com.futag.futag.MainActivity
-import com.futag.futag.R
-import com.futag.futag.databinding.FragmentAyarlarBinding
+import androidx.fragment.app.Fragment
+import com.futag.futag.databinding.FragmentSettingsBinding
 import java.util.*
 
 class AyarlarFragment : Fragment() {
 
-    private var _binding: FragmentAyarlarBinding? = null
+    private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
     internal lateinit var sharedPref: SharedPref
 
@@ -36,7 +22,7 @@ class AyarlarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAyarlarBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -48,10 +34,10 @@ class AyarlarFragment : Fragment() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                binding.switchButtonKoyuMod.isChecked = false
+                binding.switchButtonDarkTheme.isChecked = false
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                binding.switchButtonKoyuMod.isChecked = true
+                binding.switchButtonDarkTheme.isChecked = true
             }
         }
 
@@ -62,12 +48,12 @@ class AyarlarFragment : Fragment() {
             sharedPref.setLanguageState(false)
         }
 
-        binding.switchButtonDilSecimi.isChecked = sharedPref.loadOnLanguageState()
+        binding.switchButtonChooseLanguage.isChecked = sharedPref.loadOnLanguageState()
 
-        binding.switchButtonBildirimler.isChecked = sharedPref.loadNotificationState()
+        binding.switchButtonNotification.isChecked = sharedPref.loadNotificationState()
 
         // createNotificationChannel()
-        binding.switchButtonBildirimler.setOnCheckedChangeListener { _, isChecked ->
+        binding.switchButtonNotification.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 sharedPref.setNotificationModeState(true)
             } else {

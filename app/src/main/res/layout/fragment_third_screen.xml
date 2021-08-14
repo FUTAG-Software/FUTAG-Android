@@ -10,7 +10,7 @@
     tools:context=".view.onboarding.screens.ThirdScreen">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimasyon"
+        android:id="@+id/lottieAnimation"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginBottom="20dp"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="@string/haydi_sen"
+        android:text="@string/come_join_us"
         android:textSize="28sp"
         android:textAlignment="center"
         android:layout_marginStart="20dp"
@@ -32,13 +32,13 @@
         android:textColor="@color/acilis_screen_text_text_color" />
 
     <Button
-        android:id="@+id/buttonBitir"
+        android:id="@+id/buttonFinish"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:background="@drawable/kayit_button_arka_plani"
         app:backgroundTint="@color/acilis_third_screen_background_color"
-        android:text="@string/bitir"
+        android:text="@string/finish"
         android:textColor="@color/acilis_screen_button_text_color"
         android:textAllCaps="false"
         android:textSize="18sp" />

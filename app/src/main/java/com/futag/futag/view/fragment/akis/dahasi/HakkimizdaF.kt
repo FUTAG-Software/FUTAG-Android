@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentHakkimizdaBinding
+import com.futag.futag.databinding.FragmentAboutUsBinding
 
 class HakkimizdaF : Fragment() {
 
-    private var _binding: FragmentHakkimizdaBinding? = null
+    private var _binding: FragmentAboutUsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHakkimizdaBinding.inflate(inflater,container,false)
+        _binding = FragmentAboutUsBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }

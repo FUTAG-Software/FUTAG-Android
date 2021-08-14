@@ -25,7 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.MainActivity
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentProfiliDuzenleBinding
+import com.futag.futag.databinding.FragmentEditProfileBinding
 import com.futag.futag.model.KullaniciModel
 import com.futag.futag.viewmodel.ProfilViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -36,7 +36,7 @@ import java.util.*
 
 class ProfiliDuzenleF : Fragment() {
 
-    private var _binding: FragmentProfiliDuzenleBinding? = null
+    private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProfilViewModel
     private var kullaniciProfilBilgileri: KullaniciModel? = null
@@ -53,7 +53,7 @@ class ProfiliDuzenleF : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfiliDuzenleBinding.inflate(inflater,container,false)
+        _binding = FragmentEditProfileBinding.inflate(inflater,container,false)
         val view = binding.root
         registerLauncher()
         return view
@@ -72,15 +72,15 @@ class ProfiliDuzenleF : Fragment() {
         val ay = takvim.get(Calendar.MONTH)
         val gun = takvim.get(Calendar.DAY_OF_MONTH)
 
-        binding.editTextDogumGunu.setOnClickListener {
+        binding.editTextBirthday.setOnClickListener {
             val dpd = DatePickerDialog(requireContext(), { _, mYil, mAy, mGun ->
                 val tarih = "$mGun-${mAy+1}-$mYil"
-                binding.editTextDogumGunu.text = tarih
+                binding.editTextBirthday.text = tarih
             }, yil, ay, gun)
             dpd.show()
         }
 
-        binding.imageViewProfilResmi.setOnClickListener {
+        binding.imageViewProfileImage.setOnClickListener {
             if((ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
                         + ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 != PackageManager.PERMISSION_GRANTED) {
@@ -89,8 +89,8 @@ class ProfiliDuzenleF : Fragment() {
                     || ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)){
                     Snackbar.make(
                         it,
-                        R.string.galeri_izni,
-                        Snackbar.LENGTH_LONG).setAction(R.string.izin_ver,View.OnClickListener {
+                        R.string.gallery_permission,
+                        Snackbar.LENGTH_LONG).setAction(R.string.give_permission, {
                         permissionLauncher.launch(neededRuntimePermissions)
                     }).show()
                 } else {
@@ -103,11 +103,11 @@ class ProfiliDuzenleF : Fragment() {
             }
         }
 
-        binding.buttonDegisiklikleriKaydet.setOnClickListener {
+        binding.buttonSaveChanges.setOnClickListener {
             if (veriGirisiVarMi()){
-                val yeniIsim = binding.editTextAd.text.toString()
-                val yeniSoyisim = binding.editTextSoyad.text.toString()
-                val yeniDogumGunu = binding.editTextDogumGunu.text.toString()
+                val yeniIsim = binding.editTextName.text.toString()
+                val yeniSoyisim = binding.editTextSurname.text.toString()
+                val yeniDogumGunu = binding.editTextBirthday.text.toString()
                 if(selectedBitmap != null){
                     val smallBitmap = makeSmallerBitmap(selectedBitmap!!,400)
                     viewModel.profilGuncelle(requireContext(),kullaniciProfilBilgileri!!
@@ -117,18 +117,18 @@ class ProfiliDuzenleF : Fragment() {
                         ,yeniIsim,yeniSoyisim,yeniDogumGunu,null)
                 }
             } else {
-                Toast.makeText(requireContext(),R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.buttonHesabimiSil.setOnClickListener {
+        binding.buttonDeleteMyAccount.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle(R.string.hesabimi_sil)
-            builder.setMessage(R.string.hesabi_silme_onayi)
+            builder.setTitle(R.string.delete_my_account)
+            builder.setMessage(R.string.delete_account_confirm)
             builder.setCancelable(true)
-            builder.setNegativeButton(R.string.hayir) { _, _ ->
+            builder.setNegativeButton(R.string.no) { _, _ ->
             }
-            builder.setPositiveButton(R.string.evet) { _, _ ->
+            builder.setPositiveButton(R.string.yes) { _, _ ->
                 viewModel.hesabiSil(requireContext())
                 viewModel.hesapSilAnimasyon.observe(viewLifecycleOwner,{ animasyon ->
                     animasyon?.let {
@@ -165,17 +165,17 @@ class ProfiliDuzenleF : Fragment() {
             veriOnayi?.let { veri ->
                 if (veri){
                     kullaniciProfilBilgileri = viewModel.kullaniciBilgileri
-                    binding.editTextAd.setText(kullaniciProfilBilgileri!!.isim)
-                    binding.editTextDogumGunu.text = kullaniciProfilBilgileri!!.dogumGunu
-                    binding.editTextSoyad.setText(kullaniciProfilBilgileri!!.soyisim)
+                    binding.editTextName.setText(kullaniciProfilBilgileri!!.isim)
+                    binding.editTextBirthday.text = kullaniciProfilBilgileri!!.dogumGunu
+                    binding.editTextSurname.setText(kullaniciProfilBilgileri!!.soyisim)
                     if(kullaniciProfilBilgileri!!.profilResmi != null){
                         Picasso.get()
                             .load(kullaniciProfilBilgileri!!.profilResmi)
                             .placeholder(R.drawable.kisi_yuksek_cozunurluk)
                             .error(R.drawable.error)
-                            .into(binding.imageViewProfilResmi)
+                            .into(binding.imageViewProfileImage)
                     } else{
-                        binding.imageViewProfilResmi.setImageDrawable(
+                        binding.imageViewProfileImage.setImageDrawable(
                             ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)
                         )
                     }
@@ -201,10 +201,10 @@ class ProfiliDuzenleF : Fragment() {
                             if (Build.VERSION.SDK_INT >= 28){
                                 val source = ImageDecoder.createSource(requireActivity().contentResolver,imageData)
                                 selectedBitmap = ImageDecoder.decodeBitmap(source)
-                                binding.imageViewProfilResmi.setImageBitmap(selectedBitmap)
+                                binding.imageViewProfileImage.setImageBitmap(selectedBitmap)
                             } else {
                                 selectedBitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,imageData)
-                                binding.imageViewProfilResmi.setImageBitmap(selectedBitmap)
+                                binding.imageViewProfileImage.setImageBitmap(selectedBitmap)
                             }
                         } catch (e: Exception){
                             e.printStackTrace()
@@ -253,8 +253,8 @@ class ProfiliDuzenleF : Fragment() {
         return Uri.parse(path)
     }
 
-    private fun veriGirisiVarMi(): Boolean = binding.editTextAd.text.isNotEmpty()
-            && binding.editTextSoyad.text.isNotEmpty() && binding.editTextDogumGunu.text.isNotEmpty()
+    private fun veriGirisiVarMi(): Boolean = binding.editTextName.text.isNotEmpty()
+            && binding.editTextSurname.text.isNotEmpty() && binding.editTextBirthday.text.isNotEmpty()
 
     override fun onDestroyView() {
         super.onDestroyView()

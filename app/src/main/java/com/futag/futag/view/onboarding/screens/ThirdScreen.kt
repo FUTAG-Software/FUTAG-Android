@@ -30,10 +30,10 @@ class ThirdScreen : Fragment() {
 
         mySharedPref = SharedPref(requireContext())
 
-        binding.lottieAnimasyon.setAnimation("onboarding3.json")
-        binding.lottieAnimasyon.playAnimation()
+        binding.lottieAnimation.setAnimation("onboarding3.json")
+        binding.lottieAnimation.playAnimation()
 
-        binding.buttonBitir.setOnClickListener{
+        binding.buttonFinish.setOnClickListener{
             findNavController().navigate(R.id.action_viewPagerFragment_to_girisKayitFragment)
             onBoardingBitimi()
         }

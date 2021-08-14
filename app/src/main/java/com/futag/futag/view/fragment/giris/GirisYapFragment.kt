@@ -12,13 +12,13 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentGirisYapBinding
-import com.futag.futag.view.activity.AkisActivity
+import com.futag.futag.databinding.FragmentLoginBinding
+import com.futag.futag.view.activity.FlowActivity
 import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
 
 class GirisYapFragment : Fragment() {
 
-    private var _binding: FragmentGirisYapBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: KayitOlGirisYapViewModel
 
@@ -26,7 +26,7 @@ class GirisYapFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGirisYapBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentLoginBinding.inflate(layoutInflater,container,false)
         val view = binding.root
         return view
     }
@@ -36,24 +36,24 @@ class GirisYapFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
 
-        binding.buttonGirisYap.setOnClickListener {
+        binding.buttonLogIn.setOnClickListener {
             klavyeyiKapat()
             if (veriGirisKontrolu()){
                 val email = binding.editTextMail.text.toString()
-                val sifre = binding.editTextSifre.text.toString()
+                val sifre = binding.editTextPassword.text.toString()
 
                 viewModel.girisOnayDurumu(email,sifre,requireContext())
                 veriyiGozlemle()
             } else {
-                Toast.makeText(requireContext(),R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.textViewKayitOl.setOnClickListener {
+        binding.textViewRegister.setOnClickListener {
             findNavController().navigate(R.id.action_girisYapFragment_to_kayitOlFragment)
         }
 
-        binding.textViewSifremiUnuttum.setOnClickListener {
+        binding.textViewForgotMyPassword.setOnClickListener {
             findNavController().navigate(R.id.action_girisYapFragment_to_sifremiUnuttumFragment)
         }
     }
@@ -67,12 +67,12 @@ class GirisYapFragment : Fragment() {
     }
 
     private fun animasyonuGoster(){
-        binding.lottieAnimasyon.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimasyon.playAnimation()
+        binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
+        binding.lottieAnimation.playAnimation()
     }
 
     private fun animasyonuDurdur(){
-        binding.lottieAnimasyon.cancelAnimation()
+        binding.lottieAnimation.cancelAnimation()
     }
 
     private fun veriyiGozlemle(){
@@ -80,11 +80,11 @@ class GirisYapFragment : Fragment() {
             animasyon?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
-                    binding.lottieAnimasyon.visibility = View.VISIBLE
+                    binding.lottieAnimation.visibility = View.VISIBLE
                     animasyonuGoster()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
-                    binding.lottieAnimasyon.visibility = View.GONE
+                    binding.lottieAnimation.visibility = View.GONE
                     animasyonuDurdur()
                 }
             }
@@ -93,7 +93,7 @@ class GirisYapFragment : Fragment() {
             veriOnayi?.let { onay ->
                 if (onay){
                     activity?.let {
-                        val intent = Intent(it, AkisActivity::class.java)
+                        val intent = Intent(it, FlowActivity::class.java)
                         it.startActivity(intent)
                         it.finish()
                     }
@@ -103,7 +103,7 @@ class GirisYapFragment : Fragment() {
     }
 
     private fun veriGirisKontrolu(): Boolean = binding.editTextMail.text.isNotEmpty()
-            && binding.editTextSifre.text.isNotEmpty()
+            && binding.editTextPassword.text.isNotEmpty()
 
     override fun onDestroyView() {
         super.onDestroyView()

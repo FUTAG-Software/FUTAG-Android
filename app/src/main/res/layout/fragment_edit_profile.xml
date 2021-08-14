@@ -19,18 +19,18 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/textViewBaslik"
+                android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:text="@string/profili_duzenle"
+                android:text="@string/edit_profile"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="32sp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageViewProfilResmi"
+                android:id="@+id/imageViewProfileImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="40dp"
@@ -38,7 +38,7 @@
                 app:civ_border_width="2dp" />
 
             <EditText
-                android:id="@+id/editTextAd"
+                android:id="@+id/editTextName"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="40dp"
@@ -47,14 +47,14 @@
                 android:drawableStart="@drawable/kisi"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="@string/adiniz"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/edit_text_text_color_black"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextSoyad"
+                android:id="@+id/editTextSurname"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="25dp"
@@ -63,20 +63,20 @@
                 android:drawableStart="@drawable/kisi"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="@string/soyadiniz"
+                android:hint="@string/surname"
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/edit_text_text_color_black"
                 android:textSize="18sp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/editTextDogumGunu"
+                android:id="@+id/editTextBirthday"
                 android:layout_width="330dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/edit_text_background"
                 android:fontFamily="serif"
-                android:hint="@string/dogum_gununuz"
+                android:hint="@string/your_birthday"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
                 android:singleLine="true"
@@ -90,26 +90,26 @@
                 app:iconTint="@color/menu_grisi" />
 
             <Button
-                android:id="@+id/buttonDegisiklikleriKaydet"
+                android:id="@+id/buttonSaveChanges"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
-                android:text="@string/degisiklikleri_kaydet"
+                android:text="@string/save_changes"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/buttonHesabimiSil"
+                android:id="@+id/buttonDeleteMyAccount"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
-                android:text="@string/hesabimi_sil"
+                android:text="@string/delete_my_account"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="18sp" />

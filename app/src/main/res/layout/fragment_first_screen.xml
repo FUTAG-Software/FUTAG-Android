@@ -10,7 +10,7 @@
     tools:context=".view.onboarding.screens.FirstScreen">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimasyon"
+        android:id="@+id/lottieAnimation"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginBottom="20dp"
@@ -29,23 +29,23 @@
         android:textColor="@color/acilis_screen_text_text_color" />
 
     <TextView
-        android:id="@+id/textViewDunyasi"
+        android:id="@+id/textViewWorld"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/futag_dunyasina_hos_geldiniz"
+        android:text="@string/welcome_to_futag_world"
         android:textSize="28sp"
         android:layout_marginTop="5dp"
         android:textAlignment="center"
         android:textColor="@color/acilis_screen_text_text_color" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonIleri"
+        android:id="@+id/buttonNext"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:background="@drawable/kayit_button_arka_plani"
         app:backgroundTint="@color/acilis_screen_button_color"
-        android:text="@string/ileri"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textColor="@color/acilis_screen_button_text_color" />

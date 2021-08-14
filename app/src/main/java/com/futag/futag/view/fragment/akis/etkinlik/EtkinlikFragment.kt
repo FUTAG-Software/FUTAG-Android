@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.R
 import com.futag.futag.adapter.EtkinliklerRecyclerAdapter
-import com.futag.futag.databinding.FragmentEtkinlikBinding
+import com.futag.futag.databinding.FragmentEventBinding
 import com.futag.futag.model.etkinlik.EtkinliklerModel
 import com.futag.futag.viewmodel.AkisViewModel
 
 class EtkinlikFragment : Fragment() {
 
-    private var _binding: FragmentEtkinlikBinding? = null
+    private var _binding: FragmentEventBinding? = null
     private val binding get() = _binding!!
     private val etkinlikAdapter = EtkinliklerRecyclerAdapter(this, EtkinliklerModel())
     private lateinit var viewModel: AkisViewModel
@@ -23,7 +23,7 @@ class EtkinlikFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEtkinlikBinding.inflate(inflater, container, false)
+        _binding = FragmentEventBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -42,7 +42,7 @@ class EtkinlikFragment : Fragment() {
     private fun observeLiveData(){
         viewModel.etkinlikVerileri.observe(viewLifecycleOwner,{ etkinlikler ->
             etkinlikler?.let {
-                binding.textViewHataMesaji.visibility = View.INVISIBLE
+                binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
                 etkinlikAdapter.etkinlikleriGuncelle(it)
@@ -51,18 +51,18 @@ class EtkinlikFragment : Fragment() {
         viewModel.etkinlikError.observe(viewLifecycleOwner,{ error ->
             error?.let {
                 if (it){
-                    binding.textViewHataMesaji.visibility = View.VISIBLE
+                    binding.textViewErrorMessage.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                     binding.recyclerView.visibility = View.GONE
                 } else {
-                    binding.textViewHataMesaji.visibility = View.GONE
+                    binding.textViewErrorMessage.visibility = View.GONE
                 }
             }
         })
         viewModel.etkinlikYukleniyor.observe(viewLifecycleOwner, { yukleniyor ->
             yukleniyor?.let {
                 if (it){
-                    binding.textViewHataMesaji.visibility = View.GONE
+                    binding.textViewErrorMessage.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
                     binding.recyclerView.visibility = View.GONE
                 } else {

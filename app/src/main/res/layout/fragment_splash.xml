@@ -21,6 +21,6 @@
         android:layout_height="120dp"
         android:src="@drawable/futag_yazi"
         android:layout_marginTop="40dp"
-        android:contentDescription="@string/futag_yazi" />
+        android:contentDescription="@string/futag_text" />
 
 </LinearLayout>

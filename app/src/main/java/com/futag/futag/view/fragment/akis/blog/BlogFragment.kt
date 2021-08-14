@@ -40,7 +40,7 @@ class BlogFragment : Fragment() {
         binding.recyclerView.adapter = blogAdapter
 
         binding.swipeRefreshLayoutBlog.setOnRefreshListener {
-            binding.textViewHataMesaji.visibility = View.GONE
+            binding.textViewErrorMessage.visibility = View.GONE
             binding.progressBar.visibility = View.VISIBLE
             binding.recyclerView.visibility = View.GONE
             viewModel.blogVerileriniAl()
@@ -53,7 +53,7 @@ class BlogFragment : Fragment() {
     private fun observeLiveData(){
         viewModel.blogVerileri.observe(viewLifecycleOwner, { bloglar ->
             bloglar?.let {
-                binding.textViewHataMesaji.visibility = View.INVISIBLE
+                binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
                 blogAdapter.blogYazilariniGuncelle(it)
@@ -62,18 +62,18 @@ class BlogFragment : Fragment() {
         viewModel.blogError.observe(viewLifecycleOwner, { error ->
             error?.let {
                 if (it){
-                    binding.textViewHataMesaji.visibility = View.VISIBLE
+                    binding.textViewErrorMessage.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                     binding.recyclerView.visibility = View.GONE
                 } else {
-                    binding.textViewHataMesaji.visibility = View.GONE
+                    binding.textViewErrorMessage.visibility = View.GONE
                 }
             }
         })
         viewModel.blogYukleniyor.observe(viewLifecycleOwner, { yukleniyor ->
             yukleniyor?.let {
                 if (it){
-                    binding.textViewHataMesaji.visibility = View.GONE
+                    binding.textViewErrorMessage.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
                     binding.recyclerView.visibility = View.GONE
                 } else {

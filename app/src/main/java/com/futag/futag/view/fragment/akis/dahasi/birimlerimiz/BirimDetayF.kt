@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentBirimDetayBinding
+import com.futag.futag.databinding.FragmentUnitDetailBinding
 
 class BirimDetayF : Fragment() {
 
-    private var _binding: FragmentBirimDetayBinding? = null
+    private var _binding: FragmentUnitDetailBinding? = null
     private val binding get() = _binding!!
     private val args: BirimDetayFArgs by navArgs()
 
@@ -20,7 +20,7 @@ class BirimDetayF : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBirimDetayBinding.inflate(inflater,container,false)
+        _binding = FragmentUnitDetailBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
@@ -34,33 +34,33 @@ class BirimDetayF : Fragment() {
         when(id){
             0 -> {
                 binding.imageView.setImageResource(R.drawable.dis_iliskiler_birim_foto2)
-                binding.textViewBirimAdi.text = getString(R.string.dis_iliskiler_birimi)
-                binding.textViewBirimAciklamasi.text = getString(R.string.dis_iliskiler_birim_yazisi)
+                binding.textViewUnitName.text = getString(R.string.foreign_relations_unit)
+                binding.textViewUnitDescription.text = getString(R.string.foreign_relations_unit_text)
             }
             1 -> {
                 binding.imageView.setImageResource(R.drawable.girisimcilik_birim_foto2)
-                binding.textViewBirimAdi.text = getString(R.string.girisimcilik_birimi)
-                binding.textViewBirimAciklamasi.text = getString(R.string.girisimcilik_inovasyon_birim_yazisi)
+                binding.textViewUnitName.text = getString(R.string.entrepreneurship_unit)
+                binding.textViewUnitDescription.text = getString(R.string.entrepreneurship_unit_text)
             }
             2 -> {
                 binding.imageView.setImageResource(R.drawable.medya_birim_foto2)
-                binding.textViewBirimAdi.text = getString(R.string.medya_birimi)
-                binding.textViewBirimAciklamasi.text = getString(R.string.medya_tasarim_birim_yazisi)
+                binding.textViewUnitName.text = getString(R.string.media_unit)
+                binding.textViewUnitDescription.text = getString(R.string.media_unit_text)
             }
             3 -> {
                 binding.imageView.setImageResource(R.drawable.proje_arge_birim_foto2)
-                binding.textViewBirimAdi.text = getString(R.string.proje_arge_birimi)
-                binding.textViewBirimAciklamasi.text = getString(R.string.proje_arge_birim_yazisi)
+                binding.textViewUnitName.text = getString(R.string.project_rd_unit)
+                binding.textViewUnitDescription.text = getString(R.string.project_rd_unit_text)
             }
             4 -> {
                 binding.imageView.setImageResource(R.drawable.sosyal_sorumluluk_birim_foto2)
-                binding.textViewBirimAdi.text = getString(R.string.sosyal_sorumluluk_birimi)
-                binding.textViewBirimAciklamasi.text = getString(R.string.sosyal_sorumluluk_birim_yazisi)
+                binding.textViewUnitName.text = getString(R.string.social_responsibility_unit)
+                binding.textViewUnitDescription.text = getString(R.string.social_responsibility_unit_text)
             }
             5 -> {
                 binding.imageView.setImageResource(R.drawable.yazilim_birim_foto2)
-                binding.textViewBirimAdi.text = getString(R.string.yazilim_birimi)
-                binding.textViewBirimAciklamasi.text = getString(R.string.yazilim_birim_yazisi)
+                binding.textViewUnitName.text = getString(R.string.software_unit)
+                binding.textViewUnitDescription.text = getString(R.string.software_unit_text)
             }
         }
 

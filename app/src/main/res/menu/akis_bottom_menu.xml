@@ -8,22 +8,22 @@
 
     <item
         android:id="@+id/etkinlikFragment"
-        android:title="@string/etkinlik"
+        android:title="@string/events"
         android:icon="@drawable/takvim_bottom" />
 
     <item
         android:id="@+id/evFragment"
-        android:title="@string/ev"
+        android:title="@string/main_screen"
         android:icon="@drawable/ev"/>
 
     <item
         android:id="@+id/profilFragment"
-        android:title="@string/profil"
+        android:title="@string/profile"
         android:icon="@drawable/kullanici" />
 
     <item
         android:id="@+id/dahaFragment"
-        android:title="@string/daha"
+        android:title="@string/moreover"
         android:icon="@drawable/daha" />
 
 </menu>

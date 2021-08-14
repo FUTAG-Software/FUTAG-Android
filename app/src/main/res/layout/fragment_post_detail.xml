@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/fragment_gonderi_detay_scene"
+    app:layoutDescription="@xml/fragment_post_detail_scene"
     tools:context=".view.fragment.akis.blog.BlogDetayFragment">
 
     <ImageView
-        android:id="@+id/imageViewResim"
+        android:id="@+id/imageViewImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/resim"
+        android:contentDescription="@string/image"
         android:maxHeight="450dp"
         android:minHeight="260dp"
         android:scaleType="fitXY"
@@ -21,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewYazar"
+        android:id="@+id/textViewAuthor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -33,7 +34,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageViewResim" />
+        app:layout_constraintTop_toBottomOf="@id/imageViewImage" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -45,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewYazar">
+        app:layout_constraintTop_toBottomOf="@+id/textViewAuthor">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -55,7 +56,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewDetay"
+                android:id="@+id/textViewDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"

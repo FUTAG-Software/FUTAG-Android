@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.futag.futag.databinding.EtkinliklerRecyclerRowBinding
+import com.futag.futag.databinding.EventsRecyclerRowBinding
 import com.futag.futag.model.etkinlik.EtkinliklerModel
 import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.resimleriUrlIleGetir
@@ -16,11 +16,11 @@ class EtkinliklerRecyclerAdapter(
     private val etkinlikListesi: EtkinliklerModel
     ): RecyclerView.Adapter<EtkinliklerRecyclerAdapter.EtkinliklerViewHolder>() {
 
-    inner class EtkinliklerViewHolder(val itemBinding: EtkinliklerRecyclerRowBinding):
+    inner class EtkinliklerViewHolder(val itemBinding: EventsRecyclerRowBinding):
             RecyclerView.ViewHolder(itemBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EtkinliklerViewHolder {
-        val binding = EtkinliklerRecyclerRowBinding.inflate(
+        val binding = EventsRecyclerRowBinding.inflate(
             LayoutInflater.from(parentFragment.requireContext()),parent,false
         )
         return EtkinliklerViewHolder(binding)
@@ -38,7 +38,7 @@ class EtkinliklerRecyclerAdapter(
             canliVeri.image,
             placeholderProgressBar(parentFragment.requireContext())
         )
-        holder.itemBinding.textViewBaslik.text = canliVeri.title
+        holder.itemBinding.textViewTitle.text = canliVeri.title
     }
 
     override fun getItemCount(): Int {

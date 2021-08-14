@@ -8,13 +8,13 @@
     tools:context=".view.fragment.akis.etkinlik.EtkinlikFragment">
 
     <TextView
-        android:id="@+id/textViewBaslik"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:text="@string/etkinlik"
+        android:text="@string/events"
         android:textColor="@color/text_color_koyu"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBaslik" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -44,10 +44,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewHataMesaji"
+        android:id="@+id/textViewErrorMessage"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/hata_mesaji"
+        android:text="@string/error_message"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textColor="@color/text_color_koyu"

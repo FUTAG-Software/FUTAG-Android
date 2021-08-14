@@ -9,7 +9,7 @@
         android:id="@+id/evFragment"
         android:name="com.futag.futag.view.fragment.akis.ev.EvFragment"
         android:label="fragment_ev"
-        tools:layout="@layout/fragment_ev" >
+        tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_evFragment_to_webSitesiFragment"
             app:destination="@id/webSitesiFragment" />
@@ -30,7 +30,7 @@
         android:id="@+id/etkinlikFragment"
         android:name="com.futag.futag.view.fragment.akis.etkinlik.EtkinlikFragment"
         android:label="fragment_etkinlik"
-        tools:layout="@layout/fragment_etkinlik" >
+        tools:layout="@layout/fragment_event" >
         <action
             android:id="@+id/action_etkinlikFragment_to_etkinlikDetayFragment"
             app:destination="@id/etkinlikDetayFragment" />
@@ -39,7 +39,7 @@
         android:id="@+id/profilFragment"
         android:name="com.futag.futag.view.fragment.akis.profil.ProfilFragment"
         android:label="fragment_profil"
-        tools:layout="@layout/fragment_profil" >
+        tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profilFragment_to_profiliDuzenleF"
             app:destination="@id/profiliDuzenleF" />
@@ -48,7 +48,7 @@
         android:id="@+id/dahaFragment"
         android:name="com.futag.futag.view.fragment.akis.dahasi.DahaFragment"
         android:label="fragment_daha"
-        tools:layout="@layout/fragment_daha" >
+        tools:layout="@layout/fragment_moreover" >
         <action
             android:id="@+id/action_dahaFragment_to_birimlerimizF"
             app:destination="@id/birimlerimizF" />
@@ -66,12 +66,12 @@
         android:id="@+id/profiliDuzenleF"
         android:name="com.futag.futag.view.fragment.akis.profil.ProfiliDuzenleF"
         android:label="fragment_profili_duzenle"
-        tools:layout="@layout/fragment_profili_duzenle" />
+        tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/birimlerimizF"
         android:name="com.futag.futag.view.fragment.akis.dahasi.birimlerimiz.BirimlerimizF"
         android:label="fragment_birimlerimiz"
-        tools:layout="@layout/fragment_birimlerimiz" >
+        tools:layout="@layout/fragment_our_units" >
         <action
             android:id="@+id/action_birimlerimizF_to_birimDetayF"
             app:destination="@id/birimDetayF" />
@@ -80,17 +80,17 @@
         android:id="@+id/bildirimlerF"
         android:name="com.futag.futag.view.fragment.akis.dahasi.BildirimlerF"
         android:label="fragment_bildirimler"
-        tools:layout="@layout/fragment_bildirimler" />
+        tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/hakkimizdaF"
         android:name="com.futag.futag.view.fragment.akis.dahasi.HakkimizdaF"
         android:label="fragment_hakkimizda"
-        tools:layout="@layout/fragment_hakkimizda" />
+        tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/birimDetayF"
         android:name="com.futag.futag.view.fragment.akis.dahasi.birimlerimiz.BirimDetayF"
         android:label="fragment_birim_detay"
-        tools:layout="@layout/fragment_birim_detay" >
+        tools:layout="@layout/fragment_unit_detail" >
         <argument
             android:name="birimId"
             app:argType="integer"
@@ -100,7 +100,7 @@
         android:id="@+id/blogDetayFragment"
         android:name="com.futag.futag.view.fragment.akis.blog.BlogDetayFragment"
         android:label="fragment_blog_detay"
-        tools:layout="@layout/fragment_blog_detay" >
+        tools:layout="@layout/fragment_blog_detail" >
         <argument
             android:name="canliBlog"
             app:argType="com.futag.futag.model.blog.BlogModelItem" />
@@ -119,11 +119,12 @@
         android:id="@+id/ayarlarFragment"
         android:name="com.futag.futag.view.fragment.akis.dahasi.AyarlarFragment"
         android:label="fragment_ayarlar"
-        tools:layout="@layout/fragment_ayarlar" />
+        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/gonderiDetayFragment"
         android:name="com.futag.futag.view.fragment.akis.ev.GonderiDetayFragment"
-        android:label="GonderiDetayFragment" >
+        android:label="GonderiDetayFragment"
+        tools:layout="@layout/fragment_post_detail">
         <argument
             android:name="anaSayfaItem"
             app:argType="com.futag.futag.model.anasayfa.AnaSayfaModelItem" />
@@ -132,7 +133,7 @@
         android:id="@+id/etkinlikDetayFragment"
         android:name="com.futag.futag.view.fragment.akis.etkinlik.EtkinlikDetayFragment"
         android:label="fragment_etkinlik_detay"
-        tools:layout="@layout/fragment_etkinlik_detay" >
+        tools:layout="@layout/fragment_event_detail" >
         <argument
             android:name="canliEtkinlik"
             app:argType="com.futag.futag.model.etkinlik.EtkinliklerModelItem" />

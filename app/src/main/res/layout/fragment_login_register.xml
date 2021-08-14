@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimasyon"
+            android:id="@+id/lottieAnimation"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:visibility="gone"
@@ -40,7 +40,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/imageViewFutagDevre"
+                android:id="@+id/imageViewFutagCircuit"
                 android:layout_width="match_parent"
                 android:layout_height="360dp"
                 android:background="@drawable/devre"
@@ -55,14 +55,14 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="305dp"
-                android:contentDescription="@string/devre_gorunumu"
+                android:contentDescription="@string/circuit_view"
                 android:src="@drawable/futag_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewKulupText"
+                android:id="@+id/textViewClubText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -70,48 +70,48 @@
                 android:textColor="@color/text_color_koyu"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textViewKulupMetin"
-                app:layout_constraintStart_toStartOf="@+id/textViewKulupMetin"
+                app:layout_constraintEnd_toEndOf="@+id/textViewClubDescription"
+                app:layout_constraintStart_toStartOf="@+id/textViewClubDescription"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewFutag" />
 
             <TextView
-                android:id="@+id/textViewKulupMetin"
+                android:id="@+id/textViewClubDescription"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="@string/giris_metin"
+                android:text="@string/intro_text"
                 android:textAlignment="center"
                 android:textColor="@color/hint_color"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewKulupText" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewClubText" />
 
             <Button
-                android:id="@+id/buttonGirisYap"
+                android:id="@+id/buttonLogIn"
                 android:layout_width="320dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
-                android:text="@string/giris_yap"
+                android:text="@string/log_in"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewKulupMetin" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewClubDescription" />
 
             <Button
-                android:id="@+id/buttonKayitOl"
+                android:id="@+id/buttonRegister"
                 android:layout_width="320dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/kayit_button_arka_plani"
-                android:text="@string/kayit_ol"
+                android:text="@string/register"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="18sp"
@@ -119,7 +119,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonGirisYap" />
+                app:layout_constraintTop_toBottomOf="@+id/buttonLogIn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

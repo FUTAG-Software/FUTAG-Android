@@ -27,14 +27,14 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:text="@string/profil"
+                android:text="@string/profile"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="32sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageViewProfilResmi"
+                android:id="@+id/imageViewProfileImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="15dp"
@@ -46,24 +46,23 @@
                 app:layout_constraintTop_toBottomOf="@id/textViewBaslik" />
 
             <TextView
-                android:id="@+id/textViewIsimSoyisim"
+                android:id="@+id/textViewNameAndSurname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:textAlignment="center"
-                android:text="@string/app_name"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageViewProfilResmi" />
+                app:layout_constraintTop_toBottomOf="@id/imageViewProfileImage" />
 
             <EditText
-                android:id="@+id/editTextKullaniciMail"
+                android:id="@+id/editTextUserMail"
                 android:layout_width="330dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="50dp"
@@ -79,10 +78,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewIsimSoyisim" />
+                app:layout_constraintTop_toBottomOf="@id/textViewNameAndSurname" />
 
             <EditText
-                android:id="@+id/editTextDogumTarihi"
+                android:id="@+id/editTextBirthday"
                 android:layout_width="330dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="30dp"
@@ -91,40 +90,40 @@
                 android:drawableStart="@drawable/takvim"
                 android:drawablePadding="10dp"
                 android:focusable="false"
-                android:hint="@string/dogum_gununuz"
+                android:hint="@string/your_birthday"
                 android:inputType="none"
                 android:textColor="@color/edit_text_text_color_black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextKullaniciMail" />
+                app:layout_constraintTop_toBottomOf="@id/editTextUserMail" />
 
             <Button
-                android:id="@+id/buttonProfiliDuzenle"
+                android:id="@+id/buttonEditProfile"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="60dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
-                android:text="@string/profili_duzenle"
+                android:text="@string/edit_profile"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.506"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextDogumTarihi" />
+                app:layout_constraintTop_toBottomOf="@id/editTextBirthday" />
 
             <Button
-                android:id="@+id/buttonCikisYap"
+                android:id="@+id/buttonSignOut"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/kayit_button_arka_plani"
                 android:backgroundTint="@color/button_background_sari"
-                android:text="@string/cikis_yap"
+                android:text="@string/sign_out"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_koyu"
                 android:textSize="18sp"
@@ -132,7 +131,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonProfiliDuzenle" />
+                app:layout_constraintTop_toBottomOf="@id/buttonEditProfile" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

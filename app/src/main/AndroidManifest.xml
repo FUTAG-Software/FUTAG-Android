@@ -19,10 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FUTAG">
         <activity
-            android:name=".view.activity.AkisActivity"
+            android:name=".view.activity.FlowActivity"
             android:windowSoftInputMode="stateVisible|adjustPan"/>
         <activity
-            android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -9,12 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.R
 import com.futag.futag.adapter.DahasiRecyclerAdapter
-import com.futag.futag.databinding.FragmentDahaBinding
+import com.futag.futag.databinding.FragmentMoreoverBinding
 import com.futag.futag.model.DahasiItemModel
 
 class DahaFragment : Fragment() {
 
-    private var _binding: FragmentDahaBinding? = null
+    private var _binding: FragmentMoreoverBinding? = null
     private val binding get() = _binding!!
     private lateinit var itemList: ArrayList<DahasiItemModel>
     private lateinit var adapter: DahasiRecyclerAdapter
@@ -23,7 +23,7 @@ class DahaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDahaBinding.inflate(inflater, container, false)
+        _binding = FragmentMoreoverBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -35,27 +35,27 @@ class DahaFragment : Fragment() {
 
         val birimlerimiz = DahasiItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.futag_icon)!!,
-            getString(R.string.birimlerimiz)
+            getString(R.string.our_units)
         )
         val biziOyla = DahasiItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.yildiz)!!,
-            getString(R.string.bizi_oyla)
+            getString(R.string.rate_us)
         )
         val bildirimler = DahasiItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.zil)!!,
-            getString(R.string.bildirimler)
+            getString(R.string.notification)
         )
         val geriBildirim = DahasiItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.mail_iletisim)!!,
-            getString(R.string.geri_bildirim)
+            getString(R.string.feedback)
         )
         val hakkimizda = DahasiItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.info)!!,
-            getString(R.string.hakkimizda)
+            getString(R.string.about_us)
         )
         val ayarlar = DahasiItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.ayarlar)!!,
-            getString(R.string.ayarlar)
+            getString(R.string.settings)
         )
 
         itemList.add(birimlerimiz)

@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.akis.dahasi.BildirimlerF">
+    tools:context=".view.fragment.akis.dahasi.DahaFragment">
 
     <TextView
-        android:id="@+id/textViewBaslik"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:text="@string/bildirimler"
+        android:text="@string/more"
         android:textColor="@color/text_color_koyu"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,22 +24,25 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBaslik" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     <TextView
-        android:id="@+id/textViewBildirimYok"
+        android:id="@+id/textViewMe"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/bildirim_yok"
-        android:textSize="24sp"
-        android:visibility="gone"
+        android:layout_height="20dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/copyright"
+        android:textColor="@color/text_color_koyu"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

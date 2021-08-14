@@ -10,21 +10,21 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentGonderiDetayBinding
+import com.futag.futag.databinding.FragmentPostDetailBinding
 import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.resimleriUrlIleGetir
 
 class GonderiDetayFragment : Fragment() {
 
     private val args by navArgs<GonderiDetayFragmentArgs>()
-    private var _binding: FragmentGonderiDetayBinding? = null
+    private var _binding: FragmentPostDetailBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGonderiDetayBinding.inflate(inflater,container,false)
+        _binding = FragmentPostDetailBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
@@ -34,23 +34,23 @@ class GonderiDetayFragment : Fragment() {
 
         val canliVeri = args.anaSayfaItem
         if(canliVeri.featuredImage != null){
-            binding.imageViewResim.resimleriUrlIleGetir(canliVeri.featuredImage.large,
+            binding.imageViewImage.resimleriUrlIleGetir(canliVeri.featuredImage.large,
                 placeholderProgressBar(requireContext())
             )
         } else {
-            binding.imageViewResim.setImageDrawable(
+            binding.imageViewImage.setImageDrawable(
                 ContextCompat.getDrawable(requireContext(), R.drawable.error)
             )
         }
-        binding.textViewYazar.text = canliVeri.author
+        binding.textViewAuthor.text = canliVeri.author
 
         var resimsizHTML = canliVeri.content.replace(Regex("<img.+>"), "")
         resimsizHTML = resimsizHTML.replace(Regex("\\n"),"<br>")
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            binding.textViewDetay.text = Html.fromHtml(resimsizHTML, Html.FROM_HTML_MODE_COMPACT)
+            binding.textViewDetail.text = Html.fromHtml(resimsizHTML, Html.FROM_HTML_MODE_COMPACT)
         } else {
-            binding.textViewDetay.text = Html.fromHtml(resimsizHTML)
+            binding.textViewDetail.text = Html.fromHtml(resimsizHTML)
         }
 
     }

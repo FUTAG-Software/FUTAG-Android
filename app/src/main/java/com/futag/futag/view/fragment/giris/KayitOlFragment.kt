@@ -26,8 +26,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.BottomSheetDialogKvkkBinding
-import com.futag.futag.databinding.FragmentKayitOlBinding
-import com.futag.futag.view.activity.AkisActivity
+import com.futag.futag.databinding.FragmentRegisterBinding
+import com.futag.futag.view.activity.FlowActivity
 import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
@@ -37,7 +37,7 @@ import java.util.*
 
 class KayitOlFragment : Fragment() {
 
-    private var _binding: FragmentKayitOlBinding? = null
+    private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: KayitOlGirisYapViewModel
     private var selectedBitmap: Bitmap? = null
@@ -53,7 +53,7 @@ class KayitOlFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentKayitOlBinding.inflate(inflater,container,false)
+        _binding = FragmentRegisterBinding.inflate(inflater,container,false)
         val view = binding.root
         registerLauncher()
         return view
@@ -69,7 +69,7 @@ class KayitOlFragment : Fragment() {
         val ay = takvim.get(Calendar.MONTH)
         val gun = takvim.get(Calendar.DAY_OF_MONTH)
 
-        binding.textViewKvkkMetni.setOnClickListener {
+        binding.textViewKvkkText.setOnClickListener {
             val bottomSheetDialog = BottomSheetDialog(requireContext(),R.style.ThemeOverlay_MaterialComponents_BottomSheetDialog)
             val bottomSheetBinding = BottomSheetDialogKvkkBinding.inflate(LayoutInflater.from(requireContext()))
             bottomSheetDialog.setContentView(bottomSheetBinding.root)
@@ -77,15 +77,15 @@ class KayitOlFragment : Fragment() {
         }
 
         // Kullanici dogum gununun alinmasi; Gun,Ay,Yil
-        binding.editTextDogumGunu.setOnClickListener {
+        binding.editTextBirthday.setOnClickListener {
             val dpd = DatePickerDialog(requireContext(), { _, mYil, mAy, mGun ->
                 val tarih = "$mGun-${mAy+1}-$mYil"
-                binding.editTextDogumGunu.text = tarih
+                binding.editTextBirthday.text = tarih
             }, yil, ay, gun)
             dpd.show()
         }
 
-        binding.imageViewProfilResmi.setOnClickListener {
+        binding.imageViewCircleImage.setOnClickListener {
             if((ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
                         + ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 != PackageManager.PERMISSION_GRANTED) {
@@ -94,8 +94,8 @@ class KayitOlFragment : Fragment() {
                     || ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)){
                     Snackbar.make(
                         it,
-                        R.string.galeri_izni,
-                        Snackbar.LENGTH_LONG).setAction(R.string.izin_ver) {
+                        R.string.gallery_permission,
+                        Snackbar.LENGTH_LONG).setAction(R.string.give_permission) {
                         permissionLauncher.launch(neededRuntimePermissions)
                     }.show()
                 } else {
@@ -108,8 +108,8 @@ class KayitOlFragment : Fragment() {
             }
         }
 
-        binding.buttonKayitOl.setOnClickListener {
-            if (binding.imageViewProfilResmi.drawable != null){
+        binding.buttonRegister.setOnClickListener {
+            if (binding.imageViewCircleImage.drawable != null){
                 klavyeyiKapat()
                 if (selectedBitmap != null) {
                     val smallBitmap = makeSmallerBitmap(selectedBitmap!!,400)
@@ -118,11 +118,11 @@ class KayitOlFragment : Fragment() {
                     firebaseVeriKaydi(null)
                 }
             } else {
-                Toast.makeText(requireContext(), R.string.resim_seciniz,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.select_picture,Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.textViewGirisYap.setOnClickListener {
+        binding.textViewLogIn.setOnClickListener {
             findNavController().navigate(R.id.action_kayitOlFragment_to_girisYapFragment)
         }
 
@@ -130,20 +130,20 @@ class KayitOlFragment : Fragment() {
 
     private fun firebaseVeriKaydi(secilenGorsel: Uri?){
         if(veriGirisKontrolu()){
-            val isim = binding.editTextAd.text.toString()
-            val soyisim = binding.editTextSoyad.text.toString()
+            val isim = binding.editTextName.text.toString()
+            val soyisim = binding.editTextSurname.text.toString()
             val email = binding.editTextMail.text.toString()
-            val sifre = binding.editTextSifre.text.toString()
-            val sifreTekrar = binding.editTextSifreTekrar.text.toString()
-            val dogumgunu = binding.editTextDogumGunu.text.toString()
+            val sifre = binding.editTextPassword.text.toString()
+            val sifreTekrar = binding.editTextAgainPassword.text.toString()
+            val dogumgunu = binding.editTextBirthday.text.toString()
             if(sifre == sifreTekrar){
                 viewModel.kayitOnayDurumu(email, sifre, isim, soyisim, dogumgunu, secilenGorsel, requireContext())
                 veriyiGozlemle()
             } else {
-                Toast.makeText(requireContext(),R.string.sifreler_ayni_olmalidir,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),R.string.password_must_match,Toast.LENGTH_SHORT).show()
             }
         } else {
-            Toast.makeText(requireContext(), R.string.bosluklari_doldurunuz,Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -152,11 +152,11 @@ class KayitOlFragment : Fragment() {
             animasyon?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
-                    binding.lottieAnimasyon.visibility = View.VISIBLE
+                    binding.lottieAnimation.visibility = View.VISIBLE
                     animasyonuGoster()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
-                    binding.lottieAnimasyon.visibility = View.GONE
+                    binding.lottieAnimation.visibility = View.GONE
                     animasyonuDurdur()
                 }
             }
@@ -167,10 +167,10 @@ class KayitOlFragment : Fragment() {
                     activity?.let {
                         Toast.makeText(
                             requireContext(),
-                            "${resources.getString(R.string.hos_geldin)} ${binding.editTextAd.text}"
+                            "${resources.getString(R.string.welcome)} ${binding.editTextName.text}"
                             ,Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(it, AkisActivity::class.java)
+                        val intent = Intent(it, FlowActivity::class.java)
                         it.startActivity(intent)
                         it.finish()
                     }
@@ -191,10 +191,10 @@ class KayitOlFragment : Fragment() {
                             if (Build.VERSION.SDK_INT >= 28){
                                 val source = ImageDecoder.createSource(requireActivity().contentResolver,imageData)
                                 selectedBitmap = ImageDecoder.decodeBitmap(source)
-                                binding.imageViewProfilResmi.setImageBitmap(selectedBitmap)
+                                binding.imageViewCircleImage.setImageBitmap(selectedBitmap)
                             } else {
                                 selectedBitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,imageData)
-                                binding.imageViewProfilResmi.setImageBitmap(selectedBitmap)
+                                binding.imageViewCircleImage.setImageBitmap(selectedBitmap)
                             }
                         } catch (e: Exception){
                             e.printStackTrace()
@@ -244,18 +244,18 @@ class KayitOlFragment : Fragment() {
     }
 
     // Butun alanlarin dolu olma durumunun kontrolu
-    private fun veriGirisKontrolu(): Boolean = binding.editTextAd.text.isNotEmpty()
-            && binding.editTextSoyad.text.isNotEmpty() && binding.editTextMail.text.isNotEmpty() &&
-            binding.editTextSifre.text.isNotEmpty() && binding.editTextSifreTekrar.text.isNotEmpty()
-            && binding.editTextDogumGunu.text.isNotEmpty()
+    private fun veriGirisKontrolu(): Boolean = binding.editTextName.text.isNotEmpty()
+            && binding.editTextSurname.text.isNotEmpty() && binding.editTextMail.text.isNotEmpty() &&
+            binding.editTextPassword.text.isNotEmpty() && binding.editTextAgainPassword.text.isNotEmpty()
+            && binding.editTextBirthday.text.isNotEmpty()
 
     private fun animasyonuGoster(){
-        binding.lottieAnimasyon.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimasyon.playAnimation()
+        binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
+        binding.lottieAnimation.playAnimation()
     }
 
     private fun animasyonuDurdur(){
-        binding.lottieAnimasyon.cancelAnimation()
+        binding.lottieAnimation.cancelAnimation()
     }
 
     private fun klavyeyiKapat(){

@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.futag.futag.adapter.GonderilerRecyclerAdapter
 import com.futag.futag.adapter.ReklamlarRecyclerAdapter
-import com.futag.futag.databinding.FragmentEvBinding
+import com.futag.futag.databinding.FragmentHomeBinding
 import com.futag.futag.model.anasayfa.AnaSayfaModel
 import com.futag.futag.util.LinePagerIndicatorDecoration
 import com.futag.futag.viewmodel.AkisViewModel
 
 class EvFragment : Fragment() {
 
-    private var _binding: FragmentEvBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var reklamlarAdapter: ReklamlarRecyclerAdapter
     private lateinit var viewModel: AkisViewModel
@@ -27,7 +27,7 @@ class EvFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEvBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -43,21 +43,21 @@ class EvFragment : Fragment() {
 
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = gonderiAdapter
-        binding.recyclerViewReklam.layoutManager = layoutManagerReklam
+        binding.recyclerViewAds.layoutManager = layoutManagerReklam
 
         val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.recyclerViewReklam)
+        snapHelper.attachToRecyclerView(binding.recyclerViewAds)
 
         observeGonderiLiveData()
         observeReklamLiveData()
 
-        binding.recyclerViewReklam.addItemDecoration(LinePagerIndicatorDecoration())
+        binding.recyclerViewAds.addItemDecoration(LinePagerIndicatorDecoration())
     }
 
     private fun observeGonderiLiveData(){
         viewModel.anaSayfaVerileri.observe(viewLifecycleOwner, { bloglar ->
             bloglar?.let {
-                binding.textViewHataMesaji.visibility = View.INVISIBLE
+                binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
                 gonderiAdapter.gonderiGuncelle(it)
@@ -66,18 +66,18 @@ class EvFragment : Fragment() {
         viewModel.anaSayfaError.observe(viewLifecycleOwner, { error ->
             error?.let {
                 if (it){
-                    binding.textViewHataMesaji.visibility = View.VISIBLE
+                    binding.textViewErrorMessage.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                     binding.recyclerView.visibility = View.GONE
                 } else {
-                    binding.textViewHataMesaji.visibility = View.GONE
+                    binding.textViewErrorMessage.visibility = View.GONE
                 }
             }
         })
         viewModel.anaSayfaYukleniyor.observe(viewLifecycleOwner, { yukleniyor ->
             yukleniyor?.let {
                 if (it){
-                    binding.textViewHataMesaji.visibility = View.GONE
+                    binding.textViewErrorMessage.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
                     binding.recyclerView.visibility = View.GONE
                 } else {
@@ -91,16 +91,16 @@ class EvFragment : Fragment() {
         viewModel.anaSayfaReklamVerileri.observe(viewLifecycleOwner, { reklamlar ->
             reklamlar?.let { reklamModel ->
                 binding.progressBarSlider.visibility = View.INVISIBLE
-                binding.recyclerViewReklam.visibility = View.VISIBLE
+                binding.recyclerViewAds.visibility = View.VISIBLE
                 reklamlarAdapter = ReklamlarRecyclerAdapter(reklamModel,this)
-                binding.recyclerViewReklam.adapter = reklamlarAdapter
+                binding.recyclerViewAds.adapter = reklamlarAdapter
             }
         })
         viewModel.anaSayfaReklamError.observe(viewLifecycleOwner, { error ->
             error?.let {
                 if (it){
                     binding.progressBarSlider.visibility = View.GONE
-                    binding.recyclerViewReklam.visibility = View.GONE
+                    binding.recyclerViewAds.visibility = View.GONE
                 }
             }
         })
@@ -108,7 +108,7 @@ class EvFragment : Fragment() {
             yukleniyor?.let {
                 if (it){
                     binding.progressBarSlider.visibility = View.VISIBLE
-                    binding.recyclerViewReklam.visibility = View.GONE
+                    binding.recyclerViewAds.visibility = View.GONE
                 } else {
                     binding.progressBarSlider.visibility = View.GONE
                 }

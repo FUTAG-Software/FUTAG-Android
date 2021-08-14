@@ -7,15 +7,15 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.futag.futag.R
-import com.futag.futag.databinding.ActivityAkisBinding
+import com.futag.futag.databinding.ActivityFlowBinding
 
-class AkisActivity : AppCompatActivity() {
+class FlowActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAkisBinding
+    private lateinit var binding: ActivityFlowBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAkisBinding.inflate(layoutInflater)
+        binding = ActivityFlowBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()

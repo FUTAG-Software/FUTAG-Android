@@ -36,7 +36,7 @@
         android:id="@+id/girisKayitFragment"
         android:name="com.futag.futag.view.fragment.giris.GirisKayitFragment"
         android:label="fragment_giris_kayit"
-        tools:layout="@layout/fragment_giris_kayit" >
+        tools:layout="@layout/fragment_login_register" >
         <action
             android:id="@+id/action_girisKayitFragment_to_girisYapFragment"
             app:destination="@id/girisYapFragment" />
@@ -48,7 +48,7 @@
         android:id="@+id/girisYapFragment"
         android:name="com.futag.futag.view.fragment.giris.GirisYapFragment"
         android:label="fragment_giris_yap"
-        tools:layout="@layout/fragment_giris_yap" >
+        tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_girisYapFragment_to_kayitOlFragment"
             app:destination="@id/kayitOlFragment" />
@@ -62,7 +62,7 @@
         android:id="@+id/kayitOlFragment"
         android:name="com.futag.futag.view.fragment.giris.KayitOlFragment"
         android:label="fragment_kayit_ol"
-        tools:layout="@layout/fragment_kayit_ol" >
+        tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_kayitOlFragment_to_girisYapFragment"
             app:destination="@id/girisYapFragment" />
@@ -71,5 +71,5 @@
         android:id="@+id/sifremiUnuttumFragment"
         android:name="com.futag.futag.view.fragment.giris.SifremiUnuttumFragment"
         android:label="fragment_sifremi_unuttum"
-        tools:layout="@layout/fragment_sifremi_unuttum" />
+        tools:layout="@layout/fragment_forgot_password" />
 </navigation>

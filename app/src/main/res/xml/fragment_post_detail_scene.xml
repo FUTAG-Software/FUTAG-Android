@@ -9,24 +9,24 @@
         motion:duration="1000">
        <KeyFrameSet>
            <KeyAttribute
-               motion:motionTarget="@+id/imageViewResim"
+               motion:motionTarget="@+id/imageViewImage"
                motion:framePosition="100"
                android:alpha="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/imageViewResim"
+               motion:motionTarget="@+id/imageViewImage"
                motion:framePosition="50"
                android:alpha="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/imageViewResim"
+               motion:motionTarget="@+id/imageViewImage"
                motion:framePosition="100"
                android:scaleX="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/imageViewResim"
+               motion:motionTarget="@+id/imageViewImage"
                motion:framePosition="100"
                android:scaleY="0" />
        </KeyFrameSet>
         <OnSwipe
-            motion:touchAnchorId="@+id/imageViewResim"
+            motion:touchAnchorId="@+id/imageViewImage"
             motion:touchAnchorSide="bottom" />
     </Transition>
 
@@ -37,6 +37,6 @@
         <Constraint
             android:layout_height="1dp"
             android:layout_width="match_parent"
-            android:id="@+id/imageViewResim" />
+            android:id="@+id/imageViewImage" />
     </ConstraintSet>
 </MotionScene>
