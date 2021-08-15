@@ -26,7 +26,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/edit_profile"
-                android:textColor="@color/text_color_koyu"
+                android:textColor="@color/text_color_dark"
                 android:textSize="32sp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -34,7 +34,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="40dp"
-                app:civ_border_color="@color/sari"
+                app:civ_border_color="@color/yellow"
                 app:civ_border_width="2dp" />
 
             <EditText
@@ -87,7 +87,7 @@
                 app:backgroundTint="@color/edit_text_background_color"
                 app:icon="@drawable/takvim"
                 app:iconPadding="10dp"
-                app:iconTint="@color/menu_grisi" />
+                app:iconTint="@color/menu_gray" />
 
             <Button
                 android:id="@+id/buttonSaveChanges"
@@ -95,10 +95,10 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/kayit_button_arka_plani"
-                android:backgroundTint="@color/button_background_sari"
+                android:backgroundTint="@color/button_background_yellow"
                 android:text="@string/save_changes"
                 android:textAllCaps="false"
-                android:textColor="@color/text_color_koyu"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp" />
 
             <Button
@@ -108,10 +108,10 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/kayit_button_arka_plani"
-                android:backgroundTint="@color/button_background_sari"
+                android:backgroundTint="@color/button_background_yellow"
                 android:text="@string/delete_my_account"
                 android:textAllCaps="false"
-                android:textColor="@color/text_color_koyu"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp" />
 
         </LinearLayout>

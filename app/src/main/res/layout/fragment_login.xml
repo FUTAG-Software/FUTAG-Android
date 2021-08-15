@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/log_in"
-                android:textColor="@color/text_color_koyu"
+                android:textColor="@color/text_color_dark"
                 android:textSize="30sp" />
 
             <TextView
@@ -81,10 +81,10 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/kayit_button_arka_plani"
-                android:backgroundTint="@color/button_background_sari"
+                android:backgroundTint="@color/button_background_yellow"
                 android:text="@string/log_in"
                 android:textAllCaps="false"
-                android:textColor="@color/text_color_koyu"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/forgot_password"
                 android:textAlignment="center"
-                android:textColor="@color/text_color_koyu"
+                android:textColor="@color/text_color_dark"
                 android:textSize="18sp" />
 
             <ImageView
@@ -129,7 +129,7 @@
                     android:text="@string/register"
                     android:textAlignment="center"
                     android:textStyle="bold"
-                    android:textColor="@color/text_color_sari"
+                    android:textColor="@color/text_color_yellow"
                     android:textSize="18sp" />
 
             </LinearLayout>

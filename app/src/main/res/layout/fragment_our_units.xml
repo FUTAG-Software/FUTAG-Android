@@ -19,7 +19,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
             android:text="@string/our_units"
-            android:textColor="@color/text_color_koyu"
+            android:textColor="@color/text_color_dark"
             android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -89,7 +89,7 @@
                         android:text="@string/foreign_relations_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/dahasi_text_color"
+                        android:textColor="@color/moreover_text_color"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -139,7 +139,7 @@
                         android:text="@string/entrepreneurship_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/dahasi_text_color"
+                        android:textColor="@color/moreover_text_color"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -189,7 +189,7 @@
                         android:text="@string/media_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/dahasi_text_color"
+                        android:textColor="@color/moreover_text_color"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -239,7 +239,7 @@
                         android:text="@string/project_rd_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/dahasi_text_color"
+                        android:textColor="@color/moreover_text_color"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -289,7 +289,7 @@
                         android:text="@string/social_responsibility_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/dahasi_text_color"
+                        android:textColor="@color/moreover_text_color"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -339,7 +339,7 @@
                         android:text="@string/software_unit"
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/dahasi_text_color"
+                        android:textColor="@color/moreover_text_color"
                         android:textSize="20sp"/>
 
                 </LinearLayout>

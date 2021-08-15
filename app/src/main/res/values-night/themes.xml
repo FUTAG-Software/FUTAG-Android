@@ -2,16 +2,16 @@
     <!-- Base application theme. -->
     <style name="Theme.FUTAGDark" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/sari</item>
-        <item name="colorPrimaryVariant">@color/acik_gri</item>
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimaryVariant">@color/light_gray</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/acik_gri3</item>
+        <item name="colorSecondary">@color/light_gray3</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:colorBackground">@color/sayfa_background_color</item>
-        <item name="android:textColorHint">@color/menu_grisi</item>
+        <item name="android:colorBackground">@color/page_background_color</item>
+        <item name="android:textColorHint">@color/menu_gray</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>

@@ -5,7 +5,7 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:backgroundTint="@color/dahasi_item_background_color"
+    android:backgroundTint="@color/moreover_item_background_color"
     app:cardCornerRadius="15dp"
     android:elevation="20dp"
     android:layout_marginBottom="16dp">
@@ -41,7 +41,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="20dp"
             android:textAlignment="textStart"
-            android:textColor="@color/dahasi_text_color"
+            android:textColor="@color/moreover_text_color"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageViewMark"

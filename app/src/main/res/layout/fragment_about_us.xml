@@ -19,7 +19,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
             android:text="@string/about_us"
-            android:textColor="@color/text_color_koyu"
+            android:textColor="@color/text_color_dark"
             android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

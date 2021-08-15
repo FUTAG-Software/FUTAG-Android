@@ -8,12 +8,15 @@
         <entry key="app/src/main/res/drawable/ayarlar.xml" value="0.2236842105263158" />
         <entry key="app/src/main/res/drawable/bildirimler.xml" value="0.2943722943722944" />
         <entry key="app/src/main/res/drawable/birim_detay_card_view.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/drawable/birimlerimiz_birimler_background.xml" value="0.12828947368421054" />
+        <entry key="app/src/main/res/drawable/birimlerimiz_sarilik_background.xml" value="0.12828947368421054" />
         <entry key="app/src/main/res/drawable/blog_detay_radius.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/dahasi_fragment_oval_gorunum.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/drawable/dil_secimi.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/drawable/duzenle_2_kalem_resmi.xml" value="0.2943722943722944" />
         <entry key="app/src/main/res/drawable/edit_text_background.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/drawable/error.xml" value="0.13958333333333334" />
+        <entry key="app/src/main/res/drawable/giris_card_view.xml" value="0.12828947368421054" />
         <entry key="app/src/main/res/drawable/kayit_button_arka_plani.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kisi.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/drawable/kisi_yuksek_cozunurluk.xml" value="0.2361111111111111" />
@@ -50,6 +53,7 @@
         <entry key="app/src/main/res/layout/fragment_etkinlik.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_etkinlik_detay.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ev.xml" value="0.18333333333333332" />
+        <entry key="app/src/main/res/layout/fragment_event.xml" value="0.1180921052631579" />
         <entry key="app/src/main/res/layout/fragment_event_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.21107491856677524" />
@@ -61,12 +65,17 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_kayit_ol.xml" value="0.21107491856677524" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout/fragment_login_register.xml" value="0.1180921052631579" />
+        <entry key="app/src/main/res/layout/fragment_moreover.xml" value="0.1180921052631579" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.21107491856677524" />
         <entry key="app/src/main/res/layout/fragment_our_units.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_post_detail.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_profil.xml" value="0.21348684210526317" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1174342105263158" />
         <entry key="app/src/main/res/layout/fragment_profili_duzenle.xml" value="0.3380208333333333" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.1174342105263158" />
         <entry key="app/src/main/res/layout/fragment_second_screen.xml" value="0.1180921052631579" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.1180921052631579" />
         <entry key="app/src/main/res/layout/fragment_sifremi_unuttum.xml" value="0.1180921052631579" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.2131578947368421" />

@@ -15,7 +15,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:text="@string/events"
-        android:textColor="@color/text_color_koyu"
+        android:textColor="@color/text_color_dark"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,7 @@
         android:text="@string/error_message"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:textColor="@color/text_color_koyu"
+        android:textColor="@color/text_color_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

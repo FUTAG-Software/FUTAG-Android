@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardViewEtkinlik"
-    app:cardBackgroundColor="@color/ana_sayfa_gonderi_background_color"
+    app:cardBackgroundColor="@color/main_page_post_background_color"
     android:layout_margin="10dp"
     app:cardElevation="20dp"
     app:cardCornerRadius="20dp"

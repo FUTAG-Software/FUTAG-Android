@@ -6,52 +6,52 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="black_acik">#2B2B2B</color>
-    <color name="black_acik_2x">#4E4E4E</color>
+    <color name="light_black">#2B2B2B</color>
+    <color name="light_black_2x">#4E4E4E</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue">#1362FF</color>
+    <color name="blueX">#1362FF</color>
 
-    <color name="sari">#FBBD14</color>
-    <color name="turuncu">#ff6900</color>
-    <color name="mavi">#3477BC</color>
-    <color name="menu_grisi">#3D3D3F</color>
-    <color name="acik_gri">#B6B7B7</color>
-    <color name="acik_gri2">#E4E4E4</color>
-    <color name="acik_gri3">#F2F2F2</color>
+    <color name="yellow">#FBBD14</color>
+    <color name="orange">#ff6900</color>
+    <color name="blue">#3477BC</color>
+    <color name="menu_gray">#3D3D3F</color>
+    <color name="light_gray">#B6B7B7</color>
+    <color name="light_gray2">#E4E4E4</color>
+    <color name="light_gray3">#F2F2F2</color>
 
     <!-- Genel Kullanilan Renkler -->
-    <color name="sayfa_background_color">@color/white</color>
-    <color name="ana_sayfa_gonderi_background_color">@color/white</color>
-    <color name="text_color_koyu">@color/menu_grisi</color>
-    <color name="text_color_acik">@color/acik_gri</color>
-    <color name="text_color_sari">@color/sari</color>
-    <color name="hint_color">@color/acik_gri</color>
-    <color name="button_background_sari">@color/sari</color>
+    <color name="page_background_color">@color/white</color>
+    <color name="main_page_post_background_color">@color/white</color>
+    <color name="text_color_dark">@color/menu_gray</color>
+    <color name="text_color_light">@color/light_gray</color>
+    <color name="text_color_yellow">@color/yellow</color>
+    <color name="hint_color">@color/light_gray</color>
+    <color name="button_background_yellow">@color/yellow</color>
     <color name="button_background_white">@color/white</color>
-    <color name="edit_text_background_color">@color/acik_gri2</color>
+    <color name="edit_text_background_color">@color/light_gray2</color>
     <color name="edit_text_text_color_black">@color/black</color>
     <color name="blog_text_color">@color/white</color>
 
     <!-- Acilis Sayfa Renkleri -->
-    <color name="splash_fragment_background">@color/acik_gri2</color>
-    <color name="acilis_screen_button_color">@color/blue</color>
-    <color name="acilis_screen_button_text_color">@color/white</color>
-    <color name="acilis_screen_text_text_color">@color/menu_grisi</color>
-    <color name="on_boarding_sari">#EDDE45</color>
-    <color name="acilis_second_screen_button_text_color">@color/white</color>
-    <color name="acilis_third_screen_background_color">@color/turuncu</color>
+    <color name="splash_fragment_background">@color/light_gray2</color>
+    <color name="opening_screen_button_color">@color/blueX</color>
+    <color name="opening_screen_button_text_color">@color/white</color>
+    <color name="opening_screen_text_text_color">@color/menu_gray</color>
+    <color name="on_boarding_yellow">#EDDE45</color>
+    <color name="opening_second_screen_button_text_color">@color/white</color>
+    <color name="opening_third_screen_background_color">@color/orange</color>
 
     <!-- GirisKayit Sayfa Renkleri -->
-    <color name="kayit_button_arka_plani">@color/black_acik</color>
+    <color name="register_button_background">@color/light_black</color>
 
     <!-- BottomNAvigationView Renkleri -->
     <color name="bottom_nav_bar_background">@color/white</color>
-    <color name="item_text_color">@color/sari</color>
+    <color name="item_text_color">@color/yellow</color>
 
     <!-- DahasiRecyclerRow Renkleri -->
-    <color name="dahasi_item_background_color">@color/acik_gri3</color>
-    <color name="dahasi_image_background_color">@color/white</color>
-    <color name="dahasi_text_color">@color/black_acik</color>
+    <color name="moreover_item_background_color">@color/light_gray3</color>
+    <color name="moreover_image_background_color">@color/white</color>
+    <color name="moreover_text_color">@color/light_black</color>
 
     <color name="blog_text_background_color">#80000000</color>
 
