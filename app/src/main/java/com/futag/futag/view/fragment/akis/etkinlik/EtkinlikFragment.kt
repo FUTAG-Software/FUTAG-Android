@@ -6,18 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.futag.futag.R
 import com.futag.futag.adapter.EtkinliklerRecyclerAdapter
 import com.futag.futag.databinding.FragmentEventBinding
-import com.futag.futag.model.etkinlik.EtkinliklerModel
-import com.futag.futag.viewmodel.AkisViewModel
+import com.futag.futag.model.event.EventsModel
+import com.futag.futag.viewmodel.FlowViewModel
 
 class EtkinlikFragment : Fragment() {
 
     private var _binding: FragmentEventBinding? = null
     private val binding get() = _binding!!
-    private val etkinlikAdapter = EtkinliklerRecyclerAdapter(this, EtkinliklerModel())
-    private lateinit var viewModel: AkisViewModel
+    private val etkinlikAdapter = EtkinliklerRecyclerAdapter(this, EventsModel())
+    private lateinit var viewModel: FlowViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +30,8 @@ class EtkinlikFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(AkisViewModel::class.java)
-        viewModel.etkinlikVerileriniAl()
+        viewModel = ViewModelProvider(requireActivity()).get(FlowViewModel::class.java)
+        viewModel.getEvents()
 
         binding.recyclerView.adapter = etkinlikAdapter
 
@@ -40,7 +39,7 @@ class EtkinlikFragment : Fragment() {
     }
 
     private fun observeLiveData(){
-        viewModel.etkinlikVerileri.observe(viewLifecycleOwner,{ etkinlikler ->
+        viewModel.eventDatas.observe(viewLifecycleOwner,{ etkinlikler ->
             etkinlikler?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
@@ -48,7 +47,7 @@ class EtkinlikFragment : Fragment() {
                 etkinlikAdapter.etkinlikleriGuncelle(it)
             }
         })
-        viewModel.etkinlikError.observe(viewLifecycleOwner,{ error ->
+        viewModel.eventError.observe(viewLifecycleOwner,{ error ->
             error?.let {
                 if (it){
                     binding.textViewErrorMessage.visibility = View.VISIBLE
@@ -59,7 +58,7 @@ class EtkinlikFragment : Fragment() {
                 }
             }
         })
-        viewModel.etkinlikYukleniyor.observe(viewLifecycleOwner, { yukleniyor ->
+        viewModel.eventLoading.observe(viewLifecycleOwner, { yukleniyor ->
             yukleniyor?.let {
                 if (it){
                     binding.textViewErrorMessage.visibility = View.GONE

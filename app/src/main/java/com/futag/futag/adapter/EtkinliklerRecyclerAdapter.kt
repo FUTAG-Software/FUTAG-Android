@@ -6,14 +6,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.databinding.EventsRecyclerRowBinding
-import com.futag.futag.model.etkinlik.EtkinliklerModel
+import com.futag.futag.model.event.EventsModel
 import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.resimleriUrlIleGetir
 import com.futag.futag.view.fragment.akis.etkinlik.EtkinlikFragmentDirections
 
 class EtkinliklerRecyclerAdapter(
     private val parentFragment: Fragment,
-    private val etkinlikListesi: EtkinliklerModel
+    private val etkinlikListesi: EventsModel
     ): RecyclerView.Adapter<EtkinliklerRecyclerAdapter.EtkinliklerViewHolder>() {
 
     inner class EtkinliklerViewHolder(val itemBinding: EventsRecyclerRowBinding):
@@ -45,7 +45,7 @@ class EtkinliklerRecyclerAdapter(
         return etkinlikListesi.size
     }
 
-    fun etkinlikleriGuncelle(yeniEtkinlikListesi: EtkinliklerModel){
+    fun etkinlikleriGuncelle(yeniEtkinlikListesi: EventsModel){
         etkinlikListesi.clear()
         etkinlikListesi.addAll(yeniEtkinlikListesi)
         notifyDataSetChanged()

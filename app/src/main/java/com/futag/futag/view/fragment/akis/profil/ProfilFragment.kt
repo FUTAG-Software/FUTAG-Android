@@ -1,31 +1,27 @@
 package com.futag.futag.view.fragment.akis.profil
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfileBinding
-import com.futag.futag.model.KullaniciModel
-import com.futag.futag.util.placeholderProgressBar
-import com.futag.futag.util.resimleriUrlIleGetir
-import com.futag.futag.viewmodel.ProfilViewModel
+import com.futag.futag.model.UserModel
+import com.futag.futag.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 
 class ProfilFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: ProfilViewModel
-    private var kullaniciProfilBilgileri: KullaniciModel? = null
+    private lateinit var viewModel: ProfileViewModel
+    private var userProfilBilgileri: UserModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +35,9 @@ class ProfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(ProfilViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
 
-        viewModel.profilBilgileriniGetir(requireContext())
+        viewModel.getProfileInfo(requireContext())
         profilBilgileriniCek()
 
         binding.buttonEditProfile.setOnClickListener {
@@ -49,13 +45,13 @@ class ProfilFragment : Fragment() {
         }
 
         binding.buttonSignOut.setOnClickListener {
-            viewModel.cikisYap()
+            viewModel.signOut()
             veriyiGozlemleCikisYap()
         }
     }
 
     private fun profilBilgileriniCek(){
-        viewModel.animasyon.observe(viewLifecycleOwner,{ animasyon ->
+        viewModel.animation.observe(viewLifecycleOwner,{ animasyon ->
             animasyon?.let { deger ->
                 if (deger){
                     binding.constraintLayout.visibility = View.INVISIBLE
@@ -66,19 +62,19 @@ class ProfilFragment : Fragment() {
                 }
             }
         })
-        viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
             veriOnayi?.let { veri ->
                 if (veri){
-                    kullaniciProfilBilgileri = viewModel.kullaniciBilgileri
-                    binding.editTextUserMail.setText(kullaniciProfilBilgileri!!.email)
-                    binding.editTextBirthday.setText(kullaniciProfilBilgileri!!.dogumGunu)
-                    val isim = kullaniciProfilBilgileri!!.isim
-                    val soyisim = kullaniciProfilBilgileri!!.soyisim
+                    userProfilBilgileri = viewModel.userInfo
+                    binding.editTextUserMail.setText(userProfilBilgileri!!.email)
+                    binding.editTextBirthday.setText(userProfilBilgileri!!.birthday)
+                    val isim = userProfilBilgileri!!.name
+                    val soyisim = userProfilBilgileri!!.surname
                     val isimSoyisim = "$isim $soyisim"
                     binding.textViewNameAndSurname.text = isimSoyisim
-                    if(kullaniciProfilBilgileri!!.profilResmi != null){
+                    if(userProfilBilgileri!!.profileImage != null){
                         Picasso.get()
-                            .load(kullaniciProfilBilgileri!!.profilResmi)
+                            .load(userProfilBilgileri!!.profileImage)
                             .placeholder(R.drawable.kisi_yuksek_cozunurluk)
                             .into(binding.imageViewProfileImage)
                     } else{
@@ -97,10 +93,10 @@ class ProfilFragment : Fragment() {
     }
 
     private fun veriyiGozlemleCikisYap(){
-        viewModel.animasyon.observe(viewLifecycleOwner, { animasyon ->
+        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
             animasyon?.let { deger ->
                 if (deger){
-                    viewModel.girisVarMi.observe(viewLifecycleOwner, { giris ->
+                    viewModel.isThereEntry.observe(viewLifecycleOwner, { giris ->
                         giris?.let {
                             if (it){
                                 binding.constraintLayout.visibility = View.INVISIBLE

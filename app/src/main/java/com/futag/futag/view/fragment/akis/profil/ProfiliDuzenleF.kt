@@ -26,8 +26,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentEditProfileBinding
-import com.futag.futag.model.KullaniciModel
-import com.futag.futag.viewmodel.ProfilViewModel
+import com.futag.futag.model.UserModel
+import com.futag.futag.viewmodel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
@@ -38,8 +38,8 @@ class ProfiliDuzenleF : Fragment() {
 
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: ProfilViewModel
-    private var kullaniciProfilBilgileri: KullaniciModel? = null
+    private lateinit var viewModel: ProfileViewModel
+    private var userProfilBilgileri: UserModel? = null
     private var selectedBitmap: Bitmap? = null
     private var selectedUri: Uri? = null
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -62,9 +62,9 @@ class ProfiliDuzenleF : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(ProfilViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
 
-        viewModel.profilBilgileriniGetir(requireContext())
+        viewModel.getProfileInfo(requireContext())
         profilBilgileriniCek()
 
         val takvim = Calendar.getInstance()
@@ -90,9 +90,9 @@ class ProfiliDuzenleF : Fragment() {
                     Snackbar.make(
                         it,
                         R.string.gallery_permission,
-                        Snackbar.LENGTH_LONG).setAction(R.string.give_permission, {
+                        Snackbar.LENGTH_LONG).setAction(R.string.give_permission) {
                         permissionLauncher.launch(neededRuntimePermissions)
-                    }).show()
+                    }.show()
                 } else {
                     permissionLauncher.launch(neededRuntimePermissions)
                 }
@@ -110,10 +110,10 @@ class ProfiliDuzenleF : Fragment() {
                 val yeniDogumGunu = binding.editTextBirthday.text.toString()
                 if(selectedBitmap != null){
                     val smallBitmap = makeSmallerBitmap(selectedBitmap!!,400)
-                    viewModel.profilGuncelle(requireContext(),kullaniciProfilBilgileri!!
+                    viewModel.updateProfile(requireContext(),userProfilBilgileri!!
                         ,yeniIsim,yeniSoyisim,yeniDogumGunu,getImageUri(requireContext(),smallBitmap))
                 } else {
-                    viewModel.profilGuncelle(requireContext(),kullaniciProfilBilgileri!!
+                    viewModel.updateProfile(requireContext(),userProfilBilgileri!!
                         ,yeniIsim,yeniSoyisim,yeniDogumGunu,null)
                 }
             } else {
@@ -129,8 +129,8 @@ class ProfiliDuzenleF : Fragment() {
             builder.setNegativeButton(R.string.no) { _, _ ->
             }
             builder.setPositiveButton(R.string.yes) { _, _ ->
-                viewModel.hesabiSil(requireContext())
-                viewModel.hesapSilAnimasyon.observe(viewLifecycleOwner,{ animasyon ->
+                viewModel.deleteAccount(requireContext())
+                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,{ animasyon ->
                     animasyon?.let {
                         if (it){
                             binding.constraintLayout.visibility = View.INVISIBLE
@@ -150,7 +150,7 @@ class ProfiliDuzenleF : Fragment() {
     }
 
     private fun profilBilgileriniCek(){
-        viewModel.animasyon.observe(viewLifecycleOwner,{ animasyon ->
+        viewModel.animation.observe(viewLifecycleOwner,{ animasyon ->
             animasyon?.let { deger ->
                 if (deger){
                     binding.constraintLayout.visibility = View.INVISIBLE
@@ -161,16 +161,16 @@ class ProfiliDuzenleF : Fragment() {
                 }
             }
         })
-        viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
             veriOnayi?.let { veri ->
                 if (veri){
-                    kullaniciProfilBilgileri = viewModel.kullaniciBilgileri
-                    binding.editTextName.setText(kullaniciProfilBilgileri!!.isim)
-                    binding.editTextBirthday.text = kullaniciProfilBilgileri!!.dogumGunu
-                    binding.editTextSurname.setText(kullaniciProfilBilgileri!!.soyisim)
-                    if(kullaniciProfilBilgileri!!.profilResmi != null){
+                    userProfilBilgileri = viewModel.userInfo
+                    binding.editTextName.setText(userProfilBilgileri!!.name)
+                    binding.editTextBirthday.text = userProfilBilgileri!!.birthday
+                    binding.editTextSurname.setText(userProfilBilgileri!!.surname)
+                    if(userProfilBilgileri!!.profileImage != null){
                         Picasso.get()
-                            .load(kullaniciProfilBilgileri!!.profilResmi)
+                            .load(userProfilBilgileri!!.profileImage)
                             .placeholder(R.drawable.kisi_yuksek_cozunurluk)
                             .error(R.drawable.error)
                             .into(binding.imageViewProfileImage)

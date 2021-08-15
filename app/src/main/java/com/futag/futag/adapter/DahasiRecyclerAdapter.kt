@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.MoreoverRecyclerRowBinding
-import com.futag.futag.model.DahasiItemModel
+import com.futag.futag.model.MoreoverItemModel
 
-class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, val itemList: ArrayList<DahasiItemModel>)
+class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, val itemList: ArrayList<MoreoverItemModel>)
     : RecyclerView.Adapter<DahasiRecyclerAdapter.DahasiViewHolder>() {
 
     class DahasiViewHolder(val itemBinding: MoreoverRecyclerRowBinding)
@@ -25,10 +25,10 @@ class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, 
     }
 
     override fun onBindViewHolder(holder: DahasiViewHolder, position: Int) {
-        holder.itemBinding.imageViewCircleImage.setImageDrawable(itemList[position].resim)
-        holder.itemBinding.textViewTitle.text = itemList[position].baslik
+        holder.itemBinding.imageViewCircleImage.setImageDrawable(itemList[position].image)
+        holder.itemBinding.textViewTitle.text = itemList[position].title
         holder.itemBinding.cardView.setOnClickListener {
-            sayfaDegis(itemList[position].baslik)
+            sayfaDegis(itemList[position].title)
         }
     }
 

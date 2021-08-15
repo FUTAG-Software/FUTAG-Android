@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface BlogAPI {
 
-    @GET("")
+    @GET("wp-json/iky/blog")
     fun getData(): Single<BlogModel>
 
 }

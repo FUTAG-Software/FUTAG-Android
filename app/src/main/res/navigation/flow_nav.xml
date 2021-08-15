@@ -127,7 +127,7 @@
         tools:layout="@layout/fragment_post_detail">
         <argument
             android:name="anaSayfaItem"
-            app:argType="com.futag.futag.model.anasayfa.AnaSayfaModelItem" />
+            app:argType="com.futag.futag.model.mainscreen.MainScreenModelItem" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikDetayFragment"
@@ -136,7 +136,7 @@
         tools:layout="@layout/fragment_event_detail" >
         <argument
             android:name="canliEtkinlik"
-            app:argType="com.futag.futag.model.etkinlik.EtkinliklerModelItem" />
+            app:argType="com.futag.futag.model.event.EventsModelItem" />
         <action
             android:id="@+id/action_etkinlikDetayFragment_to_formFragment"
             app:destination="@id/formFragment" />

@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.R
 import com.futag.futag.adapter.DahasiRecyclerAdapter
 import com.futag.futag.databinding.FragmentMoreoverBinding
-import com.futag.futag.model.DahasiItemModel
+import com.futag.futag.model.MoreoverItemModel
 
 class DahaFragment : Fragment() {
 
     private var _binding: FragmentMoreoverBinding? = null
     private val binding get() = _binding!!
-    private lateinit var itemList: ArrayList<DahasiItemModel>
+    private lateinit var itemList: ArrayList<MoreoverItemModel>
     private lateinit var adapter: DahasiRecyclerAdapter
 
     override fun onCreateView(
@@ -33,27 +33,27 @@ class DahaFragment : Fragment() {
 
         itemList = ArrayList()
 
-        val birimlerimiz = DahasiItemModel(
+        val birimlerimiz = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.futag_icon)!!,
             getString(R.string.our_units)
         )
-        val biziOyla = DahasiItemModel(
+        val biziOyla = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.yildiz)!!,
             getString(R.string.rate_us)
         )
-        val bildirimler = DahasiItemModel(
+        val bildirimler = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.zil)!!,
             getString(R.string.notification)
         )
-        val geriBildirim = DahasiItemModel(
+        val geriBildirim = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.mail_iletisim)!!,
             getString(R.string.feedback)
         )
-        val hakkimizda = DahasiItemModel(
+        val hakkimizda = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.info)!!,
             getString(R.string.about_us)
         )
-        val ayarlar = DahasiItemModel(
+        val ayarlar = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.ayarlar)!!,
             getString(R.string.settings)
         )

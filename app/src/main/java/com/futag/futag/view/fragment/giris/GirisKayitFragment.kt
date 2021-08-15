@@ -11,13 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentLoginRegisterBinding
 import com.futag.futag.view.activity.FlowActivity
-import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
+import com.futag.futag.viewmodel.LoginRegisterViewModel
 
 class GirisKayitFragment : Fragment() {
 
     private var _binding : FragmentLoginRegisterBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: KayitOlGirisYapViewModel
+    private lateinit var viewModel: LoginRegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +31,8 @@ class GirisKayitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
-        viewModel.otomatikGirisDurumu()
+        viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
+        viewModel.autoLoginStatus()
         veriyiGozlemle()
 
         binding.buttonLogIn.setOnClickListener {
@@ -55,10 +55,10 @@ class GirisKayitFragment : Fragment() {
     }
 
     private fun veriyiGozlemle(){
-        viewModel.animasyon.observe(viewLifecycleOwner, { animasyon ->
+        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
             animasyon?.let { deger ->
                 if (deger){
-                    viewModel.girisVarMi.observe(viewLifecycleOwner, { giris ->
+                    viewModel.isThereEntry.observe(viewLifecycleOwner, { giris ->
                         giris?.let {
                             if (it){
                                 animasyonuGoster()

@@ -1,7 +1,5 @@
 package com.futag.futag.adapter
 
-import android.os.Build
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,12 +8,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.PostRecyclerRowBinding
-import com.futag.futag.model.anasayfa.AnaSayfaModel
+import com.futag.futag.model.mainscreen.MainScreenModel
 import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.resimleriUrlIleGetir
 import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
 
-class GonderilerRecyclerAdapter(private val parentFragment: Fragment, private val gonderiListesi: AnaSayfaModel)
+class GonderilerRecyclerAdapter(private val parentFragment: Fragment, private val gonderiListesi: MainScreenModel)
     : RecyclerView.Adapter<GonderilerRecyclerAdapter.GonderilerViewHolder>() {
 
     inner class GonderilerViewHolder(val itemBinding: PostRecyclerRowBinding)
@@ -49,7 +47,7 @@ class GonderilerRecyclerAdapter(private val parentFragment: Fragment, private va
         return gonderiListesi.size
     }
 
-    fun gonderiGuncelle(yeniGonderiListe: AnaSayfaModel){
+    fun gonderiGuncelle(yeniGonderiListe: MainScreenModel){
         gonderiListesi.clear()
         gonderiListesi.addAll(yeniGonderiListe)
         notifyDataSetChanged()

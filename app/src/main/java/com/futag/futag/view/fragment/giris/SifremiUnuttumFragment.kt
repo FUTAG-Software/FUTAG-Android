@@ -9,13 +9,13 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentForgotPasswordBinding
-import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
+import com.futag.futag.viewmodel.LoginRegisterViewModel
 
 class SifremiUnuttumFragment : Fragment() {
 
     private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: KayitOlGirisYapViewModel
+    private lateinit var viewModel: LoginRegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,12 +29,12 @@ class SifremiUnuttumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
 
         binding.buttonSend.setOnClickListener {
             if (binding.editTextMail.text.isNotEmpty()){
                 val mail = binding.editTextMail.text.toString()
-                viewModel.sifremiUnuttumDurumu(mail, requireContext())
+                viewModel.forgotPasswordStatus(mail, requireContext())
                 veriyiGozlemle()
             } else {
                 Toast.makeText(requireContext(), R.string.please_enter_your_email_adress,Toast.LENGTH_SHORT).show()
@@ -53,7 +53,7 @@ class SifremiUnuttumFragment : Fragment() {
     }
 
     private fun veriyiGozlemle(){
-        viewModel.animasyon.observe(viewLifecycleOwner, { animasyon ->
+        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
             animasyon?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
@@ -66,7 +66,7 @@ class SifremiUnuttumFragment : Fragment() {
                 }
             }
         })
-        viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
             veriOnayi?.let { onay ->
                 if (onay){
                     Toast.makeText(requireContext(),R.string.confirmation_email_sent,Toast.LENGTH_SHORT).show()

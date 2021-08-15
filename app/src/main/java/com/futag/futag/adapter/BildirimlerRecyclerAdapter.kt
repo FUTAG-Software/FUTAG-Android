@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.databinding.NotificationRecyclerRowBinding
-import com.futag.futag.model.BildirimlerModel
+import com.futag.futag.model.NotificationModel
 
-class BildirimlerRecyclerAdapter(val bildirimListesi: ArrayList<BildirimlerModel>)
+class BildirimlerRecyclerAdapter(val bildirimListesi: ArrayList<NotificationModel>)
     :RecyclerView.Adapter<BildirimlerRecyclerAdapter.BildirimlerViewHolder>() {
 
     class BildirimlerViewHolder(val itemBinding: NotificationRecyclerRowBinding)
@@ -18,8 +18,8 @@ class BildirimlerRecyclerAdapter(val bildirimListesi: ArrayList<BildirimlerModel
     }
 
     override fun onBindViewHolder(holder: BildirimlerViewHolder, position: Int) {
-        holder.itemBinding.textViewNotificationText.text = bildirimListesi[position].bildirimMetni
-        holder.itemBinding.textViewNotificationTime.text = bildirimListesi[position].bildirimZamani
+        holder.itemBinding.textViewNotificationText.text = bildirimListesi[position].notificationText
+        holder.itemBinding.textViewNotificationTime.text = bildirimListesi[position].notificationTime
     }
 
     override fun getItemCount(): Int {

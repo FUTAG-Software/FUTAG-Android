@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.databinding.AdsRecyclerRowBinding
-import com.futag.futag.model.reklam.ReklamlarModel
+import com.futag.futag.model.advertising.AdsModel
 import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.resimleriUrlIleGetir
 import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
 
-class ReklamlarRecyclerAdapter(private val reklamListesi: ReklamlarModel,private val parentFragment: Fragment)
+class ReklamlarRecyclerAdapter(private val reklamListesi: AdsModel, private val parentFragment: Fragment)
     : RecyclerView.Adapter<ReklamlarRecyclerAdapter.ReklamlarViewHolder>() {
 
     inner class ReklamlarViewHolder(val binding: AdsRecyclerRowBinding)

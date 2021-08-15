@@ -1,4 +1,4 @@
-package com.futag.futag.model.anasayfa
+package com.futag.futag.model.mainscreen
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
 @Parcelize
-data class AnaSayfaModelItem(
+data class MainScreenModelItem(
     @SerializedName("author")
     val author: String,
     @SerializedName("content")

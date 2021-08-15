@@ -1,4 +1,4 @@
-package com.futag.futag.model.anasayfa
+package com.futag.futag.model.mainscreen
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package com.futag.futag.model.etkinlik
+package com.futag.futag.model.event
 
 
 import android.os.Parcelable
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class EtkinliklerModelItem(
+data class EventsModelItem(
     @SerializedName("id")
     val id: Int,
     @SerializedName("image")

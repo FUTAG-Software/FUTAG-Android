@@ -14,13 +14,13 @@ import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentLoginBinding
 import com.futag.futag.view.activity.FlowActivity
-import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
+import com.futag.futag.viewmodel.LoginRegisterViewModel
 
 class GirisYapFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: KayitOlGirisYapViewModel
+    private lateinit var viewModel: LoginRegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +34,7 @@ class GirisYapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
 
         binding.buttonLogIn.setOnClickListener {
             klavyeyiKapat()
@@ -42,7 +42,7 @@ class GirisYapFragment : Fragment() {
                 val email = binding.editTextMail.text.toString()
                 val sifre = binding.editTextPassword.text.toString()
 
-                viewModel.girisOnayDurumu(email,sifre,requireContext())
+                viewModel.loginConfirmationStatus(email,sifre,requireContext())
                 veriyiGozlemle()
             } else {
                 Toast.makeText(requireContext(),R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
@@ -76,7 +76,7 @@ class GirisYapFragment : Fragment() {
     }
 
     private fun veriyiGozlemle(){
-        viewModel.animasyon.observe(viewLifecycleOwner, { animasyon ->
+        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
             animasyon?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
@@ -89,7 +89,7 @@ class GirisYapFragment : Fragment() {
                 }
             }
         })
-        viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
             veriOnayi?.let { onay ->
                 if (onay){
                     activity?.let {

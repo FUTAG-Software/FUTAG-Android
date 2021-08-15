@@ -15,7 +15,7 @@ class BlogAPIService {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build().create(BlogAPI::class.java)
 
-    fun blogVerileriniGetir(): Single<BlogModel> {
+    fun getBlogData(): Single<BlogModel> {
         return api.getData()
     }
 

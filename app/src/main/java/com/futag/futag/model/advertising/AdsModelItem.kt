@@ -1,8 +1,8 @@
-package com.futag.futag.model.reklam
+package com.futag.futag.model.advertising
 
 import com.google.gson.annotations.SerializedName
 
-data class ReklamlarModelItem(
+data class AdsModelItem(
     @SerializedName("details")
     val details: String,
     @SerializedName("id")

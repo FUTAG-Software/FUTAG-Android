@@ -28,7 +28,7 @@ import com.futag.futag.R
 import com.futag.futag.databinding.BottomSheetDialogKvkkBinding
 import com.futag.futag.databinding.FragmentRegisterBinding
 import com.futag.futag.view.activity.FlowActivity
-import com.futag.futag.viewmodel.KayitOlGirisYapViewModel
+import com.futag.futag.viewmodel.LoginRegisterViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
@@ -39,7 +39,7 @@ class KayitOlFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: KayitOlGirisYapViewModel
+    private lateinit var viewModel: LoginRegisterViewModel
     private var selectedBitmap: Bitmap? = null
     private var selectedUri: Uri? = null
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -62,7 +62,7 @@ class KayitOlFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(KayitOlGirisYapViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
 
         val takvim = Calendar.getInstance()
         val yil = takvim.get(Calendar.YEAR)
@@ -137,7 +137,7 @@ class KayitOlFragment : Fragment() {
             val sifreTekrar = binding.editTextAgainPassword.text.toString()
             val dogumgunu = binding.editTextBirthday.text.toString()
             if(sifre == sifreTekrar){
-                viewModel.kayitOnayDurumu(email, sifre, isim, soyisim, dogumgunu, secilenGorsel, requireContext())
+                viewModel.registrationConfirmationStatus(email, sifre, isim, soyisim, dogumgunu, secilenGorsel, requireContext())
                 veriyiGozlemle()
             } else {
                 Toast.makeText(requireContext(),R.string.password_must_match,Toast.LENGTH_SHORT).show()
@@ -148,7 +148,7 @@ class KayitOlFragment : Fragment() {
     }
 
     private fun veriyiGozlemle(){
-        viewModel.animasyon.observe(viewLifecycleOwner, { animasyon ->
+        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
             animasyon?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
@@ -161,7 +161,7 @@ class KayitOlFragment : Fragment() {
                 }
             }
         })
-        viewModel.veriOnayi.observe(viewLifecycleOwner, { veriOnayi ->
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
             veriOnayi?.let { onay ->
                 if (onay){
                     activity?.let {

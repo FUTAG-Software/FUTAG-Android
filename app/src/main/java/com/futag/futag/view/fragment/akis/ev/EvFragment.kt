@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import com.futag.futag.adapter.GonderilerRecyclerAdapter
 import com.futag.futag.adapter.ReklamlarRecyclerAdapter
 import com.futag.futag.databinding.FragmentHomeBinding
-import com.futag.futag.model.anasayfa.AnaSayfaModel
+import com.futag.futag.model.mainscreen.MainScreenModel
 import com.futag.futag.util.LinePagerIndicatorDecoration
-import com.futag.futag.viewmodel.AkisViewModel
+import com.futag.futag.viewmodel.FlowViewModel
 
 class EvFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var reklamlarAdapter: ReklamlarRecyclerAdapter
-    private lateinit var viewModel: AkisViewModel
-    private val gonderiAdapter = GonderilerRecyclerAdapter(this, AnaSayfaModel())
+    private lateinit var viewModel: FlowViewModel
+    private val gonderiAdapter = GonderilerRecyclerAdapter(this, MainScreenModel())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +37,9 @@ class EvFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(requireContext())
         val layoutManagerReklam = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        viewModel = ViewModelProvider(requireActivity()).get(AkisViewModel::class.java)
-        viewModel.anaSayfaVerileriniAl()
-        viewModel.reklamVerileriniAl()
+        viewModel = ViewModelProvider(requireActivity()).get(FlowViewModel::class.java)
+        viewModel.getPosts()
+        viewModel.getAds()
 
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = gonderiAdapter
@@ -55,7 +55,7 @@ class EvFragment : Fragment() {
     }
 
     private fun observeGonderiLiveData(){
-        viewModel.anaSayfaVerileri.observe(viewLifecycleOwner, { bloglar ->
+        viewModel.postDatas.observe(viewLifecycleOwner, { bloglar ->
             bloglar?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
@@ -63,7 +63,7 @@ class EvFragment : Fragment() {
                 gonderiAdapter.gonderiGuncelle(it)
             }
         })
-        viewModel.anaSayfaError.observe(viewLifecycleOwner, { error ->
+        viewModel.postError.observe(viewLifecycleOwner, { error ->
             error?.let {
                 if (it){
                     binding.textViewErrorMessage.visibility = View.VISIBLE
@@ -74,7 +74,7 @@ class EvFragment : Fragment() {
                 }
             }
         })
-        viewModel.anaSayfaYukleniyor.observe(viewLifecycleOwner, { yukleniyor ->
+        viewModel.postLoading.observe(viewLifecycleOwner, { yukleniyor ->
             yukleniyor?.let {
                 if (it){
                     binding.textViewErrorMessage.visibility = View.GONE
@@ -88,7 +88,7 @@ class EvFragment : Fragment() {
     }
 
     private fun observeReklamLiveData(){
-        viewModel.anaSayfaReklamVerileri.observe(viewLifecycleOwner, { reklamlar ->
+        viewModel.adsDatas.observe(viewLifecycleOwner, { reklamlar ->
             reklamlar?.let { reklamModel ->
                 binding.progressBarSlider.visibility = View.INVISIBLE
                 binding.recyclerViewAds.visibility = View.VISIBLE
@@ -96,7 +96,7 @@ class EvFragment : Fragment() {
                 binding.recyclerViewAds.adapter = reklamlarAdapter
             }
         })
-        viewModel.anaSayfaReklamError.observe(viewLifecycleOwner, { error ->
+        viewModel.adsError.observe(viewLifecycleOwner, { error ->
             error?.let {
                 if (it){
                     binding.progressBarSlider.visibility = View.GONE
@@ -104,7 +104,7 @@ class EvFragment : Fragment() {
                 }
             }
         })
-        viewModel.anaSayfaReklamYukleniyor.observe(viewLifecycleOwner, { yukleniyor ->
+        viewModel.adsLoading.observe(viewLifecycleOwner, { yukleniyor ->
             yukleniyor?.let {
                 if (it){
                     binding.progressBarSlider.visibility = View.VISIBLE
