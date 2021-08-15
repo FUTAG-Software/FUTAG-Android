@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.dahasi
+package com.futag.futag.util
 
 import android.content.Context
 import android.content.SharedPreferences

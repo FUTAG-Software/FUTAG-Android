@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.giris
+package com.futag.futag.view.fragment.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import com.futag.futag.R
 import com.futag.futag.databinding.FragmentForgotPasswordBinding
 import com.futag.futag.viewmodel.LoginRegisterViewModel
 
-class SifremiUnuttumFragment : Fragment() {
+class ForgotPasswordFragment : Fragment() {
 
     private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
@@ -35,7 +35,7 @@ class SifremiUnuttumFragment : Fragment() {
             if (binding.editTextMail.text.isNotEmpty()){
                 val mail = binding.editTextMail.text.toString()
                 viewModel.forgotPasswordStatus(mail, requireContext())
-                veriyiGozlemle()
+                observeData()
             } else {
                 Toast.makeText(requireContext(), R.string.please_enter_your_email_adress,Toast.LENGTH_SHORT).show()
             }
@@ -43,32 +43,32 @@ class SifremiUnuttumFragment : Fragment() {
 
     }
 
-    private fun animasyonuGoster(){
+    private fun showAnimation(){
         binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
         binding.lottieAnimation.playAnimation()
     }
 
-    private fun animasyonuDurdur(){
+    private fun stopAnimation(){
         binding.lottieAnimation.cancelAnimation()
     }
 
-    private fun veriyiGozlemle(){
-        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
-            animasyon?.let {
+    private fun observeData(){
+        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+            animation?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimation.visibility = View.VISIBLE
-                    animasyonuGoster()
+                    showAnimation()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
-                    animasyonuDurdur()
+                    stopAnimation()
                 }
             }
         })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
-            veriOnayi?.let { onay ->
-                if (onay){
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
+            dataConfirm?.let { confirm ->
+                if (confirm){
                     Toast.makeText(requireContext(),R.string.confirmation_email_sent,Toast.LENGTH_SHORT).show()
                 }
             }

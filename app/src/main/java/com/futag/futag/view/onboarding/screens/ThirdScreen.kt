@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentThirdScreenBinding
-import com.futag.futag.view.fragment.akis.dahasi.SharedPref
+import com.futag.futag.util.SharedPref
 
 class ThirdScreen : Fragment() {
 
@@ -35,7 +35,7 @@ class ThirdScreen : Fragment() {
 
         binding.buttonFinish.setOnClickListener{
             findNavController().navigate(R.id.action_viewPagerFragment_to_girisKayitFragment)
-            onBoardingBitimi()
+            isOnBoardingFinish()
         }
     }
 
@@ -45,7 +45,7 @@ class ThirdScreen : Fragment() {
     }
 
     // onBoarding ekranlarinin tekrar gosterilmemesi icin fonksiyon
-    private fun onBoardingBitimi(){
+    private fun isOnBoardingFinish(){
         mySharedPref.setOnBoardingState(true)
     }
 

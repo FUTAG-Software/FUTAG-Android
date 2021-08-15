@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.futag.futag.databinding.FragmentSettingsBinding
+import com.futag.futag.util.SharedPref
 import java.util.*
 
 class AyarlarFragment : Fragment() {

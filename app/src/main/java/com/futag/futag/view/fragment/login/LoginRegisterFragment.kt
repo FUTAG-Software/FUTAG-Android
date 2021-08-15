@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.giris
+package com.futag.futag.view.fragment.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ import com.futag.futag.databinding.FragmentLoginRegisterBinding
 import com.futag.futag.view.activity.FlowActivity
 import com.futag.futag.viewmodel.LoginRegisterViewModel
 
-class GirisKayitFragment : Fragment() {
+class LoginRegisterFragment : Fragment() {
 
     private var _binding : FragmentLoginRegisterBinding? = null
     private val binding get() = _binding!!
@@ -33,7 +33,7 @@ class GirisKayitFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
         viewModel.autoLoginStatus()
-        veriyiGozlemle()
+        observeData()
 
         binding.buttonLogIn.setOnClickListener {
             findNavController().navigate(R.id.action_girisKayitFragment_to_girisYapFragment)
@@ -45,23 +45,23 @@ class GirisKayitFragment : Fragment() {
 
     }
 
-    private fun animasyonuGoster(){
+    private fun showAnimation(){
         binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
         binding.lottieAnimation.playAnimation()
     }
 
-    private fun animasyonuDurdur(){
+    private fun stopAnimation(){
         binding.lottieAnimation.cancelAnimation()
     }
 
-    private fun veriyiGozlemle(){
-        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
-            animasyon?.let { deger ->
-                if (deger){
-                    viewModel.isThereEntry.observe(viewLifecycleOwner, { giris ->
-                        giris?.let {
+    private fun observeData(){
+        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+            animation?.let { value ->
+                if (value){
+                    viewModel.isThereEntry.observe(viewLifecycleOwner, { login ->
+                        login?.let {
                             if (it){
-                                animasyonuGoster()
+                                showAnimation()
                                 binding.constraintLayout.visibility = View.INVISIBLE
                                 binding.lottieAnimation.visibility = View.VISIBLE
                                 activity?.let { activity ->
@@ -70,14 +70,14 @@ class GirisKayitFragment : Fragment() {
                                     activity.finish()
                                 }
                             } else {
-                                animasyonuDurdur()
+                                stopAnimation()
                                 binding.constraintLayout.visibility = View.VISIBLE
                                 binding.lottieAnimation.visibility = View.GONE
                             }
                         }
                     })
                 } else {
-                    animasyonuDurdur()
+                    stopAnimation()
                     binding.constraintLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
                 }

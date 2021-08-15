@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentSplashBinding
-import com.futag.futag.view.fragment.akis.dahasi.SharedPref
+import com.futag.futag.util.SharedPref
 
 
 class SplashFragment : Fragment() {

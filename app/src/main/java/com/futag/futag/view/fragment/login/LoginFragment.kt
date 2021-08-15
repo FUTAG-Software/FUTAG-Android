@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.giris
+package com.futag.futag.view.fragment.login
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import com.futag.futag.databinding.FragmentLoginBinding
 import com.futag.futag.view.activity.FlowActivity
 import com.futag.futag.viewmodel.LoginRegisterViewModel
 
-class GirisYapFragment : Fragment() {
+class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -37,13 +37,13 @@ class GirisYapFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
 
         binding.buttonLogIn.setOnClickListener {
-            klavyeyiKapat()
-            if (veriGirisKontrolu()){
+            closeKeyboard()
+            if (dataControl()){
                 val email = binding.editTextMail.text.toString()
-                val sifre = binding.editTextPassword.text.toString()
+                val password = binding.editTextPassword.text.toString()
 
-                viewModel.loginConfirmationStatus(email,sifre,requireContext())
-                veriyiGozlemle()
+                viewModel.loginConfirmationStatus(email,password,requireContext())
+                observeData()
             } else {
                 Toast.makeText(requireContext(),R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
             }
@@ -58,7 +58,7 @@ class GirisYapFragment : Fragment() {
         }
     }
 
-    private fun klavyeyiKapat(){
+    private fun closeKeyboard(){
         val view = requireActivity().currentFocus
         if (view != null){
             val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -66,32 +66,32 @@ class GirisYapFragment : Fragment() {
         }
     }
 
-    private fun animasyonuGoster(){
+    private fun showAnimation(){
         binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
         binding.lottieAnimation.playAnimation()
     }
 
-    private fun animasyonuDurdur(){
+    private fun closeAnimation(){
         binding.lottieAnimation.cancelAnimation()
     }
 
-    private fun veriyiGozlemle(){
-        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
-            animasyon?.let {
+    private fun observeData(){
+        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+            animation?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimation.visibility = View.VISIBLE
-                    animasyonuGoster()
+                    showAnimation()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
-                    animasyonuDurdur()
+                    closeAnimation()
                 }
             }
         })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
-            veriOnayi?.let { onay ->
-                if (onay){
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
+            dataConfirm?.let { confirm ->
+                if (confirm){
                     activity?.let {
                         val intent = Intent(it, FlowActivity::class.java)
                         it.startActivity(intent)
@@ -102,7 +102,7 @@ class GirisYapFragment : Fragment() {
         })
     }
 
-    private fun veriGirisKontrolu(): Boolean = binding.editTextMail.text.isNotEmpty()
+    private fun dataControl(): Boolean = binding.editTextMail.text.isNotEmpty()
             && binding.editTextPassword.text.isNotEmpty()
 
     override fun onDestroyView() {

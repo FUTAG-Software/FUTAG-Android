@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.giris
+package com.futag.futag.view.fragment.login
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
@@ -35,7 +35,7 @@ import java.io.ByteArrayOutputStream
 import java.lang.Exception
 import java.util.*
 
-class KayitOlFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -64,10 +64,10 @@ class KayitOlFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
 
-        val takvim = Calendar.getInstance()
-        val yil = takvim.get(Calendar.YEAR)
-        val ay = takvim.get(Calendar.MONTH)
-        val gun = takvim.get(Calendar.DAY_OF_MONTH)
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         binding.textViewKvkkText.setOnClickListener {
             val bottomSheetDialog = BottomSheetDialog(requireContext(),R.style.ThemeOverlay_MaterialComponents_BottomSheetDialog)
@@ -78,10 +78,10 @@ class KayitOlFragment : Fragment() {
 
         // Kullanici dogum gununun alinmasi; Gun,Ay,Yil
         binding.editTextBirthday.setOnClickListener {
-            val dpd = DatePickerDialog(requireContext(), { _, mYil, mAy, mGun ->
-                val tarih = "$mGun-${mAy+1}-$mYil"
+            val dpd = DatePickerDialog(requireContext(), { _, mYear, mMonth, mDay ->
+                val tarih = "$mDay-${mMonth+1}-$mYear"
                 binding.editTextBirthday.text = tarih
-            }, yil, ay, gun)
+            }, year, month, day)
             dpd.show()
         }
 
@@ -103,19 +103,19 @@ class KayitOlFragment : Fragment() {
                 }
             } else {
                 // izin verilmis, galeriye gidis
-                val galeriIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                activityResultLauncher.launch(galeriIntent)
+                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(galleryIntent)
             }
         }
 
         binding.buttonRegister.setOnClickListener {
             if (binding.imageViewCircleImage.drawable != null){
-                klavyeyiKapat()
+                closeKeyboard()
                 if (selectedBitmap != null) {
                     val smallBitmap = makeSmallerBitmap(selectedBitmap!!,400)
-                    firebaseVeriKaydi(getImageUri(requireContext(),smallBitmap))
+                    firebaseDataSave(getImageUri(requireContext(),smallBitmap))
                 } else {
-                    firebaseVeriKaydi(null)
+                    firebaseDataSave(null)
                 }
             } else {
                 Toast.makeText(requireContext(), R.string.select_picture,Toast.LENGTH_SHORT).show()
@@ -128,17 +128,17 @@ class KayitOlFragment : Fragment() {
 
     }
 
-    private fun firebaseVeriKaydi(secilenGorsel: Uri?){
-        if(veriGirisKontrolu()){
-            val isim = binding.editTextName.text.toString()
-            val soyisim = binding.editTextSurname.text.toString()
+    private fun firebaseDataSave(selectedImage: Uri?){
+        if(dataControl()){
+            val name = binding.editTextName.text.toString()
+            val surname = binding.editTextSurname.text.toString()
             val email = binding.editTextMail.text.toString()
-            val sifre = binding.editTextPassword.text.toString()
-            val sifreTekrar = binding.editTextAgainPassword.text.toString()
-            val dogumgunu = binding.editTextBirthday.text.toString()
-            if(sifre == sifreTekrar){
-                viewModel.registrationConfirmationStatus(email, sifre, isim, soyisim, dogumgunu, secilenGorsel, requireContext())
-                veriyiGozlemle()
+            val password = binding.editTextPassword.text.toString()
+            val passwordAgain = binding.editTextAgainPassword.text.toString()
+            val birthday = binding.editTextBirthday.text.toString()
+            if(password == passwordAgain){
+                viewModel.registrationConfirmationStatus(email, password, name, surname, birthday, selectedImage, requireContext())
+                observeData()
             } else {
                 Toast.makeText(requireContext(),R.string.password_must_match,Toast.LENGTH_SHORT).show()
             }
@@ -147,23 +147,23 @@ class KayitOlFragment : Fragment() {
         }
     }
 
-    private fun veriyiGozlemle(){
-        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
-            animasyon?.let {
+    private fun observeData(){
+        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+            animation?.let {
                 if (it){
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimation.visibility = View.VISIBLE
-                    animasyonuGoster()
+                    showAnimation()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
-                    animasyonuDurdur()
+                    stopAnimation()
                 }
             }
         })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
-            veriOnayi?.let { onay ->
-                if (onay){
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
+            dataConfirm?.let { confirm ->
+                if (confirm){
                     activity?.let {
                         Toast.makeText(
                             requireContext(),
@@ -207,8 +207,8 @@ class KayitOlFragment : Fragment() {
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             permissions.entries.forEach {
                 if (it.value && it.key == Manifest.permission.READ_EXTERNAL_STORAGE) {
-                    val galeriIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    activityResultLauncher.launch(galeriIntent)
+                    val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    activityResultLauncher.launch(galleryIntent)
                 }
             }
         }
@@ -244,21 +244,21 @@ class KayitOlFragment : Fragment() {
     }
 
     // Butun alanlarin dolu olma durumunun kontrolu
-    private fun veriGirisKontrolu(): Boolean = binding.editTextName.text.isNotEmpty()
+    private fun dataControl(): Boolean = binding.editTextName.text.isNotEmpty()
             && binding.editTextSurname.text.isNotEmpty() && binding.editTextMail.text.isNotEmpty() &&
             binding.editTextPassword.text.isNotEmpty() && binding.editTextAgainPassword.text.isNotEmpty()
             && binding.editTextBirthday.text.isNotEmpty()
 
-    private fun animasyonuGoster(){
+    private fun showAnimation(){
         binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
         binding.lottieAnimation.playAnimation()
     }
 
-    private fun animasyonuDurdur(){
+    private fun stopAnimation(){
         binding.lottieAnimation.cancelAnimation()
     }
 
-    private fun klavyeyiKapat(){
+    private fun closeKeyboard(){
         val view = requireActivity().currentFocus
         if (view != null){
             val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

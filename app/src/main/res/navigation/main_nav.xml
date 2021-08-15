@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/girisKayitFragment"
-        android:name="com.futag.futag.view.fragment.giris.GirisKayitFragment"
+        android:name="com.futag.futag.view.fragment.login.LoginRegisterFragment"
         android:label="fragment_giris_kayit"
         tools:layout="@layout/fragment_login_register" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/girisYapFragment"
-        android:name="com.futag.futag.view.fragment.giris.GirisYapFragment"
+        android:name="com.futag.futag.view.fragment.login.LoginFragment"
         android:label="fragment_giris_yap"
         tools:layout="@layout/fragment_login" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"
-        android:name="com.futag.futag.view.fragment.giris.KayitOlFragment"
+        android:name="com.futag.futag.view.fragment.login.RegisterFragment"
         android:label="fragment_kayit_ol"
         tools:layout="@layout/fragment_register" >
         <action
@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/sifremiUnuttumFragment"
-        android:name="com.futag.futag.view.fragment.giris.SifremiUnuttumFragment"
+        android:name="com.futag.futag.view.fragment.login.ForgotPasswordFragment"
         android:label="fragment_sifremi_unuttum"
         tools:layout="@layout/fragment_forgot_password" />
 </navigation>
