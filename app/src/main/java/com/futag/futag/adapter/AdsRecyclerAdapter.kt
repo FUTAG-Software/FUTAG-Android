@@ -7,9 +7,9 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.databinding.AdsRecyclerRowBinding
 import com.futag.futag.model.advertising.AdsModel
-import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.fetchImagesWithUrl
-import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.view.fragment.flow.home.HomeFragmentDirections
 
 class AdsRecyclerAdapter(private val adsList: AdsModel, private val parentFragment: Fragment)
     : RecyclerView.Adapter<AdsRecyclerAdapter.AdsViewHolder>() {
@@ -29,7 +29,7 @@ class AdsRecyclerAdapter(private val adsList: AdsModel, private val parentFragme
             placeholderProgressBar(parentFragment.requireContext())
         )
         holder.binding.layout.setOnClickListener {
-            val action = EvFragmentDirections.actionEvFragmentToWebSitesiFragment(currentData.redirectingLink)
+            val action = HomeFragmentDirections.actionEvFragmentToWebSitesiFragment(currentData.redirectingLink)
             Navigation.findNavController(it).navigate(action)
         }
     }

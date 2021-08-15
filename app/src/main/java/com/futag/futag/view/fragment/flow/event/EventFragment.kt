@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.blog
+package com.futag.futag.view.fragment.flow.event
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,24 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.futag.futag.adapter.BlogRecyclerAdapter
-import com.futag.futag.databinding.FragmentBlogBinding
-import com.futag.futag.model.blog.BlogModel
+import com.futag.futag.adapter.EventRecyclerAdapter
+import com.futag.futag.databinding.FragmentEventBinding
+import com.futag.futag.model.event.EventsModel
 import com.futag.futag.viewmodel.FlowViewModel
 
-class BlogFragment : Fragment() {
+class EventFragment : Fragment() {
 
-    private var _binding: FragmentBlogBinding? = null
+    private var _binding: FragmentEventBinding? = null
     private val binding get() = _binding!!
-    private val blogAdapter =  BlogRecyclerAdapter(this, BlogModel())
+    private val eventAdapter = EventRecyclerAdapter(this, EventsModel())
     private lateinit var viewModel: FlowViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBlogBinding.inflate(inflater, container, false)
+        _binding = FragmentEventBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -31,34 +30,24 @@ class BlogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManager = LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(requireActivity()).get(FlowViewModel::class.java)
-        viewModel.getBlogs()
+        viewModel.getEvents()
 
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = blogAdapter
-
-        binding.swipeRefreshLayoutBlog.setOnRefreshListener {
-            binding.textViewErrorMessage.visibility = View.GONE
-            binding.progressBar.visibility = View.VISIBLE
-            binding.recyclerView.visibility = View.GONE
-            viewModel.getBlogs()
-            binding.swipeRefreshLayoutBlog.isRefreshing = false
-        }
+        binding.recyclerView.adapter = eventAdapter
 
         observeLiveData()
     }
 
     private fun observeLiveData(){
-        viewModel.blogDatas.observe(viewLifecycleOwner, { bloglar ->
-            bloglar?.let {
+        viewModel.eventDatas.observe(viewLifecycleOwner,{ events ->
+            events?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                blogAdapter.updateBlogs(it)
+                eventAdapter.updateEvent(it)
             }
         })
-        viewModel.blogError.observe(viewLifecycleOwner, { error ->
+        viewModel.eventError.observe(viewLifecycleOwner,{ error ->
             error?.let {
                 if (it){
                     binding.textViewErrorMessage.visibility = View.VISIBLE
@@ -69,8 +58,8 @@ class BlogFragment : Fragment() {
                 }
             }
         })
-        viewModel.blogLoading.observe(viewLifecycleOwner, { yukleniyor ->
-            yukleniyor?.let {
+        viewModel.eventLoading.observe(viewLifecycleOwner, { loading ->
+            loading?.let {
                 if (it){
                     binding.textViewErrorMessage.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE

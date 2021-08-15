@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.dahasi
+package com.futag.futag.view.fragment.flow.moreover
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +12,7 @@ import com.futag.futag.adapter.MoreoverRecyclerAdapter
 import com.futag.futag.databinding.FragmentMoreoverBinding
 import com.futag.futag.model.MoreoverItemModel
 
-class DahaFragment : Fragment() {
+class MoreoverFragment : Fragment() {
 
     private var _binding: FragmentMoreoverBinding? = null
     private val binding get() = _binding!!
@@ -33,37 +33,37 @@ class DahaFragment : Fragment() {
 
         itemList = ArrayList()
 
-        val birimlerimiz = MoreoverItemModel(
+        val units = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.futag_icon)!!,
             getString(R.string.our_units)
         )
-        val biziOyla = MoreoverItemModel(
+        val rateUs = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.star)!!,
             getString(R.string.rate_us)
         )
-        val bildirimler = MoreoverItemModel(
+        val notification = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.bell)!!,
             getString(R.string.notification)
         )
-        val geriBildirim = MoreoverItemModel(
+        val feedback = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.mail_contact)!!,
             getString(R.string.feedback)
         )
-        val hakkimizda = MoreoverItemModel(
+        val aboutUs = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.info)!!,
             getString(R.string.about_us)
         )
-        val ayarlar = MoreoverItemModel(
+        val settings = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.moreover_settings)!!,
             getString(R.string.settings)
         )
 
-        itemList.add(birimlerimiz)
-        itemList.add(biziOyla)
-        itemList.add(bildirimler)
-        itemList.add(geriBildirim)
-        itemList.add(hakkimizda)
-        itemList.add(ayarlar)
+        itemList.add(units)
+        itemList.add(rateUs)
+        itemList.add(notification)
+        itemList.add(feedback)
+        itemList.add(aboutUs)
+        itemList.add(settings)
 
         adapter = MoreoverRecyclerAdapter(this ,requireContext(), itemList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

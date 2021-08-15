@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.ev
+package com.futag.futag.view.fragment.flow.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,13 +15,13 @@ import com.futag.futag.model.post.PostModel
 import com.futag.futag.util.LinePagerIndicatorDecoration
 import com.futag.futag.viewmodel.FlowViewModel
 
-class EvFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adsAdapter: AdsRecyclerAdapter
     private lateinit var viewModel: FlowViewModel
-    private val gonderiAdapter = PostRecyclerAdapter(this, PostModel())
+    private val postAdapter = PostRecyclerAdapter(this, PostModel())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,31 +36,31 @@ class EvFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val layoutManager = LinearLayoutManager(requireContext())
-        val layoutManagerReklam = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        val layoutManagerAds = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         viewModel = ViewModelProvider(requireActivity()).get(FlowViewModel::class.java)
         viewModel.getPosts()
         viewModel.getAds()
 
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = gonderiAdapter
-        binding.recyclerViewAds.layoutManager = layoutManagerReklam
+        binding.recyclerView.adapter = postAdapter
+        binding.recyclerViewAds.layoutManager = layoutManagerAds
 
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.recyclerViewAds)
 
-        observeGonderiLiveData()
-        observeReklamLiveData()
+        observePostLiveData()
+        observeAdsLiveData()
 
         binding.recyclerViewAds.addItemDecoration(LinePagerIndicatorDecoration())
     }
 
-    private fun observeGonderiLiveData(){
-        viewModel.postDatas.observe(viewLifecycleOwner, { bloglar ->
-            bloglar?.let {
+    private fun observePostLiveData(){
+        viewModel.postDatas.observe(viewLifecycleOwner, { posts ->
+            posts?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                gonderiAdapter.updatePost(it)
+                postAdapter.updatePost(it)
             }
         })
         viewModel.postError.observe(viewLifecycleOwner, { error ->
@@ -74,8 +74,8 @@ class EvFragment : Fragment() {
                 }
             }
         })
-        viewModel.postLoading.observe(viewLifecycleOwner, { yukleniyor ->
-            yukleniyor?.let {
+        viewModel.postLoading.observe(viewLifecycleOwner, { loading ->
+            loading?.let {
                 if (it){
                     binding.textViewErrorMessage.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
@@ -87,9 +87,9 @@ class EvFragment : Fragment() {
         })
     }
 
-    private fun observeReklamLiveData(){
-        viewModel.adsDatas.observe(viewLifecycleOwner, { reklamlar ->
-            reklamlar?.let { reklamModel ->
+    private fun observeAdsLiveData(){
+        viewModel.adsDatas.observe(viewLifecycleOwner, { ads ->
+            ads?.let { reklamModel ->
                 binding.progressBarSlider.visibility = View.INVISIBLE
                 binding.recyclerViewAds.visibility = View.VISIBLE
                 adsAdapter = AdsRecyclerAdapter(reklamModel,this)
@@ -104,8 +104,8 @@ class EvFragment : Fragment() {
                 }
             }
         })
-        viewModel.adsLoading.observe(viewLifecycleOwner, { yukleniyor ->
-            yukleniyor?.let {
+        viewModel.adsLoading.observe(viewLifecycleOwner, { loading ->
+            loading?.let {
                 if (it){
                     binding.progressBarSlider.visibility = View.VISIBLE
                     binding.recyclerViewAds.visibility = View.GONE

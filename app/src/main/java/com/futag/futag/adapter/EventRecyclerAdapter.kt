@@ -7,9 +7,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.databinding.EventsRecyclerRowBinding
 import com.futag.futag.model.event.EventsModel
-import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.fetchImagesWithUrl
-import com.futag.futag.view.fragment.akis.etkinlik.EtkinlikFragmentDirections
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.view.fragment.flow.event.EventFragmentDirections
 
 class EventRecyclerAdapter(
     private val parentFragment: Fragment,
@@ -30,7 +30,7 @@ class EventRecyclerAdapter(
         val currentData = eventList[position]
 
         holder.itemBinding.cardViewEtkinlik.setOnClickListener {
-            val action = EtkinlikFragmentDirections.actionEtkinlikFragmentToEtkinlikDetayFragment(currentData)
+            val action = EventFragmentDirections.actionEtkinlikFragmentToEtkinlikDetayFragment(currentData)
             parentFragment.findNavController().navigate(action)
         }
 

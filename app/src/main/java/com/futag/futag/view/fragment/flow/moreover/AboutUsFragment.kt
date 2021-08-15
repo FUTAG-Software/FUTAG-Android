@@ -1,14 +1,13 @@
-package com.futag.futag.view.fragment.akis.dahasi
+package com.futag.futag.view.fragment.flow.moreover
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.futag.futag.R
 import com.futag.futag.databinding.FragmentAboutUsBinding
 
-class HakkimizdaF : Fragment() {
+class AboutUsFragment : Fragment() {
 
     private var _binding: FragmentAboutUsBinding? = null
     private val binding get() = _binding!!

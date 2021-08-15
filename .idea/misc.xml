@@ -100,6 +100,9 @@
         <entry key="app/src/main/res/layout/reklamlar_recycler_row.xml" value="0.24" />
         <entry key="app/src/main/res/layout/slider_item_layout.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/menu/akis_bottom_menu.xml" value="0.21107491856677524" />
+        <entry key="app/src/main/res/menu/flow_bottom_menu.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22117263843648208" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22117263843648208" />
       </map>
     </option>
   </component>

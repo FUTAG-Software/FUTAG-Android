@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.BlogRecyclerRowBinding
 import com.futag.futag.model.blog.BlogModel
-import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.fetchImagesWithUrl
-import com.futag.futag.view.fragment.akis.blog.BlogFragmentDirections
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.view.fragment.flow.blog.BlogFragmentDirections
 
 class BlogRecyclerAdapter(private val parentFragment: Fragment, private val blogList: BlogModel)
     : RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder>() {

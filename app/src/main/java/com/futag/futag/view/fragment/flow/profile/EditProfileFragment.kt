@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.profil
+package com.futag.futag.view.fragment.flow.profile
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
@@ -34,12 +34,12 @@ import java.io.ByteArrayOutputStream
 import java.lang.Exception
 import java.util.*
 
-class ProfiliDuzenleF : Fragment() {
+class EditProfileFragment : Fragment() {
 
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProfileViewModel
-    private var userProfilBilgileri: UserModel? = null
+    private var userProfileInfo: UserModel? = null
     private var selectedBitmap: Bitmap? = null
     private var selectedUri: Uri? = null
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -65,18 +65,18 @@ class ProfiliDuzenleF : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
 
         viewModel.getProfileInfo(requireContext())
-        profilBilgileriniCek()
+        getProfileInfo()
 
-        val takvim = Calendar.getInstance()
-        val yil = takvim.get(Calendar.YEAR)
-        val ay = takvim.get(Calendar.MONTH)
-        val gun = takvim.get(Calendar.DAY_OF_MONTH)
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         binding.editTextBirthday.setOnClickListener {
-            val dpd = DatePickerDialog(requireContext(), { _, mYil, mAy, mGun ->
-                val tarih = "$mGun-${mAy+1}-$mYil"
+            val dpd = DatePickerDialog(requireContext(), { _, mYear, mMonth, mDay ->
+                val tarih = "$mDay-${mMonth+1}-$mYear"
                 binding.editTextBirthday.text = tarih
-            }, yil, ay, gun)
+            }, year, month, day)
             dpd.show()
         }
 
@@ -98,23 +98,23 @@ class ProfiliDuzenleF : Fragment() {
                 }
             } else {
                 // izin verilmis, galeriye gidis
-                val galeriIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                activityResultLauncher.launch(galeriIntent)
+                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(galleryIntent)
             }
         }
 
         binding.buttonSaveChanges.setOnClickListener {
-            if (veriGirisiVarMi()){
-                val yeniIsim = binding.editTextName.text.toString()
-                val yeniSoyisim = binding.editTextSurname.text.toString()
-                val yeniDogumGunu = binding.editTextBirthday.text.toString()
+            if (dataControl()){
+                val newName = binding.editTextName.text.toString()
+                val newSurname = binding.editTextSurname.text.toString()
+                val newBirthday = binding.editTextBirthday.text.toString()
                 if(selectedBitmap != null){
                     val smallBitmap = makeSmallerBitmap(selectedBitmap!!,400)
-                    viewModel.updateProfile(requireContext(),userProfilBilgileri!!
-                        ,yeniIsim,yeniSoyisim,yeniDogumGunu,getImageUri(requireContext(),smallBitmap))
+                    viewModel.updateProfile(requireContext(),userProfileInfo!!
+                        ,newName,newSurname,newBirthday,getImageUri(requireContext(),smallBitmap))
                 } else {
-                    viewModel.updateProfile(requireContext(),userProfilBilgileri!!
-                        ,yeniIsim,yeniSoyisim,yeniDogumGunu,null)
+                    viewModel.updateProfile(requireContext(),userProfileInfo!!
+                        ,newName,newSurname,newBirthday,null)
                 }
             } else {
                 Toast.makeText(requireContext(),R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
@@ -130,8 +130,8 @@ class ProfiliDuzenleF : Fragment() {
             }
             builder.setPositiveButton(R.string.yes) { _, _ ->
                 viewModel.deleteAccount(requireContext())
-                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,{ animasyon ->
-                    animasyon?.let {
+                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,{ animation ->
+                    animation?.let {
                         if (it){
                             binding.constraintLayout.visibility = View.INVISIBLE
                             binding.progressBar.visibility = View.VISIBLE
@@ -149,10 +149,10 @@ class ProfiliDuzenleF : Fragment() {
 
     }
 
-    private fun profilBilgileriniCek(){
-        viewModel.animation.observe(viewLifecycleOwner,{ animasyon ->
-            animasyon?.let { deger ->
-                if (deger){
+    private fun getProfileInfo(){
+        viewModel.animation.observe(viewLifecycleOwner,{ animation ->
+            animation?.let { value ->
+                if (value){
                     binding.constraintLayout.visibility = View.INVISIBLE
                     binding.progressBar.visibility = View.VISIBLE
                 } else {
@@ -161,16 +161,16 @@ class ProfiliDuzenleF : Fragment() {
                 }
             }
         })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
-            veriOnayi?.let { veri ->
-                if (veri){
-                    userProfilBilgileri = viewModel.userInfo
-                    binding.editTextName.setText(userProfilBilgileri!!.name)
-                    binding.editTextBirthday.text = userProfilBilgileri!!.birthday
-                    binding.editTextSurname.setText(userProfilBilgileri!!.surname)
-                    if(userProfilBilgileri!!.profileImage != null){
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
+            dataConfirm?.let { data ->
+                if (data){
+                    userProfileInfo = viewModel.userInfo
+                    binding.editTextName.setText(userProfileInfo!!.name)
+                    binding.editTextBirthday.text = userProfileInfo!!.birthday
+                    binding.editTextSurname.setText(userProfileInfo!!.surname)
+                    if(userProfileInfo!!.profileImage != null){
                         Picasso.get()
-                            .load(userProfilBilgileri!!.profileImage)
+                            .load(userProfileInfo!!.profileImage)
                             .placeholder(R.drawable.person_high_resolution)
                             .error(R.drawable.error)
                             .into(binding.imageViewProfileImage)
@@ -253,7 +253,7 @@ class ProfiliDuzenleF : Fragment() {
         return Uri.parse(path)
     }
 
-    private fun veriGirisiVarMi(): Boolean = binding.editTextName.text.isNotEmpty()
+    private fun dataControl(): Boolean = binding.editTextName.text.isNotEmpty()
             && binding.editTextSurname.text.isNotEmpty() && binding.editTextBirthday.text.isNotEmpty()
 
     override fun onDestroyView() {

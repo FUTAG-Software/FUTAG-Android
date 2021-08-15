@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.etkinlik
+package com.futag.futag.view.fragment.flow.event
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,12 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentEventDetailBinding
-import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.fetchImagesWithUrl
+import com.futag.futag.util.placeholderProgressBar
 
-class EtkinlikDetayFragment : Fragment() {
+class EventDetailFragment : Fragment() {
 
-    private val args by navArgs<EtkinlikDetayFragmentArgs>()
+    private val args by navArgs<EventDetailFragmentArgs>()
     private var _binding: FragmentEventDetailBinding? = null
     private val binding get() = _binding!!
 
@@ -31,19 +31,19 @@ class EtkinlikDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val canliVeri = args.canliEtkinlik
+        val currentData = args.currentEvent
 
         binding.imageViewImage.fetchImagesWithUrl(
-            canliVeri.image,
+            currentData.image,
             placeholderProgressBar(requireContext())
         )
 
-        binding.textViewDetail.text = canliVeri.details
+        binding.textViewDetail.text = currentData.details
         binding.textViewLink.setOnClickListener {
-            if (canliVeri.formLink == "no_link"){
+            if (currentData.formLink == "no_link"){
                 Toast.makeText(requireContext(), R.string.registration_is_closed,Toast.LENGTH_SHORT).show()
             } else {
-                val action = EtkinlikDetayFragmentDirections.actionEtkinlikDetayFragmentToFormFragment(canliVeri.formLink)
+                val action = EventDetailFragmentDirections.actionEtkinlikDetayFragmentToFormFragment(currentData.formLink)
                 Navigation.findNavController(it).navigate(action)
             }
         }

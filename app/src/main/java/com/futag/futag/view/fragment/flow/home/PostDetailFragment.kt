@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.ev
+package com.futag.futag.view.fragment.flow.home
 
 import android.os.Build
 import android.os.Bundle
@@ -11,12 +11,12 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentPostDetailBinding
-import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.fetchImagesWithUrl
+import com.futag.futag.util.placeholderProgressBar
 
-class GonderiDetayFragment : Fragment() {
+class PostDetailFragment : Fragment() {
 
-    private val args by navArgs<GonderiDetayFragmentArgs>()
+    private val args by navArgs<PostDetailFragmentArgs>()
     private var _binding: FragmentPostDetailBinding? = null
     private val binding get() = _binding!!
 
@@ -32,9 +32,9 @@ class GonderiDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val canliVeri = args.anaSayfaItem
-        if(canliVeri.featuredImage != null){
-            binding.imageViewImage.fetchImagesWithUrl(canliVeri.featuredImage.large,
+        val currentData = args.postItem
+        if(currentData.featuredImage != null){
+            binding.imageViewImage.fetchImagesWithUrl(currentData.featuredImage.large,
                 placeholderProgressBar(requireContext())
             )
         } else {
@@ -42,15 +42,15 @@ class GonderiDetayFragment : Fragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.error)
             )
         }
-        binding.textViewAuthor.text = canliVeri.author
+        binding.textViewAuthor.text = currentData.author
 
-        var resimsizHTML = canliVeri.content.replace(Regex("<img.+>"), "")
-        resimsizHTML = resimsizHTML.replace(Regex("\\n"),"<br>")
+        var noImageHTML = currentData.content.replace(Regex("<img.+>"), "")
+        noImageHTML = noImageHTML.replace(Regex("\\n"),"<br>")
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            binding.textViewDetail.text = Html.fromHtml(resimsizHTML, Html.FROM_HTML_MODE_COMPACT)
+            binding.textViewDetail.text = Html.fromHtml(noImageHTML, Html.FROM_HTML_MODE_COMPACT)
         } else {
-            binding.textViewDetail.text = Html.fromHtml(resimsizHTML)
+            binding.textViewDetail.text = Html.fromHtml(noImageHTML)
         }
 
     }

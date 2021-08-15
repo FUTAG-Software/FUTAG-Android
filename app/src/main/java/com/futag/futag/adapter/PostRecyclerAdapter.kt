@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.PostRecyclerRowBinding
 import com.futag.futag.model.post.PostModel
-import com.futag.futag.util.placeholderProgressBar
 import com.futag.futag.util.fetchImagesWithUrl
-import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
+import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.view.fragment.flow.home.HomeFragmentDirections
 
 class PostRecyclerAdapter(private val parentFragment: Fragment, private val postList: PostModel)
     : RecyclerView.Adapter<PostRecyclerAdapter.PostViewHolder>() {
@@ -38,7 +38,7 @@ class PostRecyclerAdapter(private val parentFragment: Fragment, private val post
 
         holder.itemBinding.textViewTitle.text = currentData.title
         holder.itemBinding.cardView.setOnClickListener {
-            val action = EvFragmentDirections.actionEvFragmentToGonderiDetayFragment(currentData)
+            val action = HomeFragmentDirections.actionEvFragmentToGonderiDetayFragment(currentData)
             parentFragment.findNavController().navigate(action)
         }
     }

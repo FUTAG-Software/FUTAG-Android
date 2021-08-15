@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.blog
+package com.futag.futag.view.fragment.flow.blog
 
 import android.os.Build
 import android.os.Bundle
@@ -13,9 +13,9 @@ import com.futag.futag.R
 import com.futag.futag.databinding.FragmentBlogDetailBinding
 import com.squareup.picasso.Picasso
 
-class BlogDetayFragment : Fragment() {
+class BlogDetailFragment : Fragment() {
 
-    private val args by navArgs<BlogDetayFragmentArgs>()
+    private val args by navArgs<BlogDetailFragmentArgs>()
     private var _binding: FragmentBlogDetailBinding? = null
     private val binding get() = _binding!!
 
@@ -31,20 +31,20 @@ class BlogDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val canliVeri = args.canliBlog
-        binding.textViewAuthor.text = canliVeri.author
+        val currentData = args.currentBlog
+        binding.textViewAuthor.text = currentData.author
 
-        var resimsizHTML = canliVeri.content.replace(Regex("<img.+>"), "")
-        resimsizHTML = resimsizHTML.replace(Regex("\\n"),"<br>")
+        var noPictureHTML = currentData.content.replace(Regex("<img.+>"), "")
+        noPictureHTML = noPictureHTML.replace(Regex("\\n"),"<br>")
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            binding.textViewDetail.text = Html.fromHtml(resimsizHTML,Html.FROM_HTML_MODE_COMPACT)
+            binding.textViewDetail.text = Html.fromHtml(noPictureHTML,Html.FROM_HTML_MODE_COMPACT)
         } else {
-            binding.textViewDetail.text = Html.fromHtml(resimsizHTML)
+            binding.textViewDetail.text = Html.fromHtml(noPictureHTML)
         }
 
-        if(canliVeri.featuredImage != null){
-            Picasso.get().load(canliVeri.featuredImage.large).placeholder(R.drawable.placeholder).into(binding.imageView)
+        if(currentData.featuredImage != null){
+            Picasso.get().load(currentData.featuredImage.large).placeholder(R.drawable.placeholder).into(binding.imageView)
         } else {
             binding.imageView.setImageDrawable(
                 ContextCompat.getDrawable(requireContext(),R.drawable.blog_test)

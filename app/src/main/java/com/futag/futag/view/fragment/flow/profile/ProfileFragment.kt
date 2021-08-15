@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.profil
+package com.futag.futag.view.fragment.flow.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,12 +16,12 @@ import com.futag.futag.model.UserModel
 import com.futag.futag.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 
-class ProfilFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProfileViewModel
-    private var userProfilBilgileri: UserModel? = null
+    private var userProfileInfo: UserModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +38,7 @@ class ProfilFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
 
         viewModel.getProfileInfo(requireContext())
-        profilBilgileriniCek()
+        getProfileInfo()
 
         binding.buttonEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_profilFragment_to_profiliDuzenleF)
@@ -46,14 +46,14 @@ class ProfilFragment : Fragment() {
 
         binding.buttonSignOut.setOnClickListener {
             viewModel.signOut()
-            veriyiGozlemleCikisYap()
+            observeDataSignOut()
         }
     }
 
-    private fun profilBilgileriniCek(){
-        viewModel.animation.observe(viewLifecycleOwner,{ animasyon ->
-            animasyon?.let { deger ->
-                if (deger){
+    private fun getProfileInfo(){
+        viewModel.animation.observe(viewLifecycleOwner,{ animation ->
+            animation?.let { value ->
+                if (value){
                     binding.constraintLayout.visibility = View.INVISIBLE
                     binding.progressBar.visibility = View.VISIBLE
                 } else {
@@ -62,19 +62,19 @@ class ProfilFragment : Fragment() {
                 }
             }
         })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { veriOnayi ->
-            veriOnayi?.let { veri ->
-                if (veri){
-                    userProfilBilgileri = viewModel.userInfo
-                    binding.editTextUserMail.setText(userProfilBilgileri!!.email)
-                    binding.editTextBirthday.setText(userProfilBilgileri!!.birthday)
-                    val isim = userProfilBilgileri!!.name
-                    val soyisim = userProfilBilgileri!!.surname
-                    val isimSoyisim = "$isim $soyisim"
-                    binding.textViewNameAndSurname.text = isimSoyisim
-                    if(userProfilBilgileri!!.profileImage != null){
+        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
+            dataConfirm?.let { data ->
+                if (data){
+                    userProfileInfo = viewModel.userInfo
+                    binding.editTextUserMail.setText(userProfileInfo!!.email)
+                    binding.editTextBirthday.setText(userProfileInfo!!.birthday)
+                    val name = userProfileInfo!!.name
+                    val surname = userProfileInfo!!.surname
+                    val nameSurname = "$name $surname"
+                    binding.textViewNameAndSurname.text = nameSurname
+                    if(userProfileInfo!!.profileImage != null){
                         Picasso.get()
-                            .load(userProfilBilgileri!!.profileImage)
+                            .load(userProfileInfo!!.profileImage)
                             .placeholder(R.drawable.person_high_resolution)
                             .into(binding.imageViewProfileImage)
                     } else{
@@ -92,12 +92,12 @@ class ProfilFragment : Fragment() {
         })
     }
 
-    private fun veriyiGozlemleCikisYap(){
-        viewModel.animation.observe(viewLifecycleOwner, { animasyon ->
-            animasyon?.let { deger ->
-                if (deger){
-                    viewModel.isThereEntry.observe(viewLifecycleOwner, { giris ->
-                        giris?.let {
+    private fun observeDataSignOut(){
+        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+            animation?.let { value ->
+                if (value){
+                    viewModel.isThereEntry.observe(viewLifecycleOwner, { login ->
+                        login?.let {
                             if (it){
                                 binding.constraintLayout.visibility = View.INVISIBLE
                                 binding.progressBar.visibility = View.VISIBLE

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/evFragment"
-        android:name="com.futag.futag.view.fragment.akis.ev.EvFragment"
+        android:name="com.futag.futag.view.fragment.flow.home.HomeFragment"
         android:label="fragment_ev"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/blogFragment"
-        android:name="com.futag.futag.view.fragment.akis.blog.BlogFragment"
+        android:name="com.futag.futag.view.fragment.flow.blog.BlogFragment"
         android:label="fragment_blog"
         tools:layout="@layout/fragment_blog" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/etkinlikFragment"
-        android:name="com.futag.futag.view.fragment.akis.etkinlik.EtkinlikFragment"
+        android:name="com.futag.futag.view.fragment.flow.event.EventFragment"
         android:label="fragment_etkinlik"
         tools:layout="@layout/fragment_event" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/profilFragment"
-        android:name="com.futag.futag.view.fragment.akis.profil.ProfilFragment"
+        android:name="com.futag.futag.view.fragment.flow.profile.ProfileFragment"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/dahaFragment"
-        android:name="com.futag.futag.view.fragment.akis.dahasi.DahaFragment"
+        android:name="com.futag.futag.view.fragment.flow.moreover.MoreoverFragment"
         android:label="fragment_daha"
         tools:layout="@layout/fragment_moreover" >
         <action
@@ -64,12 +64,12 @@
     </fragment>
     <fragment
         android:id="@+id/profiliDuzenleF"
-        android:name="com.futag.futag.view.fragment.akis.profil.ProfiliDuzenleF"
+        android:name="com.futag.futag.view.fragment.flow.profile.EditProfileFragment"
         android:label="fragment_profili_duzenle"
         tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/birimlerimizF"
-        android:name="com.futag.futag.view.fragment.akis.dahasi.birimlerimiz.BirimlerimizF"
+        android:name="com.futag.futag.view.fragment.flow.moreover.units.OurUnitsFragment"
         android:label="fragment_birimlerimiz"
         tools:layout="@layout/fragment_our_units" >
         <action
@@ -78,54 +78,54 @@
     </fragment>
     <fragment
         android:id="@+id/bildirimlerF"
-        android:name="com.futag.futag.view.fragment.akis.dahasi.BildirimlerF"
+        android:name="com.futag.futag.view.fragment.flow.moreover.NotificationFragment"
         android:label="fragment_bildirimler"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/hakkimizdaF"
-        android:name="com.futag.futag.view.fragment.akis.dahasi.HakkimizdaF"
+        android:name="com.futag.futag.view.fragment.flow.moreover.AboutUsFragment"
         android:label="fragment_hakkimizda"
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/birimDetayF"
-        android:name="com.futag.futag.view.fragment.akis.dahasi.birimlerimiz.BirimDetayF"
+        android:name="com.futag.futag.view.fragment.flow.moreover.units.UnitsDetailFragment"
         android:label="fragment_birim_detay"
         tools:layout="@layout/fragment_unit_detail" >
         <argument
-            android:name="birimId"
+            android:name="unitId"
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/blogDetayFragment"
-        android:name="com.futag.futag.view.fragment.akis.blog.BlogDetayFragment"
+        android:name="com.futag.futag.view.fragment.flow.blog.BlogDetailFragment"
         android:label="fragment_blog_detay"
         tools:layout="@layout/fragment_blog_detail" >
         <argument
-            android:name="canliBlog"
+            android:name="currentBlog"
             app:argType="com.futag.futag.model.blog.BlogModelItem" />
     </fragment>
     <fragment
         android:id="@+id/ayarlarFragment"
-        android:name="com.futag.futag.view.fragment.akis.dahasi.AyarlarFragment"
+        android:name="com.futag.futag.view.fragment.flow.moreover.SettingsFragment"
         android:label="fragment_ayarlar"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/gonderiDetayFragment"
-        android:name="com.futag.futag.view.fragment.akis.ev.GonderiDetayFragment"
+        android:name="com.futag.futag.view.fragment.flow.home.PostDetailFragment"
         android:label="GonderiDetayFragment"
         tools:layout="@layout/fragment_post_detail">
         <argument
-            android:name="anaSayfaItem"
+            android:name="postItem"
             app:argType="com.futag.futag.model.post.PostModelItem" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikDetayFragment"
-        android:name="com.futag.futag.view.fragment.akis.etkinlik.EtkinlikDetayFragment"
+        android:name="com.futag.futag.view.fragment.flow.event.EventDetailFragment"
         android:label="fragment_etkinlik_detay"
         tools:layout="@layout/fragment_event_detail" >
         <argument
-            android:name="canliEtkinlik"
+            android:name="currentEvent"
             app:argType="com.futag.futag.model.event.EventsModelItem" />
         <action
             android:id="@+id/action_etkinlikDetayFragment_to_formFragment"
@@ -133,20 +133,20 @@
     </fragment>
     <fragment
         android:id="@+id/formFragment"
-        android:name="com.futag.futag.view.fragment.akis.etkinlik.FormFragment"
+        android:name="com.futag.futag.view.fragment.flow.event.FormFragment"
         android:label="fragment_form"
         tools:layout="@layout/fragment_form" >
         <argument
-            android:name="etkinlikLink"
+            android:name="formLink"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/webSitesiFragment"
-        android:name="com.futag.futag.view.fragment.akis.ev.WebSitesiFragment"
+        android:name="com.futag.futag.view.fragment.flow.home.WebSiteFragment"
         android:label="fragment_web"
         tools:layout="@layout/fragment_web" >
         <argument
-            android:name="siteLinki"
+            android:name="siteLink"
             app:argType="string" />
     </fragment>
 </navigation>

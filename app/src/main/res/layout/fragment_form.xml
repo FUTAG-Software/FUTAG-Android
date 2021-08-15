@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.akis.etkinlik.FormFragment">
+    tools:context=".view.fragment.flow.event.FormFragment">
 
     <WebView
         android:id="@+id/webView"

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".view.fragment.akis.dahasi.birimlerimiz.BirimDetayF" >
+        tools:context=".view.fragment.flow.moreover.units.UnitsDetailFragment" >
 
         <ImageView
             android:id="@+id/imageView"

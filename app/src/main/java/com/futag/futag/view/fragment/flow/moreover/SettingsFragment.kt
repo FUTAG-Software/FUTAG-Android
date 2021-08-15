@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.dahasi
+package com.futag.futag.view.fragment.flow.moreover
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -10,7 +10,7 @@ import com.futag.futag.databinding.FragmentSettingsBinding
 import com.futag.futag.util.SharedPref
 import java.util.*
 
-class AyarlarFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!

@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.akis.dahasi.birimlerimiz
+package com.futag.futag.view.fragment.flow.moreover.units
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,11 @@ import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentUnitDetailBinding
 
-class BirimDetayF : Fragment() {
+class UnitsDetailFragment : Fragment() {
 
     private var _binding: FragmentUnitDetailBinding? = null
     private val binding get() = _binding!!
-    private val args: BirimDetayFArgs by navArgs()
+    private val args: UnitsDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +28,7 @@ class BirimDetayF : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // kullaninin tikladigi birim numarasi
-        val id = args.birimId
+        val id = args.unitId
 
         when(id){
             0 -> {
