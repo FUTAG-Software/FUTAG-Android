@@ -10,11 +10,11 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
-import com.futag.futag.databinding.FragmentWebSitesiBinding
+import com.futag.futag.databinding.FragmentWebBinding
 
 class WebSitesiFragment : Fragment() {
 
-    private var _binding: FragmentWebSitesiBinding? = null
+    private var _binding: FragmentWebBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<WebSitesiFragmentArgs>()
 
@@ -22,7 +22,7 @@ class WebSitesiFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentWebSitesiBinding.inflate(inflater,container,false)
+        _binding = FragmentWebBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }

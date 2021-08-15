@@ -171,12 +171,12 @@ class ProfiliDuzenleF : Fragment() {
                     if(userProfilBilgileri!!.profileImage != null){
                         Picasso.get()
                             .load(userProfilBilgileri!!.profileImage)
-                            .placeholder(R.drawable.kisi_yuksek_cozunurluk)
+                            .placeholder(R.drawable.person_high_resolution)
                             .error(R.drawable.error)
                             .into(binding.imageViewProfileImage)
                     } else{
                         binding.imageViewProfileImage.setImageDrawable(
-                            ActivityCompat.getDrawable(requireContext(),R.drawable.kisi_yuksek_cozunurluk)
+                            ActivityCompat.getDrawable(requireContext(),R.drawable.person_high_resolution)
                         )
                     }
                     binding.constraintLayout.visibility = View.VISIBLE

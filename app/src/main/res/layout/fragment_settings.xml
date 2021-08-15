@@ -43,7 +43,7 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/dahasi_fragment_oval_gorunum"
+                android:background="@drawable/moreover_fragment_oval_view"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +55,7 @@
                     android:layout_width="34dp"
                     android:layout_height="34dp"
                     android:contentDescription="@string/moreover_circle_image"
-                    android:src="@drawable/koyu_mod"
+                    android:src="@drawable/dark_mode_image"
                     tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>
@@ -126,7 +126,7 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/dahasi_fragment_oval_gorunum"
+                android:background="@drawable/moreover_fragment_oval_view"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -138,7 +138,7 @@
                     android:layout_width="34dp"
                     android:layout_height="34dp"
                     android:contentDescription="@string/moreover_circle_image"
-                    android:src="@drawable/bildirimler"
+                    android:src="@drawable/notification"
                     tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>
@@ -207,7 +207,7 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/dahasi_fragment_oval_gorunum"
+                android:background="@drawable/moreover_fragment_oval_view"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -219,7 +219,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:contentDescription="@string/moreover_circle_image"
-                    android:src="@drawable/turk_bayragi"
+                    android:src="@drawable/turkish_flag"
                     tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>
@@ -241,7 +241,7 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/dahasi_fragment_oval_gorunum"
+                android:background="@drawable/moreover_fragment_oval_view"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -253,7 +253,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:contentDescription="@string/moreover_circle_image"
-                    android:src="@drawable/amerika_bayragi"
+                    android:src="@drawable/american_flag"
                     tools:ignore="ImageContrastCheck" />
 
             </LinearLayout>

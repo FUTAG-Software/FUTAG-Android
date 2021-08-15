@@ -9,21 +9,21 @@
     <item
         android:id="@+id/etkinlikFragment"
         android:title="@string/events"
-        android:icon="@drawable/takvim_bottom" />
+        android:icon="@drawable/calendar_image" />
 
     <item
         android:id="@+id/evFragment"
         android:title="@string/main_screen"
-        android:icon="@drawable/ev"/>
+        android:icon="@drawable/home"/>
 
     <item
         android:id="@+id/profilFragment"
         android:title="@string/profile"
-        android:icon="@drawable/kullanici" />
+        android:icon="@drawable/profile" />
 
     <item
         android:id="@+id/dahaFragment"
         android:title="@string/moreover"
-        android:icon="@drawable/daha" />
+        android:icon="@drawable/moreover" />
 
 </menu>

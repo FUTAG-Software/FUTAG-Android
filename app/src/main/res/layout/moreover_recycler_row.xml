@@ -19,7 +19,7 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/dahasi_fragment_oval_gorunum"
+            android:background="@drawable/moreover_fragment_oval_view"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/moreover_circle_image"
-            app:srcCompat="@drawable/ok_saga_dogru" />
+            app:srcCompat="@drawable/mark_right" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

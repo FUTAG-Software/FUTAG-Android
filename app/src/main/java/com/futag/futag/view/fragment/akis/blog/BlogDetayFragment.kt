@@ -47,7 +47,7 @@ class BlogDetayFragment : Fragment() {
             Picasso.get().load(canliVeri.featuredImage.large).placeholder(R.drawable.placeholder).into(binding.imageView)
         } else {
             binding.imageView.setImageDrawable(
-                ContextCompat.getDrawable(requireContext(),R.drawable.deneme_blog)
+                ContextCompat.getDrawable(requireContext(),R.drawable.blog_test)
             )
         }
     }

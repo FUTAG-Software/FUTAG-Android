@@ -23,7 +23,7 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        app:menu="@menu/akis_bottom_menu"
+        app:menu="@menu/flow_bottom_menu"
         app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
         android:background="@color/bottom_nav_bar_background"
         app:itemTextColor="@color/item_text_color"

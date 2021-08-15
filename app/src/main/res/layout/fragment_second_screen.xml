@@ -35,7 +35,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:background="@drawable/kayit_button_arka_plani"
+        android:background="@drawable/register_button_background"
         app:backgroundTint="@color/on_boarding_yellow"
         android:textColor="@color/opening_second_screen_button_text_color"
         android:text="@string/next"

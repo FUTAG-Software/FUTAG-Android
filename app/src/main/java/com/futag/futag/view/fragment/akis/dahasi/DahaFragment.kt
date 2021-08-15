@@ -38,15 +38,15 @@ class DahaFragment : Fragment() {
             getString(R.string.our_units)
         )
         val biziOyla = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.yildiz)!!,
+            ContextCompat.getDrawable(requireContext(),R.drawable.star)!!,
             getString(R.string.rate_us)
         )
         val bildirimler = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.zil)!!,
+            ContextCompat.getDrawable(requireContext(),R.drawable.bell)!!,
             getString(R.string.notification)
         )
         val geriBildirim = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.mail_iletisim)!!,
+            ContextCompat.getDrawable(requireContext(),R.drawable.mail_contact)!!,
             getString(R.string.feedback)
         )
         val hakkimizda = MoreoverItemModel(
@@ -54,7 +54,7 @@ class DahaFragment : Fragment() {
             getString(R.string.about_us)
         )
         val ayarlar = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.ayarlar)!!,
+            ContextCompat.getDrawable(requireContext(),R.drawable.moreover_settings)!!,
             getString(R.string.settings)
         )
 

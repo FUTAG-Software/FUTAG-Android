@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:contentDescription="@string/image"
-        android:src="@drawable/ok_saga_dogru"
+        android:src="@drawable/mark_right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck" />

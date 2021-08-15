@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:backgroundTint="@color/splash_fragment_background"
-    android:background="@drawable/arka_plan_soyut"
+    android:background="@drawable/background_abstract"
     tools:context=".view.fragment.SplashFragment">
 
     <ImageView
@@ -19,7 +19,7 @@
     <ImageView
         android:layout_width="300dp"
         android:layout_height="120dp"
-        android:src="@drawable/futag_yazi"
+        android:src="@drawable/futag_text_image"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/futag_text" />
 

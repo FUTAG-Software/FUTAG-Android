@@ -11,11 +11,11 @@
         android:label="fragment_ev"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_evFragment_to_webSitesiFragment"
-            app:destination="@id/webSitesiFragment" />
-        <action
             android:id="@+id/action_evFragment_to_gonderiDetayFragment"
             app:destination="@id/gonderiDetayFragment" />
+        <action
+            android:id="@+id/action_evFragment_to_webSitesiFragment"
+            app:destination="@id/webSitesiFragment" />
     </fragment>
     <fragment
         android:id="@+id/blogFragment"
@@ -106,16 +106,6 @@
             app:argType="com.futag.futag.model.blog.BlogModelItem" />
     </fragment>
     <fragment
-        android:id="@+id/webSitesiFragment"
-        android:name="com.futag.futag.view.fragment.akis.ev.WebSitesiFragment"
-        android:label="fragment_web_sitesi"
-        tools:layout="@layout/fragment_web_sitesi" >
-        <argument
-            android:name="siteLinki"
-            app:argType="string"
-            android:defaultValue="https://www.futag.net/" />
-    </fragment>
-    <fragment
         android:id="@+id/ayarlarFragment"
         android:name="com.futag.futag.view.fragment.akis.dahasi.AyarlarFragment"
         android:label="fragment_ayarlar"
@@ -148,6 +138,15 @@
         tools:layout="@layout/fragment_form" >
         <argument
             android:name="etkinlikLink"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/webSitesiFragment"
+        android:name="com.futag.futag.view.fragment.akis.ev.WebSitesiFragment"
+        android:label="fragment_web"
+        tools:layout="@layout/fragment_web" >
+        <argument
+            android:name="siteLinki"
             app:argType="string" />
     </fragment>
 </navigation>

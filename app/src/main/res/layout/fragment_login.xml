@@ -50,7 +50,7 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
-                android:drawableStart="@drawable/kisi"
+                android:drawableStart="@drawable/person"
                 android:drawablePadding="10dp"
                 android:maxLines="16"
                 android:textSize="18sp"
@@ -66,7 +66,7 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
-                android:drawableStart="@drawable/sifre"
+                android:drawableStart="@drawable/password_image"
                 android:drawablePadding="10dp"
                 android:maxLines="16"
                 android:textSize="18sp"
@@ -80,7 +80,7 @@
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/kayit_button_arka_plani"
+                android:background="@drawable/register_button_background"
                 android:backgroundTint="@color/button_background_yellow"
                 android:text="@string/log_in"
                 android:textAllCaps="false"
@@ -101,7 +101,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/futag_seffaf"
+                android:src="@drawable/futag_image_abstract"
                 android:contentDescription="@string/futag_icon" />
 
             <LinearLayout
