@@ -6,7 +6,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.futag.futag.R
 import com.squareup.picasso.Picasso
 
-fun ImageView.resimleriUrlIleGetir(url: String?, progressDrawable: CircularProgressDrawable){
+fun ImageView.fetchImagesWithUrl(url: String?, progressDrawable: CircularProgressDrawable){
     Picasso.get()
         .load(url)
         .placeholder(progressDrawable)

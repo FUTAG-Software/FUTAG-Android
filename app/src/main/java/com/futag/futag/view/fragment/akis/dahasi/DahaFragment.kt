@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.R
-import com.futag.futag.adapter.DahasiRecyclerAdapter
+import com.futag.futag.adapter.MoreoverRecyclerAdapter
 import com.futag.futag.databinding.FragmentMoreoverBinding
 import com.futag.futag.model.MoreoverItemModel
 
@@ -17,7 +17,7 @@ class DahaFragment : Fragment() {
     private var _binding: FragmentMoreoverBinding? = null
     private val binding get() = _binding!!
     private lateinit var itemList: ArrayList<MoreoverItemModel>
-    private lateinit var adapter: DahasiRecyclerAdapter
+    private lateinit var adapter: MoreoverRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +65,7 @@ class DahaFragment : Fragment() {
         itemList.add(hakkimizda)
         itemList.add(ayarlar)
 
-        adapter = DahasiRecyclerAdapter(this ,requireContext(), itemList)
+        adapter = MoreoverRecyclerAdapter(this ,requireContext(), itemList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 

@@ -8,27 +8,27 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.PostRecyclerRowBinding
-import com.futag.futag.model.mainscreen.MainScreenModel
+import com.futag.futag.model.post.PostModel
 import com.futag.futag.util.placeholderProgressBar
-import com.futag.futag.util.resimleriUrlIleGetir
+import com.futag.futag.util.fetchImagesWithUrl
 import com.futag.futag.view.fragment.akis.ev.EvFragmentDirections
 
-class GonderilerRecyclerAdapter(private val parentFragment: Fragment, private val gonderiListesi: MainScreenModel)
-    : RecyclerView.Adapter<GonderilerRecyclerAdapter.GonderilerViewHolder>() {
+class PostRecyclerAdapter(private val parentFragment: Fragment, private val postList: PostModel)
+    : RecyclerView.Adapter<PostRecyclerAdapter.PostViewHolder>() {
 
-    inner class GonderilerViewHolder(val itemBinding: PostRecyclerRowBinding)
+    inner class PostViewHolder(val itemBinding: PostRecyclerRowBinding)
         : RecyclerView.ViewHolder(itemBinding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GonderilerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = PostRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return GonderilerViewHolder(binding)
+        return PostViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: GonderilerViewHolder, position: Int) {
-        val canliVeri = gonderiListesi[position]
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+        val currentData = postList[position]
 
-        if(canliVeri.featuredImage != null){
-            holder.itemBinding.imageViewPost.resimleriUrlIleGetir(canliVeri.featuredImage.large,
+        if(currentData.featuredImage != null){
+            holder.itemBinding.imageViewPost.fetchImagesWithUrl(currentData.featuredImage.large,
                 placeholderProgressBar(parentFragment.requireContext()))
         } else {
             holder.itemBinding.imageViewPost.setImageDrawable(
@@ -36,20 +36,20 @@ class GonderilerRecyclerAdapter(private val parentFragment: Fragment, private va
             )
         }
 
-        holder.itemBinding.textViewTitle.text = canliVeri.title
+        holder.itemBinding.textViewTitle.text = currentData.title
         holder.itemBinding.cardView.setOnClickListener {
-            val action = EvFragmentDirections.actionEvFragmentToGonderiDetayFragment(canliVeri)
+            val action = EvFragmentDirections.actionEvFragmentToGonderiDetayFragment(currentData)
             parentFragment.findNavController().navigate(action)
         }
     }
 
     override fun getItemCount(): Int {
-        return gonderiListesi.size
+        return postList.size
     }
 
-    fun gonderiGuncelle(yeniGonderiListe: MainScreenModel){
-        gonderiListesi.clear()
-        gonderiListesi.addAll(yeniGonderiListe)
+    fun updatePost(newPostList: PostModel){
+        postList.clear()
+        postList.addAll(newPostList)
         notifyDataSetChanged()
     }
 

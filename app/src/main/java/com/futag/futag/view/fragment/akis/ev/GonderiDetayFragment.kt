@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentPostDetailBinding
 import com.futag.futag.util.placeholderProgressBar
-import com.futag.futag.util.resimleriUrlIleGetir
+import com.futag.futag.util.fetchImagesWithUrl
 
 class GonderiDetayFragment : Fragment() {
 
@@ -34,7 +34,7 @@ class GonderiDetayFragment : Fragment() {
 
         val canliVeri = args.anaSayfaItem
         if(canliVeri.featuredImage != null){
-            binding.imageViewImage.resimleriUrlIleGetir(canliVeri.featuredImage.large,
+            binding.imageViewImage.fetchImagesWithUrl(canliVeri.featuredImage.large,
                 placeholderProgressBar(requireContext())
             )
         } else {

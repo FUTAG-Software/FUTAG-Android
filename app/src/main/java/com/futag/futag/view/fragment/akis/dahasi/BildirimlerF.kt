@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.futag.futag.adapter.BildirimlerRecyclerAdapter
+import com.futag.futag.adapter.NotificationRecyclerAdapter
 import com.futag.futag.databinding.FragmentNotificationBinding
 import com.futag.futag.model.NotificationModel
 
@@ -15,7 +15,7 @@ class BildirimlerF : Fragment() {
     private var _binding: FragmentNotificationBinding? = null
     private val binding get() = _binding!!
     private lateinit var bildirimListesi: ArrayList<NotificationModel>
-    private lateinit var adapter: BildirimlerRecyclerAdapter
+    private lateinit var adapter: NotificationRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +39,7 @@ class BildirimlerF : Fragment() {
             binding.textViewNoNotification.visibility = View.GONE
         }
 
-        adapter = BildirimlerRecyclerAdapter(bildirimListesi)
+        adapter = NotificationRecyclerAdapter(bildirimListesi)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
     }

@@ -127,7 +127,7 @@
         tools:layout="@layout/fragment_post_detail">
         <argument
             android:name="anaSayfaItem"
-            app:argType="com.futag.futag.model.mainscreen.MainScreenModelItem" />
+            app:argType="com.futag.futag.model.post.PostModelItem" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikDetayFragment"

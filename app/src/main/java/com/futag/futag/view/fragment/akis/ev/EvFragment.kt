@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import com.futag.futag.adapter.GonderilerRecyclerAdapter
-import com.futag.futag.adapter.ReklamlarRecyclerAdapter
+import com.futag.futag.adapter.PostRecyclerAdapter
+import com.futag.futag.adapter.AdsRecyclerAdapter
 import com.futag.futag.databinding.FragmentHomeBinding
-import com.futag.futag.model.mainscreen.MainScreenModel
+import com.futag.futag.model.post.PostModel
 import com.futag.futag.util.LinePagerIndicatorDecoration
 import com.futag.futag.viewmodel.FlowViewModel
 
@@ -19,9 +19,9 @@ class EvFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var reklamlarAdapter: ReklamlarRecyclerAdapter
+    private lateinit var adsAdapter: AdsRecyclerAdapter
     private lateinit var viewModel: FlowViewModel
-    private val gonderiAdapter = GonderilerRecyclerAdapter(this, MainScreenModel())
+    private val gonderiAdapter = PostRecyclerAdapter(this, PostModel())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +60,7 @@ class EvFragment : Fragment() {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                gonderiAdapter.gonderiGuncelle(it)
+                gonderiAdapter.updatePost(it)
             }
         })
         viewModel.postError.observe(viewLifecycleOwner, { error ->
@@ -92,8 +92,8 @@ class EvFragment : Fragment() {
             reklamlar?.let { reklamModel ->
                 binding.progressBarSlider.visibility = View.INVISIBLE
                 binding.recyclerViewAds.visibility = View.VISIBLE
-                reklamlarAdapter = ReklamlarRecyclerAdapter(reklamModel,this)
-                binding.recyclerViewAds.adapter = reklamlarAdapter
+                adsAdapter = AdsRecyclerAdapter(reklamModel,this)
+                binding.recyclerViewAds.adapter = adsAdapter
             }
         })
         viewModel.adsError.observe(viewLifecycleOwner, { error ->

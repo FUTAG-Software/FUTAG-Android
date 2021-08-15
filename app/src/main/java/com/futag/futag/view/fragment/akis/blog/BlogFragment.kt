@@ -55,7 +55,7 @@ class BlogFragment : Fragment() {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                blogAdapter.blogYazilariniGuncelle(it)
+                blogAdapter.updateBlogs(it)
             }
         })
         viewModel.blogError.observe(viewLifecycleOwner, { error ->

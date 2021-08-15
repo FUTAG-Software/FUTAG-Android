@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentEventDetailBinding
 import com.futag.futag.util.placeholderProgressBar
-import com.futag.futag.util.resimleriUrlIleGetir
+import com.futag.futag.util.fetchImagesWithUrl
 
 class EtkinlikDetayFragment : Fragment() {
 
@@ -33,7 +33,7 @@ class EtkinlikDetayFragment : Fragment() {
 
         val canliVeri = args.canliEtkinlik
 
-        binding.imageViewImage.resimleriUrlIleGetir(
+        binding.imageViewImage.fetchImagesWithUrl(
             canliVeri.image,
             placeholderProgressBar(requireContext())
         )

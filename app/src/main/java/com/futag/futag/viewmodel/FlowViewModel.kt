@@ -2,7 +2,7 @@ package com.futag.futag.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.futag.futag.model.mainscreen.MainScreenModel
+import com.futag.futag.model.post.PostModel
 import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.model.event.EventsModel
 import com.futag.futag.model.advertising.AdsModel
@@ -31,7 +31,7 @@ class FlowViewModel: ViewModel() {
     val eventError = MutableLiveData<Boolean>()
     val eventLoading = MutableLiveData<Boolean>()
 
-    val postDatas = MutableLiveData<MainScreenModel>()
+    val postDatas = MutableLiveData<PostModel>()
     val postError = MutableLiveData<Boolean>()
     val postLoading = MutableLiveData<Boolean>()
 
@@ -96,8 +96,8 @@ class FlowViewModel: ViewModel() {
         compositeDisposable.add(servicePost.getPosts()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object: DisposableSingleObserver<MainScreenModel>(){
-                override fun onSuccess(t: MainScreenModel) {
+            .subscribeWith(object: DisposableSingleObserver<PostModel>(){
+                override fun onSuccess(t: PostModel) {
                     postDatas.value = t
                     postLoading.value = false
                     postError.value = false

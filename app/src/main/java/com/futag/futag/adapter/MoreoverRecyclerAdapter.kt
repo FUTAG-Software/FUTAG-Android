@@ -13,22 +13,22 @@ import com.futag.futag.R
 import com.futag.futag.databinding.MoreoverRecyclerRowBinding
 import com.futag.futag.model.MoreoverItemModel
 
-class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, val itemList: ArrayList<MoreoverItemModel>)
-    : RecyclerView.Adapter<DahasiRecyclerAdapter.DahasiViewHolder>() {
+class MoreoverRecyclerAdapter(val parentFragment: Fragment, val context: Context, val itemList: ArrayList<MoreoverItemModel>)
+    : RecyclerView.Adapter<MoreoverRecyclerAdapter.MoreOverViewHolder>() {
 
-    class DahasiViewHolder(val itemBinding: MoreoverRecyclerRowBinding)
+    class MoreOverViewHolder(val itemBinding: MoreoverRecyclerRowBinding)
         : RecyclerView.ViewHolder(itemBinding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DahasiViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoreOverViewHolder {
         val binding = MoreoverRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return DahasiViewHolder(binding)
+        return MoreOverViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: DahasiViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MoreOverViewHolder, position: Int) {
         holder.itemBinding.imageViewCircleImage.setImageDrawable(itemList[position].image)
         holder.itemBinding.textViewTitle.text = itemList[position].title
         holder.itemBinding.cardView.setOnClickListener {
-            sayfaDegis(itemList[position].title)
+            changePage(itemList[position].title)
         }
     }
 
@@ -36,8 +36,8 @@ class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, 
         return itemList.size
     }
 
-    private fun sayfaDegis(baslik: String){
-        when(baslik){
+    private fun changePage(title: String){
+        when(title){
             context.getString(R.string.our_units) -> {
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_birimlerimizF)
             }
@@ -48,7 +48,7 @@ class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, 
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_bildirimlerF)
             }
             context.getString(R.string.feedback) -> {
-                geriBildirimMail()
+                feedbackEmail()
             }
             context.getString(R.string.about_us) -> {
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_hakkimizdaF)
@@ -60,7 +60,7 @@ class DahasiRecyclerAdapter(val parentFragment: Fragment, val context: Context, 
         }
     }
 
-    private fun geriBildirimMail(){
+    private fun feedbackEmail(){
         val email = "futag@firat.edu.tr"
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:$email")

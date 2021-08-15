@@ -8,46 +8,46 @@ import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.databinding.EventsRecyclerRowBinding
 import com.futag.futag.model.event.EventsModel
 import com.futag.futag.util.placeholderProgressBar
-import com.futag.futag.util.resimleriUrlIleGetir
+import com.futag.futag.util.fetchImagesWithUrl
 import com.futag.futag.view.fragment.akis.etkinlik.EtkinlikFragmentDirections
 
-class EtkinliklerRecyclerAdapter(
+class EventRecyclerAdapter(
     private val parentFragment: Fragment,
-    private val etkinlikListesi: EventsModel
-    ): RecyclerView.Adapter<EtkinliklerRecyclerAdapter.EtkinliklerViewHolder>() {
+    private val eventList: EventsModel
+    ): RecyclerView.Adapter<EventRecyclerAdapter.EventsViewHolder>() {
 
-    inner class EtkinliklerViewHolder(val itemBinding: EventsRecyclerRowBinding):
+    inner class EventsViewHolder(val itemBinding: EventsRecyclerRowBinding):
             RecyclerView.ViewHolder(itemBinding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EtkinliklerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventsViewHolder {
         val binding = EventsRecyclerRowBinding.inflate(
             LayoutInflater.from(parentFragment.requireContext()),parent,false
         )
-        return EtkinliklerViewHolder(binding)
+        return EventsViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: EtkinliklerViewHolder, position: Int) {
-        val canliVeri = etkinlikListesi[position]
+    override fun onBindViewHolder(holder: EventsViewHolder, position: Int) {
+        val currentData = eventList[position]
 
         holder.itemBinding.cardViewEtkinlik.setOnClickListener {
-            val action = EtkinlikFragmentDirections.actionEtkinlikFragmentToEtkinlikDetayFragment(canliVeri)
+            val action = EtkinlikFragmentDirections.actionEtkinlikFragmentToEtkinlikDetayFragment(currentData)
             parentFragment.findNavController().navigate(action)
         }
 
-        holder.itemBinding.imageView.resimleriUrlIleGetir(
-            canliVeri.image,
+        holder.itemBinding.imageView.fetchImagesWithUrl(
+            currentData.image,
             placeholderProgressBar(parentFragment.requireContext())
         )
-        holder.itemBinding.textViewTitle.text = canliVeri.title
+        holder.itemBinding.textViewTitle.text = currentData.title
     }
 
     override fun getItemCount(): Int {
-        return etkinlikListesi.size
+        return eventList.size
     }
 
-    fun etkinlikleriGuncelle(yeniEtkinlikListesi: EventsModel){
-        etkinlikListesi.clear()
-        etkinlikListesi.addAll(yeniEtkinlikListesi)
+    fun updateEvent(newEventList: EventsModel){
+        eventList.clear()
+        eventList.addAll(newEventList)
         notifyDataSetChanged()
     }
 

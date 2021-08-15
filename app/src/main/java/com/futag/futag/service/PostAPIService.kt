@@ -1,6 +1,6 @@
 package com.futag.futag.service
 
-import com.futag.futag.model.mainscreen.MainScreenModel
+import com.futag.futag.model.post.PostModel
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -15,7 +15,7 @@ class PostAPIService {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build().create(PostAPI::class.java)
 
-    fun getPosts(): Single<MainScreenModel>{
+    fun getPosts(): Single<PostModel>{
         return api.getData()
     }
 

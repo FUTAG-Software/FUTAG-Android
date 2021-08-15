@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.futag.futag.adapter.EtkinliklerRecyclerAdapter
+import com.futag.futag.adapter.EventRecyclerAdapter
 import com.futag.futag.databinding.FragmentEventBinding
 import com.futag.futag.model.event.EventsModel
 import com.futag.futag.viewmodel.FlowViewModel
@@ -15,7 +15,7 @@ class EtkinlikFragment : Fragment() {
 
     private var _binding: FragmentEventBinding? = null
     private val binding get() = _binding!!
-    private val etkinlikAdapter = EtkinliklerRecyclerAdapter(this, EventsModel())
+    private val etkinlikAdapter = EventRecyclerAdapter(this, EventsModel())
     private lateinit var viewModel: FlowViewModel
 
     override fun onCreateView(
@@ -44,7 +44,7 @@ class EtkinlikFragment : Fragment() {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                etkinlikAdapter.etkinlikleriGuncelle(it)
+                etkinlikAdapter.updateEvent(it)
             }
         })
         viewModel.eventError.observe(viewLifecycleOwner,{ error ->

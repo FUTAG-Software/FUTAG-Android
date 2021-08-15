@@ -10,11 +10,10 @@ import com.futag.futag.R
 import com.futag.futag.databinding.BlogRecyclerRowBinding
 import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.util.placeholderProgressBar
-import com.futag.futag.util.resimleriUrlIleGetir
+import com.futag.futag.util.fetchImagesWithUrl
 import com.futag.futag.view.fragment.akis.blog.BlogFragmentDirections
-import com.squareup.picasso.Picasso
 
-class BlogRecyclerAdapter(private val parentFragment: Fragment, private val blogListesi: BlogModel)
+class BlogRecyclerAdapter(private val parentFragment: Fragment, private val blogList: BlogModel)
     : RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder>() {
 
     class BlogViewHolder(val itemBinding: BlogRecyclerRowBinding): RecyclerView.ViewHolder(itemBinding.root)
@@ -25,10 +24,10 @@ class BlogRecyclerAdapter(private val parentFragment: Fragment, private val blog
     }
 
     override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
-        val canliVeri = blogListesi[position]
+        val currentData = blogList[position]
 
-        if(canliVeri.featuredImage != null){
-            holder.itemBinding.blogImage.resimleriUrlIleGetir(canliVeri.featuredImage.large,
+        if(currentData.featuredImage != null){
+            holder.itemBinding.blogImage.fetchImagesWithUrl(currentData.featuredImage.large,
                 placeholderProgressBar(parentFragment.requireContext()))
         } else {
             holder.itemBinding.blogImage.setImageDrawable(
@@ -36,21 +35,21 @@ class BlogRecyclerAdapter(private val parentFragment: Fragment, private val blog
             )
         }
 
-        holder.itemBinding.blogTitle.text = canliVeri.title
-        holder.itemBinding.blogAuthor.text = canliVeri.author
+        holder.itemBinding.blogTitle.text = currentData.title
+        holder.itemBinding.blogAuthor.text = currentData.author
         holder.itemBinding.layout.setOnClickListener {
-            val action = BlogFragmentDirections.actionBlogFragmentToBlogDetayFragment(canliVeri)
+            val action = BlogFragmentDirections.actionBlogFragmentToBlogDetayFragment(currentData)
             parentFragment.findNavController().navigate(action)
         }
     }
 
     override fun getItemCount(): Int {
-        return blogListesi.size
+        return blogList.size
     }
 
-    fun blogYazilariniGuncelle(yeniBlogListesi: BlogModel){
-        blogListesi.clear()
-        blogListesi.addAll(yeniBlogListesi)
+    fun updateBlogs(newBlogList: BlogModel){
+        blogList.clear()
+        blogList.addAll(newBlogList)
         notifyDataSetChanged()
     }
 

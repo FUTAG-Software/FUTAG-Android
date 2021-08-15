@@ -1,4 +1,4 @@
-package com.futag.futag.model.mainscreen
+package com.futag.futag.model.post
 
 import com.google.gson.annotations.SerializedName
 
