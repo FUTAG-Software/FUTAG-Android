@@ -2,6 +2,7 @@ package com.futag.futag.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.futag.futag.model.post.PostModel
 import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.model.event.EventsModel
@@ -10,10 +11,9 @@ import com.futag.futag.service.PostAPIService
 import com.futag.futag.service.BlogAPIService
 import com.futag.futag.service.EventAPIService
 import com.futag.futag.service.AdsAPIService
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableSingleObserver
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FlowViewModel: ViewModel() {
 
@@ -21,7 +21,6 @@ class FlowViewModel: ViewModel() {
     private val serviceEvent = EventAPIService()
     private val servicePost = PostAPIService()
     private val serviceAds = AdsAPIService()
-    private val compositeDisposable = CompositeDisposable()
 
     val blogDatas = MutableLiveData<BlogModel>()
     val blogError = MutableLiveData<Boolean>()
@@ -57,76 +56,80 @@ class FlowViewModel: ViewModel() {
 
     private fun getBlogsData(){
         blogLoading.value = true
-        compositeDisposable.add(serviceBlog.getBlogData()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object: DisposableSingleObserver<BlogModel>(){
-                override fun onSuccess(t: BlogModel) {
-                    blogDatas.value = t
-                    blogLoading.value = false
-                    blogError.value = false
-                }
-                override fun onError(e: Throwable) {
+        viewModelScope.launch(Dispatchers.IO){
+            val response = serviceBlog.getBlogData()
+            withContext(Dispatchers.Main){
+                if (response.isSuccessful){
+                    response.body()?.let {
+                        blogDatas.value = it
+                        blogLoading.value = false
+                        blogError.value = false
+                    }
+                } else {
                     blogLoading.value = false
                     blogError.value = true
                 }
-            }))
+            }
+        }
     }
 
     private fun getEventsData(){
         eventLoading.value = true
-        compositeDisposable.add(serviceEvent.getEventsData()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object: DisposableSingleObserver<EventsModel>(){
-                override fun onSuccess(t: EventsModel) {
-                    eventDatas.value = t
-                    eventLoading.value = false
-                    eventError.value = false
-                }
-                override fun onError(e: Throwable) {
+        viewModelScope.launch(Dispatchers.IO){
+            val response = serviceEvent.getEventsData()
+            withContext(Dispatchers.Main){
+                if (response.isSuccessful){
+                    response.body()?.let {
+                        eventDatas.value = it
+                        eventLoading.value = false
+                        eventError.value = false
+                    }
+                } else {
                     eventLoading.value = false
                     eventError.value = true
                 }
-            }))
+            }
+        }
     }
 
     private fun getPostsData(){
         postLoading.value = true
-        compositeDisposable.add(servicePost.getPosts()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object: DisposableSingleObserver<PostModel>(){
-                override fun onSuccess(t: PostModel) {
-                    postDatas.value = t
-                    postLoading.value = false
-                    postError.value = false
+        viewModelScope.launch(Dispatchers.IO){
+            val response = servicePost.getPosts()
+            withContext(Dispatchers.Main){
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        postDatas.value = it
+                        postLoading.value = false
+                        postError.value = false
+                    }
+                } else {
+                    response.errorBody()?.let {
+                        postLoading.value = false
+                        postError.value = true
+                    }
                 }
-                override fun onError(e: Throwable) {
-                    postLoading.value = false
-                    postError.value = true
-                }
-            })
-        )
+            }
+        }
     }
 
     private fun getAdsData(){
         adsLoading.value = true
-        compositeDisposable.add(serviceAds.getAds()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object: DisposableSingleObserver<AdsModel>(){
-                override fun onSuccess(t: AdsModel) {
-                    adsDatas.value = t
-                    adsLoading.value = false
-                    adsError.value = false
-                }
-                override fun onError(e: Throwable) {
+        viewModelScope.launch(Dispatchers.IO){
+            val response = serviceAds.getAds()
+            withContext(Dispatchers.Main){
+                if (response.isSuccessful){
+                    response.body()?.let {
+                        adsDatas.value = it
+                        adsLoading.value = false
+                        adsError.value = false
+                    }
+                } else {
                     adsLoading.value = false
                     adsError.value = true
                 }
-            })
-        )
+            }
+        }
     }
 
 }
