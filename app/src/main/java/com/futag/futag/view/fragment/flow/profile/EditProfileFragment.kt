@@ -3,6 +3,7 @@ package com.futag.futag.view.fragment.flow.profile
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -25,10 +26,14 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.MainActivity
 import com.futag.futag.R
+import com.futag.futag.databinding.DeleteAccountConfirmDialogBinding
 import com.futag.futag.databinding.FragmentEditProfileBinding
 import com.futag.futag.model.UserModel
 import com.futag.futag.viewmodel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
@@ -129,20 +134,45 @@ class EditProfileFragment : Fragment() {
             builder.setNegativeButton(R.string.no) { _, _ ->
             }
             builder.setPositiveButton(R.string.yes) { _, _ ->
-                viewModel.deleteAccount(requireContext())
-                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,{ animation ->
-                    animation?.let {
-                        if (it){
-                            binding.constraintLayout.visibility = View.INVISIBLE
-                            binding.progressBar.visibility = View.VISIBLE
-                        } else {
-                            binding.progressBar.visibility = View.GONE
-                            val intent = Intent(requireActivity(), MainActivity::class.java)
-                            startActivity(intent)
-                            requireActivity().finish()
+                val email = userProfileInfo!!.email
+                val dialog = Dialog(requireContext())
+                val dialogPasswordBinding = DeleteAccountConfirmDialogBinding.inflate(
+                    LayoutInflater.from(requireContext())
+                )
+                dialog.setContentView(dialogPasswordBinding.root)
+                dialogPasswordBinding.buttonConfirm.setOnClickListener {
+                    if (dialogPasswordBinding.editTextPass.text.isNotEmpty()){
+                        dialog.cancel()
+                        val password = dialogPasswordBinding.editTextPass.text.toString()
+                        val credential = EmailAuthProvider
+                            .getCredential(email, password)
+                        val user = Firebase.auth.currentUser!!
+                        user.reauthenticate(credential).addOnCompleteListener { task ->
+                            if (task.isSuccessful){
+                                viewModel.deleteAccount(requireContext())
+                                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,{ animation ->
+                                    animation?.let {
+                                        if (it){
+                                            binding.constraintLayout.visibility = View.INVISIBLE
+                                            binding.progressBar.visibility = View.VISIBLE
+                                        } else {
+                                            binding.progressBar.visibility = View.GONE
+                                            val intent = Intent(requireActivity(), MainActivity::class.java)
+                                            startActivity(intent)
+                                            requireActivity().finish()
+                                        }
+                                    }
+                                })
+                            } else {
+                                println(task.exception)
+                                Toast.makeText(requireContext(),R.string.try_again_later,Toast.LENGTH_SHORT).show()
+                            }
                         }
+                    } else {
+                        Toast.makeText(requireContext(),R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
                     }
-                })
+                }
+                dialog.show()
             }
             builder.show()
         }

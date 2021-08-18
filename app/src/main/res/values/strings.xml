@@ -150,5 +150,7 @@
     <string name="deletion_success">Hesap Silme Başarılı</string>
     <string name="no_notification">Bildirim Yok.</string>
     <string name="registration_is_closed">Kayıtlar Kapalı.</string>
+    <string name="enter_password_confirm_process">Şifrenizi giriniz</string>
+    <string name="confirm">Onayla</string>
 
 </resources>

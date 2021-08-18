@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp"
+    android:background="@color/page_background_color"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/editTextPass"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="no"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="@string/enter_password_confirm_process"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/register_button_background"
+        android:text="@string/confirm"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPass"
+        app:layout_constraintStart_toStartOf="@+id/editTextPass"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPass" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
