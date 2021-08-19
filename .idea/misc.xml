@@ -37,7 +37,7 @@
         <entry key="app/src/main/res/drawable/zil.xml" value="0.2982456140350877" />
         <entry key="app/src/main/res/layout-hdpi/etkinlikler_recycler_row.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout-xxhdpi/etkinlikler_recycler_row.xml" value="0.27735042735042736" />
-        <entry key="app/src/main/res/layout-xxhdpi/events_recycler_row.xml" value="0.2131578947368421" />
+        <entry key="app/src/main/res/layout-xxhdpi/events_recycler_row.xml" value="0.33489583333333334" />
         <entry key="app/src/main/res/layout-xxxhdpi/etkinlikler_recycler_row.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_akis.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/activity_flow.xml" value="0.2131578947368421" />
@@ -50,7 +50,7 @@
         <entry key="app/src/main/res/layout/delete_account_confirm_dialog.xml" value="0.2048611111111111" />
         <entry key="app/src/main/res/layout/dialog_hesabi_sil.xml" value="0.3380208333333333" />
         <entry key="app/src/main/res/layout/etkinlikler_recycler_row.xml" value="0.27735042735042736" />
-        <entry key="app/src/main/res/layout/events_recycler_row.xml" value="1.0793103448275863" />
+        <entry key="app/src/main/res/layout/events_recycler_row.xml" value="0.5930232558139535" />
         <entry key="app/src/main/res/layout/fragment_about_us.xml" value="0.21107491856677524" />
         <entry key="app/src/main/res/layout/fragment_ayarlar.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_bildirimler.xml" value="0.3380208333333333" />
@@ -64,7 +64,7 @@
         <entry key="app/src/main/res/layout/fragment_etkinlik.xml" value="0.21348684210526317" />
         <entry key="app/src/main/res/layout/fragment_etkinlik_detay.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ev.xml" value="0.18333333333333332" />
-        <entry key="app/src/main/res/layout/fragment_event.xml" value="0.1180921052631579" />
+        <entry key="app/src/main/res/layout/fragment_event.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_event_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.21107491856677524" />
@@ -100,6 +100,8 @@
         <entry key="app/src/main/res/layout/post_recycler_row.xml" value="0.1180921052631579" />
         <entry key="app/src/main/res/layout/reklamlar_recycler_row.xml" value="0.24" />
         <entry key="app/src/main/res/layout/slider_item_layout.xml" value="0.3380208333333333" />
+        <entry key="app/src/main/res/layout/test_card_tasarim.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/test_fragment_home.xml" value="0.33489583333333334" />
         <entry key="app/src/main/res/menu/akis_bottom_menu.xml" value="0.21107491856677524" />
         <entry key="app/src/main/res/menu/flow_bottom_menu.xml" value="0.2131578947368421" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22117263843648208" />
@@ -107,7 +109,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

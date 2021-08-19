@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardViewEtkinlik"
     app:cardBackgroundColor="@color/main_page_post_background_color"
-    android:layout_margin="10dp"
     app:cardElevation="20dp"
+    android:layout_margin="10dp"
     app:cardCornerRadius="20dp"
     android:layout_width="170dp"
     android:layout_height="240dp">
