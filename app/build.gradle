@@ -25,7 +25,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -51,7 +51,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Lottie
-    implementation "com.airbnb.android:lottie:3.7.0"
+    implementation "com.airbnb.android:lottie:4.1.0"
 
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
