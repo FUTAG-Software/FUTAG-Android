@@ -59,17 +59,17 @@ class LoginRegisterViewModel: ViewModel() {
                     val reference = storage.reference
                     val uuid = UUID.randomUUID()
                     profileImageName = "${uuid}.jpeg"
-                    val imageReference = reference.child("Gorseller").child(profileImageName)
+                    val imageReference = reference.child("Images").child(profileImageName)
                     imageReference.putFile(selectedImage).addOnSuccessListener {
-                        val uploadedImageReference = reference.child("Gorseller").child(profileImageName)
+                        val uploadedImageReference = reference.child("Images").child(profileImageName)
                         uploadedImageReference.downloadUrl.addOnSuccessListener { uri ->
                             imageReferenceLink = uri.toString()
                             if (imageReferenceLink != null){
-                                val kullanici = UserModel(name,surname,email,
+                                val user = UserModel(name,surname,email,
                                     activeUserUid!!,birthday,imageReferenceLink,profileImageName,registrationTime)
                                 db.collection("Users")
-                                    .document(activeUserUid).set(kullanici).addOnCompleteListener { kayit ->
-                                        if (kayit.isSuccessful){
+                                    .document(activeUserUid).set(user).addOnCompleteListener { success ->
+                                        if (success.isSuccessful){
                                             dataConfirmation.value = true
                                             animation.value = false
                                         }
@@ -84,11 +84,11 @@ class LoginRegisterViewModel: ViewModel() {
                         Toast.makeText(context,exception.localizedMessage,Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    val kullanici = UserModel(name,surname,email
+                    val user = UserModel(name,surname,email
                         ,activeUserUid!!,birthday,null,null,registrationTime)
                     db.collection("Users")
-                        .document(activeUserUid).set(kullanici).addOnCompleteListener { kayit ->
-                            if (kayit.isSuccessful){
+                        .document(activeUserUid).set(user).addOnCompleteListener { success ->
+                            if (success.isSuccessful){
                                 dataConfirmation.value = true
                                 animation.value = false
                             }
