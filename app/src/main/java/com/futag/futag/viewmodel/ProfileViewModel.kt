@@ -57,9 +57,9 @@ class ProfileViewModel: ViewModel() {
                 val profileImageName = "${uuid}.jpeg"
                 userInfo.profileImageName = profileImageName
             }
-            val imageReference = reference.child("Gorseller").child(userInfo.profileImageName!!)
+            val imageReference = reference.child("Images").child(userInfo.profileImageName!!)
             imageReference.putFile(newSelectedImage).addOnSuccessListener {
-                val uploadedImageReference = reference.child("Gorseller").child(userInfo.profileImageName!!)
+                val uploadedImageReference = reference.child("Images").child(userInfo.profileImageName!!)
                 uploadedImageReference.downloadUrl.addOnSuccessListener { uri ->
                     imageReferenceLink = uri.toString()
                     if (imageReferenceLink != null){
@@ -115,7 +115,7 @@ class ProfileViewModel: ViewModel() {
                         data["name"] as String,
                         data["surname"] as String,
                         data["email"] as String,
-                        data["uid"] as String,
+                        data["userUid"] as String,
                         data["birthday"] as String,
                         data["profileImage"] as String?,
                         data["profileImageName"] as String?,
@@ -125,8 +125,8 @@ class ProfileViewModel: ViewModel() {
                     animation.value = false
                     dataConfirmation.value = true
                 }
-            }.addOnFailureListener { hata ->
-                Toast.makeText(context,hata.localizedMessage,Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener { error ->
+                Toast.makeText(context,error.localizedMessage,Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -153,14 +153,14 @@ class ProfileViewModel: ViewModel() {
                             data["name"] as String,
                             data["surname"] as String,
                             data["email"] as String,
-                            data["uid"] as String,
+                            data["userUid"] as String,
                             data["birthday"] as String,
                             data["profileImage"] as String?,
                             data["profileImageName"] as String?,
                             data["registrationTime"] as Timestamp
                         )
                         if(user.profileImageName != null){
-                            storageRef.child("Gorseller").child(user.profileImageName!!)
+                            storageRef.child("Images").child(user.profileImageName!!)
                                 .delete().addOnSuccessListener {
                                     db.collection("Users").document(userUid).delete().addOnSuccessListener {
                                         val currentUser = Firebase.auth.currentUser!!
@@ -192,8 +192,8 @@ class ProfileViewModel: ViewModel() {
                             }
                         }
                     }
-                }.addOnFailureListener { hata ->
-                Toast.makeText(context,hata.localizedMessage,Toast.LENGTH_LONG).show()
+                }.addOnFailureListener { error ->
+                Toast.makeText(context,error.localizedMessage,Toast.LENGTH_LONG).show()
             }
         } else {
             Toast.makeText(context,R.string.try_again_later,Toast.LENGTH_LONG).show()
