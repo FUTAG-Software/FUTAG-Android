@@ -6,6 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="black_2x">#1E1E1E</color>
     <color name="light_black">#2B2B2B</color>
     <color name="light_black_2x">#4E4E4E</color>
     <color name="white">#FFFFFFFF</color>
@@ -21,6 +22,7 @@
 
     <!-- Genel Kullanilan Renkler -->
     <color name="page_background_color">@color/white</color>
+    <color name="page_background_color_light_black">@color/white</color>
     <color name="main_page_post_background_color">@color/white</color>
     <color name="text_color_dark">@color/menu_gray</color>
     <color name="text_color_light">@color/light_gray</color>
