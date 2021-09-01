@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/page_background_color_light_black"
     tools:context=".view.fragment.login.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout

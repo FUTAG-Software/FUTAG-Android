@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@color/page_background_color_light_black"
     android:orientation="vertical"
     tools:context=".view.onboarding.screens.FirstScreen">
 
