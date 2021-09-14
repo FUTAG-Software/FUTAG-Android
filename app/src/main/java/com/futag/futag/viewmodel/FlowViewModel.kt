@@ -3,24 +3,18 @@ package com.futag.futag.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.futag.futag.model.post.PostModel
+import com.futag.futag.data.repository.FlowRepository
+import com.futag.futag.model.advertising.AdsModel
 import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.model.event.EventsModel
-import com.futag.futag.model.advertising.AdsModel
-import com.futag.futag.data.PostAPIService
-import com.futag.futag.data.BlogAPIService
-import com.futag.futag.data.EventAPIService
-import com.futag.futag.data.AdsAPIService
+import com.futag.futag.model.post.PostModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FlowViewModel: ViewModel() {
+class FlowViewModel : ViewModel() {
 
-    private val serviceBlog = BlogAPIService()
-    private val serviceEvent = EventAPIService()
-    private val servicePost = PostAPIService()
-    private val serviceAds = AdsAPIService()
+    private val flowRepository = FlowRepository()
 
     val blogDatas = MutableLiveData<BlogModel>()
     val blogError = MutableLiveData<Boolean>()
@@ -38,28 +32,28 @@ class FlowViewModel: ViewModel() {
     val adsError = MutableLiveData<Boolean>()
     val adsLoading = MutableLiveData<Boolean>()
 
-    fun getBlogs(){
+    fun getBlogs() {
         getBlogsData()
     }
 
-    fun getPosts(){
+    fun getPosts() {
         getPostsData()
     }
 
-    fun getEvents(){
+    fun getEvents() {
         getEventsData()
     }
 
-    fun getAds(){
+    fun getAds() {
         getAdsData()
     }
 
-    private fun getBlogsData(){
+    private fun getBlogsData() {
         blogLoading.value = true
-        viewModelScope.launch(Dispatchers.IO){
-            val response = serviceBlog.getBlogData()
-            withContext(Dispatchers.Main){
-                if (response.isSuccessful){
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = flowRepository.getBlogData()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
                     response.body()?.let {
                         blogDatas.value = it
                         blogLoading.value = false
@@ -73,12 +67,12 @@ class FlowViewModel: ViewModel() {
         }
     }
 
-    private fun getEventsData(){
+    private fun getEventsData() {
         eventLoading.value = true
-        viewModelScope.launch(Dispatchers.IO){
-            val response = serviceEvent.getEventsData()
-            withContext(Dispatchers.Main){
-                if (response.isSuccessful){
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = flowRepository.getEventsData()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
                     response.body()?.let {
                         eventDatas.value = it
                         eventLoading.value = false
@@ -92,11 +86,11 @@ class FlowViewModel: ViewModel() {
         }
     }
 
-    private fun getPostsData(){
+    private fun getPostsData() {
         postLoading.value = true
-        viewModelScope.launch(Dispatchers.IO){
-            val response = servicePost.getPosts()
-            withContext(Dispatchers.Main){
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = flowRepository.getPosts()
+            withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     response.body()?.let {
                         postDatas.value = it
@@ -113,12 +107,12 @@ class FlowViewModel: ViewModel() {
         }
     }
 
-    private fun getAdsData(){
+    private fun getAdsData() {
         adsLoading.value = true
-        viewModelScope.launch(Dispatchers.IO){
-            val response = serviceAds.getAds()
-            withContext(Dispatchers.Main){
-                if (response.isSuccessful){
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = flowRepository.getAds()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
                     response.body()?.let {
                         adsDatas.value = it
                         adsLoading.value = false
