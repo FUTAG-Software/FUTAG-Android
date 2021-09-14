@@ -7,10 +7,10 @@ import com.futag.futag.model.post.PostModel
 import com.futag.futag.model.blog.BlogModel
 import com.futag.futag.model.event.EventsModel
 import com.futag.futag.model.advertising.AdsModel
-import com.futag.futag.service.PostAPIService
-import com.futag.futag.service.BlogAPIService
-import com.futag.futag.service.EventAPIService
-import com.futag.futag.service.AdsAPIService
+import com.futag.futag.data.PostAPIService
+import com.futag.futag.data.BlogAPIService
+import com.futag.futag.data.EventAPIService
+import com.futag.futag.data.AdsAPIService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
