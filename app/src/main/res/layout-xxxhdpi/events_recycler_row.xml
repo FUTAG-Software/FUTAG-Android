@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardViewEtkinlik"
     app:cardBackgroundColor="@color/main_page_post_background_color"
-    app:cardElevation="20dp"
+    app:cardElevation="10dp"
     android:layout_margin="10dp"
     app:cardCornerRadius="20dp"
-    android:layout_width="170dp"
-    android:layout_height="240dp">
+    android:layout_width="165dp"
+    android:layout_height="230dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
