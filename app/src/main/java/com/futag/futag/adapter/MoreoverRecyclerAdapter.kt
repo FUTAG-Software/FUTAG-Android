@@ -1,5 +1,6 @@
 package com.futag.futag.adapter
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -13,14 +14,18 @@ import com.futag.futag.R
 import com.futag.futag.databinding.MoreoverRecyclerRowBinding
 import com.futag.futag.model.MoreoverItemModel
 
-class MoreoverRecyclerAdapter(val parentFragment: Fragment, val context: Context, val itemList: ArrayList<MoreoverItemModel>)
-    : RecyclerView.Adapter<MoreoverRecyclerAdapter.MoreOverViewHolder>() {
+class MoreoverRecyclerAdapter(
+    val parentFragment: Fragment,
+    val context: Context,
+    val itemList: ArrayList<MoreoverItemModel>
+) : RecyclerView.Adapter<MoreoverRecyclerAdapter.MoreOverViewHolder>() {
 
-    class MoreOverViewHolder(val itemBinding: MoreoverRecyclerRowBinding)
-        : RecyclerView.ViewHolder(itemBinding.root)
+    class MoreOverViewHolder(val itemBinding: MoreoverRecyclerRowBinding) :
+        RecyclerView.ViewHolder(itemBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoreOverViewHolder {
-        val binding = MoreoverRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            MoreoverRecyclerRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MoreOverViewHolder(binding)
     }
 
@@ -36,16 +41,33 @@ class MoreoverRecyclerAdapter(val parentFragment: Fragment, val context: Context
         return itemList.size
     }
 
-    private fun changePage(title: String){
-        when(title){
+    private fun changePage(title: String) {
+        when (title) {
             context.getString(R.string.our_units) -> {
-                parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_birimlerimizF)
+                parentFragment.findNavController()
+                    .navigate(R.id.action_dahaFragment_to_birimlerimizF)
             }
             context.getString(R.string.rate_us) -> {
-                Toast.makeText(context,R.string.very_soon,Toast.LENGTH_SHORT).show()
+                val packageName = context.packageName
+                try {
+                    context.startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=$packageName")
+                        )
+                    )
+                } catch (e: ActivityNotFoundException) {
+                    context.startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                        )
+                    )
+                }
             }
             context.getString(R.string.notification) -> {
-                parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_bildirimlerF)
+                parentFragment.findNavController()
+                    .navigate(R.id.action_dahaFragment_to_bildirimlerF)
             }
             context.getString(R.string.feedback) -> {
                 feedbackEmail()
@@ -54,13 +76,14 @@ class MoreoverRecyclerAdapter(val parentFragment: Fragment, val context: Context
                 parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_hakkimizdaF)
             }
             context.getString(R.string.settings) -> {
-                parentFragment.findNavController().navigate(R.id.action_dahaFragment_to_ayarlarFragment)
+                parentFragment.findNavController()
+                    .navigate(R.id.action_dahaFragment_to_ayarlarFragment)
             }
-            else -> Toast.makeText(context,R.string.error_message,Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(context, R.string.error_message, Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun feedbackEmail(){
+    private fun feedbackEmail() {
         val email = "futag@firat.edu.tr"
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:$email")
