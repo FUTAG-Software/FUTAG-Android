@@ -1,10 +1,10 @@
 package com.futag.futag.view.fragment.flow.moreover
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.adapter.NotificationRecyclerAdapter
 import com.futag.futag.databinding.FragmentNotificationBinding
@@ -21,7 +21,7 @@ class NotificationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNotificationBinding.inflate(inflater,container,false)
+        _binding = FragmentNotificationBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -31,7 +31,7 @@ class NotificationFragment : Fragment() {
 
         notificationList = ArrayList()
 
-        if (notificationList.isNullOrEmpty()){
+        if (notificationList.isNullOrEmpty()) {
             binding.recyclerView.visibility = View.INVISIBLE
             binding.textViewNoNotification.visibility = View.VISIBLE
         } else {
@@ -42,6 +42,7 @@ class NotificationFragment : Fragment() {
         adapter = NotificationRecyclerAdapter(notificationList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
+
     }
 
     override fun onDestroyView() {
