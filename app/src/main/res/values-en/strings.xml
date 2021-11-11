@@ -168,5 +168,6 @@
     <string name="registration_is_closed">Registration is closed.</string>
     <string name="enter_password_confirm_process">Enter your password</string>
     <string name="confirm">Confirm</string>
+    <string name="notification_channel_id">NOTIFICATION_CHANNEL_ID</string>
 
 </resources>
