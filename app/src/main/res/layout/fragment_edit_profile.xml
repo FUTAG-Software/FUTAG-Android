@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/page_background_color_light_black"
     tools:context=".view.fragment.flow.profile.EditProfileFragment">
 
@@ -16,8 +15,8 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textViewTitle"
@@ -98,6 +97,18 @@
                 android:background="@drawable/register_button_background"
                 android:backgroundTint="@color/button_background_yellow"
                 android:text="@string/save_changes"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color_dark"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/buttonUpdatePassword"
+                android:layout_width="330dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/register_button_background"
+                android:backgroundTint="@color/button_background_yellow"
+                android:text="@string/change_password"
                 android:textAllCaps="false"
                 android:textColor="@color/text_color_dark"
                 android:textSize="18sp" />

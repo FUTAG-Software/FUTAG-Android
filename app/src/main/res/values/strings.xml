@@ -36,6 +36,8 @@
     <string name="link_not_reached">Linke Ulaşılamadı.</string>
     <string name="click_for_registration">Kayıt için tıklayınız.</string>
     <string name="try_again_later">Daha Sonra Tekrar Deneyiniz.</string>
+    <string name="change_password">Şifreyi Değiştir</string>
+    <string name="change_password_description_text">Lütfen yeni şifrenizi giriniz.</string>
 
     <!-- Main Activity -->
     <string name="no_internet_connection">İnternet Bağlantınızın Olduğundan Emin Olun!</string>
@@ -63,6 +65,8 @@
     <string name="surname">Soyadınız</string>
     <string name="email">E-Mail</string>
     <string name="password">Şifre</string>
+    <string name="new_password">Yeni Şifre</string>
+    <string name="new_password_again">Yeni Şifre (Tekrar)</string>
     <string name="again_password">Şifre (Tekrar)</string>
     <string name="password_must_match">Şifreler Aynı Olmalıdır!</string>
     <string name="your_birthday">Doğum Gününüz</string>
