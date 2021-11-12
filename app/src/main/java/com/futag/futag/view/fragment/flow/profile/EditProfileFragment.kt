@@ -67,7 +67,7 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
 
         viewModel.getProfileInfo(requireContext())
         getProfileInfo()
@@ -214,7 +214,11 @@ class EditProfileFragment : Fragment() {
         }
 
         binding.buttonUpdatePassword.setOnClickListener {
-            findNavController().navigate(R.id.action_profiliDuzenleF_to_updatePasswordFragment)
+            val action =
+                EditProfileFragmentDirections.actionProfiliDuzenleFToUpdatePasswordFragment(
+                    userProfileInfo!!.email
+                )
+            findNavController().navigate(action)
         }
 
     }
