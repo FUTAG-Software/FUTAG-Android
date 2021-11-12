@@ -13,7 +13,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.DeleteAccountConfirmDialogBinding
@@ -36,7 +37,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
 import java.util.*
 
 class EditProfileFragment : Fragment() {
@@ -58,7 +58,7 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEditProfileBinding.inflate(inflater,container,false)
+        _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
         val view = binding.root
         registerLauncher()
         return view
@@ -67,7 +67,7 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
 
         viewModel.getProfileInfo(requireContext())
         getProfileInfo()
@@ -79,23 +79,38 @@ class EditProfileFragment : Fragment() {
 
         binding.editTextBirthday.setOnClickListener {
             val dpd = DatePickerDialog(requireContext(), { _, mYear, mMonth, mDay ->
-                val tarih = "$mDay-${mMonth+1}-$mYear"
+                val tarih = "$mDay-${mMonth + 1}-$mYear"
                 binding.editTextBirthday.text = tarih
             }, year, month, day)
             dpd.show()
         }
 
         binding.imageViewProfileImage.setOnClickListener {
-            if((ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                        + ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
-                != PackageManager.PERMISSION_GRANTED) {
+            if ((ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+                        + ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ))
+                != PackageManager.PERMISSION_GRANTED
+            ) {
                 // izin verilmemis, izin gerekli
-                if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                    || ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        requireActivity(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    )
+                    || ActivityCompat.shouldShowRequestPermissionRationale(
+                        requireActivity(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    )
+                ) {
                     Snackbar.make(
                         it,
                         R.string.gallery_permission,
-                        Snackbar.LENGTH_LONG).setAction(R.string.give_permission) {
+                        Snackbar.LENGTH_LONG
+                    ).setAction(R.string.give_permission) {
                         permissionLauncher.launch(neededRuntimePermissions)
                     }.show()
                 } else {
@@ -103,26 +118,35 @@ class EditProfileFragment : Fragment() {
                 }
             } else {
                 // izin verilmis, galeriye gidis
-                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                val galleryIntent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 activityResultLauncher.launch(galleryIntent)
             }
         }
 
         binding.buttonSaveChanges.setOnClickListener {
-            if (dataControl()){
+            if (dataControl()) {
                 val newName = binding.editTextName.text.toString()
                 val newSurname = binding.editTextSurname.text.toString()
                 val newBirthday = binding.editTextBirthday.text.toString()
-                if(selectedBitmap != null){
-                    val smallBitmap = makeSmallerBitmap(selectedBitmap!!,400)
-                    viewModel.updateProfile(requireContext(),userProfileInfo!!
-                        ,newName,newSurname,newBirthday,getImageUri(requireContext(),smallBitmap))
+                if (selectedBitmap != null) {
+                    val smallBitmap = makeSmallerBitmap(selectedBitmap!!, 400)
+                    viewModel.updateProfile(
+                        requireContext(),
+                        userProfileInfo!!,
+                        newName,
+                        newSurname,
+                        newBirthday,
+                        getImageUri(requireContext(), smallBitmap)
+                    )
                 } else {
-                    viewModel.updateProfile(requireContext(),userProfileInfo!!
-                        ,newName,newSurname,newBirthday,null)
+                    viewModel.updateProfile(
+                        requireContext(), userProfileInfo!!, newName, newSurname, newBirthday, null
+                    )
                 }
             } else {
-                Toast.makeText(requireContext(),R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -141,35 +165,47 @@ class EditProfileFragment : Fragment() {
                 )
                 dialog.setContentView(dialogPasswordBinding.root)
                 dialogPasswordBinding.buttonConfirm.setOnClickListener {
-                    if (dialogPasswordBinding.editTextPass.text.isNotEmpty()){
+                    if (dialogPasswordBinding.editTextPass.text.isNotEmpty()) {
                         dialog.cancel()
                         val password = dialogPasswordBinding.editTextPass.text.toString()
                         val credential = EmailAuthProvider
                             .getCredential(email, password)
                         val user = Firebase.auth.currentUser!!
                         user.reauthenticate(credential).addOnCompleteListener { task ->
-                            if (task.isSuccessful){
+                            if (task.isSuccessful) {
                                 viewModel.deleteAccount(requireContext())
-                                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,{ animation ->
-                                    animation?.let {
-                                        if (it){
-                                            binding.constraintLayout.visibility = View.INVISIBLE
-                                            binding.progressBar.visibility = View.VISIBLE
-                                        } else {
-                                            binding.progressBar.visibility = View.GONE
-                                            val intent = Intent(requireActivity(), MainActivity::class.java)
-                                            startActivity(intent)
-                                            requireActivity().finish()
+                                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,
+                                    { animation ->
+                                        animation?.let {
+                                            if (it) {
+                                                binding.constraintLayout.visibility = View.INVISIBLE
+                                                binding.progressBar.visibility = View.VISIBLE
+                                            } else {
+                                                binding.progressBar.visibility = View.GONE
+                                                val intent = Intent(
+                                                    requireActivity(),
+                                                    MainActivity::class.java
+                                                )
+                                                startActivity(intent)
+                                                requireActivity().finish()
+                                            }
                                         }
-                                    }
-                                })
+                                    })
                             } else {
                                 println(task.exception)
-                                Toast.makeText(requireContext(),R.string.try_again_later,Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    R.string.try_again_later,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     } else {
-                        Toast.makeText(requireContext(),R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.fill_in_the_blanks,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
                 dialog.show()
@@ -177,12 +213,20 @@ class EditProfileFragment : Fragment() {
             builder.show()
         }
 
+        binding.buttonUpdatePassword.setOnClickListener {
+            val action =
+                EditProfileFragmentDirections.actionProfiliDuzenleFToUpdatePasswordFragment(
+                    userProfileInfo!!.email
+                )
+            findNavController().navigate(action)
+        }
+
     }
 
-    private fun getProfileInfo(){
-        viewModel.animation.observe(viewLifecycleOwner,{ animation ->
+    private fun getProfileInfo() {
+        viewModel.animation.observe(viewLifecycleOwner, { animation ->
             animation?.let { value ->
-                if (value){
+                if (value) {
                     binding.constraintLayout.visibility = View.INVISIBLE
                     binding.progressBar.visibility = View.VISIBLE
                 } else {
@@ -193,20 +237,23 @@ class EditProfileFragment : Fragment() {
         })
         viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
             dataConfirm?.let { data ->
-                if (data){
+                if (data) {
                     userProfileInfo = viewModel.userInfo
                     binding.editTextName.setText(userProfileInfo!!.name)
                     binding.editTextBirthday.text = userProfileInfo!!.birthday
                     binding.editTextSurname.setText(userProfileInfo!!.surname)
-                    if(userProfileInfo!!.profileImage != null){
+                    if (userProfileInfo!!.profileImage != null) {
                         Picasso.get()
                             .load(userProfileInfo!!.profileImage)
                             .placeholder(R.drawable.person_high_resolution)
                             .error(R.drawable.error)
                             .into(binding.imageViewProfileImage)
-                    } else{
+                    } else {
                         binding.imageViewProfileImage.setImageDrawable(
-                            ActivityCompat.getDrawable(requireContext(),R.drawable.person_high_resolution)
+                            ActivityCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.person_high_resolution
+                            )
                         )
                     }
                     binding.constraintLayout.visibility = View.VISIBLE
@@ -219,48 +266,57 @@ class EditProfileFragment : Fragment() {
         })
     }
 
-    private fun registerLauncher(){
-        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-            if (result.resultCode == RESULT_OK){
-                val intentFromResult = result.data
-                if (intentFromResult != null){
-                    val imageData = intentFromResult.data
-                    selectedUri = imageData
-                    if (imageData != null){
-                        try {
-                            if (Build.VERSION.SDK_INT >= 28){
-                                val source = ImageDecoder.createSource(requireActivity().contentResolver,imageData)
-                                selectedBitmap = ImageDecoder.decodeBitmap(source)
-                                binding.imageViewProfileImage.setImageBitmap(selectedBitmap)
-                            } else {
-                                selectedBitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,imageData)
-                                binding.imageViewProfileImage.setImageBitmap(selectedBitmap)
+    private fun registerLauncher() {
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    val intentFromResult = result.data
+                    if (intentFromResult != null) {
+                        val imageData = intentFromResult.data
+                        selectedUri = imageData
+                        if (imageData != null) {
+                            try {
+                                if (Build.VERSION.SDK_INT >= 28) {
+                                    val source = ImageDecoder.createSource(
+                                        requireActivity().contentResolver,
+                                        imageData
+                                    )
+                                    selectedBitmap = ImageDecoder.decodeBitmap(source)
+                                    binding.imageViewProfileImage.setImageBitmap(selectedBitmap)
+                                } else {
+                                    selectedBitmap = MediaStore.Images.Media.getBitmap(
+                                        requireActivity().contentResolver,
+                                        imageData
+                                    )
+                                    binding.imageViewProfileImage.setImageBitmap(selectedBitmap)
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
                             }
-                        } catch (e: Exception){
-                            e.printStackTrace()
                         }
                     }
                 }
             }
-        }
 
-        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            permissions.entries.forEach {
-                if (it.value && it.key == Manifest.permission.READ_EXTERNAL_STORAGE) {
-                    val galeriIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    activityResultLauncher.launch(galeriIntent)
+        permissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+                permissions.entries.forEach {
+                    if (it.value && it.key == Manifest.permission.READ_EXTERNAL_STORAGE) {
+                        val galeriIntent =
+                            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                        activityResultLauncher.launch(galeriIntent)
+                    }
                 }
             }
-        }
     }
 
-    private fun makeSmallerBitmap(image: Bitmap, maximumSize: Int): Bitmap{
+    private fun makeSmallerBitmap(image: Bitmap, maximumSize: Int): Bitmap {
         var width = image.width
         var height = image.height
 
         val bitmapRatio: Double = width.toDouble() / height.toDouble()
 
-        if (bitmapRatio > 1){
+        if (bitmapRatio > 1) {
             // Landscape - yatay
             width = maximumSize
             val scaleHeight = width / bitmapRatio
@@ -272,14 +328,19 @@ class EditProfileFragment : Fragment() {
             width = scaleWidth.toInt()
         }
 
-        return Bitmap.createScaledBitmap(image,width,height,true)
+        return Bitmap.createScaledBitmap(image, width, height, true)
     }
 
     private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "newImage", null)
+            MediaStore.Images.Media.insertImage(
+                inContext.contentResolver,
+                inImage,
+                "newImage",
+                null
+            )
         return Uri.parse(path)
     }
 
