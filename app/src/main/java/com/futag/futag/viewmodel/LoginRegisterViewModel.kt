@@ -10,6 +10,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.ktx.storage
 import java.util.*
 
@@ -72,6 +73,7 @@ class LoginRegisterViewModel: ViewModel() {
                                         if (success.isSuccessful){
                                             dataConfirmation.value = true
                                             animation.value = false
+                                            FirebaseMessaging.getInstance().subscribeToTopic("notification")
                                         }
                                     }.addOnFailureListener { veritabaniHatasi ->
                                         animation.value = false
@@ -91,6 +93,7 @@ class LoginRegisterViewModel: ViewModel() {
                             if (success.isSuccessful){
                                 dataConfirmation.value = true
                                 animation.value = false
+                                FirebaseMessaging.getInstance().subscribeToTopic("notification")
                             }
                         }.addOnFailureListener { veritabaniHatasi ->
                             animation.value = false
@@ -110,6 +113,7 @@ class LoginRegisterViewModel: ViewModel() {
             if (process.isSuccessful){
                 dataConfirmation.value = true
                 animation.value = false
+                FirebaseMessaging.getInstance().subscribeToTopic("notification")
             }
         }.addOnFailureListener { hata ->
             animation.value = false

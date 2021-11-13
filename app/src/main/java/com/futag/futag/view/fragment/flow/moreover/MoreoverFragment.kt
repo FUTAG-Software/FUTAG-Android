@@ -41,10 +41,10 @@ class MoreoverFragment : Fragment() {
             ContextCompat.getDrawable(requireContext(),R.drawable.star)!!,
             getString(R.string.rate_us)
         )
-        val notification = MoreoverItemModel(
+        /* val notification = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.bell)!!,
             getString(R.string.notification)
-        )
+        ) */
         val feedback = MoreoverItemModel(
             ContextCompat.getDrawable(requireContext(),R.drawable.mail_contact)!!,
             getString(R.string.feedback)
@@ -60,7 +60,7 @@ class MoreoverFragment : Fragment() {
 
         itemList.add(units)
         itemList.add(rateUs)
-        itemList.add(notification)
+        //itemList.add(notification)
         itemList.add(feedback)
         itemList.add(aboutUs)
         itemList.add(settings)
