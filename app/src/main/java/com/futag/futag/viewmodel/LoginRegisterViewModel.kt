@@ -44,11 +44,6 @@ class LoginRegisterViewModel : ViewModel() {
         firebaseAutoLogin()
     }
 
-    // Sifre yenileme maili, public
-    fun forgotPasswordStatus(mail: String) {
-        firebaseForgotPassword(mail)
-    }
-
     private fun firebaseRegistrationConfirmation(
         email: String, password: String,
         name: String, surname: String,
@@ -154,19 +149,6 @@ class LoginRegisterViewModel : ViewModel() {
         } else {
             isThereEntry.value = false
             animation.value = false
-        }
-    }
-
-    private fun firebaseForgotPassword(mail: String) {
-        animation.value = true
-        auth.sendPasswordResetEmail(mail).addOnCompleteListener { process ->
-            if (process.isSuccessful) {
-                dataConfirmation.value = true
-                animation.value = false
-            }
-        }.addOnFailureListener { error ->
-            animation.value = false
-            errorMessage.value = error.localizedMessage
         }
     }
 
