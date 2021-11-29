@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.futag.futag.model.UserModel
+import com.futag.futag.util.Constants.FOOD_NOTIFICATION
 import com.futag.futag.util.Constants.IMAGES
 import com.futag.futag.util.Constants.USERS
 import com.google.firebase.Timestamp
@@ -32,11 +33,6 @@ class LoginRegisterViewModel : ViewModel() {
         birthday: String, selectedImage: Uri?
     ) {
         firebaseRegistrationConfirmation(email, password, name, surname, birthday, selectedImage)
-    }
-
-    // Girisin gerceklesme durumu, public
-    fun loginConfirmationStatus(email: String, password: String) {
-        firebaseLogin(email, password)
     }
 
     // Eski girisin kontrol durumu, public
@@ -85,7 +81,7 @@ class LoginRegisterViewModel : ViewModel() {
                                                 dataConfirmation.value = true
                                                 animation.value = false
                                                 FirebaseMessaging.getInstance()
-                                                    .subscribeToTopic("notification")
+                                                    .subscribeToTopic(FOOD_NOTIFICATION)
                                             }
                                         }.addOnFailureListener { exception ->
                                             animation.value = false
@@ -113,7 +109,9 @@ class LoginRegisterViewModel : ViewModel() {
                                 if (success.isSuccessful) {
                                     dataConfirmation.value = true
                                     animation.value = false
-                                    FirebaseMessaging.getInstance().subscribeToTopic("notification")
+                                    FirebaseMessaging.getInstance().subscribeToTopic(
+                                        FOOD_NOTIFICATION
+                                    )
                                 }
                             }.addOnFailureListener { exception ->
                                 animation.value = false
@@ -125,20 +123,6 @@ class LoginRegisterViewModel : ViewModel() {
                 animation.value = false
                 errorMessage.value = authError.localizedMessage
             }
-    }
-
-    private fun firebaseLogin(email: String, password: String) {
-        animation.value = true
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { process ->
-            if (process.isSuccessful) {
-                dataConfirmation.value = true
-                animation.value = false
-                FirebaseMessaging.getInstance().subscribeToTopic("notification")
-            }
-        }.addOnFailureListener { error ->
-            animation.value = false
-            errorMessage.value = error.localizedMessage
-        }
     }
 
     private fun firebaseAutoLogin() {
