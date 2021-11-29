@@ -2,11 +2,12 @@ package com.futag.futag.view.fragment.flow.profile
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.MainActivity
@@ -37,7 +38,7 @@ class ProfileFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
 
-        viewModel.getProfileInfo(requireContext())
+        viewModel.getProfileInfo()
         getProfileInfo()
 
         binding.buttonEditProfile.setOnClickListener {
@@ -50,10 +51,10 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun getProfileInfo(){
-        viewModel.animation.observe(viewLifecycleOwner,{ animation ->
+    private fun getProfileInfo() {
+        viewModel.animation.observe(viewLifecycleOwner, { animation ->
             animation?.let { value ->
-                if (value){
+                if (value) {
                     binding.constraintLayout.visibility = View.INVISIBLE
                     binding.progressBar.visibility = View.VISIBLE
                 } else {
@@ -64,7 +65,7 @@ class ProfileFragment : Fragment() {
         })
         viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
             dataConfirm?.let { data ->
-                if (data){
+                if (data) {
                     userProfileInfo = viewModel.userInfo
                     binding.editTextUserMail.setText(userProfileInfo!!.email)
                     binding.editTextBirthday.setText(userProfileInfo!!.birthday)
@@ -72,14 +73,17 @@ class ProfileFragment : Fragment() {
                     val surname = userProfileInfo!!.surname
                     val nameSurname = "$name $surname"
                     binding.textViewNameAndSurname.text = nameSurname
-                    if(userProfileInfo!!.profileImage != null){
+                    if (userProfileInfo!!.profileImage != null) {
                         Picasso.get()
                             .load(userProfileInfo!!.profileImage)
                             .placeholder(R.drawable.person_high_resolution)
                             .into(binding.imageViewProfileImage)
-                    } else{
+                    } else {
                         binding.imageViewProfileImage.setImageDrawable(
-                           ActivityCompat.getDrawable(requireContext(),R.drawable.person_high_resolution)
+                            ActivityCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.person_high_resolution
+                            )
                         )
                     }
                     binding.constraintLayout.visibility = View.VISIBLE
@@ -90,15 +94,20 @@ class ProfileFragment : Fragment() {
                 }
             }
         })
+        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
-    private fun observeDataSignOut(){
+    private fun observeDataSignOut() {
         viewModel.animation.observe(viewLifecycleOwner, { animation ->
             animation?.let { value ->
-                if (value){
+                if (value) {
                     viewModel.isThereEntry.observe(viewLifecycleOwner, { login ->
                         login?.let {
-                            if (it){
+                            if (it) {
                                 binding.constraintLayout.visibility = View.INVISIBLE
                                 binding.progressBar.visibility = View.VISIBLE
                                 activity?.let { activity ->

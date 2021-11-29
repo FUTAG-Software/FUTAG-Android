@@ -50,7 +50,7 @@ class UpdatePasswordFragment : Fragment() {
                     val user = Firebase.auth.currentUser!!
                     user.reauthenticate(credential).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            viewModel.updatePassword(requireContext(), newPassword)
+                            viewModel.updatePassword(newPassword)
                             viewModel.animation.observe(viewLifecycleOwner, { animation ->
                                 animation?.let {
                                     if (it) {
@@ -73,6 +73,11 @@ class UpdatePasswordFragment : Fragment() {
                                         viewModel.signOut()
                                         observeDataSignOut()
                                     }
+                                }
+                            })
+                            viewModel.updatePasswordError.observe(viewLifecycleOwner, { error ->
+                                error?.let {
+                                    Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                                 }
                             })
                         }
