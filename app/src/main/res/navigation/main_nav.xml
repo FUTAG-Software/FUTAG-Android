@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/girisKayitFragment"
-        android:name="com.futag.futag.view.fragment.login.LoginRegisterFragment"
+        android:name="com.futag.futag.view.fragment.login.login_register.LoginRegisterFragment"
         android:label="fragment_giris_kayit"
         tools:layout="@layout/fragment_login_register" >
         <action
