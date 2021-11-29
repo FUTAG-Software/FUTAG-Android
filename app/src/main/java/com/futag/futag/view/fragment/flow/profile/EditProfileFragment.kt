@@ -30,6 +30,7 @@ import com.futag.futag.R
 import com.futag.futag.databinding.DeleteAccountConfirmDialogBinding
 import com.futag.futag.databinding.FragmentEditProfileBinding
 import com.futag.futag.model.UserModel
+import com.futag.futag.util.Constants.IMAGE_NAME_NEW
 import com.futag.futag.viewmodel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.EmailAuthProvider
@@ -69,7 +70,7 @@ class EditProfileFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
 
-        viewModel.getProfileInfo(requireContext())
+        viewModel.getProfileInfo()
         getProfileInfo()
 
         val calendar = Calendar.getInstance()
@@ -132,17 +133,18 @@ class EditProfileFragment : Fragment() {
                 if (selectedBitmap != null) {
                     val smallBitmap = makeSmallerBitmap(selectedBitmap!!, 400)
                     viewModel.updateProfile(
-                        requireContext(),
                         userProfileInfo!!,
                         newName,
                         newSurname,
                         newBirthday,
                         getImageUri(requireContext(), smallBitmap)
                     )
+                    observeUpdateProfile()
                 } else {
                     viewModel.updateProfile(
-                        requireContext(), userProfileInfo!!, newName, newSurname, newBirthday, null
+                        userProfileInfo!!, newName, newSurname, newBirthday, null
                     )
+                    observeUpdateProfile()
                 }
             } else {
                 Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT)
@@ -173,7 +175,7 @@ class EditProfileFragment : Fragment() {
                         val user = Firebase.auth.currentUser!!
                         user.reauthenticate(credential).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                viewModel.deleteAccount(requireContext())
+                                viewModel.deleteAccount()
                                 viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,
                                     { animation ->
                                         animation?.let {
@@ -182,6 +184,32 @@ class EditProfileFragment : Fragment() {
                                                 binding.progressBar.visibility = View.VISIBLE
                                             } else {
                                                 binding.progressBar.visibility = View.GONE
+                                                binding.constraintLayout.visibility = View.VISIBLE
+                                            }
+                                        }
+                                    }
+                                )
+                                viewModel.deleteAccountError.observe(viewLifecycleOwner, { error ->
+                                    error?.let {
+                                        if (it) {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                R.string.try_again_later,
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
+                                })
+                                viewModel.deleteAccountConfirmation.observe(
+                                    viewLifecycleOwner,
+                                    { confirm ->
+                                        confirm?.let {
+                                            if (it) {
+                                                Toast.makeText(
+                                                    requireContext(),
+                                                    R.string.deletion_success,
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
                                                 val intent = Intent(
                                                     requireActivity(),
                                                     MainActivity::class.java
@@ -191,6 +219,12 @@ class EditProfileFragment : Fragment() {
                                             }
                                         }
                                     })
+                                viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+                                    error?.let {
+                                        Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
+                                            .show()
+                                    }
+                                })
                             } else {
                                 println(task.exception)
                                 Toast.makeText(
@@ -221,6 +255,34 @@ class EditProfileFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+    }
+
+    private fun observeUpdateProfile() {
+        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+            animation?.let { value ->
+                if (value) {
+                    binding.constraintLayout.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.constraintLayout.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        })
+        viewModel.changesSaved.observe(viewLifecycleOwner, { isSaved ->
+            isSaved?.let {
+                if (it) {
+                    Toast.makeText(requireContext(), R.string.changes_saved, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
+        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
     }
 
     private fun getProfileInfo() {
@@ -262,6 +324,11 @@ class EditProfileFragment : Fragment() {
                     binding.constraintLayout.visibility = View.INVISIBLE
                     binding.progressBar.visibility = View.VISIBLE
                 }
+            }
+        })
+        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -338,7 +405,7 @@ class EditProfileFragment : Fragment() {
             MediaStore.Images.Media.insertImage(
                 inContext.contentResolver,
                 inImage,
-                "newImage",
+                IMAGE_NAME_NEW,
                 null
             )
         return Uri.parse(path)

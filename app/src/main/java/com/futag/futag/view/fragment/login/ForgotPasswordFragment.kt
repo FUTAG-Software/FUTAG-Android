@@ -1,11 +1,11 @@
 package com.futag.futag.view.fragment.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentForgotPasswordBinding
@@ -32,30 +32,34 @@ class ForgotPasswordFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
 
         binding.buttonSend.setOnClickListener {
-            if (binding.editTextMail.text.isNotEmpty()){
+            if (binding.editTextMail.text.isNotEmpty()) {
                 val mail = binding.editTextMail.text.toString()
-                viewModel.forgotPasswordStatus(mail, requireContext())
+                viewModel.forgotPasswordStatus(mail)
                 observeData()
             } else {
-                Toast.makeText(requireContext(), R.string.please_enter_your_email_adress,Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    R.string.please_enter_your_email_adress,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
     }
 
-    private fun showAnimation(){
+    private fun showAnimation() {
         binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
         binding.lottieAnimation.playAnimation()
     }
 
-    private fun stopAnimation(){
+    private fun stopAnimation() {
         binding.lottieAnimation.cancelAnimation()
     }
 
-    private fun observeData(){
+    private fun observeData() {
         viewModel.animation.observe(viewLifecycleOwner, { animation ->
             animation?.let {
-                if (it){
+                if (it) {
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimation.visibility = View.VISIBLE
                     showAnimation()
@@ -68,9 +72,18 @@ class ForgotPasswordFragment : Fragment() {
         })
         viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
             dataConfirm?.let { confirm ->
-                if (confirm){
-                    Toast.makeText(requireContext(),R.string.confirmation_email_sent,Toast.LENGTH_SHORT).show()
+                if (confirm) {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.confirmation_email_sent,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
+            }
+        })
+        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
             }
         })
     }

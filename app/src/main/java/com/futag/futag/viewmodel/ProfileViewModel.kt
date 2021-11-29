@@ -1,12 +1,11 @@
 package com.futag.futag.viewmodel
 
-import android.content.Context
 import android.net.Uri
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.futag.futag.R
 import com.futag.futag.model.UserModel
+import com.futag.futag.util.Constants.IMAGES
+import com.futag.futag.util.Constants.USERS
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -24,37 +23,43 @@ class ProfileViewModel : ViewModel() {
     val dataConfirmation = MutableLiveData<Boolean>()
     var isThereEntry = MutableLiveData<Boolean>()
     val deleteAccountAnimation = MutableLiveData<Boolean>()
+    val deleteAccountError = MutableLiveData<Boolean>()
+    val deleteAccountConfirmation = MutableLiveData<Boolean>()
     lateinit var userInfo: UserModel
     val userUid = auth.currentUser?.uid
     val updatePasswordData = MutableLiveData<Boolean>()
+    val updatePasswordError = MutableLiveData<String>()
+    val errorMessage = MutableLiveData<String>()
+    val changesSaved = MutableLiveData<Boolean>()
 
     fun signOut() {
         userSignOutControl()
     }
 
-    fun getProfileInfo(context: Context) {
-        pullUserInfo(context)
+    fun getProfileInfo() {
+        pullUserInfo()
     }
 
     fun updateProfile(
-        context: Context, userInfo: UserModel, name: String,
-        surname: String, birthday: String, selectedImage: Uri?
+        userInfo: UserModel, name: String, surname: String, birthday: String, selectedImage: Uri?
     ) {
-        updateProfileFirebase(context, userInfo, name, surname, birthday, selectedImage)
+        updateProfileFirebase(userInfo, name, surname, birthday, selectedImage)
     }
 
-    fun deleteAccount(context: Context) {
-        deleteEverything(context)
+    fun deleteAccount() {
+        deleteEverything()
     }
 
-    fun updatePassword(context: Context, newPassword: String) {
-        updatePAsswordFirebase(context, newPassword)
+    fun updatePassword(newPassword: String) {
+        updatePasswordFirebase(newPassword)
     }
 
     private fun updateProfileFirebase(
-        context: Context, userInfo: UserModel,
-        newName: String, newSurname: String,
-        newBirthday: String, newSelectedImage: Uri?
+        userInfo: UserModel,
+        newName: String,
+        newSurname: String,
+        newBirthday: String,
+        newSelectedImage: Uri?
     ) {
         animation.value = true
         val reference = storage.reference
@@ -66,10 +71,10 @@ class ProfileViewModel : ViewModel() {
                 val profileImageName = "${uuid}.jpeg"
                 userInfo.profileImageName = profileImageName
             }
-            val imageReference = reference.child("Images").child(userInfo.profileImageName!!)
+            val imageReference = reference.child(IMAGES).child(userInfo.profileImageName!!)
             imageReference.putFile(newSelectedImage).addOnSuccessListener {
                 val uploadedImageReference =
-                    reference.child("Images").child(userInfo.profileImageName!!)
+                    reference.child(IMAGES).child(userInfo.profileImageName!!)
                 uploadedImageReference.downloadUrl.addOnSuccessListener { uri ->
                     imageReferenceLink = uri.toString()
                     if (imageReferenceLink != null) {
@@ -78,31 +83,23 @@ class ProfileViewModel : ViewModel() {
                             userUid!!, newBirthday, imageReferenceLink,
                             userInfo.profileImageName, userInfo.registrationTime
                         )
-                        db.collection("Users")
+                        db.collection(USERS)
                             .document(documentId!!).set(newUser)
                             .addOnCompleteListener { registration ->
                                 if (registration.isSuccessful) {
                                     dataConfirmation.value = true
                                     animation.value = false
-                                    Toast.makeText(
-                                        context,
-                                        R.string.changes_saved,
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    changesSaved.value = true
                                 }
-                            }.addOnFailureListener { veritabaniHatasi ->
+                            }.addOnFailureListener { error ->
                                 animation.value = false
-                                Toast.makeText(
-                                    context,
-                                    veritabaniHatasi.localizedMessage,
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                errorMessage.value = error.localizedMessage
                             }
                     }
                 }
             }.addOnFailureListener { exception ->
                 animation.value = false
-                Toast.makeText(context, exception.localizedMessage, Toast.LENGTH_SHORT).show()
+                errorMessage.value = exception.localizedMessage
             }
         } else {
             val newUser = UserModel(
@@ -110,24 +107,23 @@ class ProfileViewModel : ViewModel() {
                 userUid!!, newBirthday, userInfo.profileImage,
                 userInfo.profileImageName, userInfo.registrationTime
             )
-            db.collection("Users")
+            db.collection(USERS)
                 .document(documentId!!).set(newUser).addOnCompleteListener { registration ->
                     if (registration.isSuccessful) {
                         dataConfirmation.value = true
                         animation.value = false
-                        Toast.makeText(context, R.string.changes_saved, Toast.LENGTH_LONG).show()
+                        changesSaved.value = true
                     }
-                }.addOnFailureListener { veritabaniHatasi ->
+                }.addOnFailureListener { error ->
                     animation.value = false
-                    Toast.makeText(context, veritabaniHatasi.localizedMessage, Toast.LENGTH_LONG)
-                        .show()
+                    errorMessage.value = error.localizedMessage
                 }
         }
     }
 
-    private fun pullUserInfo(context: Context) {
+    private fun pullUserInfo() {
         animation.value = true
-        val documentReference = db.collection("Users").document(userUid!!)
+        val documentReference = db.collection(USERS).document(userUid!!)
         documentReference.get()
             .addOnSuccessListener { data ->
                 if (data != null) {
@@ -146,7 +142,8 @@ class ProfileViewModel : ViewModel() {
                     dataConfirmation.value = true
                 }
             }.addOnFailureListener { error ->
-                Toast.makeText(context, error.localizedMessage, Toast.LENGTH_SHORT).show()
+                animation.value = false
+                errorMessage.value = error.localizedMessage
             }
     }
 
@@ -162,11 +159,11 @@ class ProfileViewModel : ViewModel() {
         }
     }
 
-    private fun deleteEverything(context: Context) {
+    private fun deleteEverything() {
         deleteAccountAnimation.value = true
         val storageRef = storage.reference
         if (userUid != null) {
-            val documentReference = db.collection("Users").document(userUid)
+            val documentReference = db.collection(USERS).document(userUid)
             documentReference.get().addOnSuccessListener { data ->
                 if (data != null) {
                     val user = UserModel(
@@ -180,67 +177,54 @@ class ProfileViewModel : ViewModel() {
                         data["registrationTime"] as Timestamp
                     )
                     if (user.profileImageName != null) {
-                        storageRef.child("Images").child(user.profileImageName!!)
+                        storageRef.child(IMAGES).child(user.profileImageName!!)
                             .delete().addOnSuccessListener {
-                                db.collection("Users").document(userUid).delete()
+                                db.collection(USERS).document(userUid).delete()
                                     .addOnSuccessListener {
                                         val currentUser = Firebase.auth.currentUser!!
                                         Firebase.auth.signOut()
                                         currentUser.delete().addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
                                                 deleteAccountAnimation.value = false
-                                                Toast.makeText(
-                                                    context,
-                                                    R.string.deletion_success,
-                                                    Toast.LENGTH_LONG
-                                                ).show()
+                                                deleteAccountConfirmation.value = true
                                             }
                                         }.addOnFailureListener {
-                                            Toast.makeText(
-                                                context,
-                                                it.localizedMessage,
-                                                Toast.LENGTH_LONG
-                                            ).show()
+                                            deleteAccountAnimation.value = false
+                                            errorMessage.value = it.localizedMessage
                                         }
                                     }.addOnFailureListener {
-                                        Toast.makeText(
-                                            context,
-                                            it.localizedMessage,
-                                            Toast.LENGTH_LONG
-                                        )
-                                            .show()
+                                        deleteAccountAnimation.value = false
+                                        errorMessage.value = it.localizedMessage
                                     }
                             }.addOnFailureListener {
-                                Toast.makeText(context, it.localizedMessage, Toast.LENGTH_LONG)
-                                    .show()
+                                deleteAccountAnimation.value = false
+                                errorMessage.value = it.localizedMessage
                             }
                     } else {
-                        db.collection("Users").document(userUid).delete().addOnSuccessListener {
+                        db.collection(USERS).document(userUid).delete().addOnSuccessListener {
                             auth.currentUser!!.delete().addOnSuccessListener {
                                 deleteAccountAnimation.value = false
-                                Toast.makeText(
-                                    context,
-                                    R.string.deletion_success,
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                deleteAccountConfirmation.value = true
                             }.addOnFailureListener {
-                                Toast.makeText(context, it.localizedMessage, Toast.LENGTH_LONG)
-                                    .show()
+                                deleteAccountAnimation.value = false
+                                errorMessage.value = it.localizedMessage
                             }
                         }.addOnFailureListener {
-                            Toast.makeText(context, it.localizedMessage, Toast.LENGTH_LONG).show()
+                            deleteAccountAnimation.value = false
+                            errorMessage.value = it.localizedMessage
                         }
                     }
                 }
             }.addOnFailureListener { error ->
-                Toast.makeText(context, error.localizedMessage, Toast.LENGTH_LONG).show()
+                errorMessage.value = error.localizedMessage
             }
         } else {
-            Toast.makeText(context, R.string.try_again_later, Toast.LENGTH_LONG).show()
+            deleteAccountAnimation.value = false
+            deleteAccountError.value = true
         }
     }
 
-    private fun updatePAsswordFirebase(context: Context, newPassword: String) {
+    private fun updatePasswordFirebase(newPassword: String) {
         animation.value = true
         val currentUser = auth.currentUser
         currentUser!!.updatePassword(newPassword).addOnCompleteListener { task ->
@@ -250,7 +234,7 @@ class ProfileViewModel : ViewModel() {
             }
         }.addOnFailureListener { error ->
             animation.value = false
-            Toast.makeText(context, error.localizedMessage, Toast.LENGTH_SHORT).show()
+            updatePasswordError.value = error.localizedMessage
         }
     }
 

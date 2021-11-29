@@ -12,7 +12,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,17 +21,18 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.BottomSheetDialogKvkkBinding
 import com.futag.futag.databinding.FragmentRegisterBinding
+import com.futag.futag.util.Constants.IMAGE_NAME
 import com.futag.futag.view.activity.FlowActivity
 import com.futag.futag.viewmodel.LoginRegisterViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
 import java.util.*
 
 class RegisterFragment : Fragment() {
@@ -53,7 +53,7 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRegisterBinding.inflate(inflater,container,false)
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
         registerLauncher()
         return view
@@ -70,8 +70,12 @@ class RegisterFragment : Fragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         binding.textViewKvkkText.setOnClickListener {
-            val bottomSheetDialog = BottomSheetDialog(requireContext(),R.style.ThemeOverlay_MaterialComponents_BottomSheetDialog)
-            val bottomSheetBinding = BottomSheetDialogKvkkBinding.inflate(LayoutInflater.from(requireContext()))
+            val bottomSheetDialog = BottomSheetDialog(
+                requireContext(),
+                R.style.ThemeOverlay_MaterialComponents_BottomSheetDialog
+            )
+            val bottomSheetBinding =
+                BottomSheetDialogKvkkBinding.inflate(LayoutInflater.from(requireContext()))
             bottomSheetDialog.setContentView(bottomSheetBinding.root)
             bottomSheetDialog.show()
         }
@@ -79,23 +83,38 @@ class RegisterFragment : Fragment() {
         // Kullanici dogum gununun alinmasi; Gun,Ay,Yil
         binding.editTextBirthday.setOnClickListener {
             val dpd = DatePickerDialog(requireContext(), { _, mYear, mMonth, mDay ->
-                val tarih = "$mDay-${mMonth+1}-$mYear"
+                val tarih = "$mDay-${mMonth + 1}-$mYear"
                 binding.editTextBirthday.text = tarih
             }, year, month, day)
             dpd.show()
         }
 
         binding.imageViewCircleImage.setOnClickListener {
-            if((ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                        + ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
-                != PackageManager.PERMISSION_GRANTED) {
+            if ((ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+                        + ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ))
+                != PackageManager.PERMISSION_GRANTED
+            ) {
                 // izin verilmemis, izin gerekli
-                if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                    || ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        requireActivity(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    )
+                    || ActivityCompat.shouldShowRequestPermissionRationale(
+                        requireActivity(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    )
+                ) {
                     Snackbar.make(
                         it,
                         R.string.gallery_permission,
-                        Snackbar.LENGTH_LONG).setAction(R.string.give_permission) {
+                        Snackbar.LENGTH_LONG
+                    ).setAction(R.string.give_permission) {
                         permissionLauncher.launch(neededRuntimePermissions)
                     }.show()
                 } else {
@@ -103,22 +122,23 @@ class RegisterFragment : Fragment() {
                 }
             } else {
                 // izin verilmis, galeriye gidis
-                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                val galleryIntent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 activityResultLauncher.launch(galleryIntent)
             }
         }
 
         binding.buttonRegister.setOnClickListener {
-            if (binding.imageViewCircleImage.drawable != null){
+            if (binding.imageViewCircleImage.drawable != null) {
                 closeKeyboard()
                 if (selectedBitmap != null) {
-                    val smallBitmap = makeSmallerBitmap(selectedBitmap!!,400)
-                    firebaseDataSave(getImageUri(requireContext(),smallBitmap))
+                    val smallBitmap = makeSmallerBitmap(selectedBitmap!!, 400)
+                    firebaseDataSave(getImageUri(requireContext(), smallBitmap))
                 } else {
                     firebaseDataSave(null)
                 }
             } else {
-                Toast.makeText(requireContext(), R.string.select_picture,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.select_picture, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -128,29 +148,37 @@ class RegisterFragment : Fragment() {
 
     }
 
-    private fun firebaseDataSave(selectedImage: Uri?){
-        if(dataControl()){
+    private fun firebaseDataSave(selectedImage: Uri?) {
+        if (dataControl()) {
             val name = binding.editTextName.text.toString()
             val surname = binding.editTextSurname.text.toString()
             val email = binding.editTextMail.text.toString()
             val password = binding.editTextPassword.text.toString()
             val passwordAgain = binding.editTextAgainPassword.text.toString()
             val birthday = binding.editTextBirthday.text.toString()
-            if(password == passwordAgain){
-                viewModel.registrationConfirmationStatus(email, password, name, surname, birthday, selectedImage, requireContext())
+            if (password == passwordAgain) {
+                viewModel.registrationConfirmationStatus(
+                    email,
+                    password,
+                    name,
+                    surname,
+                    birthday,
+                    selectedImage
+                )
                 observeData()
             } else {
-                Toast.makeText(requireContext(),R.string.password_must_match,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.password_must_match, Toast.LENGTH_SHORT)
+                    .show()
             }
         } else {
-            Toast.makeText(requireContext(), R.string.fill_in_the_blanks,Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun observeData(){
+    private fun observeData() {
         viewModel.animation.observe(viewLifecycleOwner, { animation ->
             animation?.let {
-                if (it){
+                if (it) {
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimation.visibility = View.VISIBLE
                     showAnimation()
@@ -163,12 +191,12 @@ class RegisterFragment : Fragment() {
         })
         viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
             dataConfirm?.let { confirm ->
-                if (confirm){
+                if (confirm) {
                     activity?.let {
                         Toast.makeText(
                             requireContext(),
-                            "${resources.getString(R.string.welcome)} ${binding.editTextName.text}"
-                            ,Toast.LENGTH_SHORT
+                            "${resources.getString(R.string.welcome)} ${binding.editTextName.text}",
+                            Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(it, FlowActivity::class.java)
                         it.startActivity(intent)
@@ -177,50 +205,64 @@ class RegisterFragment : Fragment() {
                 }
             }
         })
+        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
-    private fun registerLauncher(){
-        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-            if (result.resultCode == RESULT_OK){
-                val intentFromResult = result.data
-                if (intentFromResult != null){
-                    val imageData = intentFromResult.data
-                    selectedUri = imageData
-                    if (imageData != null){
-                        try {
-                            if (Build.VERSION.SDK_INT >= 28){
-                                val source = ImageDecoder.createSource(requireActivity().contentResolver,imageData)
-                                selectedBitmap = ImageDecoder.decodeBitmap(source)
-                                binding.imageViewCircleImage.setImageBitmap(selectedBitmap)
-                            } else {
-                                selectedBitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,imageData)
-                                binding.imageViewCircleImage.setImageBitmap(selectedBitmap)
+    private fun registerLauncher() {
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    val intentFromResult = result.data
+                    if (intentFromResult != null) {
+                        val imageData = intentFromResult.data
+                        selectedUri = imageData
+                        if (imageData != null) {
+                            try {
+                                if (Build.VERSION.SDK_INT >= 28) {
+                                    val source = ImageDecoder.createSource(
+                                        requireActivity().contentResolver,
+                                        imageData
+                                    )
+                                    selectedBitmap = ImageDecoder.decodeBitmap(source)
+                                    binding.imageViewCircleImage.setImageBitmap(selectedBitmap)
+                                } else {
+                                    selectedBitmap = MediaStore.Images.Media.getBitmap(
+                                        requireActivity().contentResolver,
+                                        imageData
+                                    )
+                                    binding.imageViewCircleImage.setImageBitmap(selectedBitmap)
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
                             }
-                        } catch (e: Exception){
-                            e.printStackTrace()
                         }
                     }
                 }
             }
-        }
 
-        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            permissions.entries.forEach {
-                if (it.value && it.key == Manifest.permission.READ_EXTERNAL_STORAGE) {
-                    val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    activityResultLauncher.launch(galleryIntent)
+        permissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+                permissions.entries.forEach {
+                    if (it.value && it.key == Manifest.permission.READ_EXTERNAL_STORAGE) {
+                        val galleryIntent =
+                            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                        activityResultLauncher.launch(galleryIntent)
+                    }
                 }
             }
-        }
     }
 
-    private fun makeSmallerBitmap(image: Bitmap, maximumSize: Int): Bitmap{
+    private fun makeSmallerBitmap(image: Bitmap, maximumSize: Int): Bitmap {
         var width = image.width
         var height = image.height
 
         val bitmapRatio: Double = width.toDouble() / height.toDouble()
 
-        if (bitmapRatio > 1){
+        if (bitmapRatio > 1) {
             // Landscape - yatay
             width = maximumSize
             val scaleHeight = width / bitmapRatio
@@ -232,14 +274,19 @@ class RegisterFragment : Fragment() {
             width = scaleWidth.toInt()
         }
 
-        return Bitmap.createScaledBitmap(image,width,height,true)
+        return Bitmap.createScaledBitmap(image, width, height, true)
     }
 
     private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val path =
-                MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "futagProfileImage", null)
+            MediaStore.Images.Media.insertImage(
+                inContext.contentResolver,
+                inImage,
+                IMAGE_NAME,
+                null
+            )
         return Uri.parse(path)
     }
 
@@ -249,20 +296,24 @@ class RegisterFragment : Fragment() {
             binding.editTextPassword.text.isNotEmpty() && binding.editTextAgainPassword.text.isNotEmpty()
             && binding.editTextBirthday.text.isNotEmpty()
 
-    private fun showAnimation(){
+    private fun showAnimation() {
         binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
         binding.lottieAnimation.playAnimation()
     }
 
-    private fun stopAnimation(){
+    private fun stopAnimation() {
         binding.lottieAnimation.cancelAnimation()
     }
 
-    private fun closeKeyboard(){
+    private fun closeKeyboard() {
         val view = requireActivity().currentFocus
-        if (view != null){
-            val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        if (view != null) {
+            val inputMethodManager =
+                context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(
+                activity?.currentFocus?.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
         }
     }
 
