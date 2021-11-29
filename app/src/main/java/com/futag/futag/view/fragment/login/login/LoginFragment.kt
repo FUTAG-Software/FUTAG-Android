@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.login
+package com.futag.futag.view.fragment.login.login
 
 import android.content.Context
 import android.content.Intent
@@ -14,13 +14,12 @@ import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentLoginBinding
 import com.futag.futag.view.activity.FlowActivity
-import com.futag.futag.viewmodel.LoginRegisterViewModel
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: LoginRegisterViewModel
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +33,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
 
         binding.buttonLogIn.setOnClickListener {
             closeKeyboard()
@@ -42,7 +41,7 @@ class LoginFragment : Fragment() {
                 val email = binding.editTextMail.text.toString()
                 val password = binding.editTextPassword.text.toString()
 
-                viewModel.loginConfirmationStatus(email, password)
+                viewModel.loginToApp(email, password)
                 observeData()
             } else {
                 Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT)
@@ -71,32 +70,21 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun showAnimation() {
-        binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimation.playAnimation()
-    }
-
-    private fun closeAnimation() {
-        binding.lottieAnimation.cancelAnimation()
-    }
-
     private fun observeData() {
         viewModel.animation.observe(viewLifecycleOwner, { animation ->
             animation?.let {
                 if (it) {
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimation.visibility = View.VISIBLE
-                    showAnimation()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
-                    closeAnimation()
                 }
             }
         })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
-            dataConfirm?.let { confirm ->
-                if (confirm) {
+        viewModel.success.observe(viewLifecycleOwner, { success ->
+            success?.let { value ->
+                if (value) {
                     activity?.let {
                         val intent = Intent(it, FlowActivity::class.java)
                         it.startActivity(intent)
