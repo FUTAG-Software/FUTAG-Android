@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.login
+package com.futag.futag.view.fragment.login.forgot_password
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,13 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentForgotPasswordBinding
-import com.futag.futag.viewmodel.LoginRegisterViewModel
 
 class ForgotPasswordFragment : Fragment() {
 
     private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: LoginRegisterViewModel
+    private lateinit var viewModel: ForgotPasswordViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,12 +28,12 @@ class ForgotPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[ForgotPasswordViewModel::class.java]
 
         binding.buttonSend.setOnClickListener {
-            if (binding.editTextMail.text.isNotEmpty()) {
-                val mail = binding.editTextMail.text.toString()
-                viewModel.forgotPasswordStatus(mail)
+            if (binding.editTextEMail.text.isNotEmpty()) {
+                val email = binding.editTextEMail.text.toString()
+                viewModel.forgotPassword(email)
                 observeData()
             } else {
                 Toast.makeText(
@@ -47,32 +46,21 @@ class ForgotPasswordFragment : Fragment() {
 
     }
 
-    private fun showAnimation() {
-        binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimation.playAnimation()
-    }
-
-    private fun stopAnimation() {
-        binding.lottieAnimation.cancelAnimation()
-    }
-
     private fun observeData() {
         viewModel.animation.observe(viewLifecycleOwner, { animation ->
             animation?.let {
                 if (it) {
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimation.visibility = View.VISIBLE
-                    showAnimation()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
-                    stopAnimation()
                 }
             }
         })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
-            dataConfirm?.let { confirm ->
-                if (confirm) {
+        viewModel.success.observe(viewLifecycleOwner, { success ->
+            success?.let {
+                if (it) {
                     Toast.makeText(
                         requireContext(),
                         R.string.confirmation_email_sent,

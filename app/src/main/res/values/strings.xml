@@ -80,7 +80,7 @@
     <string name="dont_have_account">Hesabın yok mu?</string>
 
     <!-- ForgotPassword Fragment -->
-    <string name="please_enter_your_email_adress">Lütfen Mail Adresinizi Girin!</string>
+    <string name="please_enter_your_email_adress">Lütfen E-Mail Adresinizi Girin!</string>
     <string name="confirmation_email_sent">Onay Maili Gönderildi.</string>
     <string name="i_forgot_my_password">Şifremi Unuttum</string>
     <string name="password_reset_text">Şifrenizi yenilemek için lütfen e-posta adresinizi giriniz.</string>
