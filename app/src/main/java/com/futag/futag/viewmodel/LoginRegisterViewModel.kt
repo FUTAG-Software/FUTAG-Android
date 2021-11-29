@@ -23,7 +23,6 @@ class LoginRegisterViewModel : ViewModel() {
 
     val animation = MutableLiveData<Boolean>()
     val dataConfirmation = MutableLiveData<Boolean>()
-    val isThereEntry = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
 
     // Kaydin gerceklesme durumu, public
@@ -33,11 +32,6 @@ class LoginRegisterViewModel : ViewModel() {
         birthday: String, selectedImage: Uri?
     ) {
         firebaseRegistrationConfirmation(email, password, name, surname, birthday, selectedImage)
-    }
-
-    // Eski girisin kontrol durumu, public
-    fun autoLoginStatus() {
-        firebaseAutoLogin()
     }
 
     private fun firebaseRegistrationConfirmation(
@@ -123,17 +117,6 @@ class LoginRegisterViewModel : ViewModel() {
                 animation.value = false
                 errorMessage.value = authError.localizedMessage
             }
-    }
-
-    private fun firebaseAutoLogin() {
-        animation.value = true
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            isThereEntry.value = true
-        } else {
-            isThereEntry.value = false
-            animation.value = false
-        }
     }
 
 }

@@ -1,21 +1,20 @@
-package com.futag.futag.view.fragment.login
+package com.futag.futag.view.fragment.login.login_register
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentLoginRegisterBinding
 import com.futag.futag.view.activity.FlowActivity
-import com.futag.futag.viewmodel.LoginRegisterViewModel
 
 class LoginRegisterFragment : Fragment() {
 
-    private var _binding : FragmentLoginRegisterBinding? = null
+    private var _binding: FragmentLoginRegisterBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: LoginRegisterViewModel
 
@@ -23,7 +22,7 @@ class LoginRegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginRegisterBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -31,7 +30,8 @@ class LoginRegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
+        viewModel =
+            ViewModelProvider(requireActivity())[LoginRegisterViewModel::class.java]
         viewModel.autoLoginStatus()
         observeData()
 
@@ -45,23 +45,13 @@ class LoginRegisterFragment : Fragment() {
 
     }
 
-    private fun showAnimation(){
-        binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimation.playAnimation()
-    }
-
-    private fun stopAnimation(){
-        binding.lottieAnimation.cancelAnimation()
-    }
-
-    private fun observeData(){
+    private fun observeData() {
         viewModel.animation.observe(viewLifecycleOwner, { animation ->
             animation?.let { value ->
-                if (value){
+                if (value) {
                     viewModel.isThereEntry.observe(viewLifecycleOwner, { login ->
                         login?.let {
-                            if (it){
-                                showAnimation()
+                            if (it) {
                                 binding.constraintLayout.visibility = View.INVISIBLE
                                 binding.lottieAnimation.visibility = View.VISIBLE
                                 activity?.let { activity ->
@@ -70,14 +60,12 @@ class LoginRegisterFragment : Fragment() {
                                     activity.finish()
                                 }
                             } else {
-                                stopAnimation()
                                 binding.constraintLayout.visibility = View.VISIBLE
                                 binding.lottieAnimation.visibility = View.GONE
                             }
                         }
                     })
                 } else {
-                    stopAnimation()
                     binding.constraintLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
                 }
