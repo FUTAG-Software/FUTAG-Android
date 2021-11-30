@@ -214,8 +214,10 @@ class EditProfileFragment : Fragment() {
                                                     requireActivity(),
                                                     MainActivity::class.java
                                                 )
-                                                startActivity(intent)
-                                                requireActivity().finish()
+                                                activity?.let { activity ->
+                                                    activity.startActivity(intent)
+                                                    activity.finish()
+                                                }
                                             }
                                         }
                                     })
