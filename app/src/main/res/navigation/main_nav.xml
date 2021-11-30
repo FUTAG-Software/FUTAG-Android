@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"
-        android:name="com.futag.futag.view.fragment.login.RegisterFragment"
+        android:name="com.futag.futag.view.fragment.login.register.RegisterFragment"
         android:label="fragment_kayit_ol"
         tools:layout="@layout/fragment_register" >
         <action

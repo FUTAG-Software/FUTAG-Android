@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.login
+package com.futag.futag.view.fragment.login.register
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
@@ -29,7 +29,6 @@ import com.futag.futag.databinding.BottomSheetDialogKvkkBinding
 import com.futag.futag.databinding.FragmentRegisterBinding
 import com.futag.futag.util.Constants.IMAGE_NAME
 import com.futag.futag.view.activity.FlowActivity
-import com.futag.futag.viewmodel.LoginRegisterViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
@@ -39,7 +38,7 @@ class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: LoginRegisterViewModel
+    private lateinit var viewModel: RegisterViewModel
     private var selectedBitmap: Bitmap? = null
     private var selectedUri: Uri? = null
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -62,7 +61,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[RegisterViewModel::class.java]
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -80,7 +79,7 @@ class RegisterFragment : Fragment() {
             bottomSheetDialog.show()
         }
 
-        // Kullanici dogum gununun alinmasi; Gun,Ay,Yil
+        // Kullanici dogum gununun alinmasi; Gun, Ay, Yil
         binding.editTextBirthday.setOnClickListener {
             val dpd = DatePickerDialog(requireContext(), { _, mYear, mMonth, mDay ->
                 val tarih = "$mDay-${mMonth + 1}-$mYear"
@@ -157,13 +156,8 @@ class RegisterFragment : Fragment() {
             val passwordAgain = binding.editTextAgainPassword.text.toString()
             val birthday = binding.editTextBirthday.text.toString()
             if (password == passwordAgain) {
-                viewModel.registrationConfirmationStatus(
-                    email,
-                    password,
-                    name,
-                    surname,
-                    birthday,
-                    selectedImage
+                viewModel.registerToApp(
+                    email, password, name, surname, birthday, selectedImage
                 )
                 observeData()
             } else {
@@ -181,11 +175,9 @@ class RegisterFragment : Fragment() {
                 if (it) {
                     binding.linearLayout.visibility = View.INVISIBLE
                     binding.lottieAnimation.visibility = View.VISIBLE
-                    showAnimation()
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
-                    stopAnimation()
                 }
             }
         })
@@ -295,15 +287,6 @@ class RegisterFragment : Fragment() {
             && binding.editTextSurname.text.isNotEmpty() && binding.editTextMail.text.isNotEmpty() &&
             binding.editTextPassword.text.isNotEmpty() && binding.editTextAgainPassword.text.isNotEmpty()
             && binding.editTextBirthday.text.isNotEmpty()
-
-    private fun showAnimation() {
-        binding.lottieAnimation.setAnimation("ziplayanarianimation.json")
-        binding.lottieAnimation.playAnimation()
-    }
-
-    private fun stopAnimation() {
-        binding.lottieAnimation.cancelAnimation()
-    }
 
     private fun closeKeyboard() {
         val view = requireActivity().currentFocus
