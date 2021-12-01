@@ -1,24 +1,18 @@
-package com.futag.futag.viewmodel
+package com.futag.futag.view.fragment.flow.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.futag.futag.data.repository.FlowRepository
+import com.futag.futag.data.repository.HomeRepository
 import com.futag.futag.model.advertising.AdsModel
-import com.futag.futag.model.blog.BlogModel
-import com.futag.futag.model.event.EventsModel
 import com.futag.futag.model.post.PostModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FlowViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
-    private val flowRepository = FlowRepository()
-
-    val eventDatas = MutableLiveData<EventsModel>()
-    val eventError = MutableLiveData<Boolean>()
-    val eventLoading = MutableLiveData<Boolean>()
+    private val flowRepository = HomeRepository()
 
     val postDatas = MutableLiveData<PostModel>()
     val postError = MutableLiveData<Boolean>()

@@ -8,19 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import com.futag.futag.adapter.PostRecyclerAdapter
 import com.futag.futag.adapter.AdsRecyclerAdapter
+import com.futag.futag.adapter.PostRecyclerAdapter
 import com.futag.futag.databinding.FragmentHomeBinding
 import com.futag.futag.model.post.PostModel
 import com.futag.futag.util.LinePagerIndicatorDecoration
-import com.futag.futag.viewmodel.FlowViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adsAdapter: AdsRecyclerAdapter
-    private lateinit var viewModel: FlowViewModel
+    private lateinit var viewModel: HomeViewModel
     private val postAdapter = PostRecyclerAdapter(this, PostModel())
 
     override fun onCreateView(
@@ -36,8 +35,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val layoutManager = LinearLayoutManager(requireContext())
-        val layoutManagerAds = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        viewModel = ViewModelProvider(requireActivity()).get(FlowViewModel::class.java)
+        val layoutManagerAds =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
         viewModel.getPosts()
         viewModel.getAds()
 
@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
         binding.recyclerViewAds.addItemDecoration(LinePagerIndicatorDecoration())
     }
 
-    private fun observePostLiveData(){
+    private fun observePostLiveData() {
         viewModel.postDatas.observe(viewLifecycleOwner, { posts ->
             posts?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
         })
         viewModel.postError.observe(viewLifecycleOwner, { error ->
             error?.let {
-                if (it){
+                if (it) {
                     binding.textViewErrorMessage.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                     binding.recyclerView.visibility = View.GONE
@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
         })
         viewModel.postLoading.observe(viewLifecycleOwner, { loading ->
             loading?.let {
-                if (it){
+                if (it) {
                     binding.textViewErrorMessage.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
                     binding.recyclerView.visibility = View.GONE
@@ -87,18 +87,18 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun observeAdsLiveData(){
+    private fun observeAdsLiveData() {
         viewModel.adsDatas.observe(viewLifecycleOwner, { ads ->
             ads?.let { reklamModel ->
                 binding.progressBarSlider.visibility = View.INVISIBLE
                 binding.recyclerViewAds.visibility = View.VISIBLE
-                adsAdapter = AdsRecyclerAdapter(reklamModel,this)
+                adsAdapter = AdsRecyclerAdapter(reklamModel, this)
                 binding.recyclerViewAds.adapter = adsAdapter
             }
         })
         viewModel.adsError.observe(viewLifecycleOwner, { error ->
             error?.let {
-                if (it){
+                if (it) {
                     binding.progressBarSlider.visibility = View.GONE
                     binding.recyclerViewAds.visibility = View.GONE
                 }
@@ -106,7 +106,7 @@ class HomeFragment : Fragment() {
         })
         viewModel.adsLoading.observe(viewLifecycleOwner, { loading ->
             loading?.let {
-                if (it){
+                if (it) {
                     binding.progressBarSlider.visibility = View.VISIBLE
                     binding.recyclerViewAds.visibility = View.GONE
                 } else {

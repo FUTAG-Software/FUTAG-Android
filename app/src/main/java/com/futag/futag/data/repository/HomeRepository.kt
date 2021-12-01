@@ -10,7 +10,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class FlowRepository {
+class HomeRepository {
 
     private val api = Retrofit.Builder()
         .baseUrl(BASE_URL)
