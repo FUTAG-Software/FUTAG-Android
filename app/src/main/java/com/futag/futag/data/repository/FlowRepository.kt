@@ -22,16 +22,6 @@ class FlowRepository {
         return api.getAdsData()
     }
 
-    // Blog
-    suspend fun getBlogData(): Response<BlogModel> {
-        return api.getBlogData()
-    }
-
-    // Events
-    suspend fun getEventsData(): Response<EventsModel> {
-        return api.getEventData()
-    }
-
     // Post
     suspend fun getPosts(): Response<PostModel> {
         return api.getPostData()

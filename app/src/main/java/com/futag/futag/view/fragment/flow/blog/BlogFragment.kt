@@ -1,23 +1,22 @@
 package com.futag.futag.view.fragment.flow.blog
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.adapter.BlogRecyclerAdapter
 import com.futag.futag.databinding.FragmentBlogBinding
 import com.futag.futag.model.blog.BlogModel
-import com.futag.futag.viewmodel.FlowViewModel
 
 class BlogFragment : Fragment() {
 
     private var _binding: FragmentBlogBinding? = null
     private val binding get() = _binding!!
-    private val blogAdapter =  BlogRecyclerAdapter(this, BlogModel())
-    private lateinit var viewModel: FlowViewModel
+    private val blogAdapter = BlogRecyclerAdapter(this, BlogModel())
+    private lateinit var viewModel: BlogViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +31,7 @@ class BlogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val layoutManager = LinearLayoutManager(requireContext())
-        viewModel = ViewModelProvider(requireActivity()).get(FlowViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[BlogViewModel::class.java]
         viewModel.getBlogs()
 
         binding.recyclerView.layoutManager = layoutManager
@@ -49,7 +48,7 @@ class BlogFragment : Fragment() {
         observeLiveData()
     }
 
-    private fun observeLiveData(){
+    private fun observeLiveData() {
         viewModel.blogDatas.observe(viewLifecycleOwner, { blogs ->
             blogs?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
@@ -60,7 +59,7 @@ class BlogFragment : Fragment() {
         })
         viewModel.blogError.observe(viewLifecycleOwner, { error ->
             error?.let {
-                if (it){
+                if (it) {
                     binding.textViewErrorMessage.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                     binding.recyclerView.visibility = View.GONE
@@ -71,7 +70,7 @@ class BlogFragment : Fragment() {
         })
         viewModel.blogLoading.observe(viewLifecycleOwner, { loading ->
             loading?.let {
-                if (it){
+                if (it) {
                     binding.textViewErrorMessage.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
                     binding.recyclerView.visibility = View.GONE

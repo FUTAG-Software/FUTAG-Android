@@ -16,10 +16,6 @@ class FlowViewModel : ViewModel() {
 
     private val flowRepository = FlowRepository()
 
-    val blogDatas = MutableLiveData<BlogModel>()
-    val blogError = MutableLiveData<Boolean>()
-    val blogLoading = MutableLiveData<Boolean>()
-
     val eventDatas = MutableLiveData<EventsModel>()
     val eventError = MutableLiveData<Boolean>()
     val eventLoading = MutableLiveData<Boolean>()
@@ -32,58 +28,12 @@ class FlowViewModel : ViewModel() {
     val adsError = MutableLiveData<Boolean>()
     val adsLoading = MutableLiveData<Boolean>()
 
-    fun getBlogs() {
-        getBlogsData()
-    }
-
     fun getPosts() {
         getPostsData()
     }
 
-    fun getEvents() {
-        getEventsData()
-    }
-
     fun getAds() {
         getAdsData()
-    }
-
-    private fun getBlogsData() {
-        blogLoading.value = true
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = flowRepository.getBlogData()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        blogDatas.value = it
-                        blogLoading.value = false
-                        blogError.value = false
-                    }
-                } else {
-                    blogLoading.value = false
-                    blogError.value = true
-                }
-            }
-        }
-    }
-
-    private fun getEventsData() {
-        eventLoading.value = true
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = flowRepository.getEventsData()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        eventDatas.value = it
-                        eventLoading.value = false
-                        eventError.value = false
-                    }
-                } else {
-                    eventLoading.value = false
-                    eventError.value = true
-                }
-            }
-        }
     }
 
     private fun getPostsData() {
