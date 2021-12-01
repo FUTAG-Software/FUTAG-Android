@@ -10,7 +10,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class FlowRepository {
+class HomeRepository {
 
     private val api = Retrofit.Builder()
         .baseUrl(BASE_URL)
@@ -20,16 +20,6 @@ class FlowRepository {
     // Ads
     suspend fun getAds(): Response<AdsModel> {
         return api.getAdsData()
-    }
-
-    // Blog
-    suspend fun getBlogData(): Response<BlogModel> {
-        return api.getBlogData()
-    }
-
-    // Events
-    suspend fun getEventsData(): Response<EventsModel> {
-        return api.getEventData()
     }
 
     // Post
