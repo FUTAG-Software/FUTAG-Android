@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/page_background_color_light_black"
     app:layoutDescription="@xml/fragment_post_detail_scene"
-    tools:context=".view.fragment.flow.blog.BlogDetailFragment">
+    tools:context=".presentation.ui.fragment.flow.blog.BlogDetailFragment">
 
     <ImageView
         android:id="@+id/imageViewImage"

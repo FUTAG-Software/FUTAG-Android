@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/page_background_color_light_black"
     app:layoutDescription="@xml/fragment_event_detail_scene"
-    tools:context=".view.fragment.flow.event.EventDetailFragment">
+    tools:context=".presentation.ui.fragment.flow.event.EventDetailFragment">
 
     <ImageView
         android:id="@+id/imageViewImage"

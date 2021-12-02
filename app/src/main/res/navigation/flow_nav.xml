@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/evFragment"
-        android:name="com.futag.futag.view.fragment.flow.home.HomeFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.home.HomeFragment"
         android:label="fragment_ev"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/blogFragment"
-        android:name="com.futag.futag.view.fragment.flow.blog.BlogFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.blog.BlogFragment"
         android:label="fragment_blog"
         tools:layout="@layout/fragment_blog" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/etkinlikFragment"
-        android:name="com.futag.futag.view.fragment.flow.event.EventFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.event.EventFragment"
         android:label="fragment_etkinlik"
         tools:layout="@layout/fragment_event" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/profilFragment"
-        android:name="com.futag.futag.view.fragment.flow.profile.profile_f.ProfileFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.profile.profile_f.ProfileFragment"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/dahaFragment"
-        android:name="com.futag.futag.view.fragment.flow.moreover.MoreoverFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.moreover.MoreoverFragment"
         android:label="fragment_daha"
         tools:layout="@layout/fragment_moreover" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/profiliDuzenleF"
-        android:name="com.futag.futag.view.fragment.flow.profile.edit_profile.EditProfileFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.profile.edit_profile.EditProfileFragment"
         android:label="fragment_profili_duzenle"
         tools:layout="@layout/fragment_edit_profile" >
         <action
@@ -73,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/birimlerimizF"
-        android:name="com.futag.futag.view.fragment.flow.moreover.units.OurUnitsFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.moreover.units.OurUnitsFragment"
         android:label="fragment_birimlerimiz"
         tools:layout="@layout/fragment_our_units" >
         <action
@@ -82,17 +82,17 @@
     </fragment>
     <fragment
         android:id="@+id/bildirimlerF"
-        android:name="com.futag.futag.view.fragment.flow.moreover.NotificationFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.moreover.NotificationFragment"
         android:label="fragment_bildirimler"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/hakkimizdaF"
-        android:name="com.futag.futag.view.fragment.flow.moreover.AboutUsFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.moreover.AboutUsFragment"
         android:label="fragment_hakkimizda"
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/birimDetayF"
-        android:name="com.futag.futag.view.fragment.flow.moreover.units.UnitsDetailFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.moreover.units.UnitsDetailFragment"
         android:label="fragment_birim_detay"
         tools:layout="@layout/fragment_unit_detail" >
         <argument
@@ -102,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/blogDetayFragment"
-        android:name="com.futag.futag.view.fragment.flow.blog.BlogDetailFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.blog.BlogDetailFragment"
         android:label="fragment_blog_detay"
         tools:layout="@layout/fragment_blog_detail" >
         <argument
@@ -111,12 +111,12 @@
     </fragment>
     <fragment
         android:id="@+id/ayarlarFragment"
-        android:name="com.futag.futag.view.fragment.flow.moreover.SettingsFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.moreover.SettingsFragment"
         android:label="fragment_ayarlar"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/gonderiDetayFragment"
-        android:name="com.futag.futag.view.fragment.flow.home.PostDetailFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.home.PostDetailFragment"
         android:label="GonderiDetayFragment"
         tools:layout="@layout/fragment_post_detail">
         <argument
@@ -125,7 +125,7 @@
     </fragment>
     <fragment
         android:id="@+id/etkinlikDetayFragment"
-        android:name="com.futag.futag.view.fragment.flow.event.EventDetailFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.event.EventDetailFragment"
         android:label="fragment_etkinlik_detay"
         tools:layout="@layout/fragment_event_detail" >
         <argument
@@ -137,7 +137,7 @@
     </fragment>
     <fragment
         android:id="@+id/formFragment"
-        android:name="com.futag.futag.view.fragment.flow.event.FormFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.event.FormFragment"
         android:label="fragment_form"
         tools:layout="@layout/fragment_form" >
         <argument
@@ -146,7 +146,7 @@
     </fragment>
     <fragment
         android:id="@+id/webSitesiFragment"
-        android:name="com.futag.futag.view.fragment.flow.home.WebSiteFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.home.WebSiteFragment"
         android:label="fragment_web"
         tools:layout="@layout/fragment_web" >
         <argument
@@ -155,7 +155,7 @@
     </fragment>
     <fragment
         android:id="@+id/updatePasswordFragment"
-        android:name="com.futag.futag.view.fragment.flow.profile.update_password.UpdatePasswordFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.flow.profile.update_password.UpdatePasswordFragment"
         android:label="fragment_update_password"
         tools:layout="@layout/fragment_update_password" >
         <argument

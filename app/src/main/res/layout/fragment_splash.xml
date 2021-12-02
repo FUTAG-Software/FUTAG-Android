@@ -8,7 +8,7 @@
     android:gravity="center"
     android:backgroundTint="@color/splash_fragment_background"
     android:background="@drawable/background_abstract"
-    tools:context=".view.fragment.SplashFragment">
+    tools:context=".presentation.ui.fragment.SplashFragment">
 
     <ImageView
         android:layout_width="300dp"
