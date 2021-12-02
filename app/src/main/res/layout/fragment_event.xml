@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/page_background_color_light_black"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.flow.event.EventFragment">
+    tools:context=".presentation.ui.fragment.flow.event.EventFragment">
 
     <TextView
         android:id="@+id/textViewTitle"

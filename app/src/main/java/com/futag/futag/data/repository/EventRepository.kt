@@ -1,6 +1,6 @@
 package com.futag.futag.data.repository
 
-import com.futag.futag.data.api.FlowAPI
+import com.futag.futag.data.network.FlowAPI
 import com.futag.futag.model.event.EventsModel
 import com.futag.futag.util.Constants
 import retrofit2.Response

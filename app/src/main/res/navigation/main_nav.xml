@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.futag.futag.view.fragment.SplashFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.futag.futag.view.onboarding.ViewPagerFragment"
+        android:name="com.futag.futag.presentation.ui.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/girisKayitFragment"
-        android:name="com.futag.futag.view.fragment.login.login_register.LoginRegisterFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.login.login_register.LoginRegisterFragment"
         android:label="fragment_giris_kayit"
         tools:layout="@layout/fragment_login_register" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/girisYapFragment"
-        android:name="com.futag.futag.view.fragment.login.login.LoginFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.login.login.LoginFragment"
         android:label="fragment_giris_yap"
         tools:layout="@layout/fragment_login" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"
-        android:name="com.futag.futag.view.fragment.login.register.RegisterFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.login.register.RegisterFragment"
         android:label="fragment_kayit_ol"
         tools:layout="@layout/fragment_register" >
         <action
@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/sifremiUnuttumFragment"
-        android:name="com.futag.futag.view.fragment.login.forgot_password.ForgotPasswordFragment"
+        android:name="com.futag.futag.presentation.ui.fragment.login.forgot_password.ForgotPasswordFragment"
         android:label="fragment_sifremi_unuttum"
         tools:layout="@layout/fragment_forgot_password" />
 </navigation>

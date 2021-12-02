@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@color/page_background_color_light_black"
     android:orientation="vertical"
-    tools:context=".view.onboarding.screens.FirstScreen">
+    tools:context=".presentation.ui.onboarding.screens.FirstScreen">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimation"
