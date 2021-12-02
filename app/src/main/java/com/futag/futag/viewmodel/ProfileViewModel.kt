@@ -50,10 +50,6 @@ class ProfileViewModel : ViewModel() {
         deleteEverything()
     }
 
-    fun updatePassword(newPassword: String) {
-        updatePasswordFirebase(newPassword)
-    }
-
     private fun updateProfileFirebase(
         userInfo: UserModel,
         newName: String,
@@ -221,20 +217,6 @@ class ProfileViewModel : ViewModel() {
         } else {
             deleteAccountAnimation.value = false
             deleteAccountError.value = true
-        }
-    }
-
-    private fun updatePasswordFirebase(newPassword: String) {
-        animation.value = true
-        val currentUser = auth.currentUser
-        currentUser!!.updatePassword(newPassword).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                animation.value = false
-                updatePasswordData.value = true
-            }
-        }.addOnFailureListener { error ->
-            animation.value = false
-            updatePasswordError.value = error.localizedMessage
         }
     }
 

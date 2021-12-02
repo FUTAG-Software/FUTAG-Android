@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.flow.profile
+package com.futag.futag.view.fragment.flow.profile.update_password
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,6 @@ import androidx.navigation.fragment.navArgs
 import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentUpdatePasswordBinding
-import com.futag.futag.viewmodel.ProfileViewModel
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -22,7 +21,7 @@ class UpdatePasswordFragment : Fragment() {
     private var _binding: FragmentUpdatePasswordBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<UpdatePasswordFragmentArgs>()
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: UpdatePasswordViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,63 +36,72 @@ class UpdatePasswordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val email = args.email
-        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[UpdatePasswordViewModel::class.java]
 
         binding.buttonChangePassword.setOnClickListener {
             if (checkEmptyView()) {
                 val newPassword = binding.editTextNewPassword.text.toString()
                 val newPasswordAgain = binding.editTextNewPasswordAgain.text.toString()
                 val oldPassword = binding.editTextOldPassword.text.toString()
-                if (newPassword == newPasswordAgain) {
-                    val credential = EmailAuthProvider
-                        .getCredential(email, oldPassword)
-                    val user = Firebase.auth.currentUser!!
-                    user.reauthenticate(credential).addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            viewModel.updatePassword(newPassword)
-                            viewModel.animation.observe(viewLifecycleOwner, { animation ->
-                                animation?.let {
-                                    if (it) {
-                                        binding.linearLayout.visibility = View.INVISIBLE
-                                        binding.lottieAnimation.visibility = View.VISIBLE
-                                    } else {
-                                        binding.lottieAnimation.visibility = View.GONE
-                                        binding.linearLayout.visibility = View.VISIBLE
+                if (oldPassword == newPassword) {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.please_enter_different_password,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    if (newPassword == newPasswordAgain) {
+                        val credential = EmailAuthProvider
+                            .getCredential(email, oldPassword)
+                        val user = Firebase.auth.currentUser!!
+                        user.reauthenticate(credential).addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                viewModel.updatePassword(newPassword)
+                                viewModel.animation.observe(viewLifecycleOwner, { animation ->
+                                    animation?.let {
+                                        if (it) {
+                                            binding.linearLayout.visibility = View.INVISIBLE
+                                            binding.lottieAnimation.visibility = View.VISIBLE
+                                        } else {
+                                            binding.lottieAnimation.visibility = View.GONE
+                                            binding.linearLayout.visibility = View.VISIBLE
+                                        }
                                     }
-                                }
-                            })
-                            viewModel.updatePasswordData.observe(viewLifecycleOwner, { data ->
-                                data?.let {
-                                    if (it) {
-                                        Toast.makeText(
-                                            requireContext(),
-                                            R.string.password_changed,
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                        viewModel.signOut()
-                                        observeDataSignOut()
+                                })
+                                viewModel.updatePasswordData.observe(viewLifecycleOwner, { data ->
+                                    data?.let {
+                                        if (it) {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                R.string.password_changed,
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            viewModel.signOut()
+                                            observeDataSignOut()
+                                        }
                                     }
-                                }
-                            })
-                            viewModel.updatePasswordError.observe(viewLifecycleOwner, { error ->
-                                error?.let {
-                                    Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-                                }
-                            })
+                                })
+                                viewModel.updatePasswordError.observe(viewLifecycleOwner, { error ->
+                                    error?.let {
+                                        Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
+                                            .show()
+                                    }
+                                })
+                            }
+                        }.addOnFailureListener {
+                            Toast.makeText(
+                                requireContext(),
+                                it.localizedMessage,
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                    }.addOnFailureListener {
+                    } else {
                         Toast.makeText(
                             requireContext(),
-                            it.localizedMessage,
+                            R.string.password_must_match,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.password_must_match,
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             } else {
                 Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT)

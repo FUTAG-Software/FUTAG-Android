@@ -81,6 +81,7 @@
 
     <!-- ForgotPassword Fragment -->
     <string name="please_enter_your_email_adress">Please Enter Your Email Address!</string>
+    <string name="please_enter_different_password">Old and New Password Cannot Be The Same!</string>
     <string name="confirmation_email_sent">Confirmation Email Sent.</string>
     <string name="i_forgot_my_password">I forgot my password</string>
     <string name="password_reset_text">Please enter your e-mail address to reset your password.</string>

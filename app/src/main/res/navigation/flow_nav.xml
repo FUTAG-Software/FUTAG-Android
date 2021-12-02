@@ -155,7 +155,7 @@
     </fragment>
     <fragment
         android:id="@+id/updatePasswordFragment"
-        android:name="com.futag.futag.view.fragment.flow.profile.UpdatePasswordFragment"
+        android:name="com.futag.futag.view.fragment.flow.profile.update_password.UpdatePasswordFragment"
         android:label="fragment_update_password"
         tools:layout="@layout/fragment_update_password" >
         <argument
