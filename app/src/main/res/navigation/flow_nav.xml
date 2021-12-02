@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/profilFragment"
-        android:name="com.futag.futag.view.fragment.flow.profile.ProfileFragment"
+        android:name="com.futag.futag.view.fragment.flow.profile.profile_f.ProfileFragment"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/profiliDuzenleF"
-        android:name="com.futag.futag.view.fragment.flow.profile.EditProfileFragment"
+        android:name="com.futag.futag.view.fragment.flow.profile.edit_profile.EditProfileFragment"
         android:label="fragment_profili_duzenle"
         tools:layout="@layout/fragment_edit_profile" >
         <action

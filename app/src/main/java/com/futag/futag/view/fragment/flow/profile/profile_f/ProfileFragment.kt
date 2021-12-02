@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.flow.profile
+package com.futag.futag.view.fragment.flow.profile.profile_f
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,6 @@ import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfileBinding
 import com.futag.futag.model.UserModel
-import com.futag.futag.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 
 class ProfileFragment : Fragment() {

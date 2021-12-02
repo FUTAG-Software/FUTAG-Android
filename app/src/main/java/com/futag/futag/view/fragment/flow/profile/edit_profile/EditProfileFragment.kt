@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.flow.profile
+package com.futag.futag.view.fragment.flow.profile.edit_profile
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
@@ -31,7 +31,6 @@ import com.futag.futag.databinding.DeleteAccountConfirmDialogBinding
 import com.futag.futag.databinding.FragmentEditProfileBinding
 import com.futag.futag.model.UserModel
 import com.futag.futag.util.Constants.IMAGE_NAME_NEW
-import com.futag.futag.viewmodel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.ktx.auth
@@ -44,7 +43,7 @@ class EditProfileFragment : Fragment() {
 
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: EditProfileViewModel
     private var userProfileInfo: UserModel? = null
     private var selectedBitmap: Bitmap? = null
     private var selectedUri: Uri? = null
@@ -68,7 +67,7 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[EditProfileViewModel::class.java]
 
         viewModel.getProfileInfo()
         getProfileInfo()
