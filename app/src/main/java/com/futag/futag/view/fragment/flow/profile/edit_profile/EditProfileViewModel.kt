@@ -1,11 +1,10 @@
-package com.futag.futag.viewmodel
+package com.futag.futag.view.fragment.flow.profile.edit_profile
 
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.futag.futag.model.UserModel
-import com.futag.futag.util.Constants.IMAGES
-import com.futag.futag.util.Constants.USERS
+import com.futag.futag.util.Constants
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -13,28 +12,21 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.util.*
 
-class ProfileViewModel : ViewModel() {
+class EditProfileViewModel : ViewModel() {
 
     private val auth = Firebase.auth
     private val db = Firebase.firestore
     private val storage = Firebase.storage
 
+    lateinit var userInfo: UserModel
+    val userUid = auth.currentUser?.uid
     val animation = MutableLiveData<Boolean>()
     val dataConfirmation = MutableLiveData<Boolean>()
-    var isThereEntry = MutableLiveData<Boolean>()
+    val errorMessage = MutableLiveData<String>()
+    val changesSaved = MutableLiveData<Boolean>()
     val deleteAccountAnimation = MutableLiveData<Boolean>()
     val deleteAccountError = MutableLiveData<Boolean>()
     val deleteAccountConfirmation = MutableLiveData<Boolean>()
-    lateinit var userInfo: UserModel
-    val userUid = auth.currentUser?.uid
-    val updatePasswordData = MutableLiveData<Boolean>()
-    val updatePasswordError = MutableLiveData<String>()
-    val errorMessage = MutableLiveData<String>()
-    val changesSaved = MutableLiveData<Boolean>()
-
-    fun signOut() {
-        userSignOutControl()
-    }
 
     fun getProfileInfo() {
         pullUserInfo()
@@ -50,80 +42,9 @@ class ProfileViewModel : ViewModel() {
         deleteEverything()
     }
 
-    fun updatePassword(newPassword: String) {
-        updatePasswordFirebase(newPassword)
-    }
-
-    private fun updateProfileFirebase(
-        userInfo: UserModel,
-        newName: String,
-        newSurname: String,
-        newBirthday: String,
-        newSelectedImage: Uri?
-    ) {
-        animation.value = true
-        val reference = storage.reference
-        val documentId = userUid
-        if (newSelectedImage != null) {
-            var imageReferenceLink: String?
-            if (userInfo.profileImageName == null) {
-                val uuid = UUID.randomUUID()
-                val profileImageName = "${uuid}.jpeg"
-                userInfo.profileImageName = profileImageName
-            }
-            val imageReference = reference.child(IMAGES).child(userInfo.profileImageName!!)
-            imageReference.putFile(newSelectedImage).addOnSuccessListener {
-                val uploadedImageReference =
-                    reference.child(IMAGES).child(userInfo.profileImageName!!)
-                uploadedImageReference.downloadUrl.addOnSuccessListener { uri ->
-                    imageReferenceLink = uri.toString()
-                    if (imageReferenceLink != null) {
-                        val newUser = UserModel(
-                            newName, newSurname, userInfo.email,
-                            userUid!!, newBirthday, imageReferenceLink,
-                            userInfo.profileImageName, userInfo.registrationTime
-                        )
-                        db.collection(USERS)
-                            .document(documentId!!).set(newUser)
-                            .addOnCompleteListener { registration ->
-                                if (registration.isSuccessful) {
-                                    dataConfirmation.value = true
-                                    animation.value = false
-                                    changesSaved.value = true
-                                }
-                            }.addOnFailureListener { error ->
-                                animation.value = false
-                                errorMessage.value = error.localizedMessage
-                            }
-                    }
-                }
-            }.addOnFailureListener { exception ->
-                animation.value = false
-                errorMessage.value = exception.localizedMessage
-            }
-        } else {
-            val newUser = UserModel(
-                newName, newSurname, userInfo.email,
-                userUid!!, newBirthday, userInfo.profileImage,
-                userInfo.profileImageName, userInfo.registrationTime
-            )
-            db.collection(USERS)
-                .document(documentId!!).set(newUser).addOnCompleteListener { registration ->
-                    if (registration.isSuccessful) {
-                        dataConfirmation.value = true
-                        animation.value = false
-                        changesSaved.value = true
-                    }
-                }.addOnFailureListener { error ->
-                    animation.value = false
-                    errorMessage.value = error.localizedMessage
-                }
-        }
-    }
-
     private fun pullUserInfo() {
         animation.value = true
-        val documentReference = db.collection(USERS).document(userUid!!)
+        val documentReference = db.collection(Constants.USERS).document(userUid!!)
         documentReference.get()
             .addOnSuccessListener { data ->
                 if (data != null) {
@@ -147,15 +68,71 @@ class ProfileViewModel : ViewModel() {
             }
     }
 
-    private fun userSignOutControl() {
+    private fun updateProfileFirebase(
+        userInfo: UserModel,
+        newName: String,
+        newSurname: String,
+        newBirthday: String,
+        newSelectedImage: Uri?
+    ) {
         animation.value = true
-        val activeUser = auth.currentUser
-        if (activeUser != null) {
-            isThereEntry.value = true
-            auth.signOut()
+        val reference = storage.reference
+        val documentId = userUid
+        if (newSelectedImage != null) {
+            var imageReferenceLink: String?
+            if (userInfo.profileImageName == null) {
+                val uuid = UUID.randomUUID()
+                val profileImageName = "${uuid}.jpeg"
+                userInfo.profileImageName = profileImageName
+            }
+            val imageReference =
+                reference.child(Constants.IMAGES).child(userInfo.profileImageName!!)
+            imageReference.putFile(newSelectedImage).addOnSuccessListener {
+                val uploadedImageReference =
+                    reference.child(Constants.IMAGES).child(userInfo.profileImageName!!)
+                uploadedImageReference.downloadUrl.addOnSuccessListener { uri ->
+                    imageReferenceLink = uri.toString()
+                    if (imageReferenceLink != null) {
+                        val newUser = UserModel(
+                            newName, newSurname, userInfo.email,
+                            userUid!!, newBirthday, imageReferenceLink,
+                            userInfo.profileImageName, userInfo.registrationTime
+                        )
+                        db.collection(Constants.USERS)
+                            .document(documentId!!).set(newUser)
+                            .addOnCompleteListener { registration ->
+                                if (registration.isSuccessful) {
+                                    dataConfirmation.value = true
+                                    animation.value = false
+                                    changesSaved.value = true
+                                }
+                            }.addOnFailureListener { error ->
+                                animation.value = false
+                                errorMessage.value = error.localizedMessage
+                            }
+                    }
+                }
+            }.addOnFailureListener { exception ->
+                animation.value = false
+                errorMessage.value = exception.localizedMessage
+            }
         } else {
-            isThereEntry.value = false
-            animation.value = false
+            val newUser = UserModel(
+                newName, newSurname, userInfo.email,
+                userUid!!, newBirthday, userInfo.profileImage,
+                userInfo.profileImageName, userInfo.registrationTime
+            )
+            db.collection(Constants.USERS)
+                .document(documentId!!).set(newUser).addOnCompleteListener { registration ->
+                    if (registration.isSuccessful) {
+                        dataConfirmation.value = true
+                        animation.value = false
+                        changesSaved.value = true
+                    }
+                }.addOnFailureListener { error ->
+                    animation.value = false
+                    errorMessage.value = error.localizedMessage
+                }
         }
     }
 
@@ -163,7 +140,7 @@ class ProfileViewModel : ViewModel() {
         deleteAccountAnimation.value = true
         val storageRef = storage.reference
         if (userUid != null) {
-            val documentReference = db.collection(USERS).document(userUid)
+            val documentReference = db.collection(Constants.USERS).document(userUid)
             documentReference.get().addOnSuccessListener { data ->
                 if (data != null) {
                     val user = UserModel(
@@ -177,9 +154,9 @@ class ProfileViewModel : ViewModel() {
                         data["registrationTime"] as Timestamp
                     )
                     if (user.profileImageName != null) {
-                        storageRef.child(IMAGES).child(user.profileImageName!!)
+                        storageRef.child(Constants.IMAGES).child(user.profileImageName!!)
                             .delete().addOnSuccessListener {
-                                db.collection(USERS).document(userUid).delete()
+                                db.collection(Constants.USERS).document(userUid).delete()
                                     .addOnSuccessListener {
                                         val currentUser = Firebase.auth.currentUser!!
                                         Firebase.auth.signOut()
@@ -201,7 +178,7 @@ class ProfileViewModel : ViewModel() {
                                 errorMessage.value = it.localizedMessage
                             }
                     } else {
-                        db.collection(USERS).document(userUid).delete().addOnSuccessListener {
+                        db.collection(Constants.USERS).document(userUid).delete().addOnSuccessListener {
                             auth.currentUser!!.delete().addOnSuccessListener {
                                 deleteAccountAnimation.value = false
                                 deleteAccountConfirmation.value = true
@@ -221,20 +198,6 @@ class ProfileViewModel : ViewModel() {
         } else {
             deleteAccountAnimation.value = false
             deleteAccountError.value = true
-        }
-    }
-
-    private fun updatePasswordFirebase(newPassword: String) {
-        animation.value = true
-        val currentUser = auth.currentUser
-        currentUser!!.updatePassword(newPassword).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                animation.value = false
-                updatePasswordData.value = true
-            }
-        }.addOnFailureListener { error ->
-            animation.value = false
-            updatePasswordError.value = error.localizedMessage
         }
     }
 

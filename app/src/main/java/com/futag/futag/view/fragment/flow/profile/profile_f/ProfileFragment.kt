@@ -1,4 +1,4 @@
-package com.futag.futag.view.fragment.flow.profile
+package com.futag.futag.view.fragment.flow.profile.profile_f
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,6 @@ import com.futag.futag.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentProfileBinding
 import com.futag.futag.model.UserModel
-import com.futag.futag.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 
 class ProfileFragment : Fragment() {
@@ -36,7 +35,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
 
         viewModel.getProfileInfo()
         getProfileInfo()
