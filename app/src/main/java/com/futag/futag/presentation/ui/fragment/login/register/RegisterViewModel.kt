@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.futag.futag.model.UserModel
 import com.futag.futag.util.Constants.FOOD_NOTIFICATION
+import com.futag.futag.util.Constants.FUTAG_NOTIFICATION
 import com.futag.futag.util.Constants.IMAGES
 import com.futag.futag.util.Constants.USERS
 import com.google.firebase.Timestamp
@@ -28,7 +29,7 @@ class RegisterViewModel : ViewModel() {
     fun registerToApp(
         email: String, password: String,
         name: String, surname: String,
-        birthday: String, selectedImage: Uri?
+        birthday: String, selectedImage: Uri?,
     ) {
         registerToAppUsingFirebase(email, password, name, surname, birthday, selectedImage)
     }
@@ -36,7 +37,7 @@ class RegisterViewModel : ViewModel() {
     private fun registerToAppUsingFirebase(
         email: String, password: String,
         name: String, surname: String,
-        birthday: String, selectedImage: Uri?
+        birthday: String, selectedImage: Uri?,
     ) {
         errorMessage.value = null
         animation.value = true
@@ -75,6 +76,8 @@ class RegisterViewModel : ViewModel() {
                                             animation.value = false
                                             FirebaseMessaging.getInstance()
                                                 .subscribeToTopic(FOOD_NOTIFICATION)
+                                            FirebaseMessaging.getInstance()
+                                                .subscribeToTopic(FUTAG_NOTIFICATION)
                                         }
                                     }.addOnFailureListener { exception ->
                                         animation.value = false
@@ -104,6 +107,9 @@ class RegisterViewModel : ViewModel() {
                                 animation.value = false
                                 FirebaseMessaging.getInstance().subscribeToTopic(
                                     FOOD_NOTIFICATION
+                                )
+                                FirebaseMessaging.getInstance().subscribeToTopic(
+                                    FUTAG_NOTIFICATION
                                 )
                             }
                         }.addOnFailureListener { exception ->

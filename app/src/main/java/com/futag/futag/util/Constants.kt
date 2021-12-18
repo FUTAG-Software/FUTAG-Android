@@ -8,5 +8,6 @@ object Constants {
     const val IMAGE_NAME = "futagProfileImage"
     const val IMAGE_NAME_NEW = "futagProfileNewImage"
     const val FOOD_NOTIFICATION = "food_notification"
+    const val FUTAG_NOTIFICATION = "futag_notification"
 
 }
