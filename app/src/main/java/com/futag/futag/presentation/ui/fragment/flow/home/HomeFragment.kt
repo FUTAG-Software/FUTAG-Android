@@ -11,19 +11,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.futag.futag.databinding.FragmentHomeBinding
 import com.futag.futag.model.advertising.AdsModelItem
-import com.futag.futag.model.post.PostModel
+import com.futag.futag.model.post.PostModelItem
 import com.futag.futag.presentation.adapter.AdsRecyclerAdapter
 import com.futag.futag.presentation.adapter.PostRecyclerAdapter
 import com.futag.futag.util.LinePagerIndicatorDecoration
 import com.futag.futag.util.listener.AdsAdapterClickListener
+import com.futag.futag.util.listener.PostAdapterClickListener
 
-class HomeFragment : Fragment(), AdsAdapterClickListener {
+class HomeFragment : Fragment(), AdsAdapterClickListener, PostAdapterClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adsAdapter: AdsRecyclerAdapter
     private lateinit var viewModel: HomeViewModel
-    private val postAdapter = PostRecyclerAdapter(this, PostModel())
+    private lateinit var postAdapter: PostRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +39,7 @@ class HomeFragment : Fragment(), AdsAdapterClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         adsAdapter = AdsRecyclerAdapter(requireContext(), this)
+        postAdapter = PostRecyclerAdapter(requireContext(), this)
 
         val layoutManager = LinearLayoutManager(requireContext())
         val layoutManagerAds =
@@ -65,7 +67,7 @@ class HomeFragment : Fragment(), AdsAdapterClickListener {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                postAdapter.updatePost(it)
+                postAdapter.postList = it
             }
         }
         viewModel.postError.observe(viewLifecycleOwner) { error ->
@@ -129,6 +131,11 @@ class HomeFragment : Fragment(), AdsAdapterClickListener {
     override fun onClickItem(item: AdsModelItem) {
         val action =
             HomeFragmentDirections.actionEvFragmentToWebSitesiFragment(item.redirectingLink)
+        findNavController().navigate(action)
+    }
+
+    override fun clickListener(item: PostModelItem) {
+        val action = HomeFragmentDirections.actionEvFragmentToGonderiDetayFragment(item)
         findNavController().navigate(action)
     }
 
