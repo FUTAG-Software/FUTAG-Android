@@ -6,21 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.futag.futag.presentation.adapter.BlogRecyclerAdapter
 import com.futag.futag.databinding.FragmentBlogBinding
-import com.futag.futag.model.blog.BlogModel
+import com.futag.futag.model.blog.BlogModelItem
+import com.futag.futag.presentation.adapter.BlogRecyclerAdapter
+import com.futag.futag.util.listener.BlogAdapterClickListener
 
-class BlogFragment : Fragment() {
+class BlogFragment : Fragment(), BlogAdapterClickListener {
 
     private var _binding: FragmentBlogBinding? = null
     private val binding get() = _binding!!
-    private val blogAdapter = BlogRecyclerAdapter(this, BlogModel())
+    private lateinit var blogAdapter: BlogRecyclerAdapter
     private lateinit var viewModel: BlogViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentBlogBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -30,12 +32,13 @@ class BlogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        blogAdapter = BlogRecyclerAdapter(requireContext(), this)
+
         val layoutManager = LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(requireActivity())[BlogViewModel::class.java]
         viewModel.getBlogs()
 
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = blogAdapter
 
         binding.swipeRefreshLayoutBlog.setOnRefreshListener {
             binding.textViewErrorMessage.visibility = View.GONE
@@ -49,15 +52,16 @@ class BlogFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.blogDatas.observe(viewLifecycleOwner, { blogs ->
+        viewModel.blogDatas.observe(viewLifecycleOwner) { blogs ->
             blogs?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                blogAdapter.updateBlogs(it)
+                blogAdapter.blogList = it
+                binding.recyclerView.adapter = blogAdapter
             }
-        })
-        viewModel.blogError.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.blogError.observe(viewLifecycleOwner) { error ->
             error?.let {
                 if (it) {
                     binding.textViewErrorMessage.visibility = View.VISIBLE
@@ -67,8 +71,8 @@ class BlogFragment : Fragment() {
                     binding.textViewErrorMessage.visibility = View.GONE
                 }
             }
-        })
-        viewModel.blogLoading.observe(viewLifecycleOwner, { loading ->
+        }
+        viewModel.blogLoading.observe(viewLifecycleOwner) { loading ->
             loading?.let {
                 if (it) {
                     binding.textViewErrorMessage.visibility = View.GONE
@@ -78,12 +82,17 @@ class BlogFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                 }
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClickListener(item: BlogModelItem) {
+        val action = BlogFragmentDirections.actionBlogFragmentToBlogDetayFragment(item)
+        findNavController().navigate(action)
     }
 
 }
