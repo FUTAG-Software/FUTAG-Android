@@ -25,7 +25,7 @@ class ProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -51,7 +51,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getProfileInfo() {
-        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+        viewModel.animation.observe(viewLifecycleOwner) { animation ->
             animation?.let { value ->
                 if (value) {
                     binding.constraintLayout.visibility = View.INVISIBLE
@@ -61,8 +61,8 @@ class ProfileFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                 }
             }
-        })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
+        }
+        viewModel.dataConfirmation.observe(viewLifecycleOwner) { dataConfirm ->
             dataConfirm?.let { data ->
                 if (data) {
                     userProfileInfo = viewModel.userInfo
@@ -92,19 +92,19 @@ class ProfileFragment : Fragment() {
                     binding.progressBar.visibility = View.VISIBLE
                 }
             }
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
     }
 
     private fun observeDataSignOut() {
-        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+        viewModel.animation.observe(viewLifecycleOwner) { animation ->
             animation?.let { value ->
                 if (value) {
-                    viewModel.isThereEntry.observe(viewLifecycleOwner, { login ->
+                    viewModel.isThereEntry.observe(viewLifecycleOwner) { login ->
                         login?.let {
                             if (it) {
                                 binding.constraintLayout.visibility = View.INVISIBLE
@@ -119,13 +119,13 @@ class ProfileFragment : Fragment() {
                                 binding.progressBar.visibility = View.GONE
                             }
                         }
-                    })
+                    }
                 } else {
                     binding.constraintLayout.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                 }
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

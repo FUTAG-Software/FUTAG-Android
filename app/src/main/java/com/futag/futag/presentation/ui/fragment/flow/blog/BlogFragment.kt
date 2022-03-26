@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.databinding.FragmentBlogBinding
 import com.futag.futag.model.blog.BlogModelItem
 import com.futag.futag.presentation.adapter.BlogRecyclerAdapter
@@ -34,11 +33,8 @@ class BlogFragment : Fragment(), BlogAdapterClickListener {
 
         blogAdapter = BlogRecyclerAdapter(requireContext(), this)
 
-        val layoutManager = LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(requireActivity())[BlogViewModel::class.java]
         viewModel.getBlogs()
-
-        binding.recyclerView.layoutManager = layoutManager
 
         binding.swipeRefreshLayoutBlog.setOnRefreshListener {
             binding.textViewErrorMessage.visibility = View.GONE

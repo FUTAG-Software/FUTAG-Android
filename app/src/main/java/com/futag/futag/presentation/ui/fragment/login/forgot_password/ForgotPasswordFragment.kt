@@ -18,7 +18,7 @@ class ForgotPasswordFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -47,7 +47,7 @@ class ForgotPasswordFragment : Fragment() {
     }
 
     private fun observeData() {
-        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+        viewModel.animation.observe(viewLifecycleOwner) { animation ->
             animation?.let {
                 if (it) {
                     binding.linearLayout.visibility = View.INVISIBLE
@@ -57,8 +57,8 @@ class ForgotPasswordFragment : Fragment() {
                     binding.lottieAnimation.visibility = View.GONE
                 }
             }
-        })
-        viewModel.success.observe(viewLifecycleOwner, { success ->
+        }
+        viewModel.success.observe(viewLifecycleOwner) { success ->
             success?.let {
                 if (it) {
                     Toast.makeText(
@@ -68,12 +68,12 @@ class ForgotPasswordFragment : Fragment() {
                     ).show()
                 }
             }
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

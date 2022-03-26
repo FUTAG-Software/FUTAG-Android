@@ -50,7 +50,7 @@ class RegisterFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -170,7 +170,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun observeData() {
-        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+        viewModel.animation.observe(viewLifecycleOwner) { animation ->
             animation?.let {
                 if (it) {
                     binding.linearLayout.visibility = View.INVISIBLE
@@ -180,8 +180,8 @@ class RegisterFragment : Fragment() {
                     binding.lottieAnimation.visibility = View.GONE
                 }
             }
-        })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
+        }
+        viewModel.dataConfirmation.observe(viewLifecycleOwner) { dataConfirm ->
             dataConfirm?.let { confirm ->
                 if (confirm) {
                     activity?.let {
@@ -196,12 +196,12 @@ class RegisterFragment : Fragment() {
                     }
                 }
             }
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
     }
 
     private fun registerLauncher() {

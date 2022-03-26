@@ -19,9 +19,9 @@ class FormFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentFormBinding.inflate(inflater,container,false)
+        _binding = FragmentFormBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -34,7 +34,7 @@ class FormFragment : Fragment() {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    private fun webViewSetup(url: String){
+    private fun webViewSetup(url: String) {
         binding.webView.webViewClient = WebViewClient()
         binding.webView.apply {
             loadUrl(url)

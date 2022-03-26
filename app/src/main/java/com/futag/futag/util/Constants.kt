@@ -10,4 +10,6 @@ object Constants {
     const val FOOD_NOTIFICATION = "food_notification"
     const val FUTAG_NOTIFICATION = "futag_notification"
 
+    const val FORM_LINK_DEFAULT_NULL_STATE = "no_link"
+    const val SPLASH_SCREEN_TIME = 1000L
 }

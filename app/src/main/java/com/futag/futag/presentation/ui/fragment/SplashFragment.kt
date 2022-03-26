@@ -3,26 +3,25 @@ package com.futag.futag.presentation.ui.fragment
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentSplashBinding
+import com.futag.futag.util.Constants.SPLASH_SCREEN_TIME
 import com.futag.futag.util.SharedPref
-
 
 class SplashFragment : Fragment() {
 
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
-    private val SPLASH_TIME = 1600L
     private lateinit var mySharedPref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -31,12 +30,12 @@ class SplashFragment : Fragment() {
 
         // Giriste kullaniciyi bekletme
         Handler(Looper.getMainLooper()).postDelayed({
-            if(mySharedPref.loadOnBoardingState()){
+            if (mySharedPref.loadOnBoardingState()) {
                 findNavController().navigate(R.id.action_splashFragment_to_girisKayitFragment)
-            } else{
+            } else {
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             }
-        },SPLASH_TIME)
+        }, SPLASH_SCREEN_TIME)
 
         return view
     }

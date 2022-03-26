@@ -1,16 +1,16 @@
 package com.futag.futag.presentation.ui.fragment.flow.moreover
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.futag.futag.R
-import com.futag.futag.presentation.adapter.MoreoverRecyclerAdapter
 import com.futag.futag.databinding.FragmentMoreoverBinding
 import com.futag.futag.model.MoreoverItemModel
+import com.futag.futag.presentation.adapter.MoreoverRecyclerAdapter
 
 class MoreoverFragment : Fragment() {
 
@@ -21,7 +21,7 @@ class MoreoverFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentMoreoverBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -34,11 +34,11 @@ class MoreoverFragment : Fragment() {
         itemList = ArrayList()
 
         val units = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.futag_icon)!!,
+            ContextCompat.getDrawable(requireContext(), R.drawable.futag_icon)!!,
             getString(R.string.our_units)
         )
         val rateUs = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.star)!!,
+            ContextCompat.getDrawable(requireContext(), R.drawable.star)!!,
             getString(R.string.rate_us)
         )
         /* val notification = MoreoverItemModel(
@@ -46,15 +46,15 @@ class MoreoverFragment : Fragment() {
             getString(R.string.notification)
         ) */
         val feedback = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.mail_contact)!!,
+            ContextCompat.getDrawable(requireContext(), R.drawable.mail_contact)!!,
             getString(R.string.feedback)
         )
         val aboutUs = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.info)!!,
+            ContextCompat.getDrawable(requireContext(), R.drawable.info)!!,
             getString(R.string.about_us)
         )
         val settings = MoreoverItemModel(
-            ContextCompat.getDrawable(requireContext(),R.drawable.moreover_settings)!!,
+            ContextCompat.getDrawable(requireContext(), R.drawable.moreover_settings)!!,
             getString(R.string.settings)
         )
 
@@ -65,7 +65,7 @@ class MoreoverFragment : Fragment() {
         itemList.add(aboutUs)
         itemList.add(settings)
 
-        adapter = MoreoverRecyclerAdapter(this ,requireContext(), itemList)
+        adapter = MoreoverRecyclerAdapter(this, requireContext(), itemList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 

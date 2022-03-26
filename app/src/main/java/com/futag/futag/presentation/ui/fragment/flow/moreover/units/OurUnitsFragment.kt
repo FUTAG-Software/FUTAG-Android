@@ -1,11 +1,11 @@
 package com.futag.futag.presentation.ui.fragment.flow.moreover.units
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.futag.futag.databinding.FragmentOurUnitsBinding
 
 class OurUnitsFragment : Fragment() {
@@ -15,9 +15,9 @@ class OurUnitsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentOurUnitsBinding.inflate(inflater,container,false)
+        _binding = FragmentOurUnitsBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -27,32 +27,32 @@ class OurUnitsFragment : Fragment() {
 
         binding.foreignRelationsUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(0)
-            Navigation.findNavController(it).navigate(action)
+            findNavController().navigate(action)
         }
 
         binding.entrepreneurshipUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(1)
-            Navigation.findNavController(it).navigate(action)
+            findNavController().navigate(action)
         }
 
         binding.mediaUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(2)
-            Navigation.findNavController(it).navigate(action)
+            findNavController().navigate(action)
         }
 
         binding.projectRDUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(3)
-            Navigation.findNavController(it).navigate(action)
+            findNavController().navigate(action)
         }
 
         binding.socialResponsibilityUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(4)
-            Navigation.findNavController(it).navigate(action)
+            findNavController().navigate(action)
         }
 
         binding.softwareUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(5)
-            Navigation.findNavController(it).navigate(action)
+            findNavController().navigate(action)
         }
 
     }

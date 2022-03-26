@@ -25,11 +25,11 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.futag.futag.presentation.ui.activity.MainActivity
 import com.futag.futag.R
 import com.futag.futag.databinding.DeleteAccountConfirmDialogBinding
 import com.futag.futag.databinding.FragmentEditProfileBinding
 import com.futag.futag.model.UserModel
+import com.futag.futag.presentation.ui.activity.MainActivity
 import com.futag.futag.util.Constants.IMAGE_NAME_NEW
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.EmailAuthProvider
@@ -56,7 +56,7 @@ class EditProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -175,20 +175,19 @@ class EditProfileFragment : Fragment() {
                         user.reauthenticate(credential).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 viewModel.deleteAccount()
-                                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner,
-                                    { animation ->
-                                        animation?.let {
-                                            if (it) {
-                                                binding.constraintLayout.visibility = View.INVISIBLE
-                                                binding.progressBar.visibility = View.VISIBLE
-                                            } else {
-                                                binding.progressBar.visibility = View.GONE
-                                                binding.constraintLayout.visibility = View.VISIBLE
-                                            }
+                                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner
+                                ) { animation ->
+                                    animation?.let {
+                                        if (it) {
+                                            binding.constraintLayout.visibility = View.INVISIBLE
+                                            binding.progressBar.visibility = View.VISIBLE
+                                        } else {
+                                            binding.progressBar.visibility = View.GONE
+                                            binding.constraintLayout.visibility = View.VISIBLE
                                         }
                                     }
-                                )
-                                viewModel.deleteAccountError.observe(viewLifecycleOwner, { error ->
+                                }
+                                viewModel.deleteAccountError.observe(viewLifecycleOwner) { error ->
                                     error?.let {
                                         if (it) {
                                             Toast.makeText(
@@ -198,34 +197,34 @@ class EditProfileFragment : Fragment() {
                                             ).show()
                                         }
                                     }
-                                })
+                                }
                                 viewModel.deleteAccountConfirmation.observe(
-                                    viewLifecycleOwner,
-                                    { confirm ->
-                                        confirm?.let {
-                                            if (it) {
-                                                Toast.makeText(
-                                                    requireContext(),
-                                                    R.string.deletion_success,
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                                val intent = Intent(
-                                                    requireActivity(),
-                                                    MainActivity::class.java
-                                                )
-                                                activity?.let { activity ->
-                                                    activity.startActivity(intent)
-                                                    activity.finish()
-                                                }
+                                    viewLifecycleOwner
+                                ) { confirm ->
+                                    confirm?.let {
+                                        if (it) {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                R.string.deletion_success,
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            val intent = Intent(
+                                                requireActivity(),
+                                                MainActivity::class.java
+                                            )
+                                            activity?.let { activity ->
+                                                activity.startActivity(intent)
+                                                activity.finish()
                                             }
                                         }
-                                    })
-                                viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+                                    }
+                                }
+                                viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
                                     error?.let {
                                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
                                             .show()
                                     }
-                                })
+                                }
                             } else {
                                 println(task.exception)
                                 Toast.makeText(
@@ -259,7 +258,7 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun observeUpdateProfile() {
-        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+        viewModel.animation.observe(viewLifecycleOwner) { animation ->
             animation?.let { value ->
                 if (value) {
                     binding.constraintLayout.visibility = View.INVISIBLE
@@ -269,25 +268,25 @@ class EditProfileFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                 }
             }
-        })
-        viewModel.changesSaved.observe(viewLifecycleOwner, { isSaved ->
+        }
+        viewModel.changesSaved.observe(viewLifecycleOwner) { isSaved ->
             isSaved?.let {
                 if (it) {
                     Toast.makeText(requireContext(), R.string.changes_saved, Toast.LENGTH_SHORT)
                         .show()
                 }
             }
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
                     .show()
             }
-        })
+        }
     }
 
     private fun getProfileInfo() {
-        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+        viewModel.animation.observe(viewLifecycleOwner) { animation ->
             animation?.let { value ->
                 if (value) {
                     binding.constraintLayout.visibility = View.INVISIBLE
@@ -297,8 +296,8 @@ class EditProfileFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                 }
             }
-        })
-        viewModel.dataConfirmation.observe(viewLifecycleOwner, { dataConfirm ->
+        }
+        viewModel.dataConfirmation.observe(viewLifecycleOwner) { dataConfirm ->
             dataConfirm?.let { data ->
                 if (data) {
                     userProfileInfo = viewModel.userInfo
@@ -326,12 +325,12 @@ class EditProfileFragment : Fragment() {
                     binding.progressBar.visibility = View.VISIBLE
                 }
             }
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
     }
 
     private fun registerLauncher() {

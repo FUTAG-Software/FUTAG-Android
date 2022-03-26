@@ -41,15 +41,13 @@ class HomeFragment : Fragment(), AdsAdapterClickListener, PostAdapterClickListen
         adsAdapter = AdsRecyclerAdapter(requireContext(), this)
         postAdapter = PostRecyclerAdapter(requireContext(), this)
 
-        val layoutManager = LinearLayoutManager(requireContext())
         val layoutManagerAds =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         viewModel.getPosts()
         viewModel.getAds()
 
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = postAdapter
+        binding.recyclerViewPost.adapter = postAdapter
         binding.recyclerViewAds.layoutManager = layoutManagerAds
 
         val snapHelper = LinearSnapHelper()
@@ -66,7 +64,7 @@ class HomeFragment : Fragment(), AdsAdapterClickListener, PostAdapterClickListen
             posts?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
-                binding.recyclerView.visibility = View.VISIBLE
+                binding.recyclerViewPost.visibility = View.VISIBLE
                 postAdapter.postList = it
             }
         }
@@ -75,7 +73,7 @@ class HomeFragment : Fragment(), AdsAdapterClickListener, PostAdapterClickListen
                 if (it) {
                     binding.textViewErrorMessage.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
-                    binding.recyclerView.visibility = View.GONE
+                    binding.recyclerViewPost.visibility = View.GONE
                 } else {
                     binding.textViewErrorMessage.visibility = View.GONE
                 }
@@ -86,7 +84,7 @@ class HomeFragment : Fragment(), AdsAdapterClickListener, PostAdapterClickListen
                 if (it) {
                     binding.textViewErrorMessage.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
-                    binding.recyclerView.visibility = View.GONE
+                    binding.recyclerViewPost.visibility = View.GONE
                 } else {
                     binding.progressBar.visibility = View.GONE
                 }

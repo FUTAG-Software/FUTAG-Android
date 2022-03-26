@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.futag.futag.presentation.adapter.NotificationRecyclerAdapter
 import com.futag.futag.databinding.FragmentNotificationBinding
 import com.futag.futag.model.NotificationModel
+import com.futag.futag.presentation.adapter.NotificationRecyclerAdapter
 
 class NotificationFragment : Fragment() {
 
@@ -19,7 +18,7 @@ class NotificationFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentNotificationBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -40,9 +39,7 @@ class NotificationFragment : Fragment() {
         }
 
         adapter = NotificationRecyclerAdapter(notificationList)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
-
     }
 
     override fun onDestroyView() {

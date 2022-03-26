@@ -33,7 +33,7 @@ class EditProfileViewModel : ViewModel() {
     }
 
     fun updateProfile(
-        userInfo: UserModel, name: String, surname: String, birthday: String, selectedImage: Uri?
+        userInfo: UserModel, name: String, surname: String, birthday: String, selectedImage: Uri?,
     ) {
         updateProfileFirebase(userInfo, name, surname, birthday, selectedImage)
     }
@@ -73,7 +73,7 @@ class EditProfileViewModel : ViewModel() {
         newName: String,
         newSurname: String,
         newBirthday: String,
-        newSelectedImage: Uri?
+        newSelectedImage: Uri?,
     ) {
         animation.value = true
         val reference = storage.reference
@@ -178,15 +178,16 @@ class EditProfileViewModel : ViewModel() {
                                 errorMessage.value = it.localizedMessage
                             }
                     } else {
-                        db.collection(Constants.USERS).document(userUid).delete().addOnSuccessListener {
-                            auth.currentUser!!.delete().addOnSuccessListener {
-                                deleteAccountAnimation.value = false
-                                deleteAccountConfirmation.value = true
+                        db.collection(Constants.USERS).document(userUid).delete()
+                            .addOnSuccessListener {
+                                auth.currentUser!!.delete().addOnSuccessListener {
+                                    deleteAccountAnimation.value = false
+                                    deleteAccountConfirmation.value = true
+                                }.addOnFailureListener {
+                                    deleteAccountAnimation.value = false
+                                    errorMessage.value = it.localizedMessage
+                                }
                             }.addOnFailureListener {
-                                deleteAccountAnimation.value = false
-                                errorMessage.value = it.localizedMessage
-                            }
-                        }.addOnFailureListener {
                             deleteAccountAnimation.value = false
                             errorMessage.value = it.localizedMessage
                         }

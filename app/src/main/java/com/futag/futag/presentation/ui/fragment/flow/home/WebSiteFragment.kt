@@ -19,9 +19,9 @@ class WebSiteFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentWebBinding.inflate(inflater,container,false)
+        _binding = FragmentWebBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -32,7 +32,7 @@ class WebSiteFragment : Fragment() {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    private fun webViewSetup(){
+    private fun webViewSetup() {
         binding.webView.webViewClient = WebViewClient()
         binding.webView.apply {
             val url = args.siteLink

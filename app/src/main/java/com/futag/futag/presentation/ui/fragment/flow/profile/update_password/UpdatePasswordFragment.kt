@@ -25,7 +25,7 @@ class UpdatePasswordFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentUpdatePasswordBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -57,7 +57,7 @@ class UpdatePasswordFragment : Fragment() {
                         user.reauthenticate(credential).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 viewModel.updatePassword(newPassword)
-                                viewModel.animation.observe(viewLifecycleOwner, { animation ->
+                                viewModel.animation.observe(viewLifecycleOwner) { animation ->
                                     animation?.let {
                                         if (it) {
                                             binding.linearLayout.visibility = View.INVISIBLE
@@ -67,8 +67,8 @@ class UpdatePasswordFragment : Fragment() {
                                             binding.linearLayout.visibility = View.VISIBLE
                                         }
                                     }
-                                })
-                                viewModel.updatePasswordData.observe(viewLifecycleOwner, { data ->
+                                }
+                                viewModel.updatePasswordData.observe(viewLifecycleOwner) { data ->
                                     data?.let {
                                         if (it) {
                                             Toast.makeText(
@@ -80,13 +80,13 @@ class UpdatePasswordFragment : Fragment() {
                                             observeDataSignOut()
                                         }
                                     }
-                                })
-                                viewModel.updatePasswordError.observe(viewLifecycleOwner, { error ->
+                                }
+                                viewModel.updatePasswordError.observe(viewLifecycleOwner) { error ->
                                     error?.let {
                                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
                                             .show()
                                     }
-                                })
+                                }
                             }
                         }.addOnFailureListener {
                             Toast.makeText(
@@ -111,10 +111,10 @@ class UpdatePasswordFragment : Fragment() {
     }
 
     private fun observeDataSignOut() {
-        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+        viewModel.animation.observe(viewLifecycleOwner) { animation ->
             animation?.let { value ->
                 if (value) {
-                    viewModel.isThereEntry.observe(viewLifecycleOwner, { login ->
+                    viewModel.isThereEntry.observe(viewLifecycleOwner) { login ->
                         login?.let {
                             if (it) {
                                 binding.linearLayout.visibility = View.INVISIBLE
@@ -129,13 +129,13 @@ class UpdatePasswordFragment : Fragment() {
                                 binding.lottieAnimation.visibility = View.GONE
                             }
                         }
-                    })
+                    }
                 } else {
                     binding.linearLayout.visibility = View.VISIBLE
                     binding.lottieAnimation.visibility = View.GONE
                 }
             }
-        })
+        }
     }
 
     private fun checkEmptyView(): Boolean = binding.editTextNewPassword.text.isNotEmpty() &&

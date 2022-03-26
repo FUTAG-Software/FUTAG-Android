@@ -43,9 +43,11 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/about_us_text"
             android:textAlignment="textStart"
             android:textSize="18sp"
-            android:text="@string/about_us_text"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewItemMark"
             app:layout_constraintTop_toTopOf="@+id/imageViewItemMark" />

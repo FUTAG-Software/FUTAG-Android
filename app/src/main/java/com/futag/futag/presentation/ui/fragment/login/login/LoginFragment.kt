@@ -71,7 +71,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun observeData() {
-        viewModel.animation.observe(viewLifecycleOwner, { animation ->
+        viewModel.animation.observe(viewLifecycleOwner) { animation ->
             animation?.let {
                 if (it) {
                     binding.linearLayout.visibility = View.INVISIBLE
@@ -81,8 +81,8 @@ class LoginFragment : Fragment() {
                     binding.lottieAnimation.visibility = View.GONE
                 }
             }
-        })
-        viewModel.success.observe(viewLifecycleOwner, { success ->
+        }
+        viewModel.success.observe(viewLifecycleOwner) { success ->
             success?.let { value ->
                 if (value) {
                     activity?.let {
@@ -92,12 +92,12 @@ class LoginFragment : Fragment() {
                     }
                 }
             }
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
     }
 
     private fun dataControl(): Boolean = binding.editTextMail.text.isNotEmpty()

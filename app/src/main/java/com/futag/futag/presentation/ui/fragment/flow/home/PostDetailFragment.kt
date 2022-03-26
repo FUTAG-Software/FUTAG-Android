@@ -3,11 +3,11 @@ package com.futag.futag.presentation.ui.fragment.flow.home
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.futag.futag.R
 import com.futag.futag.databinding.FragmentPostDetailBinding
@@ -22,9 +22,9 @@ class PostDetailFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentPostDetailBinding.inflate(inflater,container,false)
+        _binding = FragmentPostDetailBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -33,8 +33,10 @@ class PostDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val currentData = args.postItem
-        if(currentData.featuredImage != null){
-            binding.imageViewImage.fetchImagesWithUrl(currentData.featuredImage.large,
+
+        if (currentData.featuredImage != null) {
+            binding.imageViewImage.fetchImagesWithUrl(
+                currentData.featuredImage.large,
                 placeholderProgressBar(requireContext())
             )
         } else {
@@ -42,12 +44,13 @@ class PostDetailFragment : Fragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.error)
             )
         }
+
         binding.textViewAuthor.text = currentData.author
 
         var noImageHTML = currentData.content.replace(Regex("<img.+>"), "")
-        noImageHTML = noImageHTML.replace(Regex("\\n"),"<br>")
+        noImageHTML = noImageHTML.replace(Regex("\\n"), "<br>")
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.textViewDetail.text = Html.fromHtml(noImageHTML, Html.FROM_HTML_MODE_COMPACT)
         } else {
             binding.textViewDetail.text = Html.fromHtml(noImageHTML)

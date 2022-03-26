@@ -28,9 +28,8 @@ class UnitsDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // kullaninin tikladigi birim numarasi
-        val id = args.unitId
 
-        when(id){
+        when(args.unitId){
             0 -> {
                 binding.imageView.setImageResource(R.drawable.foreign_relations_unit_image)
                 binding.textViewUnitName.text = getString(R.string.foreign_relations_unit)
