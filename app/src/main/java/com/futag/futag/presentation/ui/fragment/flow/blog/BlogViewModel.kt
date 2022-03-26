@@ -3,7 +3,7 @@ package com.futag.futag.presentation.ui.fragment.flow.blog
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.futag.futag.data.repository.BlogRepository
+import com.futag.futag.data.network.FlowApiImpl
 import com.futag.futag.model.blog.BlogModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 
 class BlogViewModel : ViewModel() {
 
-    private val eventRepository = BlogRepository()
+    private val api = FlowApiImpl()
 
     val blogDatas = MutableLiveData<BlogModel>()
     val blogError = MutableLiveData<Boolean>()
@@ -24,7 +24,7 @@ class BlogViewModel : ViewModel() {
     private fun getBlogsData() {
         blogLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
-            val response = eventRepository.getBlogData()
+            val response = api.getBlogData()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     response.body()?.let {

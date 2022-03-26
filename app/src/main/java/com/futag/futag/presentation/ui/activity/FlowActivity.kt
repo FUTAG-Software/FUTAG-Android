@@ -22,7 +22,14 @@ class FlowActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.fragment)
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.evFragment, R.id.blogFragment, R.id.etkinlikFragment,R.id.profilFragment,R.id.dahaFragment))
+            setOf(
+                R.id.evFragment,
+                R.id.blogFragment,
+                R.id.etkinlikFragment,
+                R.id.profilFragment,
+                R.id.dahaFragment
+            )
+        )
 
         setupActionBarWithNavController(navController,appBarConfiguration)
 

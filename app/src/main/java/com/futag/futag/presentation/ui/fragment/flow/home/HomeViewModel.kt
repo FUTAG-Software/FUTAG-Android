@@ -3,7 +3,7 @@ package com.futag.futag.presentation.ui.fragment.flow.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.futag.futag.data.repository.HomeRepository
+import com.futag.futag.data.network.FlowApiImpl
 import com.futag.futag.model.advertising.AdsModel
 import com.futag.futag.model.post.PostModel
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 class HomeViewModel : ViewModel() {
 
-    private val flowRepository = HomeRepository()
+    private val api = FlowApiImpl()
 
     val postDatas = MutableLiveData<PostModel>()
     val postError = MutableLiveData<Boolean>()
@@ -33,7 +33,7 @@ class HomeViewModel : ViewModel() {
     private fun getPostsData() {
         postLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
-            val response = flowRepository.getPosts()
+            val response = api.getPostData()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     response.body()?.let {
@@ -54,7 +54,7 @@ class HomeViewModel : ViewModel() {
     private fun getAdsData() {
         adsLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
-            val response = flowRepository.getAds()
+            val response = api.getAdsData()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     response.body()?.let {

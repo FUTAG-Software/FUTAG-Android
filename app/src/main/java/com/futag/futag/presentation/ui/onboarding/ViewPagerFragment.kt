@@ -35,7 +35,6 @@ class ViewPagerFragment : Fragment() {
         )
 
         binding.viewPager.adapter = adapter
-
         return view
     }
 
