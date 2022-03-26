@@ -6,20 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.futag.futag.presentation.adapter.EventRecyclerAdapter
+import androidx.navigation.fragment.findNavController
 import com.futag.futag.databinding.FragmentEventBinding
-import com.futag.futag.model.event.EventsModel
+import com.futag.futag.model.event.EventsModelItem
+import com.futag.futag.util.listener.EventAdapterClickListener
+import com.futag.futag.presentation.adapter.EventRecyclerAdapter
 
-class EventFragment : Fragment() {
+class EventFragment : Fragment(), EventAdapterClickListener {
 
     private var _binding: FragmentEventBinding? = null
     private val binding get() = _binding!!
-    private val eventAdapter = EventRecyclerAdapter(this, EventsModel())
+    private lateinit var eventAdapter: EventRecyclerAdapter
     private lateinit var viewModel: EventViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentEventBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -28,6 +30,8 @@ class EventFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        eventAdapter = EventRecyclerAdapter(requireContext(), this)
 
         viewModel = ViewModelProvider(requireActivity())[EventViewModel::class.java]
         viewModel.getEvents()
@@ -38,15 +42,15 @@ class EventFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.eventDatas.observe(viewLifecycleOwner, { events ->
+        viewModel.eventDatas.observe(viewLifecycleOwner) { events ->
             events?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                eventAdapter.updateEvent(it)
+                eventAdapter.events = it
             }
-        })
-        viewModel.eventError.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.eventError.observe(viewLifecycleOwner) { error ->
             error?.let {
                 if (it) {
                     binding.textViewErrorMessage.visibility = View.VISIBLE
@@ -56,8 +60,8 @@ class EventFragment : Fragment() {
                     binding.textViewErrorMessage.visibility = View.GONE
                 }
             }
-        })
-        viewModel.eventLoading.observe(viewLifecycleOwner, { loading ->
+        }
+        viewModel.eventLoading.observe(viewLifecycleOwner) { loading ->
             loading?.let {
                 if (it) {
                     binding.textViewErrorMessage.visibility = View.GONE
@@ -67,7 +71,13 @@ class EventFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                 }
             }
-        })
+        }
+    }
+
+    override fun onClickToEventItem(currentData: EventsModelItem) {
+        val action =
+            EventFragmentDirections.actionEtkinlikFragmentToEtkinlikDetayFragment(currentData)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {
