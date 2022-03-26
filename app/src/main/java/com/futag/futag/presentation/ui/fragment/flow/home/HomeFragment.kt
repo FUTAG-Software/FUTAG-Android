@@ -6,25 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.futag.futag.databinding.FragmentHomeBinding
+import com.futag.futag.model.advertising.AdsModelItem
+import com.futag.futag.model.post.PostModelItem
 import com.futag.futag.presentation.adapter.AdsRecyclerAdapter
 import com.futag.futag.presentation.adapter.PostRecyclerAdapter
-import com.futag.futag.databinding.FragmentHomeBinding
-import com.futag.futag.model.post.PostModel
 import com.futag.futag.util.LinePagerIndicatorDecoration
+import com.futag.futag.util.listener.AdsAdapterClickListener
+import com.futag.futag.util.listener.PostAdapterClickListener
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AdsAdapterClickListener, PostAdapterClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adsAdapter: AdsRecyclerAdapter
     private lateinit var viewModel: HomeViewModel
-    private val postAdapter = PostRecyclerAdapter(this, PostModel())
+    private lateinit var postAdapter: PostRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -34,10 +38,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adsAdapter = AdsRecyclerAdapter(requireContext(), this)
+        postAdapter = PostRecyclerAdapter(requireContext(), this)
+
         val layoutManager = LinearLayoutManager(requireContext())
         val layoutManagerAds =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         viewModel.getPosts()
         viewModel.getAds()
 
@@ -55,15 +62,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun observePostLiveData() {
-        viewModel.postDatas.observe(viewLifecycleOwner, { posts ->
+        viewModel.postDatas.observe(viewLifecycleOwner) { posts ->
             posts?.let {
                 binding.textViewErrorMessage.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                postAdapter.updatePost(it)
+                postAdapter.postList = it
             }
-        })
-        viewModel.postError.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.postError.observe(viewLifecycleOwner) { error ->
             error?.let {
                 if (it) {
                     binding.textViewErrorMessage.visibility = View.VISIBLE
@@ -73,8 +80,8 @@ class HomeFragment : Fragment() {
                     binding.textViewErrorMessage.visibility = View.GONE
                 }
             }
-        })
-        viewModel.postLoading.observe(viewLifecycleOwner, { loading ->
+        }
+        viewModel.postLoading.observe(viewLifecycleOwner) { loading ->
             loading?.let {
                 if (it) {
                     binding.textViewErrorMessage.visibility = View.GONE
@@ -84,27 +91,27 @@ class HomeFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                 }
             }
-        })
+        }
     }
 
     private fun observeAdsLiveData() {
-        viewModel.adsDatas.observe(viewLifecycleOwner, { ads ->
-            ads?.let { reklamModel ->
+        viewModel.adsDatas.observe(viewLifecycleOwner) { ads ->
+            ads?.let {
                 binding.progressBarSlider.visibility = View.INVISIBLE
                 binding.recyclerViewAds.visibility = View.VISIBLE
-                adsAdapter = AdsRecyclerAdapter(reklamModel, this)
+                adsAdapter.adsList = it
                 binding.recyclerViewAds.adapter = adsAdapter
             }
-        })
-        viewModel.adsError.observe(viewLifecycleOwner, { error ->
+        }
+        viewModel.adsError.observe(viewLifecycleOwner) { error ->
             error?.let {
                 if (it) {
                     binding.progressBarSlider.visibility = View.GONE
                     binding.recyclerViewAds.visibility = View.GONE
                 }
             }
-        })
-        viewModel.adsLoading.observe(viewLifecycleOwner, { loading ->
+        }
+        viewModel.adsLoading.observe(viewLifecycleOwner) { loading ->
             loading?.let {
                 if (it) {
                     binding.progressBarSlider.visibility = View.VISIBLE
@@ -113,12 +120,23 @@ class HomeFragment : Fragment() {
                     binding.progressBarSlider.visibility = View.GONE
                 }
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClickItem(item: AdsModelItem) {
+        val action =
+            HomeFragmentDirections.actionEvFragmentToWebSitesiFragment(item.redirectingLink)
+        findNavController().navigate(action)
+    }
+
+    override fun clickListener(item: PostModelItem) {
+        val action = HomeFragmentDirections.actionEvFragmentToGonderiDetayFragment(item)
+        findNavController().navigate(action)
     }
 
 }

@@ -1,56 +1,74 @@
 package com.futag.futag.presentation.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.BlogRecyclerRowBinding
-import com.futag.futag.model.blog.BlogModel
-import com.futag.futag.util.placeholderProgressBar
+import com.futag.futag.model.blog.BlogModelItem
 import com.futag.futag.presentation.ui.fragment.flow.blog.BlogFragmentDirections
 import com.futag.futag.util.fetchImagesWithUrl
+import com.futag.futag.util.listener.BlogAdapterClickListener
+import com.futag.futag.util.placeholderProgressBar
 
-class BlogRecyclerAdapter(private val parentFragment: Fragment, private val blogList: BlogModel)
-    : RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder>() {
+class BlogRecyclerAdapter(
+    private val context: Context,
+    private val clickListener: BlogAdapterClickListener
+) : RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder>() {
 
-    class BlogViewHolder(val itemBinding: BlogRecyclerRowBinding): RecyclerView.ViewHolder(itemBinding.root)
+    private val diffUtil = object : DiffUtil.ItemCallback<BlogModelItem>() {
+        override fun areItemsTheSame(oldItem: BlogModelItem, newItem: BlogModelItem): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: BlogModelItem, newItem: BlogModelItem): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    private val recyclerDiffUtil = AsyncListDiffer(this, diffUtil)
+
+    var blogList: List<BlogModelItem>
+        get() = recyclerDiffUtil.currentList
+        set(value) = recyclerDiffUtil.submitList(value)
+
+    class BlogViewHolder(val itemBinding: BlogRecyclerRowBinding) :
+        RecyclerView.ViewHolder(itemBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlogViewHolder {
-        val binding = BlogRecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            BlogRecyclerRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BlogViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
         val currentData = blogList[position]
 
-        if(currentData.featuredImage != null){
-            holder.itemBinding.blogImage.fetchImagesWithUrl(currentData.featuredImage.large,
-                placeholderProgressBar(parentFragment.requireContext()))
+        if (currentData.featuredImage != null) {
+            holder.itemBinding.blogImage.fetchImagesWithUrl(
+                currentData.featuredImage.large,
+                placeholderProgressBar(context)
+            )
         } else {
             holder.itemBinding.blogImage.setImageDrawable(
-                ContextCompat.getDrawable(parentFragment.requireContext(),R.drawable.error)
+                ContextCompat.getDrawable(context, R.drawable.error)
             )
         }
 
-        holder.itemBinding.blogTitle.text = currentData.title
-        holder.itemBinding.blogAuthor.text = currentData.author
-        holder.itemBinding.layout.setOnClickListener {
-            val action = BlogFragmentDirections.actionBlogFragmentToBlogDetayFragment(currentData)
-            parentFragment.findNavController().navigate(action)
+        holder.itemBinding.apply {
+            blogTitle.text = currentData.title
+            blogAuthor.text = currentData.author
+            layout.setOnClickListener {
+                clickListener.onClickListener(currentData)
+            }
         }
     }
 
-    override fun getItemCount(): Int {
-        return blogList.size
-    }
-
-    fun updateBlogs(newBlogList: BlogModel){
-        blogList.clear()
-        blogList.addAll(newBlogList)
-        notifyDataSetChanged()
-    }
+    override fun getItemCount(): Int = blogList.size
 
 }
