@@ -1,13 +1,15 @@
 package com.futag.futag.presentation.ui.fragment.flow.moreover.units
 
+import android.graphics.text.LineBreaker
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.futag.futag.R
 import com.futag.futag.databinding.FragmentUnitDetailBinding
+import com.futag.futag.util.Units.Companion.getUnitDetail
 
 class UnitsDetailFragment : Fragment() {
 
@@ -27,41 +29,15 @@ class UnitsDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // kullaninin tikladigi birim numarasi
-
-        when(args.unitId){
-            0 -> {
-                binding.imageView.setImageResource(R.drawable.foreign_relations_unit_image)
-                binding.textViewUnitName.text = getString(R.string.foreign_relations_unit)
-                binding.textViewUnitDescription.text = getString(R.string.foreign_relations_unit_text)
-            }
-            1 -> {
-                binding.imageView.setImageResource(R.drawable.entrepreneurship_unit_image)
-                binding.textViewUnitName.text = getString(R.string.entrepreneurship_unit)
-                binding.textViewUnitDescription.text = getString(R.string.entrepreneurship_unit_text)
-            }
-            2 -> {
-                binding.imageView.setImageResource(R.drawable.media_unit_image)
-                binding.textViewUnitName.text = getString(R.string.media_unit)
-                binding.textViewUnitDescription.text = getString(R.string.media_unit_text)
-            }
-            3 -> {
-                binding.imageView.setImageResource(R.drawable.project_unit_image)
-                binding.textViewUnitName.text = getString(R.string.project_rd_unit)
-                binding.textViewUnitDescription.text = getString(R.string.project_rd_unit_text)
-            }
-            4 -> {
-                binding.imageView.setImageResource(R.drawable.social_responsibility_unit_image)
-                binding.textViewUnitName.text = getString(R.string.social_responsibility_unit)
-                binding.textViewUnitDescription.text = getString(R.string.social_responsibility_unit_text)
-            }
-            5 -> {
-                binding.imageView.setImageResource(R.drawable.software_unit_image)
-                binding.textViewUnitName.text = getString(R.string.software_unit)
-                binding.textViewUnitDescription.text = getString(R.string.software_unit_text)
-            }
+        val unit = getUnitDetail(args.unitId)
+        binding.apply {
+            imageView.setImageResource(unit.unitImage)
+            textViewUnitName.text = getString(unit.unitName)
+            textViewUnitDescription.text = getString(unit.unitDescription)
         }
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            binding.textViewUnitDescription.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
+        }
     }
 
     override fun onDestroyView() {

@@ -26,32 +26,32 @@ class OurUnitsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.foreignRelationsUnit.setOnClickListener {
-            val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(0)
-            findNavController().navigate(action)
-        }
-
-        binding.entrepreneurshipUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(1)
             findNavController().navigate(action)
         }
 
-        binding.mediaUnit.setOnClickListener {
+        binding.entrepreneurshipUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(2)
             findNavController().navigate(action)
         }
 
-        binding.projectRDUnit.setOnClickListener {
+        binding.mediaUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(3)
             findNavController().navigate(action)
         }
 
-        binding.socialResponsibilityUnit.setOnClickListener {
+        binding.projectRDUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(4)
             findNavController().navigate(action)
         }
 
-        binding.softwareUnit.setOnClickListener {
+        binding.socialResponsibilityUnit.setOnClickListener {
             val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(5)
+            findNavController().navigate(action)
+        }
+
+        binding.softwareUnit.setOnClickListener {
+            val action = OurUnitsFragmentDirections.actionBirimlerimizFToBirimDetayF(6)
             findNavController().navigate(action)
         }
 
