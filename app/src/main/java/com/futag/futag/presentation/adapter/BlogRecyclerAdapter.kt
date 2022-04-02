@@ -4,14 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.futag.futag.R
 import com.futag.futag.databinding.BlogRecyclerRowBinding
 import com.futag.futag.model.blog.BlogModelItem
-import com.futag.futag.presentation.ui.fragment.flow.blog.BlogFragmentDirections
 import com.futag.futag.util.fetchImagesWithUrl
 import com.futag.futag.util.listener.BlogAdapterClickListener
 import com.futag.futag.util.placeholderProgressBar
