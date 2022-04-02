@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.futag.futag.databinding.EventsRecyclerRowBinding
+import com.futag.futag.databinding.EventRecyclerRowBinding
 import com.futag.futag.model.event.EventsModelItem
 import com.futag.futag.util.fetchImagesWithUrl
 import com.futag.futag.util.listener.EventAdapterClickListener
@@ -36,11 +36,11 @@ class EventRecyclerAdapter(
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
-    class EventsViewHolder(val itemBinding: EventsRecyclerRowBinding) :
+    class EventsViewHolder(val itemBinding: EventRecyclerRowBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventsViewHolder {
-        val binding = EventsRecyclerRowBinding.inflate(
+        val binding = EventRecyclerRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return EventsViewHolder(binding)
@@ -50,7 +50,7 @@ class EventRecyclerAdapter(
         val currentData = events[position]
 
         holder.itemBinding.apply {
-            cardViewEtkinlik.setOnClickListener {
+            eventLayout.setOnClickListener {
                 onClickListener.onClickToEventItem(currentData)
             }
             imageView.fetchImagesWithUrl(

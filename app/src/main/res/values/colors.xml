@@ -55,6 +55,6 @@
     <color name="moreover_image_background_color">@color/white</color>
     <color name="moreover_text_color">@color/light_black</color>
 
-    <color name="blog_text_background_color">#80000000</color>
+    <color name="blog_text_background_color">#99000000</color>
 
 </resources>
