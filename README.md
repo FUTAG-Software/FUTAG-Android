@@ -37,9 +37,10 @@ If you want to have detailed information about our student community and be incl
 
 ### Application Images
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/58858983/134467075-2135c03e-0dbe-415e-a817-6b56e466d6bb.jpeg" alt="1" />
-  <img src="https://user-images.githubusercontent.com/58858983/134466996-b9a9dcae-0b41-4228-903c-27b820eecb9a.jpeg" alt="2" />
-  <img src="https://user-images.githubusercontent.com/58858983/134466905-36419d14-2e3f-4ea3-81e4-1d65db76186d.jpeg" alt="3" />
+  <img src="https://user-images.githubusercontent.com/58858983/168427033-0c63c617-4798-4fa2-adc5-a14fa2930219.png" alt="1" />
+  <img src="https://user-images.githubusercontent.com/58858983/168427031-b0a29bdf-4cb6-49b0-8f60-f5c56a4c7752.png" alt="2" />
+  <img src="https://user-images.githubusercontent.com/58858983/168427029-b4621f90-5aae-415d-902e-aabb0ab35b46.png" alt="3" />
+  <img src="https://user-images.githubusercontent.com/58858983/168427115-e4267063-5e5e-4fd9-8cf7-661e8645fa8d.png" alt="4" />
 </p>
 
 
